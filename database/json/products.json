@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "63ab77d06d6dc52c56dc6645"
+  },
+  "medic_id": "64259484a587c96f25712631",
+  "quote_id": "",
+  "clinic_id": "63ab77d06d6dc52c56dc662e",
+  "category": "Plastic",
+  "procedure": "Liposuction",
+  "recovery_days": 5,
+  "procedure_hours": 5,
+  "surgical_facility": 100,
+  "facility_care": 150,
+  "medical_care": 200,
+  "anesthesia_fees": 1000,
+  "medical_tests": 150,
+  "post_surgery_garments": 90,
+  "prescription_medication": 0,
+  "surgeon_fee": 45,
+  "surgeon_insurance": 200,
+  "currency": "US",
+  "createdAt": {
+    "$numberLong": "1672181711974"
+  },
+  "updatedAt": {
+    "$numberLong": "1677944214208"
+  }
+},{
+  "_id": {
+    "$oid": "63ab77d06d6dc52c56dc6640"
+  },
+  "medic_id": "64259484a587c96f25712631",
+  "quote_id": "",
+  "clinic_id": "63ab77d06d6dc52c56dc662e",
+  "category": "Plastic",
+  "procedure": "Body lift",
+  "recovery_days": 4,
+  "procedure_hours": 5,
+  "surgical_facility": 100,
+  "facility_care": 150,
+  "medical_care": 200,
+  "anesthesia_fees": 1000,
+  "medical_tests": 150,
+  "post_surgery_garments": 90,
+  "prescription_medication": 0,
+  "surgeon_fee": 45,
+  "surgeon_insurance": 200,
+  "currency": "US",
+  "createdAt": {
+    "$numberLong": "1672181711974"
+  },
+  "updatedAt": {
+    "$numberLong": "1677944214208"
+  }
+}]

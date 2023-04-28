@@ -1,0 +1,2 @@
+export const GUIDE_TITLE = "Follow this simples steps";
+export const GUIDE_DETAIL = "1. Search or select the procedure do you need. \n2. See available procedure date and add to cart. It will appear the hotels and tickets available depending on the date of the procedure.";

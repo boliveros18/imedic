@@ -1,0 +1,46 @@
+[{
+  "_id": {
+    "$oid": "643d7c576dcc619ed63fff68"
+  },
+  "type": "Comment",
+  "parent_id": "6429cc14bb97595abe63182e",
+  "user_id": "64228786353b199547121dfc",
+  "user_name": "Camilo Medina",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643d7c7d6dcc619ed63fff6c"
+  },
+  "type": "Comment",
+  "parent_id": "6429cc23bb97595abe631837",
+  "user_id": "64228786353b199547121dfc",
+  "user_name": "Camilo Medina",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643d7c836dcc619ed63fff74"
+  },
+  "type": "Comment",
+  "parent_id": "643d6e5f3c53b51ea74a2904",
+  "user_id": "64228786353b199547121dfc",
+  "user_name": "Camilo Medina",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643ddb16264396afc8f65fa9"
+  },
+  "type": "Clinic",
+  "parent_id": "63ab77d06d6dc52c56dc662e",
+  "user_id": "64228786353b199547121dfc",
+  "user_name": "Camilo Medina",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643de143264396afc8f65fd9"
+  },
+  "type": "Comment",
+  "parent_id": "6429cd4bbb97595abe631896",
+  "user_id": "64228786353b199547121dfc",
+  "user_name": "Camilo Medina",
+  "__v": 0
+}]

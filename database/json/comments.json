@@ -1,0 +1,154 @@
+[{
+  "_id": {
+    "$oid": "6429cc14bb97595abe63182e"
+  },
+  "type": "Clinic",
+  "parent_id": "63ab77d06d6dc52c56dc662e",
+  "user_id": "63ac7a91454855cff2b9c841",
+  "description": "I loved it. Very good attention.",
+  "user_tag_id": "",
+  "user_tag_name": "",
+  "comments": 4,
+  "likes": 1,
+  "createdAt": {
+    "$numberLong": "1680460820444"
+  },
+  "updatedAt": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6429cc23bb97595abe631837"
+  },
+  "type": "Clinic",
+  "parent_id": "63ab77d06d6dc52c56dc662e",
+  "user_id": "642256af13ce8d575018c3ec",
+  "description": "Very good attention.",
+  "user_tag_id": "",
+  "user_tag_name": "",
+  "comments": 1,
+  "likes": 1,
+  "createdAt": {
+    "$numberLong": "1680460835508"
+  },
+  "updatedAt": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6429cd4bbb97595abe631896"
+  },
+  "type": "Comment",
+  "parent_id": "6429cc14bb97595abe63182e",
+  "user_id": "63f90961ccd6e21b528f4e51",
+  "description": "That's right",
+  "user_tag_id": "63ac7a91454855cff2b9c841",
+  "user_tag_name": "@maria cano",
+  "comments": 0,
+  "likes": 1,
+  "createdAt": {
+    "$numberLong": "1680461131924"
+  },
+  "updatedAt": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6429cd5abb97595abe63189e"
+  },
+  "type": "Comment",
+  "parent_id": "6429cc14bb97595abe63182e",
+  "user_id": "63ac76f9454855cff2b9c81c",
+  "description": "Yes, you are in the same move.",
+  "user_tag_id": "63ac7a91454855cff2b9c841",
+  "user_tag_name": "@maria cano",
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1680461146538"
+  },
+  "updatedAt": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6429cd75bb97595abe6318ac"
+  },
+  "type": "Comment",
+  "parent_id": "6429cc23bb97595abe631837",
+  "user_id": "63ac7798454855cff2b9c823",
+  "description": "Yes is ok, right",
+  "user_tag_id": "642256af13ce8d575018c3ec",
+  "user_tag_name": "@andres parra",
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1680461173690"
+  },
+  "updatedAt": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643d6e5c3c53b51ea74a28fd"
+  },
+  "type": "Clinic",
+  "parent_id": "63ab77d06d6dc52c56dc662e",
+  "user_id": "64228786353b199547121dfc",
+  "description": "h",
+  "user_tag_id": "",
+  "user_tag_name": "",
+  "comments": 1,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1681747548090"
+  },
+  "updatedAt": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643d6e5f3c53b51ea74a2904"
+  },
+  "type": "Comment",
+  "parent_id": "643d6e5c3c53b51ea74a28fd",
+  "user_id": "64228786353b199547121dfc",
+  "description": "h",
+  "user_tag_id": "64228786353b199547121dfc",
+  "user_tag_name": "@Camilo Medina",
+  "comments": 0,
+  "likes": 1,
+  "createdAt": {
+    "$numberLong": "1681747551834"
+  },
+  "updatedAt": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643d83676dcc619ed64000a0"
+  },
+  "type": "Comment",
+  "parent_id": "6429cc14bb97595abe63182e",
+  "user_id": "64228786353b199547121dfc",
+  "description": "1",
+  "user_tag_id": "63f90961ccd6e21b528f4e51",
+  "user_tag_name": "@Eduardo Rios",
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1681752935263"
+  },
+  "updatedAt": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643d83a56dcc619ed64000bf"
+  },
+  "type": "Comment",
+  "parent_id": "6429cc14bb97595abe63182e",
+  "user_id": "64259483a587c96f2571262a",
+  "description": "1",
+  "user_tag_id": "63ac76f9454855cff2b9c81c",
+  "user_tag_name": "@Carlos Dominguez",
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1681752997648"
+  },
+  "updatedAt": 0,
+  "__v": 0
+}]

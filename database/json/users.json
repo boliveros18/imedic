@@ -1,0 +1,161 @@
+[{
+  "_id": {
+    "$oid": "63f90961ccd6e21b528f4e50"
+  },
+  "name": "Bresneth Oliveros",
+  "email": "boliveros@google.com",
+  "password": "$2a$10$miEHz5dG4TzOYv2URvcL5.LuWypA1sl9QBjtx3C5DB1ex54TQvyZm",
+  "role": "admin",
+  "photo": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677265249936"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677265249936"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63f90961ccd6e21b528f4e51"
+  },
+  "name": "Eduardo Rios",
+  "email": "eduardo@google.com",
+  "password": "$2a$10$UcCDfLXL0DFfa6MI5POQOuMnTFJ5JtDMX2UN4zB/gPb9FVDxc4Phm",
+  "role": "client",
+  "photo": "",
+  "__v": 0,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1677265249938"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1677265249938"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63ac76f9454855cff2b9c81c"
+  },
+  "name": "Carlos Dominguez",
+  "email": "codo@google.com",
+  "password": "$2a$10$BLb.tOlhwgZpxgqGjfbENeyPAPJZ2Ovj7OJdFrAXsUlu6D3GWruQK",
+  "role": "client",
+  "photo": "",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672247033521"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672247033521"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ac7798454855cff2b9c823"
+  },
+  "name": "Melissa Ford",
+  "email": "melissa@google.com",
+  "password": "$2a$10$qezuLEY/121.hmjTSGkIRuAo174Nxn4m9e2omZJaoV26rfGBk/esC",
+  "role": "client",
+  "photo": "",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672247192158"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672247192158"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ac7a91454855cff2b9c841"
+  },
+  "name": "Maria Cano",
+  "email": "maria@google.com",
+  "password": "$2a$10$V0Dp/q8CrlJrAwE6G4hgk.Gv/w8ffVX4i0jCQOnZxIjllGMSOlhRa",
+  "role": "client",
+  "photo": "",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672247953766"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672247953766"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "642256af13ce8d575018c3ec"
+  },
+  "name": "Andres Parra",
+  "email": "andres@gmail.com",
+  "password": "$2a$10$em.j3RBqDWp2Z4PvP3pyP.NOwGqQ0TyOOx3hV2ZKT9I5pdIXJ6wFK",
+  "photo": "",
+  "role": "client",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679972015970"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679972015970"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64228786353b199547121dfc"
+  },
+  "name": "Camilo Medina",
+  "email": "camilo@google.com",
+  "password": "$2a$10$bPeTYWSAaZZFcsQXTxhROewPRyjYsqMY5Zkny0CyskWC6g7lzMHgy",
+  "photo": "",
+  "role": "medic",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1679984518658"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1679984518658"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64259483a587c96f2571262a"
+  },
+  "name": "Andres Gutierrez",
+  "email": "andres@google.com",
+  "password": "$2a$10$/JWQVrsccL0D1spXnVsMU.Wde6r7wYM3nvLMRZkCMA4xb.SqIUxCG",
+  "photo": "https://res.cloudinary.com/dsjtygehr/image/upload/v1680455322/wmwjnzi68aowl9hvelhe.jpg",
+  "role": "medic",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1680184451072"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1680455323351"
+    }
+  },
+  "__v": 0
+}]

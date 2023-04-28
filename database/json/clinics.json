@@ -1,0 +1,169 @@
+[{
+  "_id": {
+    "$oid": "63ab77d06d6dc52c56dc662b"
+  },
+  "type": "Clinic",
+  "medic_id": "642c78282452ed13a087f5d4",
+  "certified": false,
+  "finantial": "8 million US in 2021",
+  "speciality": "Plastic and Reconstruction",
+  "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
+  "phone": "+057 3025654987",
+  "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-22-scaled.jpg",
+  "name": "Clinica Porto Azul",
+  "province": "Barranquilla",
+  "state": "Atlantico",
+  "country": "Colombia",
+  "instagram": "https://www.instagram.com/clinicaportoazulauna/?hl=es",
+  "address": "Cra 105#45-265",
+  "qualification": 4,
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1672181711974"
+  },
+  "updatedAt": {
+    "$numberLong": "1672181711974"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ab77d06d6dc52c56dc662c"
+  },
+  "type": "Clinic",
+  "medic_id": "642c78282452ed13a087f5d4",
+  "certified": false,
+  "finantial": "12 million US in 2021",
+  "speciality": "Plastic and Reconstruction",
+  "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
+  "phone": "+057 3025654987",
+  "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-07-scaled.jpg",
+  "name": "Clinica de rostros",
+  "province": "Barranquilla",
+  "state": "Atlantico",
+  "country": "Colombia",
+  "instagram": "https://www.instagram.com/clinicaportoazulauna/?hl=es",
+  "address": "Cra 105#45-265",
+  "qualification": 3.5,
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1672181711974"
+  },
+  "updatedAt": {
+    "$numberLong": "1672181711974"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ab77d06d6dc52c56dc662d"
+  },
+  "type": "Clinic",
+  "medic_id": "642c78272452ed13a087f5d1",
+  "certified": false,
+  "finantial": "8 million US in 2021",
+  "speciality": "Plastic and Reconstruction",
+  "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
+  "phone": "+057 3025654987",
+  "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-03-scaled.jpg",
+  "name": "Clinica del Cancer IPS",
+  "province": "Barranquilla",
+  "state": "Atlantico",
+  "country": "Colombia",
+  "instagram": "https://www.instagram.com/clinicaportoazulauna/?hl=es",
+  "address": "Cra 105#45-265",
+  "qualification": 3.6,
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1672181711974"
+  },
+  "updatedAt": {
+    "$numberLong": "1672181711974"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ab77d06d6dc52c56dc662e"
+  },
+  "type": "Clinic",
+  "medic_id": "642c78272452ed13a087f5d1",
+  "certified": false,
+  "finantial": "8 million US in 2021",
+  "speciality": "Plastic and Reconstruction",
+  "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
+  "phone": "+057 3025654987",
+  "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-07-scaled.jpg",
+  "name": "Clinica de rehabilitacion medular",
+  "province": "Barranquilla",
+  "state": "Atlantico",
+  "country": "Colombia",
+  "instagram": "https://www.instagram.com/clinicaportoazulauna/?hl=es",
+  "address": "Cra 105#45-265",
+  "qualification": 4.15,
+  "comments": 3,
+  "likes": 1,
+  "createdAt": {
+    "$numberLong": "1672181711974"
+  },
+  "updatedAt": {
+    "$numberLong": "1672181711974"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ab77d06d6dc52c56dc662f"
+  },
+  "type": "Clinic",
+  "medic_id": "642c78272452ed13a087f5d1",
+  "certified": false,
+  "finantial": "8 million US in 2021",
+  "speciality": "Plastic and Reconstruction",
+  "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
+  "phone": "+057 3025654987",
+  "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-15-scaled.jpg",
+  "name": "Clinica Ozuna",
+  "province": "Barranquilla",
+  "state": "Atlantico",
+  "country": "Colombia",
+  "instagram": "https://www.instagram.com/clinicaportoazulauna/?hl=es",
+  "address": "Cra 105#45-265",
+  "qualification": 3.6,
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1672181711974"
+  },
+  "updatedAt": {
+    "$numberLong": "1672181711974"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "63ab77d06d6dc52c56dc6621"
+  },
+  "type": "Clinic",
+  "medic_id": "642c78272452ed13a087f5d1",
+  "certified": false,
+  "finantial": "8 million US in 2021",
+  "speciality": "Plastic and Reconstruction",
+  "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
+  "phone": "+057 3025654987",
+  "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-22-scaled.jpg",
+  "name": "Clinica del caribe IPS",
+  "province": "Barranquilla",
+  "state": "Atlantico",
+  "country": "Colombia",
+  "instagram": "https://www.instagram.com/clinicaportoazulauna/?hl=es",
+  "address": "Cra 105#45-265",
+  "qualification": 3.9,
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1672181711974"
+  },
+  "updatedAt": {
+    "$numberLong": "1672181711974"
+  },
+  "__v": 0
+}]

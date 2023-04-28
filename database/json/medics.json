@@ -1,0 +1,53 @@
+[{
+  "_id": {
+    "$oid": "642c78282452ed13a087f5d4"
+  },
+  "parent_id": "64259483a587c96f2571262a",
+  "certified": false,
+  "card_id": "",
+  "to_approve": true,
+  "contract_signature": "",
+  "available_days": [
+    ""
+  ],
+  "curriculum": "",
+  "qualification": 0,
+  "comments": 0,
+  "instagram": "rwerwerwerwerwererwe123123",
+  "country": "Colombia",
+  "state": "Atlántico",
+  "province": "Barranquilla",
+  "createdAt": {
+    "$numberLong": "1680635944958"
+  },
+  "updatedAt": {
+    "$numberLong": "1681839611675"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "643d5b57a089376e6e50a0a3"
+  },
+  "parent_id": "64228786353b199547121dfc",
+  "certified": false,
+  "card_id": "",
+  "to_approve": true,
+  "contract_signature": "",
+  "available_days": [
+    ""
+  ],
+  "curriculum": "",
+  "qualification": 0,
+  "comments": 0,
+  "instagram": "eqeqeq",
+  "country": "Colombia",
+  "state": "Atlántico",
+  "province": "Barranquilla",
+  "createdAt": {
+    "$numberLong": "1680635944958"
+  },
+  "updatedAt": {
+    "$numberLong": "1681403769056"
+  },
+  "__v": 0
+}]
