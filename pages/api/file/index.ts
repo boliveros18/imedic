@@ -52,7 +52,8 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 const getFiles = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
     const files = await dbFiles.getFilesByParentIdAndType(
-      req.query.parent_id as string, req.query.type as string
+      req.query.parent_id as string,
+      req.query.type as string
     );
     return res.status(201).json(files);
   } catch (error: any) {

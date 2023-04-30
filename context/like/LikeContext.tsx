@@ -1,11 +1,6 @@
 import { createContext } from "react";
-import { Like } from "../../interfaces";
+import { Like, Reaction } from "../../interfaces";
 
-export type Pagination = {
-  [key: string | number]: any;
-  page: number;
-  pageSize: number;
-};
 
 interface ContextProps {
   like: Like;
@@ -17,12 +12,10 @@ interface ContextProps {
     user_id: string
   ) => Like[];
   likesByParentId: (payload: Like[], parent_id: string) => Like[];
-  getLikesByParentId: (
-    parent_id: string,
-    pagination?: Pagination
-  ) => void;
-  length: number;
-  setLength: (payload: number) => void;
+  getLikesByParentIdAndUserId: (parent_id: string, user_id: string) => Promise<Like>;
+  getLikesLengthByParentId: (parent_id: string) => void;
+  reactions: Reaction[];
+  reactionByParentId: ( parent_id: string, payload: Reaction[]) => Reaction[];
   createLike: (payload: Like) => Promise<void>;
   deleteLike: (id: string) => Promise<void>;
 }

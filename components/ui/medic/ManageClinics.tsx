@@ -4,7 +4,7 @@ import {
   useContext,
   useState,
   ChangeEvent,
-  FormEvent
+  FormEvent,
 } from "react";
 import AccordionUi from "../utils/AccordionUi";
 import {
@@ -20,28 +20,26 @@ import { Clinic } from "../../../interfaces";
 
 interface Props {
   children?: ReactNode;
-  clinics: Clinic[]
+  clinics: Clinic[];
 }
 
 export const ManageClinics: FC<Props> = ({ clinics }) => {
-  const { createClinic, updateClinic } =
-    useContext(ClinicContext);
+  const { createClinic, updateClinic } = useContext(ClinicContext);
   const [index, setIndex] = useState(0);
-  const [ submit, setSubmit ] = useState("CREATE");
-  const [ select, setSelect ] =useState("");
+  const [submit, setSubmit] = useState("CREATE");
+  const [select, setSelect] = useState("");
   const [value, setValue] = useState(clinics);
   const [inputs, setInputs] = useState({});
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if(submit === "SAVE"){
+    if (submit === "SAVE") {
       await updateClinic(clinics[index]._id || "", {
         ...inputs,
       } as Clinic).then(() => {
         setInputs({});
       });
-    }else{
-      
+    } else {
     }
   };
 
@@ -81,7 +79,9 @@ export const ManageClinics: FC<Props> = ({ clinics }) => {
                 <MenuItem
                   key={index}
                   value={item.name}
-                  onClick={() => {setIndex(index)}}
+                  onClick={() => {
+                    setIndex(index);
+                  }}
                 >
                   <span style={{ fontWeight: "500" }}>{item.name}</span>
                 </MenuItem>
@@ -90,7 +90,7 @@ export const ManageClinics: FC<Props> = ({ clinics }) => {
           </Grid>
           <Grid item xs={12}>
             <TextField
-              InputLabelProps={{ shrink: true }} 
+              InputLabelProps={{ shrink: true }}
               type="text"
               name="finantial"
               label="Finantial situation"
@@ -104,7 +104,7 @@ export const ManageClinics: FC<Props> = ({ clinics }) => {
           </Grid>
           <Grid item xs={12}>
             <TextField
-              InputLabelProps={{ shrink: true }} 
+              InputLabelProps={{ shrink: true }}
               type="text"
               name="instagram"
               label="Instagram link"

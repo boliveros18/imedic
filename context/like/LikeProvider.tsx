@@ -1,8 +1,7 @@
 import { FC, ReactNode, useReducer, useCallback } from "react";
 import { LikeContext, likeReducer } from "./";
-import { Like } from "../../interfaces";
+import { Like, Reaction } from "../../interfaces";
 import { LikeService } from "../../services";
-import { Pagination } from "./";
 
 interface ProviderProps {
   children: ReactNode;
@@ -11,13 +10,13 @@ interface ProviderProps {
 export interface State {
   likes: Like[];
   like: Like;
-  length: number;
+  reactions: Reaction[];
 }
 
 const INITIAL_STATE: State = {
   likes: [],
   like: {} as Like,
-  length: 0
+  reactions: [],
 };
 
 export const LikeProvider: FC<ProviderProps> = ({ children }) => {
@@ -39,10 +38,6 @@ export const LikeProvider: FC<ProviderProps> = ({ children }) => {
     dispatch({ type: "ADD_LIKES", payload: payload });
   }, []);
 
-  const setLength = useCallback((payload: number) => {
-    dispatch({ type: "SET_ITEM_LENGTH", payload: payload });
-  }, []);
-
   const likeByParentAndUserId = (
     payload: Like[],
     parent_id: string,
@@ -57,15 +52,29 @@ export const LikeProvider: FC<ProviderProps> = ({ children }) => {
     return payload.filter((i) => i.parent_id === parent_id);
   };
 
-  const getLikesByParentId = useCallback( async (
-    parent_id: string,
-    pagination?: Pagination
-  ) => {
-    const data: Like[] = await LikeService.getLikesByParentId(
-      parent_id
-    );
-    dispatch({ type: "ADD_LIKES", payload: data });
+  const getLikesByParentIdAndUserId = useCallback(
+    async (parent_id: string, user_id: string) => {
+      const data = await LikeService.getLikesByParentIdAndUserId(
+        parent_id,
+        user_id
+      );
+      dispatch({ type: "ADD_LIKES", payload: data });
+      return data;
+    },
+    []
+  );
+
+  const getLikesLengthByParentId = useCallback(async (parent_id: string) => {
+    const data = await LikeService.getLikesLengthByParentId(parent_id);
+    dispatch({
+      type: "ADD_REACTIONS",
+      payload: { parent_id: parent_id, likes: data },
+    });
   }, []);
+
+  const reactionByParentId = (parent_id: string, payload: Reaction[]) => {
+    return payload.filter((i) => i.parent_id === parent_id);
+  };
 
   return (
     <LikeContext.Provider
@@ -76,8 +85,9 @@ export const LikeProvider: FC<ProviderProps> = ({ children }) => {
         addLikes,
         likeByParentAndUserId,
         likesByParentId,
-        getLikesByParentId,
-        setLength
+        getLikesByParentIdAndUserId,
+        getLikesLengthByParentId,
+        reactionByParentId,
       }}
     >
       {children}

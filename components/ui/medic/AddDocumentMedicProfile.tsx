@@ -16,7 +16,8 @@ interface Props {
 
 export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
   const { medic, updateMedic } = useContext(MedicContext);
-  const { updateFile, createFile, getFilesByParentIdAndType } = useContext(FileContext);
+  const { updateFile, createFile, getFilesByParentIdAndType } =
+    useContext(FileContext);
   const { setProgress } = useContext(UIContext);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -24,7 +25,7 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
     setProgress(true);
     if (target.files) {
       try {
-        const file = await getFilesByParentIdAndType(medic._id, type)
+        const file = await getFilesByParentIdAndType(medic._id, type);
         const files = target.files[0];
         const formData = new FormData();
         formData.append("file", files);
@@ -43,10 +44,9 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
             })
               .then(() => setProgress(false))
               .then(() =>
-                enqueueSnackbar(
-                  `Your ${type} data profile has been updated`,
-                  { variant: "success" }
-                )
+                enqueueSnackbar(`Your ${type} data profile has been updated`, {
+                  variant: "success",
+                })
               );
           } else {
             await createFile({
@@ -56,10 +56,9 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
             } as File)
               .then(() => setProgress(false))
               .then(() =>
-                enqueueSnackbar(
-                  `Your ${type} data profile has been created`,
-                  { variant: "success" }
-                )
+                enqueueSnackbar(`Your ${type} data profile has been created`, {
+                  variant: "success",
+                })
               );
           }
         }

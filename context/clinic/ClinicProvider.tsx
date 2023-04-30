@@ -50,7 +50,7 @@ export const ClinicProvider: FC<ProviderProps> = ({ children }) => {
     return data;
   }, []);
 
-  const getClinicsByMedicId = useCallback( async (medic_id: string) => {
+  const getClinicsByMedicId = useCallback(async (medic_id: string) => {
     const data: Clinic[] = await ClinicService.getClinicsByMedicId(medic_id);
     dispatch({ type: "ADD_CLINICS", payload: data });
   }, []);

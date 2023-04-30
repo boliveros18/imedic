@@ -80,7 +80,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
         role,
       });
       const { token, user } = data;
-      getUserbyEmail(user.email)
+      getUserbyEmail(user.email);
       Cookies.set("token", token);
       dispatch({ type: "AUTH_LOGIN" });
 

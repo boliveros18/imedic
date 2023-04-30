@@ -48,13 +48,14 @@ export const getCommentsByParentId = async (
   const comments: IComment[] = await Comment.find(params).sort({
     createdAt: "ascending",
   });
-  const userIds = Array.from(new Set(comments.map((item) => item.user_id)));
-  const files: IFile[] = [];
-   userIds.map( async (user_id) =>{
+  const userIds: string[] = Array.from(
+    new Set(comments.map((item) => item.user_id))
+  );
+  let files: IFile[] = [];
+  userIds.map(async (user_id) => {
     let image = await dbFiles.getFilesByParentIdAndType(user_id, "image");
     files.push(image);
-  }) 
-  //console.log(files)
+  });
   let users = await dbUsers.getUsersbyId(userIds);
   const res: IComment[] = comments.map((comment) => {
     let file = files.find((file) => file.parent_id === comment.user_id);
@@ -77,17 +78,21 @@ export const getCommentsLengthByParentId = async (
   return comments;
 };
 
-export const updateCommentLength = async (comments: number, type: string, parent_id: string) =>{
+export const updateCommentLength = async (
+  comments: number,
+  type: string,
+  parent_id: string
+) => {
   await db.connect();
   await mongoose
-  .model(type)
-  .findByIdAndUpdate(
-    parent_id,
-    { comments: comments },
-    { runValidators: true, new: true }
-  );
+    .model(type)
+    .findByIdAndUpdate(
+      parent_id,
+      { comments: comments },
+      { runValidators: true, new: true }
+    );
   await db.disconnect();
-}
+};
 
 export const deleteCommentLikesAndChildren = async (comment_id: string) => {
   await db.connect();

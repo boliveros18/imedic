@@ -39,12 +39,12 @@ export const updateLikesLength = async (likes: number, type: string, parent_id: 
 
 export const getLikesLengthByParentId = async (
   parent_id: string
-): Promise<number> => {
+) => {
   const params = parent_id ? { parent_id: parent_id } : {};
   await db.connect();
-  const likes: number = await Like.find(params).count();
+  const likes = await Like.find(params).count();
   await db.disconnect();
-  return likes;
+  return JSON.parse(JSON.stringify(likes));
 };
 
 export const getLikeByParentIdAndUserId = async (

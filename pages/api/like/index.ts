@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { db, dbLikes } from "../../../database";
 import { Like, ILike } from "../../../models";
 import { getSession } from "next-auth/react";
-import mongoose from "mongoose";
 
 type Data = { message: string } | ILike | ILike[];
 
@@ -55,10 +54,18 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
 const getLikes = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   try {
-    const likes = await dbLikes.getLikesByParentId(
-      req.query.parent_id as string
-    );
-    return res.status(201).json(likes);
+    if (req.query.user_id) {
+      const likes = await dbLikes.getLikeByParentIdAndUserId(
+        req.query.parent_id as string,
+        req.query.user_id as string
+      );
+      return res.status(201).json(likes);
+    } else {
+      const length = await dbLikes.getLikesLengthByParentId(
+        req.query.parent_id as string
+      );
+      return res.status(201).json(length);
+    }
   } catch (error: any) {
     console.log(error);
     res.status(400).json({

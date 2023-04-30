@@ -1,6 +1,7 @@
+import { Reaction } from "../../interfaces";
 import { State } from "./";
 
-type Action = "DELETE_LIKE" | "ADD_LIKES" | "SET_ITEM_LENGTH";
+type Action = "DELETE_LIKE" | "ADD_LIKES" | "ADD_REACTIONS";
 type ActionType = { type: Action; payload?: any };
 
 export const likeReducer = (state: State, action: ActionType): State => {
@@ -10,8 +11,16 @@ export const likeReducer = (state: State, action: ActionType): State => {
         (item) => item._id !== action.payload
       );
       return { ...state, likes: filtered };
-    case "SET_ITEM_LENGTH":
-      return { ...state, length: action.payload };
+    case "ADD_REACTIONS":
+      let reactions: Reaction[] = [action.payload];
+      state.reactions.forEach((reaction) => {
+        if (reaction.parent_id === action.payload.parent_id) {
+          reaction = action.payload;
+        } else {
+          reactions = state.reactions.concat(action.payload);
+        }
+      });
+      return { ...state, reactions: reactions };
     case "ADD_LIKES":
       const attach = state.likes.concat(action.payload);
       const likes = attach.filter(

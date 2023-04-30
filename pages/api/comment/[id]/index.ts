@@ -109,7 +109,11 @@ const deleteModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       const comments = await getCommentsLengthByParentId(
         modelToDelete.parent_id
       );
-      await dbComments.updateCommentLength(comments, modelToDelete.type, modelToDelete.parent_id); 
+      await dbComments.updateCommentLength(
+        comments,
+        modelToDelete.type,
+        modelToDelete.parent_id
+      );
       await dbComments.deleteCommentLikesAndChildren(modelToDelete._id);
     }
     await db.disconnect();

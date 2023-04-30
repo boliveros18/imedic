@@ -32,7 +32,6 @@ type FormData = {
 };
 
 const RegisterPage = () => {
-
   const { registerUser } = useContext(AuthContext);
   const [userRole, setUserRole] = useState("client");
 
@@ -54,15 +53,14 @@ const RegisterPage = () => {
       userRole
     );
 
-   if (hasError) {
-    setShowError(true);
-    setErrorMessage(message!);
-    setTimeout(() => setShowError(false), 3000);
-    return;
-  }
+    if (hasError) {
+      setShowError(true);
+      setErrorMessage(message!);
+      setTimeout(() => setShowError(false), 3000);
+      return;
+    }
 
-  await signIn("credentials", { email, password });
-
+    await signIn("credentials", { email, password });
   };
 
   return (
@@ -250,7 +248,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   const session = await getSession({ req });
   if (session?.user) {
-    const user: any = session?.user 
+    const user: any = session?.user;
 
     if (user.role === "medic") {
       const medic = await dbMedics.createMedic({
@@ -271,14 +269,14 @@ export const getServerSideProps: GetServerSideProps = async ({
         createdAt: Date.now(),
         updatedAt: 0,
       } as Medic);
- 
+
       const { m = `/account/medic/${medic._id}` } = query;
       return {
         redirect: {
           destination: m.toString(),
           permanent: false,
         },
-      }
+      };
     } else {
       const { c = "/" } = query;
       return {
@@ -287,13 +285,12 @@ export const getServerSideProps: GetServerSideProps = async ({
           permanent: false,
         },
       };
-   }
+    }
   }
 
   return {
     props: {},
   };
 };
-
 
 export default RegisterPage;

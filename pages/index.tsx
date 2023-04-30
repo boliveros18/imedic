@@ -27,7 +27,7 @@ const HomePage: NextPage<Props> = ({
   like,
   user,
   medic,
-  userAvatar
+  userAvatar,
 }) => {
   const { setUser } = useContext(AuthContext);
   const { setMedic } = useContext(MedicContext);
@@ -91,16 +91,18 @@ const HomePage: NextPage<Props> = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-
   const session = await getSession({ req });
   const principal = await dbClinics.getPrincipalClinic();
-  const user: any = session?.user 
-  user ? delete Object.assign(user, { _id: user.id })['id'] : null;
-  const userAvatar = await dbFiles.getFilesByParentIdAndType(user?._id || "", "image");
+  const user: any = session?.user;
+  user ? delete Object.assign(user, { _id: user.id })["id"] : null;
+  const userAvatar = await dbFiles.getFilesByParentIdAndType(
+    user?._id || "",
+    "image"
+  );
   const medic = await dbMedics.getMedicByUserId(user?._id || "");
-  const like = await dbLikes.getLikeByParentIdAndUserId(
-  principal._id || "",
-  user?._id || ""
+  const like: Like[] = await dbLikes.getLikeByParentIdAndUserId(
+    principal._id || "",
+    user?._id || ""
   );
 
   if (!principal) {
@@ -114,11 +116,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
   return {
     props: {
-     user: session ? user : {}, 
-     userAvatar: userAvatar === undefined ? {} : userAvatar,
-     medic: medic,
-     principal: principal,
-     like: like,
+      user: session ? user : {},
+      userAvatar: userAvatar === undefined ? {} : userAvatar,
+      medic: medic,
+      principal: principal,
+      like: like,
     },
   };
 };

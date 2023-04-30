@@ -1,7 +1,10 @@
 import { ApiClient } from "../apis";
 import { File } from "../interfaces";
 
-export const getFilesByParentIdAndType = async (parent_id: string, type: string) => {
+export const getFilesByParentIdAndType = async (
+  parent_id: string,
+  type: string
+) => {
   const res = await ApiClient.get(`/file?parent_id=${parent_id}&type=${type}`);
   return res.data;
 };

@@ -5,6 +5,7 @@ export * from "./comment";
 export * from "./like";
 export * from "./qualification";
 export * from "./user";
+export * from "./reaction";
 
 export * from "./order";
 export * from "./medic";

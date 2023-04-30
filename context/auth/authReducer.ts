@@ -14,7 +14,7 @@ export const authReducer = (state: State, action: ActionType): State => {
     case "AUTH_LOGIN":
       return {
         ...state,
-        isLoggedIn: true
+        isLoggedIn: true,
       };
     case "AUTH_LOGOUT":
       return {
@@ -25,7 +25,7 @@ export const authReducer = (state: State, action: ActionType): State => {
     case "GET_USER":
       return { ...state, user: action.payload };
     case "GET_USERS":
-        return { ...state, users: action.payload };
+      return { ...state, users: action.payload };
     case "UPDATE_USER":
       return { ...state, user: action.payload };
     case "DELETE_USER":

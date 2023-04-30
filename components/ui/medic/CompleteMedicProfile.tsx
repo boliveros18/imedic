@@ -16,7 +16,7 @@ import AddDocumentMedicProfile from "./AddDocumentMedicProfile";
 
 interface Props {
   children?: ReactNode;
-  medic: Medic
+  medic: Medic;
 }
 
 export const CompleteMedicProfile: FC<Props> = ({ medic }) => {
@@ -50,11 +50,11 @@ export const CompleteMedicProfile: FC<Props> = ({ medic }) => {
           <Grid item xs={12}>
             <TextField
               type="text"
-              InputLabelProps={{ shrink: true }} 
+              InputLabelProps={{ shrink: true }}
               label="Instagram link"
               variant="outlined"
               fullWidth
-              autoComplete= "off"
+              autoComplete="off"
               defaultValue={value.instagram}
               onChange={handleInput}
               name="instagram"

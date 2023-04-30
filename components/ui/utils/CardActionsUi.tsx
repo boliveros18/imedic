@@ -7,7 +7,7 @@ import { AuthContext } from "../../../context/auth";
 import { LikeContext } from "../../../context/like";
 import { UIContext } from "../../../context/ui";
 import { pluralize } from "../../../utils/strings";
-import { Like } from "../../../interfaces";
+import { Reaction } from "../../../interfaces";
 
 interface Props {
   children?: ReactNode;
@@ -18,38 +18,42 @@ interface Props {
 
 export const CardActionsUi: FC<Props> = ({ parent_id, initialLikes, type }) => {
   const { setOnFocus } = useContext(UIContext);
-  const { createLike, deleteLike, likes, likeByParentAndUserId, getLikesByParentId, likesByParentId } =
-    useContext(LikeContext);
+  const {
+    createLike,
+    deleteLike,
+    likes,
+    reactions,
+    likeByParentAndUserId,
+    getLikesLengthByParentId,
+    getLikesByParentIdAndUserId,
+    reactionByParentId,
+  } = useContext(LikeContext);
   const { isLoggedIn, user } = useContext(AuthContext);
 
   useEffect(() => {
-    getLikesByParentId(parent_id)
-  }, [ parent_id, getLikesByParentId])
-  
+    getLikesByParentIdAndUserId(parent_id, user?._id || "");
+    getLikesLengthByParentId(parent_id);
+  }, [user, parent_id, getLikesByParentIdAndUserId, getLikesLengthByParentId]);
 
-  const handleLike = (
-    parent_id: string,
-    user_id: string
-  ) => {
+  const handleLike = (parent_id: string, user_id: string) => {
     if (likeByParentAndUserId(likes, parent_id, user_id).length === 1) {
-      deleteLike(likeByParentAndUserId(likes, parent_id, user_id)[0]._id || "");
+      deleteLike(
+        likeByParentAndUserId(likes, parent_id, user_id)[0]._id || ""
+      ).then(() => getLikesLengthByParentId(parent_id));
     } else {
       createLike({
         user_id: user?._id || "",
         user_name: user?.name || "",
         parent_id: parent_id || "",
-        type: type || ""
-      });
+        type: type || "",
+      }).then(() => getLikesLengthByParentId(parent_id));
     }
   };
 
-  const reactions: any = (
-    likes: Like[],
-    parent_id: string
-  ) => {
-    return likesByParentId(likes, parent_id).length ===  0
-      ? initialLikes
-      : likesByParentId(likes, parent_id).length;
+  const reactionsO = (parent_id: string, reactions: Reaction[]) => {
+    return reactionByParentId(parent_id, reactions)[0]
+      ? reactionByParentId(parent_id, reactions)[0].likes
+      : initialLikes;
   };
 
   return (
@@ -69,7 +73,8 @@ export const CardActionsUi: FC<Props> = ({ parent_id, initialLikes, type }) => {
               disabled={!isLoggedIn}
               onClick={() => handleLike(parent_id, user?._id || "")}
             >
-              {isLoggedIn && likeByParentAndUserId(likes, parent_id, user?._id || "")
+              {isLoggedIn &&
+              likeByParentAndUserId(likes, parent_id, user?._id || "")
                 .length === 1 ? (
                 <CheckCircleIcon sx={{ color: "blue" }} fontSize="medium" />
               ) : (
@@ -92,9 +97,9 @@ export const CardActionsUi: FC<Props> = ({ parent_id, initialLikes, type }) => {
       <Typography
         sx={{ fontSize: 14, fontWeight: 500, mt: 1.5, ml: 2, mb: -1 }}
       >
-        {reactions( likes, parent_id ) > 0
-          ? reactions(likes, parent_id, user?._id || "") +
-            pluralize(" like", reactions( likes, parent_id ))
+        {reactionsO(parent_id, reactions) > 0
+          ? reactionsO(parent_id, reactions) +
+            pluralize(" like", reactionsO(parent_id, reactions))
           : null}
       </Typography>
     </>
