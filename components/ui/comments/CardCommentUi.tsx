@@ -1,4 +1,4 @@
-import { FC, useContext, useState, ChangeEvent, FormEvent } from "react";
+import { FC, useContext, useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { LikeContext } from "../../../context/like";
 import { AuthContext } from "../../../context/auth";
 import { UIContext } from "../../../context/ui";
@@ -12,7 +12,7 @@ import Link from "next/link";
 import { Comment } from "../../../interfaces";
 import { EditCommentUi } from "../comments/EditCommentUi";
 import { pluralize } from "../../../utils/strings";
-import { Like } from "../../../interfaces";
+import { Reaction } from "../../../interfaces";
 
 interface Props {
   item: Comment;
@@ -30,29 +30,38 @@ export const CardCommentUi: FC<Props> = ({ item, parent_id }) => {
     createLike,
     deleteLike,
     likes,
+    reactions,
     likeByParentAndUserId,
-    likesByParentId,
+    getLikesLengthByParentId,
+    getLikesByParentIdAndUserId,
+    reactionByParentId,
   } = useContext(LikeContext);
-
   const { isLoggedIn, user } = useContext(AuthContext);
 
+  useEffect(() => {
+    getLikesByParentIdAndUserId(item._id, user?._id || "");
+    getLikesLengthByParentId(item._id);
+  }, [user, item, getLikesByParentIdAndUserId, getLikesLengthByParentId]);
+  
   const handleLike = (parent_id: string, user_id: string) => {
     if (likeByParentAndUserId(likes, parent_id, user_id).length === 1) {
-      deleteLike(likeByParentAndUserId(likes, parent_id, user_id)[0]._id || "");
+      deleteLike(
+        likeByParentAndUserId(likes, parent_id, user_id)[0]._id || ""
+      ).then(() => getLikesLengthByParentId(parent_id));
     } else {
       createLike({
         user_id: user?._id || "",
         user_name: user?.name || "",
         parent_id: parent_id || "",
         type: "Comment",
-      });
+      }).then(() => getLikesLengthByParentId(parent_id));
     }
   };
 
-  const reactions: any = (likes: Like[], item: Comment) => {
-    return likesByParentId(likes, item._id) === null
-      ? item.likes
-      : likesByParentId(likes, item._id).length;
+  const reactionsO: any = (reactions: Reaction[], item: Comment) => {
+    return reactionByParentId(item._id, reactions)[0]
+      ? reactionByParentId(item._id, reactions)[0].likes
+      : item.likes
   };
 
   const editComment = () => {
@@ -168,9 +177,9 @@ export const CardCommentUi: FC<Props> = ({ item, parent_id }) => {
             </Grid>
             <Grid item xs={4}>
               <span>
-                {reactions(likes, item) > 0
-                  ? reactions(likes, item) +
-                    pluralize(" like", reactions(likes, item))
+                {reactionsO(reactions, item) > 0
+                  ? reactionsO(reactions, item) +
+                    pluralize(" like", reactionsO(reactions, item))
                   : null}
               </span>
             </Grid>

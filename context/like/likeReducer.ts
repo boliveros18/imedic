@@ -12,14 +12,11 @@ export const likeReducer = (state: State, action: ActionType): State => {
       );
       return { ...state, likes: filtered };
     case "ADD_REACTIONS":
-      let reactions: Reaction[] = [action.payload];
-      state.reactions.forEach((reaction) => {
-        if (reaction.parent_id === action.payload.parent_id) {
-          reaction = action.payload;
-        } else {
-          reactions = state.reactions.concat(action.payload);
-        }
-      });
+      const attaches = state.reactions.concat(action.payload).reverse();
+      const reactions = attaches.filter(
+        (object, index) =>
+          attaches.findIndex((item) => item.parent_id === object.parent_id) === index
+      );
       return { ...state, reactions: reactions };
     case "ADD_LIKES":
       const attach = state.likes.concat(action.payload);

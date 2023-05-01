@@ -52,20 +52,10 @@ export const SeeComments: FC<Props> = ({
   const height = WindowSize().height;
   const [toogle, setToogle] = useState(true);
   const [inputs, setInputs] = useState({});
-  const {
-    getLikesByParentId, likes
-  } = useContext(LikeContext);
 
   const openComments = () => {
     setToogle(!toogle);
   };
-
-  useEffect(() => {
-    comments.map( (comment) => {
-        getLikesByParentId(comment._id)
-    })
-  }, [comments, getLikesByParentId])
-  
 
   const answers: any = (comments: Comment[], parent_id: string) => {
     return commentsByParentId(comments, parent_id).length === 0
