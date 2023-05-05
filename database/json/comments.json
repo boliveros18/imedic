@@ -38,12 +38,12 @@
   },
   "type": "Comment",
   "parent_id": "6429cc14bb97595abe63182e",
-  "user_id": "63f90961ccd6e21b528f4e51",
+  "user_id": "64436ada5a548e98cb90ef07",
   "description": "That's right",
   "user_tag_id": "63ac7a91454855cff2b9c841",
   "user_tag_name": "@maria cano",
   "comments": 0,
-  "likes": 1,
+  "likes": 0,
   "createdAt": {
     "$numberLong": "1680461131924"
   },
@@ -60,7 +60,7 @@
   "user_tag_id": "63ac7a91454855cff2b9c841",
   "user_tag_name": "@maria cano",
   "comments": 0,
-  "likes": 0,
+  "likes": 1,
   "createdAt": {
     "$numberLong": "1680461146538"
   },
@@ -111,7 +111,7 @@
   "user_tag_id": "64228786353b199547121dfc",
   "user_tag_name": "@Camilo Medina",
   "comments": 0,
-  "likes": 1,
+  "likes": 0,
   "createdAt": {
     "$numberLong": "1681747551834"
   },
@@ -128,7 +128,7 @@
   "user_tag_id": "63f90961ccd6e21b528f4e51",
   "user_tag_name": "@Eduardo Rios",
   "comments": 0,
-  "likes": 0,
+  "likes": 1,
   "createdAt": {
     "$numberLong": "1681752935263"
   },
@@ -145,7 +145,7 @@
   "user_tag_id": "63ac76f9454855cff2b9c81c",
   "user_tag_name": "@Carlos Dominguez",
   "comments": 0,
-  "likes": 0,
+  "likes": 1,
   "createdAt": {
     "$numberLong": "1681752997648"
   },

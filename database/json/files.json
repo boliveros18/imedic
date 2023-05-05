@@ -1,17 +1,41 @@
 [{
   "_id": {
-    "$oid": "643d6a353c53b51ea74a28a3"
+    "$oid": "644af4425d380bc504555dfe"
   },
-  "type":"image",
+  "type": "image",
   "parent_id": "64259483a587c96f2571262a",
-  "url": "https://res.cloudinary.com/dsjtygehr/image/upload/v1682378021/afgqus0vtfrsxldrikn0.jpg",
+  "url": "https://res.cloudinary.com/dsjtygehr/image/upload/v1682641535/xw6wlylnmutr870p5oui.jpg",
   "__v": 0
 },{
   "_id": {
-    "$oid": "643d6bea3c53b51ea74a28da"
+    "$oid": "644b13125d380bc504555e36"
   },
-  "type":"image",
+  "type": "card_id",
+  "parent_id": "642c78282452ed13a087f5d4",
+  "url": "https://res.cloudinary.com/dsjtygehr/image/upload/v1682641705/t14sardlpdmvyinpixqk.pdf",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "644b142c5d380bc504555e7e"
+  },
+  "type": "image",
   "parent_id": "64228786353b199547121dfc",
-  "url": "https://res.cloudinary.com/dsjtygehr/image/upload/v1681747777/bt79nns3kya7rk7dfdes.jpg",
+  "url": "https://res.cloudinary.com/dsjtygehr/image/upload/v1682656269/lhiysa84ic5wui5hfbol.jpg",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "644b179c647f739a6e20c779"
+  },
+  "type": "card_id",
+  "parent_id": "643d5b57a089376e6e50a0a3",
+  "url": "https://res.cloudinary.com/dsjtygehr/image/upload/v1682656392/zcbacjjsqzlvqcamvctj.pdf",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "644b17f4647f739a6e20c785"
+  },
+  "type": "curriculum",
+  "parent_id": "643d5b57a089376e6e50a0a3",
+  "url": "https://res.cloudinary.com/dsjtygehr/image/upload/v1682656367/uq1zpbfxrscjqbovd3ys.pdf",
   "__v": 0
 }]

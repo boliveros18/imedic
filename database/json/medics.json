@@ -4,7 +4,7 @@
   },
   "parent_id": "64259483a587c96f2571262a",
   "certified": false,
-  "card_id": "",
+  "card_id": "https://res.cloudinary.com/dsjtygehr/image/upload/v1682379550/zizsjyt78azaf9ceey0w.pdf",
   "to_approve": true,
   "contract_signature": "",
   "available_days": [
@@ -39,7 +39,7 @@
   "curriculum": "",
   "qualification": 0,
   "comments": 0,
-  "instagram": "eqeqeq",
+  "instagram": "https://www.instagram.com/camiloMedina/?hl=es",
   "country": "Colombia",
   "state": "Atlántico",
   "province": "Barranquilla",
@@ -49,5 +49,30 @@
   "updatedAt": {
     "$numberLong": "1681403769056"
   },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64448080e8373f0a9823a61e"
+  },
+  "type": "Medic",
+  "parent_id": "6444807fe8373f0a9823a61a",
+  "certified": false,
+  "card_id": "",
+  "to_approve": false,
+  "contract_signature": "",
+  "available_days": [
+    ""
+  ],
+  "curriculum": "",
+  "qualification": 0,
+  "comments": 0,
+  "instagram": "",
+  "country": "",
+  "state": "",
+  "province": "",
+  "createdAt": {
+    "$numberLong": "1682210944935"
+  },
+  "updatedAt": 0,
   "__v": 0
 }]

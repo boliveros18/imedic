@@ -1,41 +1,39 @@
 [{
   "_id": {
-    "$oid": "63f90961ccd6e21b528f4e50"
+    "$oid": "64436ada5a548e98cb90ef06"
   },
   "name": "Bresneth Oliveros",
   "email": "boliveros@google.com",
-  "password": "$2a$10$miEHz5dG4TzOYv2URvcL5.LuWypA1sl9QBjtx3C5DB1ex54TQvyZm",
+  "password": "$2a$10$e2f.vXUClTgowjUDtSKkYOcNA8dtjcfw7t.z9/8r/oh4ZQOZK6xte",
   "role": "admin",
-  "photo": "",
   "__v": 0,
   "createdAt": {
     "$date": {
-      "$numberLong": "1677265249936"
+      "$numberLong": "1682139866252"
     }
   },
   "updatedAt": {
     "$date": {
-      "$numberLong": "1677265249936"
+      "$numberLong": "1682139866252"
     }
   }
 },{
   "_id": {
-    "$oid": "63f90961ccd6e21b528f4e51"
+    "$oid": "64436ada5a548e98cb90ef07"
   },
   "name": "Eduardo Rios",
   "email": "eduardo@google.com",
-  "password": "$2a$10$UcCDfLXL0DFfa6MI5POQOuMnTFJ5JtDMX2UN4zB/gPb9FVDxc4Phm",
+  "password": "$2a$10$p33DJQOmd5QJ/z3ue3c8i.ce25I.J6bYnN/vaI8FcNo.C0f8ph/5C",
   "role": "client",
-  "photo": "",
   "__v": 0,
   "createdAt": {
     "$date": {
-      "$numberLong": "1677265249938"
+      "$numberLong": "1682139866254"
     }
   },
   "updatedAt": {
     "$date": {
-      "$numberLong": "1677265249938"
+      "$numberLong": "1682139866254"
     }
   }
 },{
@@ -155,6 +153,44 @@
   "updatedAt": {
     "$date": {
       "$numberLong": "1680455323351"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6444807fe8373f0a9823a61a"
+  },
+  "name": "Res",
+  "email": "res@google.com",
+  "password": "$2a$10$vxE9GPZtztys6ysQ2TYdtelvjIUBTVHrxQC66U.iFA0qA7hG6iQcy",
+  "role": "medic",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682210943782"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682210943782"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "644fdf9725c1726c5c3d9ad5"
+  },
+  "name": "Carlos",
+  "email": "carlos@google.com",
+  "password": "$2a$10$/xsDRNd4KtAileZi9CKL.uUNHbZSm6FecIUOJSVqXatqyeZxdc7t2",
+  "role": "client",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1682956183163"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1682956183163"
     }
   },
   "__v": 0

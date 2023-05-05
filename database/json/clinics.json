@@ -5,17 +5,17 @@
   "type": "Clinic",
   "medic_id": "642c78282452ed13a087f5d4",
   "certified": false,
-  "finantial": "8 million US in 2021",
-  "speciality": "Plastic and Reconstruction",
+  "finantial": "8 million US in 2022",
+  "speciality": "Plastic",
   "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
-  "phone": "+057 3025654987",
+  "phone": "(302) 555-4658",
   "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-22-scaled.jpg",
-  "name": "Clinica Porto Azul",
+  "name": "Clinica Porto Azula",
   "province": "Barranquilla",
-  "state": "Atlantico",
+  "state": "Atlántico",
   "country": "Colombia",
   "instagram": "https://www.instagram.com/clinicaportoazulauna/?hl=es",
-  "address": "Cra 105#45-265",
+  "address": "1903 W Michigan Avenue",
   "qualification": 4,
   "comments": 0,
   "likes": 0,
@@ -23,35 +23,7 @@
     "$numberLong": "1672181711974"
   },
   "updatedAt": {
-    "$numberLong": "1672181711974"
-  },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "63ab77d06d6dc52c56dc662c"
-  },
-  "type": "Clinic",
-  "medic_id": "642c78282452ed13a087f5d4",
-  "certified": false,
-  "finantial": "12 million US in 2021",
-  "speciality": "Plastic and Reconstruction",
-  "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
-  "phone": "+057 3025654987",
-  "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-07-scaled.jpg",
-  "name": "Clinica de rostros",
-  "province": "Barranquilla",
-  "state": "Atlantico",
-  "country": "Colombia",
-  "instagram": "https://www.instagram.com/clinicaportoazulauna/?hl=es",
-  "address": "Cra 105#45-265",
-  "qualification": 3.5,
-  "comments": 0,
-  "likes": 0,
-  "createdAt": {
-    "$numberLong": "1672181711974"
-  },
-  "updatedAt": {
-    "$numberLong": "1672181711974"
+    "$numberLong": "1683222200365"
   },
   "__v": 0
 },{
@@ -62,7 +34,7 @@
   "medic_id": "642c78272452ed13a087f5d1",
   "certified": false,
   "finantial": "8 million US in 2021",
-  "speciality": "Plastic and Reconstruction",
+  "speciality": "Oncology",
   "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
   "phone": "+057 3025654987",
   "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-03-scaled.jpg",
@@ -90,7 +62,7 @@
   "medic_id": "642c78272452ed13a087f5d1",
   "certified": false,
   "finantial": "8 million US in 2021",
-  "speciality": "Plastic and Reconstruction",
+  "speciality": "Endocrine",
   "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
   "phone": "+057 3025654987",
   "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-07-scaled.jpg",
@@ -118,7 +90,7 @@
   "medic_id": "642c78272452ed13a087f5d1",
   "certified": false,
   "finantial": "8 million US in 2021",
-  "speciality": "Plastic and Reconstruction",
+  "speciality": "Orthopedic",
   "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
   "phone": "+057 3025654987",
   "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-15-scaled.jpg",
@@ -146,7 +118,7 @@
   "medic_id": "642c78272452ed13a087f5d1",
   "certified": false,
   "finantial": "8 million US in 2021",
-  "speciality": "Plastic and Reconstruction",
+  "speciality": "Cardiovascular",
   "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
   "phone": "+057 3025654987",
   "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-22-scaled.jpg",
@@ -165,5 +137,59 @@
   "updatedAt": {
     "$numberLong": "1672181711974"
   },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6453e534d999a3ec7c9c268b"
+  },
+  "type": "clinic",
+  "medic_id": "642c78282452ed13a087f5d4",
+  "certified": false,
+  "finantial": "21 Millions in 2022",
+  "speciality": "Dermatology",
+  "technology": "Laser",
+  "phone": "(302) 3543-354",
+  "photo": "",
+  "name": "Clinica cajica",
+  "province": "San Rafael",
+  "state": "Heredia Province",
+  "country": "Costa Rica",
+  "address": "Av. Clinton St. Green",
+  "instagram": "https://www.instagram.com/clinicacajica/?hl=es",
+  "qualification": 0,
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1683219764974"
+  },
+  "updatedAt": {
+    "$numberLong": "1683233034360"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "645541b108d0843842e95618"
+  },
+  "type": "clinic",
+  "medic_id": "642c78282452ed13a087f5d4",
+  "certified": false,
+  "finantial": "wertwertewrt",
+  "speciality": "Endocrine",
+  "technology": "wertwertwert",
+  "phone": "(234) 234-224",
+  "photo": "",
+  "name": "Clinica",
+  "province": "Quibala",
+  "state": "Cuanza Sul",
+  "country": "Angola",
+  "address": "rtwert ertwertew wert",
+  "instagram": "wertwertwer",
+  "qualification": 0,
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1683308977321"
+  },
+  "updatedAt": 0,
   "__v": 0
 }]
