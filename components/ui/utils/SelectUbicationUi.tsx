@@ -3,17 +3,18 @@ import { Select, MenuItem, Grid } from "@mui/material";
 
 interface Props {
   children?: ReactNode;
-  value: string;
-  onChange: any;
+  ubication: string;
+  handleChange: any;
   type: string;
 }
 
 export const SelectUbicationUi: FC<Props> = ({
   children,
-  value,
-  onChange,
+  ubication,
+  handleChange,
   type,
 }) => {
+
   return (
     <Grid item xs={12}>
       <Select
@@ -27,10 +28,10 @@ export const SelectUbicationUi: FC<Props> = ({
           },
           backgroundColor: "white",
         }}
-        value={value}
+        value={ubication}
         displayEmpty
         inputProps={{ "aria-label": "Without label" }}
-        onChange={onChange}
+        onChange={handleChange}
       >
         <MenuItem value={""}>{type}</MenuItem>
         {children}

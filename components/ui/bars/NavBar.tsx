@@ -31,7 +31,7 @@ import { Search, SearchIconWrapper, StyledInputBase } from "../styled/Search";
 
 import { MenuUi } from "./MenuUi";
 import { BrandUi } from "./BrandUi";
-import { SelectUi } from "./SelectUi";
+import { SimpleSelect } from "./SimpleSelect";
 
 interface Props {
   children?: ReactNode;
@@ -196,7 +196,7 @@ export const NavBar: FC<Props> = ({}) => {
         <MenuUi />
         <BrandUi />
         <Box sx={{ flexGrow: 1 }} />
-        <SelectUi />
+        <SimpleSelect />
         <Search sx={{ color: "black", width: "40ch" }}>
           <SearchIconWrapper>
             <SearchIcon />

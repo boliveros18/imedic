@@ -17,6 +17,7 @@ export interface State {
   country: string;
   state: string;
   city: string;
+  pursue: boolean;
 }
 
 const INITIAL_STATE: State = {
@@ -30,6 +31,7 @@ const INITIAL_STATE: State = {
   country: "",
   state: "",
   city: "",
+  pursue: false
 };
 
 export const UIProvider: FC<ProviderProps> = ({ children }) => {
@@ -78,6 +80,11 @@ export const UIProvider: FC<ProviderProps> = ({ children }) => {
     dispatch({ type: "SET_CITY", payload });
   }, []);
 
+   const setPursue = useCallback((payload: boolean) => {
+    dispatch({ type: "SET_PURSUE", payload });
+  }, []);
+
+
   return (
     <UIContext.Provider
       value={{
@@ -93,6 +100,7 @@ export const UIProvider: FC<ProviderProps> = ({ children }) => {
         setCountry,
         setState,
         setCity,
+        setPursue
       }}
     >
       {children}

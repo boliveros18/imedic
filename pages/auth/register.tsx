@@ -107,6 +107,7 @@ const RegisterPage = () => {
               <TextField
                 label="First and last name"
                 variant="outlined"
+                autoComplete="off"
                 fullWidth
                 {...register("name", {
                   required: "This field is required",
@@ -119,15 +120,9 @@ const RegisterPage = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                type="email"
                 label="Email"
                 variant="outlined"
                 autoComplete="off"
-                inputProps={{
-                  form: {
-                    autocomplete: "off",
-                  },
-                }}
                 fullWidth
                 {...register("email", {
                   required: "Enter your email",
@@ -141,14 +136,8 @@ const RegisterPage = () => {
             <Grid item xs={12}>
               <TextField
                 label="Password"
-                type="password"
                 variant="outlined"
                 autoComplete="off"
-                inputProps={{
-                  form: {
-                    autocomplete: "off",
-                  },
-                }}
                 fullWidth
                 {...register("password", {
                   required: "This field is required",

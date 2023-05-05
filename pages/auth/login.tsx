@@ -86,9 +86,10 @@ const LoginPage = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                type="email"
                 label="Email"
+                type="email"
                 variant="outlined"
+                autoComplete="username"
                 fullWidth
                 {...register("email", {
                   required: "Enter your email ",
@@ -104,6 +105,7 @@ const LoginPage = () => {
                 label="Password"
                 type="password"
                 variant="outlined"
+                autoComplete="current-password"
                 fullWidth
                 {...register("password", {
                   required: "This field is required",

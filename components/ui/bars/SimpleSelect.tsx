@@ -6,7 +6,7 @@ interface Props {
   children?: ReactNode;
 }
 
-export const SelectUi: FC<Props> = ({}) => {
+export const SimpleSelect: FC<Props> = ({}) => {
   const [procedure, setProcedure] = useState("");
   const handleChange = (event: SelectChangeEvent) => {
     setProcedure(event.target.value as string);

@@ -11,7 +11,8 @@ type Action =
   | "SET_ONCANCEL"
   | "SET_COUNTRY"
   | "SET_STATE"
-  | "SET_CITY";
+  | "SET_CITY"
+  | "SET_PURSUE";
 type ActionType = { type: Action; payload?: any };
 
 export const uiReducer = (state: State, action: ActionType): State => {
@@ -44,6 +45,8 @@ export const uiReducer = (state: State, action: ActionType): State => {
       return { ...state, state: action.payload };
     case "SET_CITY":
       return { ...state, city: action.payload };
+    case "SET_PURSUE":
+      return { ...state, pursue: action.payload };
     default:
       return state;
   }

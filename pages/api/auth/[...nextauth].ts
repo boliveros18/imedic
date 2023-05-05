@@ -43,10 +43,6 @@ export default NextAuth({
     newUser: '/auth/register'
   },
 
-  jwt: {
-    // secret: process.env.JWT_SECRET_SEED, // deprecated
-  },
-
   session: {
     maxAge: 2592000,
     strategy: "jwt",
@@ -75,8 +71,7 @@ export default NextAuth({
       return token;
     },
 
-    async session({ session, token, user }) {
-      //session.accessToken = token.accessToken;
+    async session({ session, token }) {
       session.user = token.user as any;
       return session;
     },

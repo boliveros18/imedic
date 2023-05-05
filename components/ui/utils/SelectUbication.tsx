@@ -10,36 +10,37 @@ interface Props {
 }
 
 export const SelectUbication: FC<Props> = ({ content }) => {
-  const { setCountry, setState, setCity } = useContext(UIContext);
-  const [country, addCountry] = useState("");
-  const [state, addState] = useState("");
-  const [city, addCity] = useState("");
+  const { setCountry, setState, setCity } =
+    useContext(UIContext);
+    const [country, addCountry] = useState("");
+    const [state, addState] = useState("");
+    const [city, addCity] = useState("");
 
-  useEffect(() => {
-    setCountry(content.country);
-    setState(content.state);
-    setCity(content.province);
-  }, [setCountry, setState, setCity, content]);
-
-  const handleChangeCountry = (event: SelectChangeEvent) => {
-    addCountry(event.target.value as string);
-    addState("");
-    addCity("");
-  };
-  const handleChangeState = (event: SelectChangeEvent) => {
-    addState(event.target.value as string);
-    addCity("");
-  };
-  const handleChangeCity = (event: SelectChangeEvent) => {
-    addCity(event.target.value as string);
-  };
+    useEffect(() => {
+      setCountry(content.country);
+      setState(content.state);
+      setCity(content.province);
+      addCountry("");
+      addState("");
+      addCity("");
+    }, [setCountry, setState, setCity, content]);
+  
+    const handleChangeCountry = (event: SelectChangeEvent) => {
+      addCountry(event.target.value as string);
+    };
+    const handleChangeState = (event: SelectChangeEvent) => {
+      addState(event.target.value as string);
+    };
+    const handleChangeCity = (event: SelectChangeEvent) => {
+      addCity(event.target.value as string);
+    };
 
   return (
     <Grid container spacing={0} rowSpacing={2}>
       <SelectUbicationUi
-        value={country}
-        onChange={handleChangeCountry}
-        type={content.country === "" ? "Country" : content.country}
+        ubication={country}
+        handleChange={handleChangeCountry}
+        type={content?.country === "" ? "Country" : content?.country}
       >
         {Country.getAllCountries().map((item, index) => (
           <MenuItem
@@ -52,9 +53,9 @@ export const SelectUbication: FC<Props> = ({ content }) => {
         ))}
       </SelectUbicationUi>
       <SelectUbicationUi
-        value={state}
-        onChange={handleChangeState}
-        type={content.state === "" ? "State" : content.state}
+        ubication={state}
+        handleChange={handleChangeState}
+        type={content?.state === "" ? "State" : content?.state}
       >
         {State.getStatesOfCountry(country).map((item, index) => (
           <MenuItem
@@ -67,9 +68,9 @@ export const SelectUbication: FC<Props> = ({ content }) => {
         ))}
       </SelectUbicationUi>
       <SelectUbicationUi
-        value={city}
-        onChange={handleChangeCity}
-        type={content.province === "" ? "City" : content.province}
+        ubication={city}
+        handleChange={handleChangeCity}
+        type={content?.province === "" ? "City" : content?.province}
       >
         {City.getCitiesOfState(country, state).map((item, index) => (
           <MenuItem

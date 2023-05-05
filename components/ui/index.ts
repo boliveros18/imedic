@@ -3,7 +3,7 @@ export * from "./bars/BrandUi";
 export * from "./bars/MenuUi";
 export * from "./bars/NavBar";
 export * from "./bars/RightBar";
-export * from "./bars/SelectUi";
+export * from "./bars/SimpleSelect";
 export * from "./bars/SideBar";
 
 export * from "./comments/CardCommentUi";
@@ -34,6 +34,7 @@ export * from "./utils/PrivacyPolicy";
 export * from "./utils/ReadMore";
 export * from "./utils/SelectUbication";
 export * from "./utils/SelectUbicationUi";
+export * from "./utils/SelectUi";
 export * from "./utils/ShareMediaUi";
 export * from "./utils/SingInUi";
 

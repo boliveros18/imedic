@@ -27,6 +27,8 @@ interface ContextProps {
   setState: (payload: string) => void;
   city: string;
   setCity: (payload: string) => void;
+  pursue: boolean;
+  setPursue: (payload: boolean) => void;
 }
 
 export const UIContext = createContext({} as ContextProps);

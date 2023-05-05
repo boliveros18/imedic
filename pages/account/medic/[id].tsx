@@ -25,20 +25,12 @@ interface Props {
   user: IUser;
   medic: Medic;
   products: Product[];
-  clinics: Clinic[];
 }
 
-const AccountMedicPage: NextPage<Props> = ({
-  id,
-  user,
-  medic,
-  products,
-  clinics,
-}) => {
+const AccountMedicPage: NextPage<Props> = ({ id, user, medic, products }) => {
   const { progress } = useContext(UIContext);
   const { setMedic } = useContext(MedicContext);
-  const { clinic, getClinic } = useContext(ClinicContext);
-  const { index } = useContext(ProductContext);
+  const { clinics, getClinicsByMedicId } = useContext(ClinicContext);
   const { setUser } = useContext(AuthContext);
   const { getFilesByParentIdAndType } = useContext(FileContext);
 
@@ -46,15 +38,14 @@ const AccountMedicPage: NextPage<Props> = ({
     setUser(user);
     setMedic(medic);
     getFilesByParentIdAndType(user?._id || "", "image");
-    getClinic(products[index]?.clinic_id || "");
+    getClinicsByMedicId(medic._id || "");
   }, [
     id,
     user,
     medic,
     setMedic,
     setUser,
-    getClinic,
-    index,
+    getClinicsByMedicId,
     products,
     getFilesByParentIdAndType,
   ]);
@@ -85,11 +76,11 @@ const AccountMedicPage: NextPage<Props> = ({
             </Typography>
             <Divider />
             <SelectCategoryAndProcedure products={products} />
-            <MedicAccountCard clinic={clinic} medic={medic} />
+            <MedicAccountCard clinic={clinics[0]} medic={medic} />
             <CardContent>
               <EditUser medic={medic} />
               <CompleteMedicProfile medic={medic} />
-              <ManageClinics clinics={clinics} />
+              <ManageClinics medic={medic} />
             </CardContent>
           </Card>
         </Grid>
@@ -108,7 +99,6 @@ export const getServerSideProps: GetServerSideProps = async ({
   const medic = await dbMedics.getMedicById(id);
   const _id = medic?.parent_id;
   const products = await dbProducts.getProductsByMedicId(id);
-  const clinics = await dbClinics.getClinicsByMedicId(id);
   if (!medic || !session) {
     return {
       redirect: {
@@ -124,7 +114,6 @@ export const getServerSideProps: GetServerSideProps = async ({
       user: session ? user : {},
       medic: medic,
       products: products,
-      clinics: clinics,
     },
   };
 };

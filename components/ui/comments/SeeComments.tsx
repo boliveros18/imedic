@@ -5,7 +5,6 @@ import {
   useState,
   FormEvent,
   ChangeEvent,
-  useEffect
 } from "react";
 import * as React from "react";
 import {
@@ -28,7 +27,6 @@ import { Comment } from "../../../interfaces";
 import { pluralize } from "../../../utils/strings";
 import { CommentDialogUi } from "../utils/CommentDialogUi";
 import { FileContext } from "../../../context/file";
-import { LikeContext } from "../../../context/like";
 
 interface Props {
   children?: ReactNode;
