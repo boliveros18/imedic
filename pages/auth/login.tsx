@@ -65,7 +65,7 @@ const LoginPage = () => {
         </Grid>
         <Box
           sx={{
-            width: 350,
+            width: 320,
             padding: "25px 20px",
             border: 1,
             borderColor: "lightgray",
@@ -89,7 +89,6 @@ const LoginPage = () => {
                 label="Email"
                 type="email"
                 variant="outlined"
-                autoComplete="username"
                 fullWidth
                 {...register("email", {
                   required: "Enter your email ",
@@ -105,7 +104,6 @@ const LoginPage = () => {
                 label="Password"
                 type="password"
                 variant="outlined"
-                autoComplete="current-password"
                 fullWidth
                 {...register("password", {
                   required: "This field is required",

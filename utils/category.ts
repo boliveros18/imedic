@@ -1,3 +1,5 @@
+export const AcademicDegrees = ["Pregrade", "Postgrade"];
+
 export const Categories = [
   "Audiology",
   "Bariatric",

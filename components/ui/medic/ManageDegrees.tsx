@@ -18,50 +18,44 @@ import {
   DialogActions,
   DialogTitle,
 } from "@mui/material";
-import { ClinicContext } from "../../../context/clinic";
 import { UIContext } from "../../../context/ui";
-import { Clinic, Medic } from "../../../interfaces";
-import SelectUbication from "../utils/SelectUbication";
+import { DegreeContext } from "../../../context/degree";
+import { Degree, Medic } from "../../../interfaces";
 import { SelectUi } from "../utils/SelectUi";
-import { Categories } from "../../../utils/category";
 import { useSnackbar } from "notistack";
-import { capitalize, formatPhone } from "../../../utils/strings";
+import { AcademicDegrees } from "../../../utils/category";
+import { capitalize } from "../../../utils/strings";
+import { FileContext } from "../../../context/file";
+import AddDocumentMedicProfile from "./AddDocumentMedicProfile";
 
 interface Props {
   children?: ReactNode;
   medic: Medic;
 }
 
-export const ManageClinics: FC<Props> = ({ medic }) => {
+export const ManageDegrees: FC<Props> = ({ medic }) => {
   const { enqueueSnackbar } = useSnackbar();
   const {
-    clinics,
-    createClinic,
-    updateClinic,
-    deleteClinic,
-    getClinicsByMedicId,
-  } = useContext(ClinicContext);
-  const { country, state, city, setProgress, setCountry, setState, setCity } =
-    useContext(UIContext);
+    degrees,
+    createDegree,
+    updateDegree,
+    deleteDegree,
+    getDegreesByMedicId,
+  } = useContext(DegreeContext);
+  const { setProgress } = useContext(UIContext);
+  const [type, setType] = useState("Academic degree");
+  const { file } = useContext(FileContext);
   const [index, setIndex] = useState(0);
-  const [category, setCategory] = useState("Category");
   const [submit, setSubmit] = useState("CREATE");
   const [open, setOpen] = useState(false);
   const [create, onCreate] = useState(true);
 
-  const clinic = {
-    finantial: "",
-    technology: "",
-    phone: "",
+  const degree = {
     name: "",
-    address: "",
-    instagram: "",
-    country: "Select country",
-    state: "Select state",
-    province: "Select city",
-  } as Clinic;
-  const [values, setValues] = useState(clinic);
-  const [inputs, setInputs] = useState({} as Clinic);
+    university: "",
+  } as Degree;
+  const [values, setValues] = useState(degree);
+  const [inputs, setInputs] = useState({} as Degree);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -83,24 +77,22 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
   };
 
   useEffect(() => {
-    getClinicsByMedicId(medic._id);
-  }, [medic, getClinicsByMedicId]);
+    getDegreesByMedicId(medic._id);
+  }, [medic, getDegreesByMedicId]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (submit === "SAVE" && clinics) {
+    if (submit === "SAVE" && degrees) {
       try {
         setProgress(true);
-        await updateClinic(clinics[index]._id || "", {
+        await updateDegree(degrees[index]._id || "", {
           ...inputs,
-          speciality: category,
-          country: country,
-          state: state,
-          province: city,
-        } as Clinic).then(() => {
-          setInputs({} as Clinic);
-          getClinicsByMedicId(medic._id);
-          success("clinic", "updated");
+          file_id: file._id,
+          to_approve: file._id ? true : false,
+        } as Degree).then(() => {
+          setInputs({} as Degree);
+          getDegreesByMedicId(medic._id);
+          success("degree", "updated");
         });
       } catch (error: any) {
         unsuccess(error);
@@ -108,19 +100,16 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
     } else {
       try {
         setProgress(true);
-        await createClinic({
+        await createDegree({
           ...inputs,
           name: capitalize(inputs.name),
-          phone: formatPhone(inputs.phone),
           medic_id: medic._id,
-          speciality: category,
-          country: country,
-          state: state,
-          province: city,
-        } as Clinic).then(() => {
-          getClinicsByMedicId(medic._id);
-          setValues(clinic);
-          success("clinic", "created");
+          file_id: file._id,
+          to_approve: file._id ? true : false,
+        } as Degree).then(() => {
+          getDegreesByMedicId(medic._id);
+          setValues(degree);
+          success("degree", "created");
         });
       } catch (error: any) {
         unsuccess(error);
@@ -128,20 +117,16 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
     }
   };
 
-  const SupressClinic = async () => {
+  const SupressDegree = async () => {
     try {
       setProgress(true);
-      await deleteClinic(clinics[index]?._id || "").then(async () => {
-        await getClinicsByMedicId(medic._id);
+      await deleteDegree(degrees[index]?._id || "").then(async () => {
+        await getDegreesByMedicId(medic._id);
         setSubmit("CREATE");
-        setValues(clinic);
-        setInputs({} as Clinic);
+        setValues(degree);
+        setInputs({} as Degree);
         setIndex(0);
-        setCategory("Category");
-        setCountry(clinic.country);
-        setState(clinic.state);
-        setCity(clinic.province);
-        success("clinic", "deleted");
+        success("degree", "deleted");
       });
     } catch (error) {
       unsuccess(error);
@@ -156,13 +141,13 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
   };
 
   return (
-    <AccordionUi summary="Manage clinics">
+    <AccordionUi summary="Manage degrees">
       <form onSubmit={handleSubmit} noValidate>
         <Grid container spacing={0} rowSpacing={2}>
           <Grid item xs={12}>
             {
               <Alert severity={create ? "success" : "info"}>
-                {`${create ? "Create" : "Update"} a clinic`}
+                {`${create ? "Create" : "Update"} a degree`}
               </Alert>
             }
           </Grid>
@@ -173,30 +158,24 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
                 onClick={() => {
                   setSubmit("CREATE");
                   onCreate(true);
-                  setValues(clinic);
-                  setInputs({} as Clinic);
-                  setCategory("Category");
-                  setCountry(clinic.country);
-                  setState(clinic.state);
-                  setCity(clinic.province);
+                  setValues(degree);
+                  setInputs({} as Degree);
+                  setType("Academic degree")
                 }}
               >
-                Clinics
+                Degrees
               </MenuItem>
-              {clinics?.map((item, index) => (
+              {degrees?.map((item, index) => (
                 <MenuItem
                   key={index}
                   value={item.name}
                   onClick={() => {
                     setValues(item);
                     setIndex(index);
-                    setInputs({} as Clinic);
+                    setInputs({} as Degree);
                     setSubmit("SAVE");
                     onCreate(false);
-                    setCategory(item.speciality);
-                    setCountry(item.country);
-                    setState(item.state);
-                    setCity(item.province);
+                    index === 0 ? setType("pregrade") : setType("postgrade")
                   }}
                 >
                   <span style={{ fontWeight: "500" }}>{item.name}</span>
@@ -210,7 +189,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
               required={submit === "SAVE" ? false : true}
               type="text"
               name="name"
-              label="Clinic name"
+              label="Professional degree name"
               variant="outlined"
               fullWidth
               autoComplete="off"
@@ -225,109 +204,40 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
               InputLabelProps={{ shrink: true }}
               required={submit === "SAVE" ? false : true}
               type="text"
-              name="phone"
-              label={submit === "SAVE" ? "Phone" : "Phone example: 5556554658"}
-              variant="outlined"
-              fullWidth
-              autoComplete="off"
-              value={values.phone}
-              onChange={handleInput}
-              size="small"
-              error={!values.phone}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              InputLabelProps={{ shrink: true }}
-              required={submit === "SAVE" ? false : true}
-              type="text"
-              name="address"
+              name="university"
               label={
                 submit === "SAVE"
-                  ? "Address"
-                  : "Address example: 1903 W Michigan Ave"
+                  ? "University"
+                  : "University example: University of Miami"
               }
               variant="outlined"
               fullWidth
               autoComplete="off"
-              value={values.address}
+              value={values.university}
               onChange={handleInput}
               size="small"
-              error={!values.address}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              InputLabelProps={{ shrink: true }}
-              required={submit === "SAVE" ? false : true}
-              type="text"
-              name="instagram"
-              label="Instagram link"
-              variant="outlined"
-              fullWidth
-              autoComplete="off"
-              value={values.instagram}
-              onChange={handleInput}
-              size="small"
-              error={!values.instagram}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              InputLabelProps={{ shrink: true }}
-              required={submit === "SAVE" ? false : true}
-              type="text"
-              name="finantial"
-              label={
-                submit === "SAVE"
-                  ? "Finantial situation"
-                  : "Finantial situation example: 1 million US in 2022"
-              }
-              variant="outlined"
-              fullWidth
-              autoComplete="off"
-              value={values.finantial}
-              onChange={handleInput}
-              size="small"
-              error={!values.finantial}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              InputLabelProps={{ shrink: true }}
-              required={submit === "SAVE" ? false : true}
-              type="text"
-              name="technology"
-              label={
-                submit === "SAVE"
-                  ? "Technology implemented"
-                  : "Technology implemented example: Animation Deformity, Laser, Water assisted body jet, etc."
-              }
-              variant="outlined"
-              fullWidth
-              autoComplete="off"
-              value={values.technology}
-              onChange={handleInput}
-              size="small"
-              error={!values.technology}
+              error={!values.university}
             />
           </Grid>
           <Grid item xs={12}>
             <SelectUi>
-              <MenuItem value={""}>{category}</MenuItem>
-              {Categories.map((item, index) => (
+              <MenuItem value={""}>{type}</MenuItem>
+              {AcademicDegrees.map((item, index) => (
                 <MenuItem
                   key={index}
                   value={item}
-                  onClick={() => setCategory(item)}
+                  onClick={() => setType(item)}
                 >
                   {item}
                 </MenuItem>
               ))}
             </SelectUi>
           </Grid>
-          <Grid item xs={12}>
-            <SelectUbication content={values} />
+          <Grid item xs={12} sx={{ mt: -1 }}>
+            <AddDocumentMedicProfile
+              type={type}
+              text={`Add PDF apostille ${type} diploma`}
+            />
           </Grid>
           <Grid item xs={12}>
             <Grid container spacing={0} rowSpacing={2}>
@@ -361,7 +271,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
                     <Button
                       onClick={() => {
                         handleClose();
-                        SupressClinic();
+                        SupressDegree();
                       }}
                       autoFocus
                     >
@@ -393,4 +303,4 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
   );
 };
 
-export default ManageClinics;
+export default ManageDegrees;

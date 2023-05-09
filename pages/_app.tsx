@@ -5,6 +5,7 @@ import { AuthProvider } from "../context/auth";
 import { UIProvider } from "../context/ui";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ClinicProvider } from "../context/clinic";
+import { DegreeProvider } from "../context/degree";
 import { CertificationProvider } from "../context/certification";
 import { CommentProvider } from "../context/comment";
 import { LikeProvider } from "../context/like";
@@ -40,10 +41,12 @@ export default function App({ Component, pageProps }: Props) {
                         <QualificationProvider>
                           <ProductProvider>
                             <FileProvider>
-                              <CssBaseline />
-                              <SnackbarProvider maxSnack={1}>
-                                <Component {...pageProps} />
-                              </SnackbarProvider>
+                              <DegreeProvider>
+                                <CssBaseline />
+                                <SnackbarProvider maxSnack={1}>
+                                  <Component {...pageProps} />
+                                </SnackbarProvider>
+                              </DegreeProvider>
                             </FileProvider>
                           </ProductProvider>
                         </QualificationProvider>

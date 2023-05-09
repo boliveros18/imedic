@@ -53,7 +53,7 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
               type: type,
               parent_id: medic?._id,
               url: data.message,
-            } as File)
+            } as File).then()
               .then(() => setProgress(false))
               .then(() =>
                 enqueueSnackbar(`Your ${type} data profile has been created`, {
@@ -67,6 +67,7 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
       }
     }
   };
+
   return (
     <Grid item xs={12} display="flex" justifyContent="end">
       <label>
@@ -80,7 +81,7 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
         />
         <a
           style={{
-            fontSize: 15,
+            fontSize: 14,
             fontWeight: "500",
             color: "#001B87",
             cursor: "pointer",

@@ -7,7 +7,7 @@ import {
   FormEvent,
 } from "react";
 import AccordionUi from "../utils/AccordionUi";
-import { Grid, TextField, Button } from "@mui/material";
+import { Grid, TextField, Button, Typography } from "@mui/material";
 import { MedicContext } from "../../../context/medic";
 import { UIContext } from "../../../context/ui";
 import { Medic } from "../../../interfaces";
@@ -64,15 +64,17 @@ export const CompleteMedicProfile: FC<Props> = ({ medic }) => {
           <Grid item xs={12}>
             <SelectUbication content={medic} />
           </Grid>
-          <Grid item xs={12} sx={{ mt: -1 }}>
-            <AddDocumentMedicProfile
-              type="card_id"
-              text="Add PDF apostille card id"
-            />
-            <AddDocumentMedicProfile
-              type="curriculum"
-              text="Add PDF curriculum vitae"
-            />
+          <Grid container spacing={0} rowSpacing={2}>
+            <Grid item xs={12} sx={{ mt:"5px" }}>
+              <AddDocumentMedicProfile
+                type="card_id"
+                text="Add PDF apostille card id"
+              />
+              <AddDocumentMedicProfile
+                type="curriculum"
+                text="Add PDF curriculum vitae"
+              />
+            </Grid>
           </Grid>
           <Grid item xs={12} display="flex" justifyContent="center">
             <Button

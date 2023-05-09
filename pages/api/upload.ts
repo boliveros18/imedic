@@ -53,7 +53,7 @@ const parseFiles = async (req: NextApiRequest): Promise<string> => {
 const upload = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const fileURL = await parseFiles(req);
   const file = await dbFiles.getFilesByParentIdAndType(id, type);
-  if (file) {
+  if (file._id) {
     const [fileID] = file.url
       .substring(file.url.lastIndexOf("/") + 1)
       .split(".");

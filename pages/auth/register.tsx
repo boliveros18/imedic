@@ -84,7 +84,7 @@ const RegisterPage = () => {
         </Grid>
         <Box
           sx={{
-            width: 350,
+            width: 320,
             padding: "25px 20px",
             border: 1,
             borderColor: "lightgray",

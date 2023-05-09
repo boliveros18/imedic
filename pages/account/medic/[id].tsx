@@ -12,6 +12,7 @@ import {
   MedicAccountCard,
   EditUser,
   ManageClinics,
+  ApostilleCertifications,
 } from "../../../components/ui";
 import { ProductContext } from "../../../context/product";
 import { ClinicContext } from "../../../context/clinic";
@@ -19,6 +20,7 @@ import { FileContext } from "../../../context/file";
 import { MedicContext } from "../../../context/medic";
 import { UIContext } from "../../../context/ui";
 import CompleteMedicProfile from "../../../components/ui/medic/CompleteMedicProfile";
+import ManageDegrees from "../../../components/ui/medic/ManageDegrees";
 
 interface Props {
   id: string;
@@ -77,10 +79,14 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, products }) => {
             <Divider />
             <SelectCategoryAndProcedure products={products} />
             <MedicAccountCard clinic={clinics[0]} medic={medic} />
-            <CardContent>
+            <CardContent sx={{ mb:-2 }}>
               <EditUser medic={medic} />
+            </CardContent>
+            <Divider />
+            <CardContent sx={{ mt:"-14px" }}>
               <CompleteMedicProfile medic={medic} />
               <ManageClinics medic={medic} />
+              <ManageDegrees medic={medic} />
             </CardContent>
           </Card>
         </Grid>

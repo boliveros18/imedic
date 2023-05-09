@@ -1,4 +1,4 @@
-import { FC, ReactNode, useContext } from "react";
+import { FC, ReactNode, useContext, useState, useEffect } from "react";
 import { CardHeader, Typography, Box, IconButton, Avatar } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import { Clinic, Medic, File } from "../../../interfaces";
@@ -9,6 +9,7 @@ import { AuthContext } from "../../../context/auth";
 import { UIContext } from "../../../context/ui";
 import { FileContext } from "../../../context/file";
 import { useSnackbar } from "notistack";
+import Image from "next/image";
 
 interface Props {
   children?: ReactNode;
@@ -20,8 +21,17 @@ export const MedicAccountCard: FC<Props> = ({ clinic, medic }) => {
   const { setProgress } = useContext(UIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { user } = useContext(AuthContext);
-  const { file, updateFile, createFile } = useContext(FileContext);
+  const { file, updateFile, createFile, getFilesByParentIdAndType } =
+    useContext(FileContext);
+  const [image, setImage] = useState({} as File)
   const stars = Array(5).fill(0);
+
+  useEffect(() => {
+     getFilesByParentIdAndType(medic._id, "image");
+     if(file.type === "image"){
+        setImage(file)
+     }
+  }, [medic, file, getFilesByParentIdAndType]);
 
   return (
     <CardHeader
@@ -79,7 +89,7 @@ export const MedicAccountCard: FC<Props> = ({ clinic, medic }) => {
             />
             <Avatar
               alt={user?.name}
-              src={file.type === "image" ? file.url : ""}
+              src={image.type === "image" ? image.url : ""}
               sx={{ width: 100, height: 120, cursor: "pointer" }}
               variant={"rounded"}
             />

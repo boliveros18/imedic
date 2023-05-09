@@ -26,17 +26,13 @@ export const FileProvider: FC<ProviderProps> = ({ children }) => {
 
   const createFile = async (payload: File) => {
     const data = await FileService.createOne(payload);
-    data.type === "image"
-      ? dispatch({ type: "UPDATE_FILE", payload: data })
-      : null;
+    dispatch({ type: "UPDATE_FILE", payload: data });
     return data;
   };
 
   const updateFile = async (id: string, payload: File) => {
     const data = await FileService.updateOne(id, payload);
-    data.type === "image"
-      ? dispatch({ type: "UPDATE_FILE", payload: data })
-      : null;
+    dispatch({ type: "UPDATE_FILE", payload: data })
     return data;
   };
 

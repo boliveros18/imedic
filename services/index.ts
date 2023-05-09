@@ -2,6 +2,7 @@ export * as AuthService from "./auth";
 export * as CertificationService from "./certification";
 export * as ClinicService from "./clinic";
 export * as CommentService from "./comment";
+export * as DegreeService from "./degree";
 export * as FileService from "./file";
 export * as LikeService from "./like";
 export * as MedicService from "./medic";

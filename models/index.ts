@@ -1,6 +1,7 @@
 export { default as Certification, type ICertification } from './Certification'
 export { default as Clinic, type IClinic } from './Clinic'
 export { default as Comment, type IComment } from './Comment'
+export { default as Degree, type IDegree } from './Degree'
 export { default as File, type IFile } from './File'
 export { default as Like, type ILike } from './Like'
 export { default as Medic, type IMedic } from './Medic'
