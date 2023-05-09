@@ -217,7 +217,7 @@ export const EditUser: FC<Props> = ({ medic }) => {
                   />
                 </Grid>
               )}
-              <Grid item xs={12} display="flex" justifyContent="center">
+              <Grid item xs={12} display="flex" justifyContent="center" sx={{ mb:2 }}>
                 <Button
                   type="submit"
                   variant="outlined"

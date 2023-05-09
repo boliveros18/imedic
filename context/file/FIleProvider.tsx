@@ -36,6 +36,12 @@ export const FileProvider: FC<ProviderProps> = ({ children }) => {
     return data;
   };
 
+  const deleteFile = async (id: string) => {
+    const data = await FileService.deleteOne(id);
+    dispatch({ type: "DELETE_FILE", payload: id });
+    return data;
+  };
+
   const getFilesByParentIdAndType = useCallback(
     async (parent_id: string, type: string) => {
       const data: File = await FileService.getFilesByParentIdAndType(
@@ -57,6 +63,7 @@ export const FileProvider: FC<ProviderProps> = ({ children }) => {
         setFile,
         createFile,
         updateFile,
+        deleteFile,
         getFilesByParentIdAndType,
       }}
     >

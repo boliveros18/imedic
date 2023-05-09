@@ -10,7 +10,7 @@ export const CommentForm = styled("div")(({ }) => ({
   "&:hover": {
     backgroundColor: "#e0dede",
   },
-  width: WindowSize().width
+  width: "100%"
 }));
 
 export const StyledInputComment = styled(InputBase)(({ theme }) => ({

@@ -18,6 +18,8 @@ export default function handler(
   switch (req.method) {
     case "PUT":
       return updateModel(req, res);
+    case "DELETE":
+      return deleteModel(req, res);
     default:
       return res.status(400).json({
         message: "This method in comment/[id] does not exist " + req.method,
@@ -51,6 +53,29 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     );
     await db.disconnect();
     res.status(200).json(updatedModel!);
+  } catch (error: any) {
+    await db.disconnect();
+    res.status(400).json({ message: error.errors.status.message });
+  }
+};
+
+const deleteModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+  const { id } = req.query;
+
+  await db.connect();
+
+  const fileToDelete = await File.findById(id);
+
+  if (!fileToDelete) {
+    await db.disconnect();
+    return res
+      .status(400)
+      .json({ message: "There is no degree with that ID: " + id });
+  }
+  try {
+    const deleteFile = await File.findByIdAndDelete(id);
+    await db.disconnect();
+    res.status(200).json(deleteFile!);
   } catch (error: any) {
     await db.disconnect();
     res.status(400).json({ message: error.errors.status.message });

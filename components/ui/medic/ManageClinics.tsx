@@ -126,6 +126,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
         unsuccess(error);
       }
     }
+    setProgress(false);
   };
 
   const SupressClinic = async () => {
@@ -147,6 +148,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
       unsuccess(error);
     }
     onCreate(true);
+    setProgress(false);
   };
 
   const handleInput = ({ target }: ChangeEvent<any>) => {

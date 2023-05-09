@@ -18,3 +18,8 @@ export const updateOne = async (id: string, payload: File) => {
   const res = await ApiClient.put(`/file/${id}`, payload);
   return res.data;
 };
+
+export const deleteOne = async (id: string) => {
+  const res = await ApiClient.delete(`/file/${id}`);
+  return res.data;
+};

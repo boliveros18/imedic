@@ -1,6 +1,6 @@
 import { State } from ".";
 
-type Action = "UPDATE_FILE" | "UPDATE_FILES" | "ADD_FILES";
+type Action = "UPDATE_FILE" | "UPDATE_FILES" | "DELETE_FILE" | "ADD_FILES";
 type ActionType = { type: Action; payload?: any };
 
 export const fileReducer = (state: State, action: ActionType): State => {
@@ -9,6 +9,11 @@ export const fileReducer = (state: State, action: ActionType): State => {
       return { ...state, file: action.payload };
     case "UPDATE_FILES":
       return { ...state, files: action.payload };
+    case "DELETE_FILE":
+      const filtered = state.files.filter(
+        (item) => item._id !== action.payload
+      );
+      return { ...state, files: filtered };
     case "ADD_FILES":
       const attach = state.files.concat(action.payload);
       const files = attach.filter(

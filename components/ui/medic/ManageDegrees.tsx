@@ -17,6 +17,7 @@ import {
   Dialog,
   DialogActions,
   DialogTitle,
+  Typography,
 } from "@mui/material";
 import { UIContext } from "../../../context/ui";
 import { DegreeContext } from "../../../context/degree";
@@ -43,8 +44,8 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
     getDegreesByMedicId,
   } = useContext(DegreeContext);
   const { setProgress } = useContext(UIContext);
-  const [type, setType] = useState("Academic degree");
-  const { file } = useContext(FileContext);
+  const [type, setType] = useState("pregrade");
+  const { file, deleteFile } = useContext(FileContext);
   const [index, setIndex] = useState(0);
   const [submit, setSubmit] = useState("CREATE");
   const [open, setOpen] = useState(false);
@@ -115,23 +116,28 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
         unsuccess(error);
       }
     }
+    setProgress(false);
   };
 
   const SupressDegree = async () => {
     try {
       setProgress(true);
       await deleteDegree(degrees[index]?._id || "").then(async () => {
+        await deleteFile(degrees[index]?.file_id);
         await getDegreesByMedicId(medic._id);
         setSubmit("CREATE");
         setValues(degree);
         setInputs({} as Degree);
         setIndex(0);
         success("degree", "deleted");
+        setProgress(false);
       });
     } catch (error) {
       unsuccess(error);
+      setProgress(false);
     }
     onCreate(true);
+    setProgress(false);
   };
 
   const handleInput = ({ target }: ChangeEvent<any>) => {
@@ -160,7 +166,6 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
                   onCreate(true);
                   setValues(degree);
                   setInputs({} as Degree);
-                  setType("Academic degree")
                 }}
               >
                 Degrees
@@ -175,7 +180,7 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
                     setInputs({} as Degree);
                     setSubmit("SAVE");
                     onCreate(false);
-                    index === 0 ? setType("pregrade") : setType("postgrade")
+                    index === 0 ? setType("pregrade") : setType("postgrade");
                   }}
                 >
                   <span style={{ fontWeight: "500" }}>{item.name}</span>
@@ -240,6 +245,14 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
             />
           </Grid>
           <Grid item xs={12}>
+            <Typography
+              sx={{ fontSize: 13, fontWeight: "400", mt: -2 }}
+              align="right"
+            >
+              *save updates after file upload
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
             <Grid container spacing={0} rowSpacing={2}>
               <Grid item xs={3} display="flex" justifyContent="center">
                 <Button
@@ -263,17 +276,23 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
                   aria-labelledby="alert-dialog-title"
                   aria-describedby="alert-dialog-description"
                 >
-                  <DialogTitle id="alert-dialog-title">
-                    {"Do you want to delete this clinic?"}
+                  <DialogTitle
+                    id="alert-dialog-title"
+                    sx={{ fontSize: 16, fontWeight: "500" }}
+                  >
+                    {"Do you want to delete this degree?"}
                   </DialogTitle>
                   <DialogActions>
-                    <Button onClick={handleClose}>No</Button>
+                    <Button onClick={handleClose} sx={{ fontSize: 14 }}>
+                      No
+                    </Button>
                     <Button
                       onClick={() => {
                         handleClose();
                         SupressDegree();
                       }}
                       autoFocus
+                      sx={{ fontSize: 14 }}
                     >
                       Yes
                     </Button>
