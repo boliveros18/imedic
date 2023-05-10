@@ -3,15 +3,15 @@ export const AcademicDegrees = ["pregrade", "postgrade"];
 export const Categories = [
   "Audiology",
   "Bariatric",
-  "Colon&Rectal",
+  "ColonAndRectal",
   "Cardiovascular",
   "Dermatology",
   "Endocrine",
-  "Gastroenterology&Hepatology",
+  "GastroenterologyAndHepatology",
   "Hematology",
   "Oncology",
   "Ophthalmology",
-  "Oral&Maxillofacial",
+  "OralAndMaxillofacial",
   "Orthopedic",
   "Plastic",
   "Radiology",
@@ -19,12 +19,13 @@ export const Categories = [
   "Urology",
   "Fertility",
   "Neurology",
-  "Obstetrics&Gynecology",
+  "ObstetricsAndGynecology",
 ];
 
-export const procedures = [
+
+export const Procedures = [
   {
-    audiology: [
+    Audiology: [
       "Auditory brainstem implant",
       "Auditory evoked potential test",
       "Aural rehabilitation",
@@ -47,7 +48,7 @@ export const procedures = [
     ],
   },
   {
-    bariatric: [
+    Bariatric: [
       "Bariatric surgery",
       "Biliopancreatic diversion with duodenal switch (BPD/DS)",
       "Endoscopic sleeve gastroplasty",
@@ -63,7 +64,7 @@ export const procedures = [
     ],
   },
   {
-    colonAndRectal: [
+    ColonAndRectal: [
       "Anorectal surgery",
       "Colectomy",
       "Coloanal anastomosis",
@@ -90,7 +91,7 @@ export const procedures = [
     ],
   },
   {
-    cardiovascular: [
+    Cardiovascular: [
       "Aortic root surgery",
       "Aortic valve repair and aortic valve replacement",
       "Atrial fibrillation ablation",
@@ -128,7 +129,7 @@ export const procedures = [
     ],
   },
   {
-    dermatology: [
+    Dermatology: [
       "Allergy education",
       "Allergy skin tests",
       "Botox injections",
@@ -159,7 +160,7 @@ export const procedures = [
     ],
   },
   {
-    endocrine: [
+    Endocrine: [
       "Adrenalectomy",
       "Endoscopic thyroidectomy",
       "Insulinoma enucleation",
@@ -179,7 +180,7 @@ export const procedures = [
     ],
   },
   {
-    gastroenterologyAndHepatology: [
+    GastroenterologyAndHepatology: [
       "Anorectal function testing",
       "Bariatric surgery",
       "Barium enema",
@@ -238,7 +239,7 @@ export const procedures = [
     ],
   },
   {
-    hematology: [
+    Hematology: [
       "Ablation therapy",
       "Biological therapy for cancer",
       "Blood and bone marrow stem cell donation",
@@ -253,7 +254,7 @@ export const procedures = [
     ],
   },
   {
-    oncology: [
+    Oncology: [
       "Biomarker Testing for Cancer Treatment",
       "Chemotherapy",
       "Hormone Therapy",
@@ -265,7 +266,7 @@ export const procedures = [
     ],
   },
   {
-    ophthalmology: [
+    Ophthalmology: [
       "Anophthalmic socket surgery",
       "Balloon dacryoplasty",
       "Blepharoplasty",
@@ -306,7 +307,7 @@ export const procedures = [
     ],
   },
   {
-    oralAndMaxillofacial: [
+    OralAndMaxillofacial: [
       "Alveolar bone grafting",
       "Arthrocentesis",
       "Arthroplasty",
@@ -364,7 +365,7 @@ export const procedures = [
     ],
   },
   {
-    orthopedic: [
+    Orthopedic: [
       "ACL reconstruction",
       "Ankle arthroscopy",
       "Ankle reconstruction",
@@ -476,7 +477,7 @@ export const procedures = [
     ],
   },
   {
-    plastic: [
+    Plastic: [
       "Arm lift",
       "Blepharoplasty",
       "Body fat removal",
@@ -563,7 +564,7 @@ export const procedures = [
     ],
   },
   {
-    radiology: [
+    Radiology: [
       "3D anatomical modeling",
       "3D mammogram",
       "7-tesla MRI",
@@ -708,7 +709,7 @@ export const procedures = [
     ],
   },
   {
-    rheumatology: [
+    Rheumatology: [
       "Bone scan",
       "Cortisone shots",
       "Dual energy CT scan",
@@ -725,7 +726,7 @@ export const procedures = [
     ],
   },
   {
-    urology: [
+    Urology: [
       "Ablation therapy",
       "Adrenalectomy",
       "Artificial urinary sphincter",
@@ -781,13 +782,13 @@ export const procedures = [
     ],
   },
   {
-    fertility: [
+    Fertility: [
       "intrauterine insemination (IUI)",
       "in vitro fertilization (IVF)",
     ],
   },
   {
-    neurology: [
+    Neurology: [
       "Cerebrovascular (AVMs)",
       "Neuro-oncology (brain tumors)",
       "Spinal neurosurgery",
@@ -820,7 +821,7 @@ export const procedures = [
     ],
   },
   {
-    obstetricsAndGynecology: [
+    ObstetricsAndGynecology: [
       "Abdominal hysterectomy",
       "Ablation therapy",
       "Amniotic band release surgery",

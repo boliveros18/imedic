@@ -76,6 +76,8 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     prescription_medication = modelToUpdate.prescription_medication,
     surgeon_fee = modelToUpdate.surgeon_fee,
     surgeon_insurance = modelToUpdate.surgeon_insurance,
+    additional_cost = modelToUpdate.additional_cost,
+    additional_cost_description = modelToUpdate.additional_cost_description,
     currency = modelToUpdate.currency,
     updatedAt = Date.now(),
   } = req.body;
@@ -97,6 +99,8 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         prescription_medication,
         surgeon_fee,
         surgeon_insurance,
+        additional_cost,
+        additional_cost_description,
         currency,
         updatedAt,
       },

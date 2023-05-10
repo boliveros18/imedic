@@ -30,7 +30,7 @@ export const ProductProvider: FC<ProviderProps> = ({ children }) => {
 
   const getProduct = useCallback(async (id: string) => {
     const data = await ProductService.getProduct(id);
-    dispatch({ type: "GET_PRODUCT", payload: data });
+    dispatch({ type: "UPDATE_PRODUCT", payload: data });
     return data;
   }, []);
 
@@ -48,7 +48,7 @@ export const ProductProvider: FC<ProviderProps> = ({ children }) => {
 
   const createProduct = async (payload: Product) => {
     const data = await ProductService.createOne(payload);
-    dispatch({ type: "CREATE_PRODUCT", payload: data });
+    dispatch({ type: "UPDATE_PRODUCT", payload: data });
     return data;
   };
 

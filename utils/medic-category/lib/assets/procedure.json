@@ -1,0 +1,3334 @@
+[
+    {
+       "name": "Auditory brainstem implant",
+       "categoryName": "Audiology"
+    },
+    {
+        "name": "Auditory evoked potential test",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Aural rehabilitation",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Bone-anchored (osseointegrated) hearing aid surgery",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Cochlear implants",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Computerized dynamic posturography",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Custom ear protector fitting",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Electroacoustic assessments of hearing aids",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Electronystagmography",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Hearing aid fitting",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Hearing conservation services",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Hearing implant surgery",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Hearing monitoring services",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Newborn hearing screening",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Rotary-chair testing",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Swim mold fitting",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Tinnitus assessment",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Tinnitus management",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "",
+        "categoryName": "Audiology"
+     },
+     {
+        "name": "Bariatric surgery",
+        "categoryName": "Bariatric"
+        
+    },
+    {
+        "name": "Biliopancreatic diversion with duodenal switch (BPD/DS)",
+        "categoryName": "Bariatric"
+    },
+    {
+        "name": "Endoscopic sleeve gastroplasty",
+        "categoryName": "Bariatric"
+    },
+    {
+        "name": "Gastric banding removal",
+        "categoryName": "Bariatric"
+    },
+    {
+        "name": "Gastric bypass (Roux-en-Y)",
+        "categoryName": "Bariatric"
+    },
+    {
+        "name": "Intragastric balloon",
+        "categoryName": "Bariatric"
+    },
+    {
+        "name": "Laparoscopic adjustable gastric banding",
+        "categoryName": "Bariatric"
+    },
+    {
+        "name": "Minimally invasive surgery",
+        "categoryName": "Bariatric"
+    },
+    {
+        "name": "Revisional bariatric surgery",
+        "categoryName": "Bariatric"
+    },
+    {
+        "name": "Robotic surgery",
+        "categoryName": "Bariatric"
+    },
+    {
+        "name": "Sleeve gastrectomy",
+        "categoryName": "Bariatric"
+    },
+    {
+        "name": "Transoral outlet reduction",
+        "categoryName": "Bariatric"
+    },
+    {
+        "name": "Anorectal surgery",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Colectomy",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Coloanal anastomosis",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Colonoscopy",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Colostomy",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Fecal microbiota (stool) transplant",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Flexible sigmoidoscopy",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Ileal conduit management",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Ileoanal anastomosis (J-pouch) surgery",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Ileostomy",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Intraoperative radiation therapy (IORT)",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Laparoscopic surgery",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Minimally invasive surgery",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Natural orifice transluminal endoscopic surgery",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Proctectomy",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Rectal prolapse surgery",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Robotic surgery",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Sacral nerve stimulation for fecal incontinence",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Single-incision laparoscopic surgery",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Transanal endoscopic microsurgery",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Transanal total mesorectal excision (TaTME)",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Urostomy",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Virtual colonoscopy",
+        "categoryName": "Colon & Rectal"
+    },
+    {
+        "name": "Aortic root surgery",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Aortic valve repair and aortic valve replacement",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Atrial fibrillation ablation",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Atrial flutter ablation",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Cardiac ablation",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Cardiac catheterization",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Cardiac rehabilitation",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Cardiac resynchronization therapy",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Cardiovascular disease prevention",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Carotid angioplasty and stenting",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Carotid endarterectomy",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Congenital heart disease surgery",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Coronary artery bypass surgery",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Extracorporeal membrane oxygenation (ECMO)",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Heart transplant",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Heart valve surgery",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Implantable cardioverter-defibrillators (ICDs)",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Lung transplant",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Lung volume reduction surgery",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Minimally invasive heart surgery",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Minimally invasive surgery",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Mitral valve repair and mitral valve replacement",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Neonatal and pediatric heart surgery",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Nonpharmacological arrhythmia therapy",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Pacemaker",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Percutaneous valve procedures",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Pulmonary thromboendarterectomy",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Pulmonary valve repair and replacement",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Robotic surgery",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Ross procedure",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Transcatheter aortic valve replacement (TAVR)",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Tricuspid valve repair and tricuspid valve replacement",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Ventricular assist device (VAD)",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Video-assisted thoracoscopic surgery (VATS)",
+        "categoryName": "Cardiovascular"
+    },
+    {
+        "name": "Allergy education",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Allergy skin tests",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Botox injections",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Chemical peel",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Conscious sedation",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Cosmetic surgery",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Dermabrasion",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Dermal (soft tissue) fillers",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Dermatologic surgery",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Face-lift",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Facial fillers for wrinkles",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Feminizing hormone therapy",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Feminizing surgery",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Laser hair removal",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Laser resurfacing",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Laser surgery",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Light therapy for skin",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Masculinizing hormone therapy",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Masculinizing surgery",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Mohs surgery",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Mole removal",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Platelet-rich plasma injections",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Scar revision",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Sclerotherapy",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Skin cyst removal",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Tattoo removal",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "UV light therapy",
+        "categoryName": "Dermatology"
+    },
+    {
+        "name": "Adrenalectomy",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Endoscopic thyroidectomy",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Insulinoma enucleation",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Laparoscopic surgery",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Lateral neck dissection",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Lymphadenectomy",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Minimally invasive parathyroidectomy (MIP)",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Minimally invasive surgery",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Neck dissection",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Pancreatectomy",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Pancreatic enucleation",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Parathyroidectomy",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Robotic adrenalectomy",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Robotic surgery",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Robotic ventral hernia repair",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Thyroidectomy",
+        "categoryName": "Endocrine"
+    },
+    {
+        "name": "Anorectal function testing",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Bariatric surgery",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Barium enema",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Biliopancreatic diversion with duodenal switch (BPD/DS)",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Biofeedback",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Capsule endoscopy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Cholecystectomy (gallbladder removal)",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Clinical nutrition counseling",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Clinical nutrition evaluation",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Colectomy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Colonoscopy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Constipation evaluation",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "CT scan",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Diagnostic endoscopy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Endoscopic mucosal resection",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Endoscopic sleeve gastroplasty",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Endoscopic ultrasound",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Esophagectomy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Fecal incontinence evaluation",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Fecal occult blood test",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Flexible sigmoidoscopy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Gastric bypass (Roux-en-Y)",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Hepatobiliary disease evaluation",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Hepatobiliary disease postoperative care",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "HIDA scan",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Home enteral nutrition",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Ileoanal anastomosis (J-pouch) surgery",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Intestinal transit studies for GI motility disorders",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Intragastric balloon",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Liver biopsy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Liver function tests",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Liver transplant",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Living-donor liver transplant",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Magnetic resonance elastography",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Minimally invasive anti-reflux procedures",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Minimally invasive anti-reflux surgery",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Minimally invasive surgery",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "MRI",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Needle biopsy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Photodynamic therapy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Photodynamic therapy for advanced esophageal cancer",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Photodynamic therapy for Barrett's esophagus",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Provocative testing for noncardiac chest pain",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Radiofrequency treatment for GERD",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Radionuclide gastric studies for GI motility disorders",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Rectal prolapse surgery",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Robotic surgery",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Sleeve gastrectomy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Splenectomy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Stool DNA test",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Therapeutic endoscopy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Ultrasound",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Upper endoscopy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Video-assisted thoracoscopic surgery (VATS)",
+        "categoryName": "Gastroenterology & Hepatology"
+    },
+    {
+        "name": "Virtual colonoscopy",
+        "categoryName": "Gastroenterology & Hepatology"
+    },{
+        "name": "Ablation therapy",
+        "categoryName": "Hematology"
+    },
+    {
+        "name": "Biological therapy for cancer",
+        "categoryName": "Hematology"
+    },
+    {
+        "name": "Blood and bone marrow stem cell donation",
+        "categoryName": "Hematology"
+    },
+    {
+        "name": "Blood transfusion",
+        "categoryName": "Hematology"
+    },
+    {
+        "name": "Bone marrow transplant",
+        "categoryName": "Hematology"
+    },
+    {
+        "name": "Cancer treatment",
+        "categoryName": "Hematology"
+    },
+    {
+        "name": "Chemotherapy",
+        "categoryName": "Hematology"
+    },
+    {
+        "name": "Experimental treatments",
+        "categoryName": "Hematology"
+    },
+    {
+        "name": "Immunotherapy",
+        "categoryName": "Hematology"
+    },
+    {
+        "name": "Targeted drug therapy",
+        "categoryName": "Hematology"
+    },
+    {
+        "name": "Virotherapy",
+        "categoryName": "Hematology"
+    },
+    {
+        "name": "Biomarker Testing for Cancer Treatment",
+        "categoryName": "Oncology"
+    },
+    {
+        "name": "Chemotherapy",
+        "categoryName": "Oncology"
+    },
+    {
+        "name": "Hormone Therapy",
+        "categoryName": "Oncology"
+    },
+    {
+        "name": "Hyperthermia",
+        "categoryName": "Oncology"
+    },
+    {
+        "name": "Immunotherapy",
+        "categoryName": "Oncology"
+    },
+    {
+        "name": "Photodynamic Therapy",
+        "categoryName": "Oncology"
+    },
+    {
+        "name": "Radiation Therapy",
+        "categoryName": "Oncology"
+    },
+    {
+        "name": "Stem Cell Transplant",
+        "categoryName": "Oncology"
+    },
+    {
+        "name": "Anophthalmic socket surgery",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Balloon dacryoplasty",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Blepharoplasty",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Botox injections",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Brow lift",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Cataract surgery",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Contact lens fitting",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Cornea transplant",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Cosmetic surgery",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Custom orbital implants",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Descemet membrane endothelial keratoplasty (DMEK)",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Descemet stripping endothelial keratoplasty (DSEK)",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Ectropion repair",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Electrolysis for misdirected lashes",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Endoscopic dacryocystorhinostomy",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Entropion repair",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Eye exam",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Eyeglass fitting",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Eyelid retraction repair",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Facial fillers for wrinkles",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Fat grafting",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Gold weight eyelid implant",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Lacrimal surgery",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Laser cataract surgery",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "LASIK eye surgery",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Ocular imaging",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Ocular surface reconstruction",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Oculoplastic surgery",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Orbital decompression",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Orbital fracture repair",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Orbital surgery",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Ptosis repair",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Refractive surgery",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Scar revision",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Scleral lens fitting",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Skin cancer reconstruction",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Visual electrophysiology",
+        "categoryName": "Ophthalmology"
+    },
+    {
+        "name": "Alveolar bone grafting",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Arthrocentesis",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Arthroplasty",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Bone grafting for implants",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Buccal fat pad flap",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Cheek implants",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Chin surgery (genioplasty)",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Cosmetic dental surgery",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Cosmetic jaw surgery",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Costochondral rib grafts",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Dental implant surgery",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Distraction osteogenesis",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Double chin removal",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Facial contouring surgery",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Facial fracture repair",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Facial implant surgery",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Fibula free flap",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "General anesthesia",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Iliac crest bone grafts",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Impacted tooth removal",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Intravenous sedation",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Jaw surgery",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Laser surgery",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Liposuction",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Mandibular osteotomy",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Mandibular reconstruction",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Maxillary osteotomy",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Maxillary reconstruction",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Maxillomandibular advancement surgery",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Microvascular reconstruction",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Nonvascularized bone graft",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Nose reconstruction",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Oral biopsy",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Oral cancer screening",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Orbital augmentation",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Orbital reconstruction",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Oroantral fistula repair",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Oronasal fistula repair",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Outer ear reconstruction",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Parotidectomy",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Partial TMJ replacement",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Radial forearm free flap",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Scar revision",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Sublingual gland removal",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Submandibular gland removal",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Temporalis flap",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "TMJ disk surgery",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Tongue reduction surgery",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Tooth extraction",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Total TMJ replacement",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Tracheostomy",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Vascularized bone grafting",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Vermilionectomy",
+        "categoryName": "Oral & Maxillofacial"
+    },
+    {
+        "name": "Wisdom tooth extraction",
+        "categoryName": "Oral & Maxillofacial"
+    },{
+        "name": "ACL reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Ankle arthroscopy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Ankle reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Ankle replacement",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Ankle surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Autologous chondrocyte implantation (ACI)",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Bankart repair",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Bone grafting",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Bone metastasis surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Bone reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Brachial plexus surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Bunion surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Carpal tunnel surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Cartilage repair",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Cartilage restoration",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Cervical spine fusion",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Congenital hand deformity correction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Disk replacement",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Diskectomy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Distal radioulnar joint replacement",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Elbow arthroscopy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Elbow replacement surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "External fixation",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Femoral osteotomy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Fibula free flap",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Finger fusion",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Finger joint replacement",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Finger reattachment",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Foot reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Foraminotomy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Free muscle transfer",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Fresh osteochondral allograft reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Growing rods",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Guided growth in children",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Hand reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Hand surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Hand transplant",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Hemipelvectomy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Hemivertebra resection",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Hip arthroscopy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Hip core decompression",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Hip labral repair",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Hip preservation surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Hip replacement",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Joint replacement",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Joint replacement revisions",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Knee fusion",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Knee osteotomy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Knee reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Knee replacement",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Laminectomy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Ligament reconstruction of fingers",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Ligament reconstruction of forearm",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Ligament reconstruction of shoulder",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Ligament reconstruction of wrist",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Limb deformity correction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Limb lengthening",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Limb salvage surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Medial patellofemoral ligament reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Mehta casting for infantile scoliosis",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Meniscus repair",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Meniscus transplantation",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Microvascular surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Minimally invasive surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Multiligament knee reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Muscle transfers",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Nerve decompression",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Nerve grafts",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Nerve reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Nerve transfer",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Nonunion surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Offset procedures",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Osteotomy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Partial knee replacement",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Pediatric cervical spine surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Pelvic tumor surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Periacetabular osteotomy (PAO)",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Physeal bar resection",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Posterior cruciate ligament (PCL) reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Reverse shoulder replacement",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Revision of previous trauma surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Robot-assisted partial knee resurfacing",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Rotationplasty",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Rotator cuff surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Sacrectomy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Sacroiliac joint fusions",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Shoulder arthroscopy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Shoulder replacement surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Soft tissue sarcoma surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Spatial frame corrections",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Spinal deformity correction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Spinal fusion",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Spine decompression",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Spine reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Spine tumor surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Tendon transfer",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Toe-to-thumb transfer",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Tommy John surgery",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Unicompartmental knee replacement",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Vascularized bone grafting",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Vascularized free fibula transfer",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Vertebral column resection",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Vertebroplasty",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Wrist arthroscopy",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Wrist fracture treatment",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Wrist fusion",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Wrist reconstruction",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Wrist replacement",
+        "categoryName": "Orthopedic"
+    },
+    {
+        "name": "Arm lift",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Blepharoplasty",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Body fat removal",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Body lift",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Botox injections",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Breast augmentation",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Breast cancer surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Breast lift",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Breast reconstruction with flap surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Breast reconstruction with implants",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Breast reduction surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Brow lift",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Buttock lift",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Cheek lift",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Chemical peel",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Chemotherapy for breast cancer",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Chin surgery (genioplasty)",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Cleft lip repair",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Cleft palate repair",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "CO-2 laser treatment",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Collagen injection",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Complex wound repair",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Cosmetic dental surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Cosmetic jaw surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Cosmetic surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Craniofacial surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Dermabrasion",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Double chin removal",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Ear reconstruction",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Electromyography (EMG)",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Endoscopic cosmetic surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Endovenous laser therapy",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Face-lift",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Facial contouring surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Facial feminization surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Facial fillers for wrinkles",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Facial nerve rehabilitation",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Facial reanimation",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Facial reconstruction",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Facial rejuvenation",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Facial scar revision",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Fat grafting",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Feminizing hormone therapy",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Feminizing surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Gender affirming surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Gynecomastia surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Hand surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Jaw surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Laser hair removal",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Laser resurfacing",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Lip surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Liposuction",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Masculinizing hormone therapy",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Masculinizing surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Microtia repair",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Microvascular surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Minimally invasive surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Mohs surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Nasal valve repair",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Neck lift",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Non-surgical fat removal (VelaShape/UltraShape)",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Nose reconstruction",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Orbital reconstruction",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Otoplasty",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Parathyroidectomy",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Radiation therapy for breast cancer",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Rhinoplasty",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Robotic surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Scar revision",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Sclerotherapy",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Septoplasty",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Skin cancer reconstruction",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Spider vein removal",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Tattoo removal",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Thigh lift",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Tooth alteration",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Tooth restoration",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Top surgery for transgender men and nonbinary people",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Top surgery for transgender women and nonbinary people",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Transgender voice therapy and surgery",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Tummy tuck",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Vascular blemish removal",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "Wrinkle treatment",
+        "categoryName": "Plastic"
+    },
+    {
+        "name": "3D anatomical modeling",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "3D mammogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "7-tesla MRI",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Abdominal endovascular aneurysm repair (EVAR)",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Abdominal ultrasound",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Ablation therapy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Adrenalectomy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Angioplasty",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Arteriography",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Arthrogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Bile duct stone removal",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Biliary drainage",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Biliary stenting",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Bone density test",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Bone scan",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Bone tumor ablation",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Breast abscess drainage",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Breast biopsy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Breast cyst aspiration",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Breast MRI",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Breast ultrasound",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Breast X-ray",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Cardiac CT scan",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Cardiac MRI",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Carotid angiogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Carotid angioplasty and stenting",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Carotid ultrasound",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Central venous catheterization",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Cerebral angiogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Chemical ablation with ethanol",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Chemoembolization",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Chemoembolization for liver cancer",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Chest drainage tube insertion",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Chest X-rays",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Cholangiogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Choline C-11 PET scan",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Cisternogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Computerized tomography (CT) urogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Contrast-enhanced mammography",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Cryoablation for cancer",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "CT brain perfusion",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "CT colonography",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "CT coronary angiogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "CT scan",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "CT-guided aspirations",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "CT-guided biopsy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "CT-guided drainage",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Defecating proctogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Dialysis access management",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Discogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Ductogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Embolization therapy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Endorectal prostate MRI",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Endovenous laser therapy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Fallopian tube catheterization",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Fetal MRI",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Fetal ultrasound",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Fine needle aspiration",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Fluoroscopy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Fluoroscopy-guided biopsy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Gallbladder tube placement",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Gastrostomy tube placement",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Heart scan (coronary calcium scan)",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Hemodialysis access maintenance",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "HIDA scan",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Holmium laser prostate surgery",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Home enteral nutrition",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Hysterosonogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Ileal conduit management",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Inferior vena cava (IVC) filter retrieval",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Intraoperative magnetic resonance imaging (iMRI)",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Intrathecal chemotherapy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Intravenous pyelogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Kidney biopsy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Kidney tumor ablation",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Kyphoplasty",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Laser PVP surgery",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Liver tumor ablation",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Loopogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Lu 177 dotatate therapy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Lung cancer screening",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Lung tumor ablation",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Magnetic resonance angiography",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Magnetic resonance elastography",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Mammogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Molecular breast imaging",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "MRCP",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "MRI",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "MRI-guided biopsy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "MRI-guided breast biopsy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "MRI-guided focused ultrasound ablation",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "MRI-guided focused ultrasound thalamotomy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Myelogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Nephrostomy tube placement",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Paracentesis",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Pelvic ultrasound",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Percutaneous ablation",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Percutaneous transhepatic cholangiogram",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "PET/CT scan",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "PET/MRI scan",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Photodynamic therapy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Portal hypertension management",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Positron emission mammography (PEM)",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Positron emission tomography scan",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Prostate artery embolization",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Prostate tumor ablation",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Radioactive seed localization",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Radioembolization for liver cancer",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Radiofrequency ablation for cancer",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Sclerotherapy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Sentinel lymph node mapping",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Soft tissue tumor ablation",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "SPECT scan",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Spinal angiography",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Spinal injections",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Spinal tumor ablation",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Stereotactic breast biopsy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Stereotactic needle biopsy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Thoracentesis",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Thrombolysis",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Thyroid ablation",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Thyroid fine needle aspiration",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Thyroid scan",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Tomosynthesis-guided breast biopsy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Transjugular intrahepatic portosystemic shunt (TIPS)",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Transplant imaging evaluation",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Transvascular biopsy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Ultrasound",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Ultrasound-guided biopsy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Ureteral dilatation and stenting",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Urinary stone removal",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Uterine artery embolization",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Uterine fibroid ablation",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Venography",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Venous sampling",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Vertebroplasty",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Video-assisted thoracoscopic surgery (VATS)",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Videofluoroscopic swallowing study",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Virtual colonoscopy",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Whitaker test",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "X-ray",
+        "categoryName": "Radiology"
+    },
+    {
+        "name": "Bone scan",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "Cortisone shots",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "Dual energy CT scan",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "Hip replacement",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "Joint scan",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "Knee replacement",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "MRI",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "Nailfold videocapillaroscopy",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "Synovial (joint) fluid analysis",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "Ultrasound",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "Ultrasound-guided cortisone injections",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "Viscosupplementation",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "X-ray",
+        "categoryName": "Rheumatology"
+    },
+    {
+        "name": "Ablation therapy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Adrenalectomy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Artificial urinary sphincter",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Bladder augmentation",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Bladder removal surgery (cystectomy)",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Brachytherapy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Chemotherapy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Choline C-11 PET scan",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Circumcision (male)",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Cryoablation for cancer",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Donor nephrectomy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Enterostomal therapy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Facial feminization surgery",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Feminizing hormone therapy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Feminizing surgery",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Genitourinary reconstruction",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Holmium laser prostate surgery",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Immunotherapy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Kidney reconstruction",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Kidney-sparing surgery",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Laser PVP surgery",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Masculinizing hormone therapy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Masculinizing surgery",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Minimally invasive surgery",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Neobladder reconstruction",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Nephrectomy (kidney removal)",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Neurogenic bladder and bowel management",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Penile implants",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Prostate biopsy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Prostate brachytherapy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Prostate laser surgery",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Prostate ultrasound",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Prostatectomy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Radiofrequency ablation for cancer",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Retroperitoneal lymph node dissection for testicular cancer",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Robotic surgery",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Salvage therapy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Top surgery for transgender men and nonbinary people",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Top surgery for transgender women and nonbinary people",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Transgender voice therapy and surgery",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Transurethral resection of the prostate (TURP)",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Ultrasound-guided prostate biopsy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Ureteral stent exchange",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Ureteral stent placement",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Ureteroscopy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Urethral bulking procedures",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Urinary diversion surgery",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Urinary sling procedures",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Urodynamic evaluation",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Varicocele correction (varicocelectomy)",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Vasectomy",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "Vasectomy reversal",
+        "categoryName": "Urology"
+    },
+    {
+        "name": "intrauterine insemination (IUI)",
+        "categoryName": "Fertility"
+    },
+    {
+        "name": "in vitro fertilization (IVF)",
+        "categoryName": "Fertility"
+    },
+    {
+        "name": "Cerebrovascular (AVMs)",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Neuro-oncology (brain tumors)",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Spinal neurosurgery",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Functional and epilepsy neurosurgery",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "General neurosurgery",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Trigeminal neuralgia and nerve compression syndromes",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Peripheral nerve injury",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Aneurysms",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Arteriovenous malformation (AVM)",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Brain tumors",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Carotid artery blockage/stenosis",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Cavitron (brain tumors)",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Cerebrovascular surgery",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Cortical mapping",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Epilepsy",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Functional neurosurgery",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Inoperable brain tumors high intensity laser probe",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Intraoperative angiography",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Minimally invasive surgery",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Parkinson’s Disease and tremors",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Peripheral nerve surgery",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Pituitary tumors",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Radiosurgery",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Skull base surgery",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Spine Surgery",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Stereotactic neurosurgery",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Surgical implantation of deep brain stimulators",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Surgical navigation",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Trigeminal Neuralgia",
+        "categoryName": "Neurology"
+    },
+    {
+        "name": "Abdominal hysterectomy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Ablation therapy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Amniotic band release surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Anal sphincter repair",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Antepartum care",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Artificial anal sphincter implantation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Assisted reproductive technology",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Biofeedback",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Birth control pills",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Bladder botox injection",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Bladder prolapse (cystocele) repair",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Chemotherapy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Chorionic villus sampling",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "CO-2 laser treatment",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Colposcopy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Conization",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Contraceptive implant",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Cordocentesis",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "C-section",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Cystourethroscopy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Cytoreductive surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Diagnostic hysteroscopy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Diagnostic laparoscopy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Egg donation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Egg freezing",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Endometrial ablation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Endometriosis surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Enterocele repair",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Facial feminization surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Female hormone replacement therapy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Feminizing hormone therapy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Feminizing surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Fertility preservation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Fertility sparing surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Fetal cystoscopy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Fetal endoscopic tracheal occlusion",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Fetal shunt placement",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Fetal surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Fetal surgery for spina bifida",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Fetoscopic laser ablation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Fetoscopy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "First trimester screening",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Genetic amniocentesis",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Genetic counseling",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Genetic testing",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Gestational surrogacy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Hyperthermic intraperitoneal chemotherapy (HIPEC)",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Hysteroscopy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "In vitro fertilization (IVF)",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Intraoperative magnetic resonance imaging (iMRI)",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Intrauterine transfusion",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "IUDs",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Laparoscopic radiofrequency ablation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Laser therapy for vaginal atrophy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Loop electrosurgical excision procedure",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Masculinizing hormone therapy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Masculinizing surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Midurethral sling",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Minimally invasive hysterectomy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Minimally invasive surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Minimally invasive surgical staging",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Myomectomy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Oophorectomy (ovary removal surgery)",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Ovarian remnant removal",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Ovarian tissue cryopreservation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Ovary transplant",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Pap smear",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Pelvic exam",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Pelvic exenteration",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Pelvic floor physical therapy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Pelvic floor reconstruction",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Pelvic floor re-education",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Percutaneous tibial nerve stimulation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Pessary fitting",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Pessary management",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Physical therapy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Polypectomy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Post-hysterectomy vaginal prolapse repair",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Preimplantation genetic diagnosis",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Preimplantation genetic screening",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Prenatal drug exposure counseling",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Prenatal screening",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Radiofrequency ablation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Rectocele repair",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Rectovaginal fistula repair",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Robotic hysterectomy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Robotic myomectomy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Robotic surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Sacral nerve stimulation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Sentinel node biopsy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Sperm donation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Third-party reproduction",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Top surgery for transgender men and nonbinary people",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Top surgery for transgender women and nonbinary people",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Trachelectomy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Transgender voice therapy and surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Tubal ligation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Tubal ligation reversal",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Urethral diverticulum surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Urethral reconstruction",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Urinary bladder training",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Urodynamic evaluation",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Uterine artery embolization",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Uterine prolapse surgery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Vaginal delivery",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Vaginal hysterectomy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Vaginectomy",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Vesicovaginal fistula repair",
+        "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Vulvectomy",
+        "categoryName": "Obstetrics & Gynecology"
+    }
+
+]

@@ -3,24 +3,24 @@ import { GetServerSideProps, NextPage } from "next";
 import { Typography, Card, CardContent, Grid, Divider } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getSession } from "next-auth/react";
-import { dbMedics, dbProducts, dbClinics } from "../../../database";
+import { dbMedics, dbProducts } from "../../../database";
 import { Layout } from "../../../components/layouts";
-import { Medic, Product, Clinic, IUser, File } from "../../../interfaces";
+import { Medic, Product, IUser } from "../../../interfaces";
 import { AuthContext } from "../../../context/auth";
 import {
   SelectCategoryAndProcedure,
   MedicAccountCard,
   EditUser,
   ManageClinics,
-  ApostilleCertifications,
+  ManageDegrees,
+  ManageProducts,
+  CompleteMedicProfile,
 } from "../../../components/ui";
 import { ProductContext } from "../../../context/product";
 import { ClinicContext } from "../../../context/clinic";
 import { FileContext } from "../../../context/file";
 import { MedicContext } from "../../../context/medic";
 import { UIContext } from "../../../context/ui";
-import CompleteMedicProfile from "../../../components/ui/medic/CompleteMedicProfile";
-import ManageDegrees from "../../../components/ui/medic/ManageDegrees";
 
 interface Props {
   id: string;
@@ -79,14 +79,15 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, products }) => {
             <Divider />
             <SelectCategoryAndProcedure products={products} />
             <MedicAccountCard clinic={clinics[0]} medic={medic} />
-            <CardContent sx={{ mb:-2 }}>
+            <CardContent sx={{ mb: -2 }}>
               <EditUser medic={medic} />
             </CardContent>
             <Divider />
-            <CardContent sx={{ mt:"-14px" }}>
+            <CardContent sx={{ mt: "-14px" }}>
               <CompleteMedicProfile medic={medic} />
               <ManageClinics medic={medic} />
               <ManageDegrees medic={medic} />
+              <ManageProducts medic={medic} />
             </CardContent>
           </Card>
         </Grid>

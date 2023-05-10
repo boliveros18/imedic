@@ -20,43 +20,58 @@ import {
   Typography,
 } from "@mui/material";
 import { UIContext } from "../../../context/ui";
-import { DegreeContext } from "../../../context/degree";
-import { Degree, Medic } from "../../../interfaces";
+import { ProductContext } from "../../../context/product";
+import { ClinicContext } from "../../../context/clinic";
+import { Product, Medic, Clinic, IProcedures } from "../../../interfaces";
 import { SelectUi } from "../utils/SelectUi";
 import { useSnackbar } from "notistack";
-import { AcademicDegrees } from "../../../utils/category";
 import { capitalize } from "../../../utils/strings";
-import { FileContext } from "../../../context/file";
-import AddDocumentMedicProfile from "./AddDocumentMedicProfile";
+import { Category, Procedure } from "../../../utils/medic-category/lib";
 
 interface Props {
   children?: ReactNode;
   medic: Medic;
 }
 
-export const ManageDegrees: FC<Props> = ({ medic }) => {
+export const ManageProducts: FC<Props> = ({ medic }) => {
   const { enqueueSnackbar } = useSnackbar();
   const {
-    degrees,
-    createDegree,
-    updateDegree,
-    deleteDegree,
-    getDegreesByMedicId,
-  } = useContext(DegreeContext);
+    products,
+    createProduct,
+    updateProduct,
+    deleteProduct,
+    getProductsByMedicId,
+  } = useContext(ProductContext);
+  const { clinics, getClinicsByMedicId } = useContext(ClinicContext);
   const { setProgress } = useContext(UIContext);
-  const [type, setType] = useState("pregrade");
-  const { file, deleteFile } = useContext(FileContext);
   const [index, setIndex] = useState(0);
   const [submit, setSubmit] = useState("CREATE");
   const [open, setOpen] = useState(false);
   const [create, onCreate] = useState(true);
+  const [clinic, setClinic] = useState({} as Clinic);
+  const [category, setCategory] = useState("Category");
+  const [procedure, setProcedure] = useState("Procedure");
 
-  const degree = {
-    name: "",
-    university: "",
-  } as Degree;
-  const [values, setValues] = useState(degree);
-  const [inputs, setInputs] = useState({} as Degree);
+  const product = {
+    category: "Category",
+    procedure: "Procedure",
+    recovery_days: 0,
+    procedure_hours: 0,
+    surgical_facility: 0,
+    facility_care: 0,
+    medical_care: 0,
+    anesthesia_fees: 0,
+    medical_tests: 0,
+    post_surgery_garments: 0,
+    prescription_medication: 0,
+    surgeon_fee: 0,
+    surgeon_insurance: 0,
+    additional_cost: 0,
+    additional_cost_description: "",
+    currency: "US",
+  } as Product;
+  const [values, setValues] = useState(product);
+  const [inputs, setInputs] = useState({} as Product);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -78,22 +93,23 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
   };
 
   useEffect(() => {
-    getDegreesByMedicId(medic._id);
-  }, [medic, getDegreesByMedicId]);
+    getProductsByMedicId(medic._id);
+    getClinicsByMedicId(medic._id);
+  }, [medic, getProductsByMedicId, getClinicsByMedicId]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (submit === "SAVE" && degrees) {
+    if (submit === "SAVE" && products) {
       try {
         setProgress(true);
-        await updateDegree(degrees[index]._id || "", {
+        await updateProduct(products[index]._id || "", {
           ...inputs,
-          file_id: file._id,
-          to_approve: file._id ? true : false,
-        } as Degree).then(() => {
-          setInputs({} as Degree);
-          getDegreesByMedicId(medic._id);
-          success("degree", "updated");
+          category: category,
+          procedure: procedure,
+        } as Product).then(() => {
+          setInputs({} as Product);
+          getProductsByMedicId(medic._id);
+          success("product", "updated");
         });
       } catch (error: any) {
         unsuccess(error);
@@ -101,16 +117,17 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
     } else {
       try {
         setProgress(true);
-        await createDegree({
+        await createProduct({
           ...inputs,
-          name: capitalize(inputs.name),
           medic_id: medic._id,
-          file_id: file._id,
-          to_approve: file._id ? true : false,
-        } as Degree).then(() => {
-          getDegreesByMedicId(medic._id);
-          setValues(degree);
-          success("degree", "created");
+          // quote_id: quote._id, //TODO: create quote globals
+          // clinic_id: clinic._id, //TODO: bring clinic quote globals
+          category: category,
+          procedure: procedure,
+        } as Product).then(() => {
+          getProductsByMedicId(medic._id);
+          setValues(product);
+          success("product", "created");
         });
       } catch (error: any) {
         unsuccess(error);
@@ -122,14 +139,14 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
   const SupressDegree = async () => {
     try {
       setProgress(true);
-      await deleteDegree(degrees[index]?._id || "").then(async () => {
-        await deleteFile(degrees[index]?.file_id);
-        await getDegreesByMedicId(medic._id);
+      await deleteProduct(products[index]?._id || "").then(async () => {
+        // await deleteQuote(products[index]?.quote_id);
+        await getProductsByMedicId(medic._id);
         setSubmit("CREATE");
-        setValues(degree);
-        setInputs({} as Degree);
+        setValues(product);
+        setInputs({} as Product);
         setIndex(0);
-        success("degree", "deleted");
+        success("product", "deleted");
       });
     } catch (error) {
       unsuccess(error);
@@ -145,13 +162,13 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
   };
 
   return (
-    <AccordionUi summary="Manage degrees">
+    <AccordionUi summary="Manage products">
       <form onSubmit={handleSubmit} noValidate>
         <Grid container spacing={0} rowSpacing={2}>
           <Grid item xs={12}>
             {
               <Alert severity={create ? "success" : "info"}>
-                {`${create ? "Create" : "Update"} a degree`}
+                {`${create ? "Create" : "Update"} a product`}
               </Alert>
             }
           </Grid>
@@ -162,84 +179,89 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
                 onClick={() => {
                   setSubmit("CREATE");
                   onCreate(true);
-                  setValues(degree);
-                  setInputs({} as Degree);
+                  setValues(product);
+                  setInputs({} as Product);
                 }}
               >
-                Degrees
+                Products
               </MenuItem>
-              {degrees?.map((item, index) => (
+              {products?.map((item, index) => (
                 <MenuItem
                   key={index}
-                  value={item.name}
+                  value={item.procedure}
                   onClick={() => {
                     setValues(item);
                     setIndex(index);
-                    setInputs({} as Degree);
+                    setInputs({} as Product);
                     setSubmit("SAVE");
                     onCreate(false);
-                    index === 0 ? setType("pregrade") : setType("postgrade");
                   }}
                 >
-                  <span style={{ fontWeight: "500" }}>{item.name}</span>
+                  <span style={{ fontWeight: "500" }}>{item.procedure}</span>
                 </MenuItem>
               ))}
             </SelectUi>
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              InputLabelProps={{ shrink: true }}
-              required={submit === "SAVE" ? false : true}
-              type="text"
-              name="name"
-              label="Professional degree name"
-              variant="outlined"
-              fullWidth
-              autoComplete="off"
-              value={values.name}
-              onChange={handleInput}
-              size="small"
-              error={!values.name}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              InputLabelProps={{ shrink: true }}
-              required={submit === "SAVE" ? false : true}
-              type="text"
-              name="university"
-              label={
-                submit === "SAVE"
-                  ? "University"
-                  : "University example: University of Miami"
-              }
-              variant="outlined"
-              fullWidth
-              autoComplete="off"
-              value={values.university}
-              onChange={handleInput}
-              size="small"
-              error={!values.university}
-            />
           </Grid>
           <Grid item xs={12}>
             <SelectUi>
-              <MenuItem value={""}>{type}</MenuItem>
-              {AcademicDegrees.map((item, index) => (
+              <MenuItem value={""}>{category}</MenuItem>
+              {Category.getAllCategories().map((item, index) => (
                 <MenuItem
                   key={index}
-                  value={item}
-                  onClick={() => setType(item)}
+                  value={item.name || ""}
+                  onClick={() => setCategory(item.name)}
                 >
-                  {item}
+                  {item.name}
                 </MenuItem>
               ))}
             </SelectUi>
           </Grid>
-          <Grid item xs={12} sx={{ mt: -1 }}>
-            <AddDocumentMedicProfile
-              type={type}
-              text={`Add PDF apostille ${type} diploma`}
+          <Grid item xs={12}>
+            <SelectUi>
+              <MenuItem value={""}>{procedure}</MenuItem>
+              {Procedure.getProceduresOfCategory(category).map(
+                (item, index) => (
+                  <MenuItem
+                    key={index}
+                    value={item.name || ""}
+                    onClick={() => setProcedure(item.name)}
+                  >
+                    {item.name}
+                  </MenuItem>
+                )
+              )}
+            </SelectUi>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              required={submit === "SAVE" ? false : true}
+              type="text"
+              name="recovery_days"
+              label="Recovery days"
+              variant="outlined"
+              fullWidth
+              autoComplete="off"
+              value={values.recovery_days}
+              onChange={handleInput}
+              size="small"
+              error={!values.recovery_days}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              required={submit === "SAVE" ? false : true}
+              type="text"
+              name="procedure_hours"
+              label="Procedure hours"
+              variant="outlined"
+              fullWidth
+              autoComplete="off"
+              value={values.procedure_hours}
+              onChange={handleInput}
+              size="small"
+              error={!values.procedure_hours}
             />
           </Grid>
           <Grid item xs={12}>
@@ -320,4 +342,4 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
   );
 };
 
-export default ManageDegrees;
+export default ManageProducts;

@@ -7,7 +7,7 @@ import {
   FormEvent,
 } from "react";
 import AccordionUi from "../utils/AccordionUi";
-import { Grid, TextField, Button, Typography } from "@mui/material";
+import { Grid, TextField, Button } from "@mui/material";
 import { MedicContext } from "../../../context/medic";
 import { UIContext } from "../../../context/ui";
 import { Medic } from "../../../interfaces";
@@ -44,7 +44,7 @@ export const CompleteMedicProfile: FC<Props> = ({ medic }) => {
   };
 
   return (
-    <AccordionUi summary="Complete your medic profile">
+    <AccordionUi summary="Medic profile">
       <form onSubmit={handleSubmit} noValidate>
         <Grid container spacing={0} rowSpacing={2}>
           <Grid item xs={12}>

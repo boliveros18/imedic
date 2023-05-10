@@ -14,5 +14,6 @@ export * from "./file";
 export * from "./product";
 export * from "./quote";
 export * from "./procedure";
+export * from "./procedures";
 export * from "./payout";
 export * from "./client";

@@ -16,6 +16,8 @@ export interface Product {
   prescription_medication: number;
   surgeon_fee: number;
   surgeon_insurance: number;
+  additional_cost: number;
+  additional_cost_description: string;
   currency: string;
   createdAt: number;
   updatedAr: number;

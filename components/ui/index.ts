@@ -12,9 +12,10 @@ export * from "./comments/EditCommentUi";
 export * from "./comments/SeeComments";
 
 export * from "./medic/AddDocumentMedicProfile"
-export * from "./medic/ApostilleCertifications"
 export * from "./medic/CompleteMedicProfile"
 export * from "./medic/ManageClinics"
+export * from "./medic/ManageDegrees"
+export * from "./medic/ManageProducts"
 export * from "./medic/MedicAccountCard"
 export * from "./medic/SelectCategoryAndProcedure"
 

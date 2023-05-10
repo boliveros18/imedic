@@ -20,6 +20,8 @@ const entrySchema = new Schema({
   prescription_medication: { type: Number },
   surgeon_fee: { type: Number },
   surgeon_insurance: { type: Number },
+  additional_cost: { type: Number },
+  additional_cost_description: { type: String },
   currency: { type: String },
   createdAt: { type: Number },
   updatedAt: { type: Number },
