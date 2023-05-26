@@ -1,7 +1,6 @@
 export interface Product {
   _id: string;
   medic_id: string;
-  quote_id: string;
   clinic_id: string;
   category: string;
   procedure: string;

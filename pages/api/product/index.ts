@@ -29,7 +29,6 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   const {
     medic_id = "",
-    quote_id = "",
     clinic_id = "",
     category = "",
     procedure = "",
@@ -54,7 +53,6 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   const newModel = new Product({
     medic_id,
-    quote_id,
     clinic_id,
     category,
     procedure,

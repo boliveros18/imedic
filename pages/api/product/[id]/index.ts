@@ -63,7 +63,6 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 
   const {
-    quote_id = modelToUpdate.quote_id,
     clinic_id = modelToUpdate.clinic_id,
     recovery_days = modelToUpdate.recovery_days,
     procedure_hours = modelToUpdate.procedure_hours,
@@ -86,7 +85,6 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const updatedModel = await Product.findByIdAndUpdate(
       id,
       {
-        quote_id,
         clinic_id,
         recovery_days,
         procedure_hours,

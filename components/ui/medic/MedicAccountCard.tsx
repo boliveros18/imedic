@@ -9,7 +9,6 @@ import { AuthContext } from "../../../context/auth";
 import { UIContext } from "../../../context/ui";
 import { FileContext } from "../../../context/file";
 import { useSnackbar } from "notistack";
-import Image from "next/image";
 
 interface Props {
   children?: ReactNode;

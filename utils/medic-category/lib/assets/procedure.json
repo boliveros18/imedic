@@ -72,13 +72,12 @@
         "categoryName": "Audiology"
      },
      {
-        "name": "",
+        "name": "Vestibular testing",
         "categoryName": "Audiology"
      },
      {
         "name": "Bariatric surgery",
         "categoryName": "Bariatric"
-        
     },
     {
         "name": "Biliopancreatic diversion with duodenal switch (BPD/DS)",
@@ -3330,5 +3329,4 @@
         "name": "Vulvectomy",
         "categoryName": "Obstetrics & Gynecology"
     }
-
 ]

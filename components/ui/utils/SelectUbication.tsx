@@ -10,30 +10,29 @@ interface Props {
 }
 
 export const SelectUbication: FC<Props> = ({ content }) => {
-  const { setCountry, setState, setCity } =
-    useContext(UIContext);
-    const [country, addCountry] = useState("");
-    const [state, addState] = useState("");
-    const [city, addCity] = useState("");
+  const { setCountry, setState, setCity } = useContext(UIContext);
+  const [country, addCountry] = useState("");
+  const [state, addState] = useState("");
+  const [city, addCity] = useState("");
 
-    useEffect(() => {
-      setCountry(content.country);
-      setState(content.state);
-      setCity(content.province);
-      addCountry("");
-      addState("");
-      addCity("");
-    }, [setCountry, setState, setCity, content]);
-  
-    const handleChangeCountry = (event: SelectChangeEvent) => {
-      addCountry(event.target.value as string);
-    };
-    const handleChangeState = (event: SelectChangeEvent) => {
-      addState(event.target.value as string);
-    };
-    const handleChangeCity = (event: SelectChangeEvent) => {
-      addCity(event.target.value as string);
-    };
+  useEffect(() => {
+    setCountry(content.country);
+    setState(content.state);
+    setCity(content.province);
+    addCountry("");
+    addState("");
+    addCity("");
+  }, [setCountry, setState, setCity, content]);
+
+  const handleChangeCountry = (event: SelectChangeEvent) => {
+    addCountry(event.target.value as string);
+  };
+  const handleChangeState = (event: SelectChangeEvent) => {
+    addState(event.target.value as string);
+  };
+  const handleChangeCity = (event: SelectChangeEvent) => {
+    addCity(event.target.value as string);
+  };
 
   return (
     <Grid container spacing={0} rowSpacing={2}>

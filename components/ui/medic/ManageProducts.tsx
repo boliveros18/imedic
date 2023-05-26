@@ -5,7 +5,7 @@ import {
   useState,
   ChangeEvent,
   FormEvent,
-  useEffect,
+  useEffect
 } from "react";
 import AccordionUi from "../utils/AccordionUi";
 import {
@@ -18,14 +18,14 @@ import {
   DialogActions,
   DialogTitle,
   Typography,
+  InputAdornment,
 } from "@mui/material";
 import { UIContext } from "../../../context/ui";
 import { ProductContext } from "../../../context/product";
 import { ClinicContext } from "../../../context/clinic";
-import { Product, Medic, Clinic, IProcedures } from "../../../interfaces";
+import { Product, Medic, Clinic } from "../../../interfaces";
 import { SelectUi } from "../utils/SelectUi";
 import { useSnackbar } from "notistack";
-import { capitalize } from "../../../utils/strings";
 import { Category, Procedure } from "../../../utils/medic-category/lib";
 
 interface Props {
@@ -42,16 +42,20 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
     deleteProduct,
     getProductsByMedicId,
   } = useContext(ProductContext);
-  const { clinics, getClinicsByMedicId } = useContext(ClinicContext);
+  const { clinics } = useContext(ClinicContext);
   const { setProgress } = useContext(UIContext);
   const [index, setIndex] = useState(0);
   const [submit, setSubmit] = useState("CREATE");
   const [open, setOpen] = useState(false);
   const [create, onCreate] = useState(true);
-  const [clinic, setClinic] = useState({} as Clinic);
+  const [clinic, setClinic] = useState({ name: "Clinic" } as Clinic);
   const [category, setCategory] = useState("Category");
   const [procedure, setProcedure] = useState("Procedure");
 
+  useEffect(() => {
+    getProductsByMedicId(medic._id)
+  }, [medic, getProductsByMedicId])
+  
   const product = {
     category: "Category",
     procedure: "Procedure",
@@ -92,41 +96,47 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
     console.log({ error });
   };
 
-  useEffect(() => {
-    getProductsByMedicId(medic._id);
-    getClinicsByMedicId(medic._id);
-  }, [medic, getProductsByMedicId, getClinicsByMedicId]);
-
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    console.log(1)
     if (submit === "SAVE" && products) {
+      console.log(2)
       try {
+        console.log(3)
         setProgress(true);
         await updateProduct(products[index]._id || "", {
           ...inputs,
           category: category,
           procedure: procedure,
         } as Product).then(() => {
+          console.log(4)
           setInputs({} as Product);
           getProductsByMedicId(medic._id);
+          console.log(5)
           success("product", "updated");
         });
       } catch (error: any) {
         unsuccess(error);
       }
     } else {
+      console.log(6)
       try {
         setProgress(true);
+        console.log(7)
         await createProduct({
           ...inputs,
           medic_id: medic._id,
-          // quote_id: quote._id, //TODO: create quote globals
-          // clinic_id: clinic._id, //TODO: bring clinic quote globals
+          clinic_id: clinic._id,
           category: category,
           procedure: procedure,
         } as Product).then(() => {
+          console.log(8)
           getProductsByMedicId(medic._id);
+          console.log(9)
           setValues(product);
+          setCategory("Category");
+          setProcedure("Procedure");
+          setClinic({ name:"Clinics"} as Clinic);
           success("product", "created");
         });
       } catch (error: any) {
@@ -134,18 +144,22 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
       }
     }
     setProgress(false);
+    console.log(10)
   };
 
   const SupressDegree = async () => {
     try {
       setProgress(true);
       await deleteProduct(products[index]?._id || "").then(async () => {
-        // await deleteQuote(products[index]?.quote_id);
+        // TODO: delete quotes in backend
         await getProductsByMedicId(medic._id);
         setSubmit("CREATE");
         setValues(product);
         setInputs({} as Product);
         setIndex(0);
+        setCategory("Category");
+        setProcedure("Procedure");
+        setClinic({ name:"Clinics"} as Clinic);
         success("product", "deleted");
       });
     } catch (error) {
@@ -181,11 +195,14 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
                   onCreate(true);
                   setValues(product);
                   setInputs({} as Product);
+                  setCategory("Category");
+                  setProcedure("Procedure");
+                  setClinic({ name:"Clinics"} as Clinic);
                 }}
               >
                 Products
               </MenuItem>
-              {products?.map((item, index) => (
+              {products.map((item, index) => (
                 <MenuItem
                   key={index}
                   value={item.procedure}
@@ -195,6 +212,9 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
                     setInputs({} as Product);
                     setSubmit("SAVE");
                     onCreate(false);
+                    setCategory(item.category);
+                    setProcedure(item.procedure);
+                    setClinic(clinics.filter((clinic) => clinic._id === item.clinic_id)[0]);
                   }}
                 >
                   <span style={{ fontWeight: "500" }}>{item.procedure}</span>
@@ -233,10 +253,24 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
             </SelectUi>
           </Grid>
           <Grid item xs={12}>
+            <SelectUi>
+              <MenuItem value={""}>{clinic.name}</MenuItem>
+              {clinics.map((item, index) => (
+                <MenuItem
+                  key={index}
+                  value={item.name || ""}
+                  onClick={() => setClinic(item)}
+                >
+                  {item.name}
+                </MenuItem>
+              ))}
+            </SelectUi>
+          </Grid>
+          <Grid item xs={12}>
             <TextField
               InputLabelProps={{ shrink: true }}
-              required={submit === "SAVE" ? false : true}
-              type="text"
+              required
+              type="number"
               name="recovery_days"
               label="Recovery days"
               variant="outlined"
@@ -251,8 +285,8 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
           <Grid item xs={12}>
             <TextField
               InputLabelProps={{ shrink: true }}
-              required={submit === "SAVE" ? false : true}
-              type="text"
+              required
+              type="number"
               name="procedure_hours"
               label="Procedure hours"
               variant="outlined"
@@ -265,11 +299,216 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
             />
           </Grid>
           <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="number"
+              name="surgical_facility"
+              label="Surgical facility price per day"
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">US$</InputAdornment>
+                ),
+              }}
+              fullWidth
+              autoComplete="off"
+              value={values.surgical_facility}
+              onChange={handleInput}
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="number"
+              name="facility_care"
+              label="Facility care price per day"
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">US$</InputAdornment>
+                ),
+              }}
+              fullWidth
+              autoComplete="off"
+              value={values.facility_care}
+              onChange={handleInput}
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="number"
+              name="medical_care"
+              label="Medical care price per day"
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">US$</InputAdornment>
+                ),
+              }}
+              fullWidth
+              autoComplete="off"
+              value={values.medical_care}
+              onChange={handleInput}
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="number"
+              name="anesthesia_fees"
+              label="Anesthesia fees"
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">US$</InputAdornment>
+                ),
+              }}
+              fullWidth
+              autoComplete="off"
+              value={values.anesthesia_fees}
+              onChange={handleInput}
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="number"
+              name="medical_tests"
+              label="Medical tests price"
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">US$</InputAdornment>
+                ),
+              }}
+              fullWidth
+              autoComplete="off"
+              value={values.medical_tests}
+              onChange={handleInput}
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="number"
+              name="post_surgery_garments"
+              label="Post surgery garments price"
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">US$</InputAdornment>
+                ),
+              }}
+              fullWidth
+              autoComplete="off"
+              value={values.post_surgery_garments}
+              onChange={handleInput}
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="number"
+              name="prescription_medication"
+              label="Prescription medication price"
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">US$</InputAdornment>
+                ),
+              }}
+              fullWidth
+              autoComplete="off"
+              value={values.prescription_medication}
+              onChange={handleInput}
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="number"
+              name="surgeon_fee"
+              label="Surgeon fee"
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">US$</InputAdornment>
+                ),
+              }}
+              fullWidth
+              autoComplete="off"
+              value={values.surgeon_fee}
+              onChange={handleInput}
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="number"
+              name="surgeon_insurance"
+              label="Surgeon insurance price"
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">US$</InputAdornment>
+                ),
+              }}
+              fullWidth
+              autoComplete="off"
+              value={values.surgeon_insurance}
+              onChange={handleInput}
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="number"
+              name="additional_cost"
+              label="Additional cost"
+              variant="outlined"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">US$</InputAdornment>
+                ),
+              }}
+              fullWidth
+              autoComplete="off"
+              value={values.additional_cost}
+              onChange={handleInput}
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              InputLabelProps={{ shrink: true }}
+              type="text"
+              name="additional_cost_description"
+              label="Additional cost description"
+              variant="outlined"
+              fullWidth
+              autoComplete="off"
+              value={values.additional_cost_description}
+              onChange={handleInput}
+              size="small"
+            />
+          </Grid>
+          <Grid item xs={12}>
             <Typography
               sx={{ fontSize: 13, fontWeight: "400", mt: -2 }}
               align="right"
             >
-              *save updates after file upload
+              *Be careful and detailed about the information of the addional
+              cost of some additional procedures.
             </Typography>
           </Grid>
           <Grid item xs={12}>
@@ -300,7 +539,7 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
                     id="alert-dialog-title"
                     sx={{ fontSize: 16, fontWeight: "500" }}
                   >
-                    {"Do you want to delete this degree?"}
+                    {"Do you want to delete this product?"}
                   </DialogTitle>
                   <DialogActions>
                     <Button onClick={handleClose} sx={{ fontSize: 14 }}>

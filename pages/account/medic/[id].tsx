@@ -26,13 +26,17 @@ interface Props {
   id: string;
   user: IUser;
   medic: Medic;
-  products: Product[];
 }
 
-const AccountMedicPage: NextPage<Props> = ({ id, user, medic, products }) => {
+const AccountMedicPage: NextPage<Props> = ({ id, user, medic }) => {
   const { progress } = useContext(UIContext);
   const { setMedic } = useContext(MedicContext);
   const { clinics, getClinicsByMedicId } = useContext(ClinicContext);
+  const {
+    index,
+    products,
+    getProductsByMedicId,
+  } = useContext(ProductContext);
   const { setUser } = useContext(AuthContext);
   const { getFilesByParentIdAndType } = useContext(FileContext);
 
@@ -41,6 +45,7 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, products }) => {
     setMedic(medic);
     getFilesByParentIdAndType(user?._id || "", "image");
     getClinicsByMedicId(medic._id || "");
+    getProductsByMedicId(medic._id)
   }, [
     id,
     user,
@@ -48,8 +53,8 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, products }) => {
     setMedic,
     setUser,
     getClinicsByMedicId,
-    products,
     getFilesByParentIdAndType,
+    getProductsByMedicId
   ]);
 
   return (
@@ -78,7 +83,7 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, products }) => {
             </Typography>
             <Divider />
             <SelectCategoryAndProcedure products={products} />
-            <MedicAccountCard clinic={clinics[0]} medic={medic} />
+            <MedicAccountCard clinic={clinics[index]} medic={medic} />
             <CardContent sx={{ mb: -2 }}>
               <EditUser medic={medic} />
             </CardContent>
@@ -105,7 +110,6 @@ export const getServerSideProps: GetServerSideProps = async ({
   user ? delete Object.assign(user, { _id: user.id })["id"] : null;
   const medic = await dbMedics.getMedicById(id);
   const _id = medic?.parent_id;
-  const products = await dbProducts.getProductsByMedicId(id);
   if (!medic || !session) {
     return {
       redirect: {
@@ -119,8 +123,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     props: {
       id: _id,
       user: session ? user : {},
-      medic: medic,
-      products: products,
+      medic: medic
     },
   };
 };

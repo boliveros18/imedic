@@ -5,7 +5,6 @@ export interface IProduct extends Product {}
 
 const entrySchema = new Schema({
   medic_id: { type: String, require: true },
-  quote_id: { type: String },
   clinic_id: { type: String },
   category: { type: String, require: true },
   procedure: { type: String, require: true },

@@ -34,11 +34,11 @@ export const ProductProvider: FC<ProviderProps> = ({ children }) => {
     return data;
   }, []);
 
-  const getProductsByMedicId = async (medic_id: string) => {
+  const getProductsByMedicId = useCallback(async (medic_id: string) => {
     const data = await ProductService.getProductsByMedicId(medic_id);
-    dispatch({ type: "GET_PRODUCTS", payload: data[0] });
+    dispatch({ type: "GET_PRODUCTS", payload: data });
     return data;
-  };
+  }, []);
 
   const getProducts = async (pagination?: Pagination) => {
     const data = await ProductService.getProducts();
