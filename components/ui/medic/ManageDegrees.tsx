@@ -12,11 +12,7 @@ import {
   Alert,
   Grid,
   TextField,
-  Button,
   MenuItem,
-  Dialog,
-  DialogActions,
-  DialogTitle,
   Typography,
 } from "@mui/material";
 import { UIContext } from "../../../context/ui";
@@ -28,6 +24,7 @@ import { AcademicDegrees } from "../../../utils/category";
 import { capitalize } from "../../../utils/strings";
 import { FileContext } from "../../../context/file";
 import AddDocumentMedicProfile from "./AddDocumentMedicProfile";
+import ManageButtons from "../utils/ManageButtons";
 
 interface Props {
   children?: ReactNode;
@@ -251,68 +248,7 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Grid container spacing={0} rowSpacing={2}>
-              <Grid item xs={3} display="flex" justifyContent="center">
-                <Button
-                  type="button"
-                  disabled={create}
-                  variant="outlined"
-                  size="medium"
-                  sx={{
-                    width: "90%",
-                    color: "white",
-                    backgroundColor: "#ff5757",
-                    borderColor: "#ff5757",
-                  }}
-                  onClick={handleClickOpen}
-                >
-                  delete
-                </Button>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
-                >
-                  <DialogTitle
-                    id="alert-dialog-title"
-                    sx={{ fontSize: 16, fontWeight: "500" }}
-                  >
-                    {"Do you want to delete this degree?"}
-                  </DialogTitle>
-                  <DialogActions>
-                    <Button onClick={handleClose} sx={{ fontSize: 14 }}>
-                      No
-                    </Button>
-                    <Button
-                      onClick={() => {
-                        handleClose();
-                        SupressDegree();
-                      }}
-                      autoFocus
-                      sx={{ fontSize: 14 }}
-                    >
-                      Yes
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </Grid>
-              <Grid item xs={9} display="flex" justifyContent="center">
-                <Button
-                  type="submit"
-                  variant="outlined"
-                  size="medium"
-                  sx={{
-                    width: "100%",
-                    color: "black",
-                    backgroundColor:
-                      submit === "SAVE" ? "ligthgray" : "primary",
-                  }}
-                >
-                  {submit}
-                </Button>
-              </Grid>
-            </Grid>
+          <ManageButtons suppress={SupressDegree}  create = {create} submit = {submit} type = "degree" />
           </Grid>
         </Grid>
       </form>

@@ -1,8 +1,8 @@
-export interface Quantity {
+export interface Quote {
   _id: string;
   product_id: string;
   price: number;
   currency: string;
-  quantity: string;
+  quantity: number;
   unit: string;
 }

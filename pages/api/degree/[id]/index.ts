@@ -63,7 +63,7 @@ const updateDegree = async (
     await db.disconnect();
     return res
       .status(400)
-      .json({ message: "There is no clinic with that ID: " + id });
+      .json({ message: "There is no degree with that ID: " + id });
   }
 
   const {

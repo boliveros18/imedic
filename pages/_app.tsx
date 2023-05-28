@@ -13,6 +13,7 @@ import { MedicProvider } from "../context/medic";
 import { QualificationProvider } from "../context/qualification";
 import { ProductProvider } from "../context/product";
 import { FileProvider } from "../context/file";
+import { QuoteProvider } from "../context/quote";
 import { SnackbarProvider } from "notistack";
 import { lightTheme } from "../themes";
 import "../styles/globals.css";
@@ -42,10 +43,12 @@ export default function App({ Component, pageProps }: Props) {
                           <ProductProvider>
                             <FileProvider>
                               <DegreeProvider>
-                                <CssBaseline />
-                                <SnackbarProvider maxSnack={1}>
-                                  <Component {...pageProps} />
-                                </SnackbarProvider>
+                                <QuoteProvider>
+                                  <CssBaseline />
+                                  <SnackbarProvider maxSnack={1}>
+                                    <Component {...pageProps} />
+                                  </SnackbarProvider>
+                                </QuoteProvider>
                               </DegreeProvider>
                             </FileProvider>
                           </ProductProvider>

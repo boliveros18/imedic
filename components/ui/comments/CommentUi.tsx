@@ -53,7 +53,9 @@ export const CommentUi: FC<Props> = ({ parent_id }) => {
                     mt: -1,
                     mb: -4,
                   }}
-                  onClick={() => {getCommentsByParentId(item._id)}}
+                  onClick={() => {
+                    getCommentsByParentId(item._id);
+                  }}
                 >
                   <Box
                     sx={{

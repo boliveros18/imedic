@@ -8,6 +8,7 @@ export * as dbLikes from './dbLikes'
 export * as dbMedics from './dbMedics'
 export * as dbProducts from './dbProducts';
 export * as dbQualifications from './dbQualifications'
+export * as dbQuotes from './dbQuotes'
 export * as dbUsers from './dbUsers';
 export * from './seed-data'
 

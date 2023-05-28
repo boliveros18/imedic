@@ -12,11 +12,7 @@ import {
   Alert,
   Grid,
   TextField,
-  Button,
   MenuItem,
-  Dialog,
-  DialogActions,
-  DialogTitle,
 } from "@mui/material";
 import { ClinicContext } from "../../../context/clinic";
 import { UIContext } from "../../../context/ui";
@@ -26,6 +22,7 @@ import { SelectUi } from "../utils/SelectUi";
 import { Categories } from "../../../utils/category";
 import { useSnackbar } from "notistack";
 import { capitalize, formatPhone } from "../../../utils/strings";
+import ManageButtons from "../utils/ManageButtons";
 
 interface Props {
   children?: ReactNode;
@@ -332,62 +329,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
             <SelectUbication content={values} />
           </Grid>
           <Grid item xs={12}>
-            <Grid container spacing={0} rowSpacing={2}>
-              <Grid item xs={3} display="flex" justifyContent="center">
-                <Button
-                  type="button"
-                  disabled={create}
-                  variant="outlined"
-                  size="medium"
-                  sx={{
-                    width: "90%",
-                    color: "white",
-                    backgroundColor: "#ff5757",
-                    borderColor: "#ff5757",
-                  }}
-                  onClick={handleClickOpen}
-                >
-                  delete
-                </Button>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
-                >
-                  <DialogTitle id="alert-dialog-title">
-                    {"Do you want to delete this clinic?"}
-                  </DialogTitle>
-                  <DialogActions>
-                    <Button onClick={handleClose}>No</Button>
-                    <Button
-                      onClick={() => {
-                        handleClose();
-                        SupressClinic();
-                      }}
-                      autoFocus
-                    >
-                      Yes
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </Grid>
-              <Grid item xs={9} display="flex" justifyContent="center">
-                <Button
-                  type="submit"
-                  variant="outlined"
-                  size="medium"
-                  sx={{
-                    width: "100%",
-                    color: "black",
-                    backgroundColor:
-                      submit === "SAVE" ? "ligthgray" : "primary",
-                  }}
-                >
-                  {submit}
-                </Button>
-              </Grid>
-            </Grid>
+          <ManageButtons suppress={SupressClinic}  create = {create} submit = {submit} type = "clinic" />
           </Grid>
         </Grid>
       </form>

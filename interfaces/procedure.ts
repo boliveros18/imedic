@@ -2,8 +2,6 @@ export interface Procedure {
   _id: string;
   product_id: string;
   client_id: string;
-  extra_cost: number;
-  extra_cost_description: string;
   surgical_facility: boolean;
   facility_care: boolean;
   medical_care: boolean;
@@ -13,6 +11,7 @@ export interface Procedure {
   prescription_medication: boolean;
   surgeon_fee: boolean;
   surgeon_insurance: boolean;
+  additional_cost: boolean;
   date: number;
   createdAt: number;
   updatedAt: number;

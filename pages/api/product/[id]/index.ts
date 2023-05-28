@@ -27,7 +27,7 @@ export default function handler(
 
     default:
       return res.status(400).json({
-        message: "This method in comment/[id] does not exist " + req.method,
+        message: "This method in product/[id] does not exist " + req.method,
       });
   }
 }
@@ -42,7 +42,7 @@ const getModel = async (req: NextApiRequest, res: NextApiResponse) => {
   if (!modelInDB) {
     return res
       .status(400)
-      .json({ message: "There is no comment with that ID: " + id });
+      .json({ message: "There is no product with that ID: " + id });
   }
 
   return res.status(200).json(modelInDB);
@@ -59,7 +59,7 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     await db.disconnect();
     return res
       .status(400)
-      .json({ message: "There is no comment with that ID: " + id });
+      .json({ message: "There is no product with that ID: " + id });
   }
 
   const {
@@ -123,7 +123,7 @@ const deleteModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     await db.disconnect();
     return res
       .status(400)
-      .json({ message: "There is no comment with that ID: " + id });
+      .json({ message: "There is no product with that ID: " + id });
   }
 
   try {

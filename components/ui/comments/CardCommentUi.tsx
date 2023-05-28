@@ -1,4 +1,12 @@
-import { FC, useContext, useState, ChangeEvent, FormEvent, useEffect } from "react";
+import {
+  FC,
+  useContext,
+  useState,
+  ChangeEvent,
+  FormEvent,
+  useEffect,
+} from "react";
+import Link from "next/link";
 import { LikeContext } from "../../../context/like";
 import { AuthContext } from "../../../context/auth";
 import { UIContext } from "../../../context/ui";
@@ -8,7 +16,6 @@ import { getFormatDistanceToNow } from "../../../utils";
 import { CommentDialogUi } from "../utils/CommentDialogUi";
 import { CommentContext } from "../../../context/comment";
 import { Card, CardHeader, Avatar, IconButton, Grid } from "@mui/material";
-import Link from "next/link";
 import { Comment } from "../../../interfaces";
 import { EditCommentUi } from "../comments/EditCommentUi";
 import { pluralize } from "../../../utils/strings";
@@ -42,7 +49,7 @@ export const CardCommentUi: FC<Props> = ({ item, parent_id }) => {
     getLikesByParentIdAndUserId(item._id, user?._id || "");
     getLikesLengthByParentId(item._id);
   }, [user, item, getLikesByParentIdAndUserId, getLikesLengthByParentId]);
-  
+
   const handleLike = (parent_id: string, user_id: string) => {
     if (likeByParentAndUserId(likes, parent_id, user_id).length === 1) {
       deleteLike(
@@ -61,7 +68,7 @@ export const CardCommentUi: FC<Props> = ({ item, parent_id }) => {
   const reactionsO: any = (reactions: Reaction[], item: Comment) => {
     return reactionByParentId(item._id, reactions)[0]
       ? reactionByParentId(item._id, reactions)[0].likes
-      : item.likes
+      : item.likes;
   };
 
   const editComment = () => {

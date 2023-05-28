@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import mongoose from "mongoose";
 import { db } from "../../../../database";
-import { Medic, IMedic } from "../../../../models";
+import { Quote, IQuote } from "../../../../models";
 
-type Data = { message: string } | IMedic;
+type Data = { message: string } | IQuote;
 
 export default function handler(
   req: NextApiRequest,
@@ -27,7 +27,7 @@ export default function handler(
 
     default:
       return res.status(400).json({
-        message: "This method in medic/[id] does not exist " + req.method,
+        message: "This method in quote/[id] does not exist " + req.method,
       });
   }
 }
@@ -36,13 +36,13 @@ const getModel = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
 
   await db.connect();
-  const modelInDB = await Medic.findById(id);
+  const modelInDB = await Quote.findById(id);
   await db.disconnect();
 
   if (!modelInDB) {
     return res
       .status(400)
-      .json({ message: "There is no medic with that ID: " + id });
+      .json({ message: "There is no quote with that ID: " + id });
   }
 
   return res.status(200).json(modelInDB);
@@ -52,47 +52,34 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const { id } = req.query;
 
   await db.connect();
-  const modelToUpdate = await Medic.findById(id);
+
+  const modelToUpdate = await Quote.findById(id);
 
   if (!modelToUpdate) {
     await db.disconnect();
     return res
       .status(400)
-      .json({ message: "There is no medic with that ID: " + id });
+      .json({ message: "There is no quote with that ID: " + id });
   }
 
   const {
-    certified = modelToUpdate.certified,
-    card_id = modelToUpdate.card_id,
-    to_approve = modelToUpdate.to_approve,
-    contract_signature = modelToUpdate.contract_signature,
-    available_days = modelToUpdate.available_days,
-    curriculum = modelToUpdate.curriculum,
-    qualification = modelToUpdate.qualification,
-    comments = modelToUpdate.comments,
-    instagram = modelToUpdate.instagram,
-    country = modelToUpdate.country,
-    state = modelToUpdate.state,
-    province = modelToUpdate.province,
+    product_id = modelToUpdate.product_id,
+    price = modelToUpdate.price,
+    currency = modelToUpdate.currency,
+    quantity = modelToUpdate.quantity,
+    unit = modelToUpdate.unit,
     updatedAt = Date.now(),
   } = req.body;
 
   try {
-    const updatedModel = await Medic.findByIdAndUpdate(
+    const updatedModel = await Quote.findByIdAndUpdate(
       id,
       {
-        certified,
-        card_id,
-        to_approve,
-        contract_signature,
-        available_days,
-        curriculum,
-        qualification,
-        comments,
-        instagram,
-        country,
-        state,
-        province,
+        product_id,
+        price,
+        currency,
+        quantity,
+        unit,
         updatedAt,
       },
       { runValidators: true, new: true }
@@ -109,17 +96,18 @@ const deleteModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const { id } = req.query;
 
   await db.connect();
-  const modelToDelete = await Medic.findById(id);
+
+  const modelToDelete = await Quote.findById(id);
 
   if (!modelToDelete) {
     await db.disconnect();
     return res
       .status(400)
-      .json({ message: "There is no medic with that ID: " + id });
+      .json({ message: "There is no quote with that ID: " + id });
   }
 
   try {
-    const deleteModel = await Medic.findByIdAndDelete(id);
+    const deleteModel = await Quote.findByIdAndDelete(id);
     await db.disconnect();
     res.status(200).json(deleteModel!);
   } catch (error: any) {

@@ -5,18 +5,14 @@ import {
   useState,
   ChangeEvent,
   FormEvent,
-  useEffect
+  useEffect,
 } from "react";
 import AccordionUi from "../utils/AccordionUi";
 import {
   Alert,
   Grid,
   TextField,
-  Button,
   MenuItem,
-  Dialog,
-  DialogActions,
-  DialogTitle,
   Typography,
   InputAdornment,
 } from "@mui/material";
@@ -27,6 +23,7 @@ import { Product, Medic, Clinic } from "../../../interfaces";
 import { SelectUi } from "../utils/SelectUi";
 import { useSnackbar } from "notistack";
 import { Category, Procedure } from "../../../utils/medic-category/lib";
+import ManageButtons from "../utils/ManageButtons";
 
 interface Props {
   children?: ReactNode;
@@ -53,9 +50,9 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
   const [procedure, setProcedure] = useState("Procedure");
 
   useEffect(() => {
-    getProductsByMedicId(medic._id)
-  }, [medic, getProductsByMedicId])
-  
+    getProductsByMedicId(medic._id);
+  }, [medic, getProductsByMedicId]);
+
   const product = {
     category: "Category",
     procedure: "Procedure",
@@ -98,31 +95,24 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(1)
     if (submit === "SAVE" && products) {
-      console.log(2)
       try {
-        console.log(3)
         setProgress(true);
         await updateProduct(products[index]._id || "", {
           ...inputs,
           category: category,
           procedure: procedure,
         } as Product).then(() => {
-          console.log(4)
           setInputs({} as Product);
           getProductsByMedicId(medic._id);
-          console.log(5)
           success("product", "updated");
         });
       } catch (error: any) {
         unsuccess(error);
       }
     } else {
-      console.log(6)
       try {
         setProgress(true);
-        console.log(7)
         await createProduct({
           ...inputs,
           medic_id: medic._id,
@@ -130,13 +120,11 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
           category: category,
           procedure: procedure,
         } as Product).then(() => {
-          console.log(8)
           getProductsByMedicId(medic._id);
-          console.log(9)
           setValues(product);
           setCategory("Category");
           setProcedure("Procedure");
-          setClinic({ name:"Clinics"} as Clinic);
+          setClinic({ name: "Clinics" } as Clinic);
           success("product", "created");
         });
       } catch (error: any) {
@@ -144,10 +132,9 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
       }
     }
     setProgress(false);
-    console.log(10)
   };
 
-  const SupressDegree = async () => {
+  const SupressProduct = async () => {
     try {
       setProgress(true);
       await deleteProduct(products[index]?._id || "").then(async () => {
@@ -159,7 +146,7 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
         setIndex(0);
         setCategory("Category");
         setProcedure("Procedure");
-        setClinic({ name:"Clinics"} as Clinic);
+        setClinic({ name: "Clinics" } as Clinic);
         success("product", "deleted");
       });
     } catch (error) {
@@ -197,7 +184,7 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
                   setInputs({} as Product);
                   setCategory("Category");
                   setProcedure("Procedure");
-                  setClinic({ name:"Clinics"} as Clinic);
+                  setClinic({ name: "Clinics" } as Clinic);
                 }}
               >
                 Products
@@ -214,7 +201,11 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
                     onCreate(false);
                     setCategory(item.category);
                     setProcedure(item.procedure);
-                    setClinic(clinics.filter((clinic) => clinic._id === item.clinic_id)[0]);
+                    setClinic(
+                      clinics.filter(
+                        (clinic) => clinic._id === item.clinic_id
+                      )[0]
+                    );
                   }}
                 >
                   <span style={{ fontWeight: "500" }}>{item.procedure}</span>
@@ -508,72 +499,11 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
               align="right"
             >
               *Be careful and detailed about the information of the addional
-              cost of some additional procedures.
+              cost of some supplementary procedures.
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Grid container spacing={0} rowSpacing={2}>
-              <Grid item xs={3} display="flex" justifyContent="center">
-                <Button
-                  type="button"
-                  disabled={create}
-                  variant="outlined"
-                  size="medium"
-                  sx={{
-                    width: "90%",
-                    color: "white",
-                    backgroundColor: "#ff5757",
-                    borderColor: "#ff5757",
-                  }}
-                  onClick={handleClickOpen}
-                >
-                  delete
-                </Button>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
-                >
-                  <DialogTitle
-                    id="alert-dialog-title"
-                    sx={{ fontSize: 16, fontWeight: "500" }}
-                  >
-                    {"Do you want to delete this product?"}
-                  </DialogTitle>
-                  <DialogActions>
-                    <Button onClick={handleClose} sx={{ fontSize: 14 }}>
-                      No
-                    </Button>
-                    <Button
-                      onClick={() => {
-                        handleClose();
-                        SupressDegree();
-                      }}
-                      autoFocus
-                      sx={{ fontSize: 14 }}
-                    >
-                      Yes
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </Grid>
-              <Grid item xs={9} display="flex" justifyContent="center">
-                <Button
-                  type="submit"
-                  variant="outlined"
-                  size="medium"
-                  sx={{
-                    width: "100%",
-                    color: "black",
-                    backgroundColor:
-                      submit === "SAVE" ? "ligthgray" : "primary",
-                  }}
-                >
-                  {submit}
-                </Button>
-              </Grid>
-            </Grid>
+          <ManageButtons suppress={SupressProduct}  create = {create} submit = {submit} type = "product" />
           </Grid>
         </Grid>
       </form>

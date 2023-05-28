@@ -22,7 +22,7 @@ export default function handler(
       return deleteModel(req, res);
     default:
       return res.status(400).json({
-        message: "This method in comment/[id] does not exist " + req.method,
+        message: "This method in file/[id] does not exist " + req.method,
       });
   }
 }
@@ -38,7 +38,7 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     await db.disconnect();
     return res
       .status(400)
-      .json({ message: "There is no comment with that ID: " + id });
+      .json({ message: "There is no file with that ID: " + id });
   }
 
   const { url = modelToUpdate.url } = req.body;
@@ -70,7 +70,7 @@ const deleteModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     await db.disconnect();
     return res
       .status(400)
-      .json({ message: "There is no degree with that ID: " + id });
+      .json({ message: "There is no file with that ID: " + id });
   }
   try {
     const deleteFile = await File.findByIdAndDelete(id);

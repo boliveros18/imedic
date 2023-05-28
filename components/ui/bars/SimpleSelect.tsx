@@ -1,6 +1,6 @@
 import { FC, ReactNode, useState } from "react";
 import { Select, MenuItem, SelectChangeEvent } from "@mui/material";
-import { Categories } from "../../../utils/category";
+import { Category } from "../../../utils/medic-category/lib";
 
 interface Props {
   children?: ReactNode;
@@ -26,9 +26,9 @@ export const SimpleSelect: FC<Props> = ({}) => {
       onChange={handleChange}
     >
       <MenuItem value={""}>All</MenuItem>
-      {Categories.map((item, index) => (
-        <MenuItem key={index} value={item}>
-          {item}
+      {Category.getAllCategories().map((item, index) => (
+        <MenuItem key={index} value={item.name}>
+          {item.name}
         </MenuItem>
       ))}
     </Select>

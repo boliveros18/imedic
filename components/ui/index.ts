@@ -31,6 +31,7 @@ export * from "./utils/GuideBar";
 export * from "./utils/InstagramLink";
 export * from "./utils/ItemCounter";
 export * from "./utils/ItemQualification";
+export * from "./utils/ManageButtons";
 export * from "./utils/MessageSkeleton";
 export * from "./utils/PrivacyPolicy";
 export * from "./utils/ReadMore";

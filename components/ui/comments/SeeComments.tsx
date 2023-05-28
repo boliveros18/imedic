@@ -133,17 +133,17 @@ export const SeeComments: FC<Props> = ({
         </Accordion>
       ) : null}
       {isLoggedIn && (
-          <CommentDialogUi
-            handleInput={handleInput}
-            handleSubmit={handleSubmit}
-            onCancel={onFocus}
-            value={value}
-            cancel={false}
-            placeholder={"Add a comment…"}
-            OnFocus={OnFocus}
-          >
-            <Avatar alt="name" src={ file.url } sx={{ ml: 2 }} />
-          </CommentDialogUi>
+        <CommentDialogUi
+          handleInput={handleInput}
+          handleSubmit={handleSubmit}
+          onCancel={onFocus}
+          value={value}
+          cancel={false}
+          placeholder={"Add a comment…"}
+          OnFocus={OnFocus}
+        >
+          <Avatar alt="name" src={file.url} sx={{ ml: 2 }} />
+        </CommentDialogUi>
       )}
     </>
   );

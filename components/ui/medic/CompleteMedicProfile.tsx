@@ -65,7 +65,7 @@ export const CompleteMedicProfile: FC<Props> = ({ medic }) => {
             <SelectUbication content={medic} />
           </Grid>
           <Grid container spacing={0} rowSpacing={2}>
-            <Grid item xs={12} sx={{ mt:"5px" }}>
+            <Grid item xs={12} sx={{ mt: "5px" }}>
               <AddDocumentMedicProfile
                 type="card_id"
                 text="Add PDF apostille card id"

@@ -3,9 +3,9 @@ import { GetServerSideProps, NextPage } from "next";
 import { Typography, Card, CardContent, Grid, Divider } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getSession } from "next-auth/react";
-import { dbMedics, dbProducts } from "../../../database";
+import { dbMedics } from "../../../database";
 import { Layout } from "../../../components/layouts";
-import { Medic, Product, IUser } from "../../../interfaces";
+import { Medic, IUser } from "../../../interfaces";
 import { AuthContext } from "../../../context/auth";
 import {
   SelectCategoryAndProcedure,
@@ -21,6 +21,7 @@ import { ClinicContext } from "../../../context/clinic";
 import { FileContext } from "../../../context/file";
 import { MedicContext } from "../../../context/medic";
 import { UIContext } from "../../../context/ui";
+import ProductQuotes from "../../../components/ui/medic/ProductQuotes";
 
 interface Props {
   id: string;
@@ -93,6 +94,7 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic }) => {
               <ManageClinics medic={medic} />
               <ManageDegrees medic={medic} />
               <ManageProducts medic={medic} />
+              <ProductQuotes/>
             </CardContent>
           </Card>
         </Grid>

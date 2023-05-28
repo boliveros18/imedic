@@ -53,7 +53,8 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
               type: type,
               parent_id: medic?._id,
               url: data.message,
-            } as File).then()
+            } as File)
+              .then()
               .then(() => setProgress(false))
               .then(() =>
                 enqueueSnackbar(`Your ${type} data profile has been created`, {

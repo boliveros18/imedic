@@ -22,14 +22,14 @@ export const MedicAccountCard: FC<Props> = ({ clinic, medic }) => {
   const { user } = useContext(AuthContext);
   const { file, updateFile, createFile, getFilesByParentIdAndType } =
     useContext(FileContext);
-  const [image, setImage] = useState({} as File)
+  const [image, setImage] = useState({} as File);
   const stars = Array(5).fill(0);
 
   useEffect(() => {
-     getFilesByParentIdAndType(medic._id, "image");
-     if(file.type === "image"){
-        setImage(file)
-     }
+    getFilesByParentIdAndType(medic._id, "image");
+    if (file.type === "image") {
+      setImage(file);
+    }
   }, [medic, file, getFilesByParentIdAndType]);
 
   return (
