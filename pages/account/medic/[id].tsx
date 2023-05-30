@@ -22,6 +22,7 @@ import { FileContext } from "../../../context/file";
 import { MedicContext } from "../../../context/medic";
 import { UIContext } from "../../../context/ui";
 import ProductQuotes from "../../../components/ui/medic/ProductQuotes";
+import ProcedureAvailability from "../../../components/ui/medic/ProcedureAvailability";
 
 interface Props {
   id: string;
@@ -95,6 +96,7 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic }) => {
               <ManageDegrees medic={medic} />
               <ManageProducts medic={medic} />
               <ProductQuotes/>
+              <ProcedureAvailability/>
             </CardContent>
           </Card>
         </Grid>
