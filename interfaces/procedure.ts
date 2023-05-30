@@ -12,7 +12,8 @@ export interface Procedure {
   surgeon_fee: boolean;
   surgeon_insurance: boolean;
   additional_cost: boolean;
-  date: number;
+  accepted: boolean;
+  date: {};
   createdAt: number;
   updatedAt: number;
 }

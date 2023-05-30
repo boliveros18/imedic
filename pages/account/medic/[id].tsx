@@ -96,7 +96,7 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic }) => {
               <ManageDegrees medic={medic} />
               <ManageProducts medic={medic} />
               <ProductQuotes/>
-              <ProcedureAvailability/>
+              <ProcedureAvailability medic={medic} />
             </CardContent>
           </Card>
         </Grid>

@@ -14,6 +14,7 @@ import { QualificationProvider } from "../context/qualification";
 import { ProductProvider } from "../context/product";
 import { FileProvider } from "../context/file";
 import { QuoteProvider } from "../context/quote";
+import { CalendarProvider } from "../context/calendar";
 import { SnackbarProvider } from "notistack";
 import { lightTheme } from "../themes";
 import "../styles/globals.css";
@@ -44,10 +45,12 @@ export default function App({ Component, pageProps }: Props) {
                             <FileProvider>
                               <DegreeProvider>
                                 <QuoteProvider>
-                                  <CssBaseline />
-                                  <SnackbarProvider maxSnack={1}>
-                                    <Component {...pageProps} />
-                                  </SnackbarProvider>
+                                  <CalendarProvider>
+                                    <CssBaseline />
+                                    <SnackbarProvider maxSnack={1}>
+                                      <Component {...pageProps} />
+                                    </SnackbarProvider>
+                                  </CalendarProvider>
                                 </QuoteProvider>
                               </DegreeProvider>
                             </FileProvider>

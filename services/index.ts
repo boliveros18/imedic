@@ -1,4 +1,5 @@
 export * as AuthService from "./auth";
+export * as CalendarService from "./calendar";
 export * as CertificationService from "./certification";
 export * as ClinicService from "./clinic";
 export * as CommentService from "./comment";
