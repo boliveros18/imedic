@@ -1,4 +1,5 @@
 export * as db from './db'
+export * as dbCalendars from './dbCalendars'
 export * as dbCertifications from './dbCertifications'
 export * as dbClinics from './dbClinics'
 export * as dbComments from './dbComments'

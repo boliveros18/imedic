@@ -15,14 +15,16 @@ import {
   ManageDegrees,
   ManageProducts,
   CompleteMedicProfile,
+  ProductQuotes,
+  ProcedureAvailability,
+  ProceduresInProcess,
+  MedicContract
 } from "../../../components/ui";
 import { ProductContext } from "../../../context/product";
 import { ClinicContext } from "../../../context/clinic";
 import { FileContext } from "../../../context/file";
 import { MedicContext } from "../../../context/medic";
 import { UIContext } from "../../../context/ui";
-import ProductQuotes from "../../../components/ui/medic/ProductQuotes";
-import ProcedureAvailability from "../../../components/ui/medic/ProcedureAvailability";
 
 interface Props {
   id: string;
@@ -96,7 +98,10 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic }) => {
               <ManageDegrees medic={medic} />
               <ManageProducts medic={medic} />
               <ProductQuotes/>
+              <MedicContract medic={medic} />
               <ProcedureAvailability medic={medic} />
+              <ProceduresInProcess medic={medic} />
+
             </CardContent>
           </Card>
         </Grid>

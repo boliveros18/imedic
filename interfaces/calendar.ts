@@ -3,7 +3,7 @@ export interface Calendar {
     medic_id: string;
     procedures_ids: string[];
     availables_dates: [];
-    createdAt: number;
     updatedAt: number;
+    createdAt: number;
   }
   
