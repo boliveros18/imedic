@@ -1,9 +1,8 @@
-import { FC, ReactNode, useState, useContext, useEffect, useMemo } from "react";
+import { FC, ReactNode, useState, useContext, useEffect } from "react";
 import {
   Typography,
   Divider,
   Grid,
-  Box,
   IconButton,
   TableRow,
   TablePagination,
@@ -12,42 +11,37 @@ import {
   TableCell,
   TableBody,
   Table,
-  Paper
+  Paper,
 } from "@mui/material";
 import ManageHistoryIcon from "@mui/icons-material/ManageHistory";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { UIContext } from "../../../context/ui";
-import { CalendarContext } from "../../../context/calendar";
+import { ProcedureContext } from "../../../context/procedure";
 import { useSnackbar } from "notistack";
 import { Medic } from "../../../interfaces";
 
 interface Column {
-  id: "client_name" | "product_procedure" | "date" | "status" | "actions";
+  id: "client_name" | "product_procedure" | "date" | "status";
   label: string;
   minWidth?: number;
-  align?: "center";
+  align?: "right" | "left" | "center";
   format?: (value: number) => string;
 }
 
 const columns: readonly Column[] = [
-  { id: "client_name", label: "Patient", minWidth: 170 },
-  { id: "product_procedure", label: "Procedure", minWidth: 100 },
+  { id: "client_name", label: "Patient", minWidth: 70, align: "left" },
+  { id: "product_procedure", label: "Procedure", minWidth: 60, align: "left" },
   {
     id: "date",
     label: "Date",
-    minWidth: 170,
-    align: "center"
+    minWidth: 70,
+    align: "center",
+    format: (value: number) => new Date(value).toLocaleDateString("en-GB"),
   },
   {
     id: "status",
     label: "Status",
-    minWidth: 170,
-    align: "center"
-  },
-  {
-    id: "actions",
-    label: "Actions",
-    minWidth: 170,
+    minWidth: 70,
     align: "center",
   },
 ];
@@ -58,21 +52,18 @@ interface Props {
 }
 
 export const ProceduresInProcess: FC<Props> = ({ medic }) => {
-
-  const { calendar, createCalendar, updateCalendar, getCalendarByMedicId } =
-    useContext(CalendarContext);
+  const { procedures, getProceduresByMedicId } = useContext(ProcedureContext);
 
   useEffect(() => {
-    getCalendarByMedicId(medic._id);
-  }, [medic, getCalendarByMedicId]);
+    getProceduresByMedicId(medic._id);
+  }, [medic, getProceduresByMedicId]);
+
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const { setProgress } = useContext(UIContext);
   const { enqueueSnackbar } = useSnackbar();
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
   const [values, setValues] = useState<any>();
-  useMemo(() => setValues(calendar.availables_dates), [calendar]);
+  console.log(procedures);
   const success = (model: string, state: string) => {
     setProgress(false);
     enqueueSnackbar(`Your ${model} has been ${state}!`, { variant: "success" });
@@ -88,15 +79,17 @@ export const ProceduresInProcess: FC<Props> = ({ medic }) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
 
   return (
-    <Box border={1} sx={{ borderRadius: 1, borderColor: "lightgray" }}>
+    <>
+      <Divider />
       <Typography
-        align="center"
         sx={{
           fontSize: 15,
           fontWeight: "500",
@@ -109,86 +102,92 @@ export const ProceduresInProcess: FC<Props> = ({ medic }) => {
       >
         Procedures in process
       </Typography>
-      <Divider />
-      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
+      <Paper sx={{ width: "100%", overflow: "hidden" }}>
+        <TableContainer sx={{ maxHeight: 440 }}>
+          <Table size="small">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth, fontWeight: "600" }}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
                 <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  key="actions"
+                  align="center"
+                  style={{ minWidth: 120, fontWeight: "600" }}
                 >
-                  {column.label}
+                  {"Actions"}
                 </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {procedures
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map(( procedures ) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={procedures.code}>
-                    {columns.map((column) => {
-                      const value = procedures[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={procedures.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
-      <Grid container spacing={0} rowSpacing={2}>
-        <Grid item xs={2}></Grid>
-        <Grid item xs={1}>
-          <IconButton
-            size="small"
-            sx={{
-              borderRadius: 1,
-              color: "white",
-              backgroundColor: "darkblue",
-              borderColor: "darkblue",
-            }}
-          >
-            <ManageHistoryIcon />
-          </IconButton>
-        </Grid>
-        <Grid item xs={1}>
-          <IconButton
-            size="small"
-            sx={{
-              borderRadius: 1,
-              color: "white",
-              backgroundColor: "green",
-              borderColor: "green",
-              marginBottom: 2,
-            }}
-          >
-            <CheckCircleOutlineIcon />
-          </IconButton>
-        </Grid>
-      </Grid>
-    </Box>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {procedures
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((procedure, index) => {
+                  return (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                      {columns.map((column, index) => {
+                        const value = procedure[column.id];
+                        return (
+                          <TableCell key={index} align={column.align}>
+                            {column.format && typeof value === "number"
+                              ? column.format(value)
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                      <TableCell>
+                        <Grid container spacing={0} rowSpacing={2}>
+                          <Grid item xs={6}>
+                            <IconButton
+                              size="small"
+                              sx={{
+                                borderRadius: 1,
+                                color: "white",
+                                backgroundColor: "darkblue",
+                                borderColor: "darkblue",
+                              }}
+                            >
+                              <ManageHistoryIcon/>
+                            </IconButton>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <IconButton
+                              size="small"
+                              sx={{
+                                borderRadius: 1,
+                                color: "white",
+                                backgroundColor: "green",
+                                borderColor: "green",
+                              }}
+                            >
+                              <CheckCircleOutlineIcon/>
+                            </IconButton>
+                          </Grid>
+                        </Grid>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={procedures.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 export interface Procedure {
   _id: string;
+  medic_id: string;
   product_id: string;
   product_procedure: string;
   client_id: string;
@@ -15,7 +16,7 @@ export interface Procedure {
   surgeon_insurance: boolean;
   additional_cost: boolean;
   status: string;
-  date: {};
+  date: number;
   createdAt: number;
   updatedAt: number;
 }

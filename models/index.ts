@@ -6,6 +6,7 @@ export { default as Degree, type IDegree } from './Degree'
 export { default as File, type IFile } from './File'
 export { default as Like, type ILike } from './Like'
 export { default as Medic, type IMedic } from './Medic'
+export { default as Procedure, type IProcedure } from './Procedure'
 export { default as Product, type IProduct } from './Product';
 export { default as Qualification, type IQualification } from './Qualification'
 export { default as Quote, type IQuote } from './Quote';

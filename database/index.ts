@@ -7,6 +7,7 @@ export * as dbDegrees from './dbDegrees'
 export * as dbFiles from './dbFiles'
 export * as dbLikes from './dbLikes'
 export * as dbMedics from './dbMedics'
+export * as dbProcedures from './dbProcedures';
 export * as dbProducts from './dbProducts';
 export * as dbQualifications from './dbQualifications'
 export * as dbQuotes from './dbQuotes'
