@@ -3,9 +3,9 @@ import { GetServerSideProps, NextPage } from "next";
 import { Typography, Card, CardContent, Grid, Divider } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getSession } from "next-auth/react";
-import { dbMedics } from "../../../database";
+import { dbMedics, dbFiles } from "../../../database";
 import { Layout } from "../../../components/layouts";
-import { Medic, IUser } from "../../../interfaces";
+import { Medic, IUser, File } from "../../../interfaces";
 import { AuthContext } from "../../../context/auth";
 import {
   SelectCategoryAndProcedure,
@@ -30,24 +30,25 @@ interface Props {
   id: string;
   user: IUser;
   medic: Medic;
+  avatar: File;
 }
 
-const AccountMedicPage: NextPage<Props> = ({ id, user, medic }) => {
+const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar }) => {
   const { progress } = useContext(UIContext);
   const { setMedic } = useContext(MedicContext);
   const { clinics, getClinicsByMedicId } = useContext(ClinicContext);
+  const { setAvatar } = useContext(FileContext);
   const {
     index,
     products,
     getProductsByMedicId,
   } = useContext(ProductContext);
   const { setUser } = useContext(AuthContext);
-  const { getFilesByParentIdAndType } = useContext(FileContext);
 
   useEffect(() => {
     setUser(user);
     setMedic(medic);
-    getFilesByParentIdAndType(user?._id || "", "image");
+    setAvatar(avatar);
     getClinicsByMedicId(medic._id || "");
     getProductsByMedicId(medic._id)
   }, [
@@ -56,8 +57,9 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic }) => {
     medic,
     setMedic,
     setUser,
+    avatar,
+    setAvatar,
     getClinicsByMedicId,
-    getFilesByParentIdAndType,
     getProductsByMedicId
   ]);
 
@@ -119,6 +121,10 @@ export const getServerSideProps: GetServerSideProps = async ({
   user ? delete Object.assign(user, { _id: user.id })["id"] : null;
   const medic = await dbMedics.getMedicById(id);
   const _id = medic?.parent_id;
+  const avatar = await dbFiles.getFilesByParentIdAndType(
+    user?._id || "",
+    "image"
+  );
   if (!medic || !session) {
     return {
       redirect: {
@@ -132,6 +138,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     props: {
       id: _id,
       user: session ? user : {},
+      avatar: avatar === undefined ? {} : avatar,
       medic: medic
     },
   };

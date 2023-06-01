@@ -1,12 +1,12 @@
-import { FC, ReactNode, useContext, useState, useEffect } from "react";
+import { FC, ReactNode, useContext, useMemo } from "react";
 import AccordionUi from "../utils/AccordionUi";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import { ApiClient } from "../../../apis";
 import { UIContext } from "../../../context/ui";
-import { AuthContext } from "../../../context/auth";
 import { Medic, File } from "../../../interfaces";
 import { useSnackbar } from "notistack";
 import { FileContext } from "../../../context/file";
+import { TermsOfUse } from "../utils/TermsOfUse";
 
 interface Props {
   children?: ReactNode;
@@ -16,59 +16,16 @@ interface Props {
 export const MedicContract: FC<Props> = ({ medic }) => {
   const { enqueueSnackbar } = useSnackbar();
   const { setProgress } = useContext(UIContext);
-  const { user } = useContext(AuthContext);
   const { file, updateFile, createFile, getFilesByParentIdAndType } =
     useContext(FileContext);
-  const [image, setImage] = useState({} as File);
-
-  useEffect(() => {
-    getFilesByParentIdAndType(medic._id, "signature");
-    if (file.type === "signature") {
-      setImage(file);
-    }
-  }, [medic, file, getFilesByParentIdAndType]);
 
   return (
-    <AccordionUi summary="Medic Contract">
+    <AccordionUi summary="Medic Commitments">
       <Grid container spacing={0} rowSpacing={2}>
         <Grid item xs>
-          <Container  sx={{}}>
-            <Box sx={{  width: '100%' }} >
-              <Typography align="justify" sx={{ marginBottom: 2 }}>
-                Paragraph 1: Lorem ipsum dolor sit amet
-              </Typography>
-              <Typography variant="body2"  align="justify" sx={{ marginBottom: 2 }}>
-                body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quos blanditiis tenetur unde suscipit, quam beatae rerum
-                inventore consectetur, neque doloribus, cupiditate numquam
-                dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-                body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quos blanditiis tenetur unde suscipit, quam beatae rerum
-                inventore consectetur, neque doloribus, cupiditate numquam
-                dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-                body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quos blanditiis tenetur unde suscipit, quam beatae rerum
-                inventore consectetur, neque doloribus, cupiditate numquam
-                dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-                body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quos blanditiis tenetur unde suscipit, quam beatae rerum
-                inventore consectetur, neque doloribus, cupiditate numquam
-                dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-                body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quos blanditiis tenetur unde suscipit, quam beatae rerum
-              </Typography>
-              <Typography align="justify" sx={{ marginBottom: 2 }}>
-                Paragraph 2: Lorem ipsum dolor sit amet
-              </Typography>
-              <Typography variant="body2"  align="justify">
-                body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quos blanditiis tenetur unde suscipit, quam beatae rerum
-                inventore consectetur, neque doloribus, cupiditate numquam
-                dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-                body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quos blanditiis tenetur unde suscipit, quam beatae rerum
-                inventore consectetur, neque doloribus, cupiditate numquam       
-              </Typography>
+          <Container sx={{}}>
+            <Box sx={{ width: "100%" }}>
+             <TermsOfUse/>
             </Box>
           </Container>
         </Grid>
@@ -84,10 +41,11 @@ export const MedicContract: FC<Props> = ({ medic }) => {
                   setProgress(true);
                   if (target.files) {
                     try {
+                      await getFilesByParentIdAndType(medic._id, "signature");
                       const files = target.files[0];
                       const formData = new FormData();
                       formData.append("file", files);
-                      formData.append("id", user?._id || "");
+                      formData.append("id", medic?._id || "");
                       formData.append("type", "signature");
                       const { data } = await ApiClient.post(
                         "/upload",
@@ -110,7 +68,7 @@ export const MedicContract: FC<Props> = ({ medic }) => {
                       } else {
                         await createFile({
                           type: "signature",
-                          parent_id: user?._id,
+                          parent_id: medic?._id,
                           url: data.message,
                         } as File)
                           .then(() => setProgress(false))

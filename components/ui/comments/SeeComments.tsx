@@ -42,7 +42,7 @@ export const SeeComments: FC<Props> = ({
   initialAnswers,
 }) => {
   const [value, setValue] = useState("");
-  const { file } = useContext(FileContext);
+  const { avatar } = useContext(FileContext);
   const { onFocus, setOnFocus } = useContext(UIContext);
   const { createComment, getCommentsByParentId, commentsByParentId, comments } =
     useContext(CommentContext);
@@ -116,7 +116,7 @@ export const SeeComments: FC<Props> = ({
                   }}
                   onClick={openComments}
                 >
-                  <ArrowBackIosIcon />
+                  <ArrowBackIosIcon sx={{ height: "29px"}}/>
                 </IconButton>
               ) : (
                 "See " +
@@ -142,7 +142,7 @@ export const SeeComments: FC<Props> = ({
           placeholder={"Add a comment…"}
           OnFocus={OnFocus}
         >
-          <Avatar alt="name" src={file.url} sx={{ ml: 2 }} />
+          <Avatar alt="name" src={avatar.url} sx={{ ml: 2 }} />
         </CommentDialogUi>
       )}
     </>

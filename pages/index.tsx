@@ -19,7 +19,7 @@ interface Props {
   like: Like;
   user: IUser;
   medic: Medic;
-  userAvatar: File;
+  avatar: File;
 }
 
 const HomePage: NextPage<Props> = ({
@@ -27,11 +27,11 @@ const HomePage: NextPage<Props> = ({
   like,
   user,
   medic,
-  userAvatar,
+  avatar,
 }) => {
   const { setUser } = useContext(AuthContext);
   const { setMedic } = useContext(MedicContext);
-  const { setFile } = useContext(FileContext);
+  const { setAvatar } = useContext(FileContext);
   const { addLikes } = useContext(LikeContext);
   const { setPrincipal } = useContext(ClinicContext);
   const { setLoading } = useContext(UIContext);
@@ -39,7 +39,7 @@ const HomePage: NextPage<Props> = ({
   useEffect(() => {
     setUser(user);
     setMedic(medic);
-    setFile(userAvatar);
+    setAvatar(avatar);
     addLikes(like);
     setPrincipal(principal);
     setLoading(true);
@@ -48,8 +48,8 @@ const HomePage: NextPage<Props> = ({
     setUser,
     medic,
     setMedic,
-    userAvatar,
-    setFile,
+    avatar,
+    setAvatar,
     like,
     addLikes,
     setLoading,
@@ -95,7 +95,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const principal = await dbClinics.getPrincipalClinic();
   const user: any = session?.user;
   user ? delete Object.assign(user, { _id: user.id })["id"] : null;
-  const userAvatar = await dbFiles.getFilesByParentIdAndType(
+  const avatar = await dbFiles.getFilesByParentIdAndType(
     user?._id || "",
     "image"
   );
@@ -117,7 +117,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   return {
     props: {
       user: session ? user : {},
-      userAvatar: userAvatar === undefined ? {} : userAvatar,
+      avatar: avatar === undefined ? {} : avatar,
       medic: medic,
       principal: principal,
       like: like,

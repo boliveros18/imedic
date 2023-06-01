@@ -1,5 +1,5 @@
 import { FC, ReactNode, ChangeEventHandler, MouseEventHandler } from "react";
-import { IconButton, Grid, Box, Typography } from "@mui/material";
+import { Grid, Box, Typography, Button } from "@mui/material";
 import { CommentForm, StyledInputComment } from "../styled/CommentForm";
 
 interface Props {
@@ -47,10 +47,10 @@ export const CommentDialogUi: FC<Props> = ({
         </CommentForm>
       </Grid>
       {cancel ? (
-        <Grid container sx={{ mb: 1 }}>
+        <Grid container sx={{ mb: 1, mt: 1}}>
           <Box sx={{ flexGrow: 1 }} />
           <Grid item xs={2} sm={2} md={1} sx={{ mr: 2 }}>
-            <IconButton
+            <Button
               aria-label="settings"
               style={{
                 color: "black",
@@ -63,10 +63,10 @@ export const CommentDialogUi: FC<Props> = ({
               >
                 Cancel
               </Typography>
-            </IconButton>
+            </Button>
           </Grid>
           <Grid item xs={2} sm={2} md={1} sx={{ mr: 2 }}>
-            <IconButton
+            <Button
               aria-label="settings"
               style={{
                 color: "black",
@@ -79,12 +79,12 @@ export const CommentDialogUi: FC<Props> = ({
               >
                 Post
               </Typography>
-            </IconButton>
+            </Button>
           </Grid>
         </Grid>
       ) : (
         <Grid item xs={1} sm={1} md={1}>
-          <IconButton
+          <Button
             aria-label="settings"
             style={{
               color: "black",
@@ -99,7 +99,7 @@ export const CommentDialogUi: FC<Props> = ({
             >
               Post
             </Typography>
-          </IconButton>
+          </Button>
         </Grid>
       )}
     </Grid>

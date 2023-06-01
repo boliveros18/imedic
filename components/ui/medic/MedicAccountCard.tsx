@@ -20,18 +20,15 @@ export const MedicAccountCard: FC<Props> = ({ clinic, medic }) => {
   const { setProgress } = useContext(UIContext);
   const { enqueueSnackbar } = useSnackbar();
   const { user } = useContext(AuthContext);
-  const { file, updateFile, createFile, getFilesByParentIdAndType } =
-    useContext(FileContext);
-  const [image, setImage] = useState({} as File);
+  const {
+    avatar,
+    setAvatar,
+    updateFile,
+    createFile,
+    getFilesByParentIdAndType,
+  } = useContext(FileContext);
   const stars = Array(5).fill(0);
-
-  useEffect(() => {
-    getFilesByParentIdAndType(medic._id, "image");
-    if (file.type === "image") {
-      setImage(file);
-    }
-  }, [medic, file, getFilesByParentIdAndType]);
-
+ 
   return (
     <CardHeader
       sx={{ mt: -1, mb: -3 }}
@@ -52,31 +49,39 @@ export const MedicAccountCard: FC<Props> = ({ clinic, medic }) => {
                     formData.append("id", user?._id || "");
                     formData.append("type", "image");
                     const { data } = await ApiClient.post("/upload", formData);
-                    if (file._id && file.type === "image") {
-                      await updateFile(file?._id, {
-                        ...(file as File),
+                    if (avatar._id) {
+                      await updateFile(avatar?._id, {
+                        ...(avatar as File),
                         ["url"]: data.message,
-                      })
-                        .then(() => setProgress(false))
-                        .then(() =>
-                          enqueueSnackbar(
-                            "Your photo profile has been updated!",
-                            { variant: "success" }
-                          )
+                      }).then(async () => {
+                        const avatar = await getFilesByParentIdAndType(
+                          user?._id || "",
+                          "image"
                         );
+                        setAvatar(avatar);
+                        setProgress(false);
+                        enqueueSnackbar(
+                          "Your photo profile has been updated!",
+                          { variant: "success" }
+                        );
+                      });
                     } else {
                       await createFile({
                         type: "image",
                         parent_id: user?._id,
                         url: data.message,
-                      } as File)
-                        .then(() => setProgress(false))
-                        .then(() =>
-                          enqueueSnackbar(
-                            "Your photo profile has been created!",
-                            { variant: "success" }
-                          )
+                      } as File).then(async () => {
+                        const avatar = await getFilesByParentIdAndType(
+                          user?._id || "",
+                          "image"
                         );
+                        setAvatar(avatar);
+                        setProgress(false);
+                        enqueueSnackbar(
+                          "Your photo profile has been created!",
+                          { variant: "success" }
+                        );
+                      });
                     }
                   } catch (error: any) {
                     setProgress(false);
@@ -88,7 +93,7 @@ export const MedicAccountCard: FC<Props> = ({ clinic, medic }) => {
             />
             <Avatar
               alt={user?.name}
-              src={image.type === "image" ? image.url : ""}
+              src={avatar.url}
               sx={{ width: 100, height: 120, cursor: "pointer" }}
               variant={"rounded"}
             />

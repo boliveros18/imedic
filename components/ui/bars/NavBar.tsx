@@ -40,7 +40,7 @@ interface Props {
 export const NavBar: FC<Props> = ({}) => {
   const { user, isLoggedIn, logout } = useContext(AuthContext);
   const { medic } = useContext(MedicContext);
-  const { file } = useContext(FileContext);
+  const { avatar } = useContext(FileContext);
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -88,7 +88,7 @@ export const NavBar: FC<Props> = ({}) => {
     >
       <MenuItem onClick={() =>{handleMenuClose() ; navigateTo(`/account/${user?.role}/${user?.role ==="client" ? null : medic._id }`)}} sx={{ width: 300, maxWidth: "100%" }}>
         <ListItemIcon>
-          <Avatar alt="name" src={file.url || ""} sx={{ mr: 1 }} />
+          <Avatar alt="name" src={avatar.url || ""} sx={{ mr: 1 }} />
         </ListItemIcon>{" "}
         { user?.role === "medic" ? ("Md. " + user?.name) : user?.name }
       </MenuItem>
@@ -179,7 +179,7 @@ export const NavBar: FC<Props> = ({}) => {
           aria-haspopup="true"
           color="inherit"
         >
-          <Avatar alt={user?.name || ""} src={file.url || ""} />
+          <Avatar alt={user?.name || ""} src={avatar.url || ""} />
         </IconButton>
         <p style={{ paddingRight: 145 }}>{ user?.role === "medic" ? ("Md. " + user?.name) : user?.name }</p>
       </MenuItem>
@@ -197,7 +197,7 @@ export const NavBar: FC<Props> = ({}) => {
         <BrandUi />
         <Box sx={{ flexGrow: 1 }} />
         <SimpleSelect />
-        <Search sx={{ color: "black", width: "40ch" }}>
+        <Search sx={{ color: "black", width: "40ch", mr: 1 }}>
           <SearchIconWrapper>
             <SearchIcon />
           </SearchIconWrapper>
@@ -212,15 +212,17 @@ export const NavBar: FC<Props> = ({}) => {
               size="large"
               aria-label="show 2 new products"
               color="inherit"
+              sx={{ width: "40px", height: "40px", mt: 1.5, mr: 0.5}}
             >
               <Badge badgeContent={2} color="error">
-                <AddShoppingCartIcon />
+                <AddShoppingCartIcon/>
               </Badge>
             </IconButton>
             <IconButton
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
+              sx={{ width: "40px", height: "40px", mt: 1.5, mr: 0.5}}
             >
               <Badge badgeContent={4} color="error">
                 <ChatBubbleOutlineIcon />
@@ -230,6 +232,7 @@ export const NavBar: FC<Props> = ({}) => {
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
+              sx={{ width: "40px", height: "40px", mt: 1.5, mr: 0.5}}
             >
               <Badge badgeContent={7} color="error">
                 <NotificationsNoneIcon fontSize="medium" />
@@ -244,7 +247,7 @@ export const NavBar: FC<Props> = ({}) => {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <Avatar alt={user?.name || ""} src={file.url || ""} />
+              <Avatar alt={user?.name || ""} src={avatar.url || ""} />
             </IconButton>
           </Box>
         ) : (
@@ -269,8 +272,9 @@ export const NavBar: FC<Props> = ({}) => {
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
+              sx={{ width: "40px", height: "40px"}}
             >
-              <MoreIcon />
+              <MoreIcon  />
             </IconButton>
           </Box>
         ) : (

@@ -18,6 +18,8 @@ export const MenuUi: FC<Props> = ({}) => {
         color: "black",
         mt: -1,
         mb: -2,
+        width: "40px",
+        height: "40px",
       }}
       onClick={openSideMenu}
     >

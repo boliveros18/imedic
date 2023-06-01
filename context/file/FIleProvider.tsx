@@ -10,18 +10,20 @@ interface ProviderProps {
 export interface State {
   files: File[];
   file: File;
+  avatar: File;
 }
 
 const INITIAL_STATE: State = {
   files: [],
   file: {} as File,
+  avatar: {} as File
 };
 
 export const FileProvider: FC<ProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(fileReducer, INITIAL_STATE);
 
-  const setFile = useCallback(async (payload: File) => {
-    dispatch({ type: "UPDATE_FILE", payload: payload });
+  const setAvatar = useCallback(async (payload: File) => {
+    dispatch({ type: "UPDATE_AVATAR", payload: payload });
   }, []);
 
   const createFile = async (payload: File) => {
@@ -32,7 +34,7 @@ export const FileProvider: FC<ProviderProps> = ({ children }) => {
 
   const updateFile = async (id: string, payload: File) => {
     const data = await FileService.updateOne(id, payload);
-    dispatch({ type: "UPDATE_FILE", payload: data })
+    dispatch({ type: "UPDATE_FILE", payload: data });
     return data;
   };
 
@@ -44,23 +46,19 @@ export const FileProvider: FC<ProviderProps> = ({ children }) => {
 
   const getFilesByParentIdAndType = useCallback(
     async (parent_id: string, type: string) => {
-      const data: File = await FileService.getFilesByParentIdAndType(
+      const data = await FileService.getFilesByParentIdAndType(
         parent_id,
         type
       );
-      data.type === "image"
-        ? dispatch({ type: "UPDATE_FILE", payload: data })
-        : null;
+      dispatch({ type: "UPDATE_FILE", payload: data });
       return data;
-    },
-    []
-  );
+    }, []);
 
   return (
     <FileContext.Provider
       value={{
         ...state,
-        setFile,
+        setAvatar,
         createFile,
         updateFile,
         deleteFile,

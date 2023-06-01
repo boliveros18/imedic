@@ -44,6 +44,7 @@ export * from "./utils/SelectUbicationUi";
 export * from "./utils/SelectUi";
 export * from "./utils/ShareMediaUi";
 export * from "./utils/SingInUi";
+export * from "./utils/TermsOfUse";
 
 
 
