@@ -44,7 +44,7 @@ export const CompleteMedicProfile: FC<Props> = ({ medic }) => {
   };
 
   return (
-    <AccordionUi summary="Medic profile">
+    <AccordionUi summary="Medic Profile">
       <form onSubmit={handleSubmit} noValidate>
         <Grid container spacing={0} rowSpacing={2}>
           <Grid item xs={12}>

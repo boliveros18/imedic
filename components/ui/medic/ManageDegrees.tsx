@@ -142,7 +142,7 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
   };
 
   return (
-    <AccordionUi summary="Manage degrees">
+    <AccordionUi summary="Manage Degrees">
       <form onSubmit={handleSubmit} noValidate>
         <Grid container spacing={0} rowSpacing={2}>
           <Grid item xs={12}>

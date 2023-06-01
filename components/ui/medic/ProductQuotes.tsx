@@ -139,7 +139,7 @@ export const ProductQuotes: FC<Props> = ({}) => {
   };
 
   return (
-    <AccordionUi summary="Products quotations">
+    <AccordionUi summary="Products Quotations">
       <form onSubmit={handleSubmit} noValidate>
         <Grid container spacing={0} rowSpacing={2}>
           <Grid item xs={12}>

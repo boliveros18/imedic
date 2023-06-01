@@ -4,8 +4,10 @@ import { Typography, Divider, Grid, Button, Box } from "@mui/material";
 import EventIcon from "@mui/icons-material/Event";
 import { UIContext } from "../../../context/ui";
 import { CalendarContext } from "../../../context/calendar";
+import { ProcedureContext } from "../../../context/procedure";
 import { useSnackbar } from "notistack";
 import { Calendar, Medic } from "../../../interfaces";
+import AccordionUi from "../utils/AccordionUi";
 
 interface Props {
   children?: ReactNode;
@@ -15,7 +17,7 @@ interface Props {
 export const ProcedureAvailability: FC<Props> = ({ medic }) => {
   const { calendar, createCalendar, updateCalendar, getCalendarByMedicId } =
     useContext(CalendarContext);
-
+  const { procedures } = useContext(ProcedureContext);
   useEffect(() => {
     getCalendarByMedicId(medic._id);
   }, [medic, getCalendarByMedicId]);
@@ -38,15 +40,19 @@ export const ProcedureAvailability: FC<Props> = ({ medic }) => {
   };
 
   const handleSubmit = async () => {
-    console.log(1);
     if (calendar._id) {
       try {
-        console.log(2);
         setProgress(true);
+        const allowed = values.filter((value: any) => {
+          for (let i = 0; i < procedures.length; i++) {
+            return (value.unix*1000+8) !== procedures[i].date 
+          }
+        })
         await updateCalendar(calendar._id || "", {
-          availables_dates: values,
+          availables_dates: allowed,
           updatedAt: Date.now(),
         } as Calendar).then(() => {
+          getCalendarByMedicId(medic._id);
           success("calendar", "updated");
         });
       } catch (error: any) {
@@ -54,7 +60,6 @@ export const ProcedureAvailability: FC<Props> = ({ medic }) => {
       }
     } else {
       try {
-        console.log(3);
         setProgress(true);
         await createCalendar({
           medic_id: medic._id,
@@ -70,21 +75,7 @@ export const ProcedureAvailability: FC<Props> = ({ medic }) => {
   };
 
   return (
-    <>
-      <Divider />
-      <Typography
-        sx={{
-          fontSize: 15,
-          fontWeight: "500",
-          borderRadius: 0,
-          color: "#001B87",
-          marginTop: 1.5,
-          marginLeft: 2,
-          marginBottom: 1.5,
-        }}
-      >
-        Available time procedures
-      </Typography>
+    <AccordionUi summary="Procedures Availability">
       <Box>
         <Grid
           container
@@ -110,7 +101,7 @@ export const ProcedureAvailability: FC<Props> = ({ medic }) => {
             <DatePicker
               multiple
               value={values}
-              onChange={setValues}
+              onChange={setValues} 
               sort
               minDate={tomorrow}
               style={{ width: "100%" }}
@@ -153,7 +144,7 @@ export const ProcedureAvailability: FC<Props> = ({ medic }) => {
           </Grid>
         </Grid>
       </Box>
-    </>
+    </AccordionUi>
   );
 };
 

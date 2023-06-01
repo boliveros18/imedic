@@ -1,7 +1,5 @@
 import { FC, ReactNode, useState, useContext, useEffect } from "react";
 import {
-  Typography,
-  Divider,
   Grid,
   IconButton,
   TableRow,
@@ -12,13 +10,16 @@ import {
   TableBody,
   Table,
   Paper,
+  Tooltip,
 } from "@mui/material";
 import ManageHistoryIcon from "@mui/icons-material/ManageHistory";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { UIContext } from "../../../context/ui";
 import { ProcedureContext } from "../../../context/procedure";
+import { CalendarContext } from "../../../context/calendar";
 import { useSnackbar } from "notistack";
-import { Medic } from "../../../interfaces";
+import { Medic, Calendar, Procedure } from "../../../interfaces";
+import AccordionUi from "../utils/AccordionUi";
 
 interface Column {
   id: "client_name" | "product_procedure" | "date" | "status";
@@ -52,18 +53,23 @@ interface Props {
 }
 
 export const ProceduresInProcess: FC<Props> = ({ medic }) => {
-  const { procedures, getProceduresByMedicId } = useContext(ProcedureContext);
+  const { procedures, getProceduresByMedicId, updateProcedure } =
+    useContext(ProcedureContext);
+  const { calendar, getCalendarByMedicId, updateCalendar } =
+    useContext(CalendarContext);
 
   useEffect(() => {
     getProceduresByMedicId(medic._id);
-  }, [medic, getProceduresByMedicId]);
+    getCalendarByMedicId(medic._id);
+  }, [medic, getProceduresByMedicId, getCalendarByMedicId]);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const { setProgress } = useContext(UIContext);
   const { enqueueSnackbar } = useSnackbar();
-  const [values, setValues] = useState<any>();
-  console.log(procedures);
+  const [index, setIndex] = useState(0);
+  const [status, setStatus] = useState("Pending");
+
   const success = (model: string, state: string) => {
     setProgress(false);
     enqueueSnackbar(`Your ${model} has been ${state}!`, { variant: "success" });
@@ -86,22 +92,40 @@ export const ProceduresInProcess: FC<Props> = ({ medic }) => {
     setPage(0);
   };
 
+  const updatingFunction = async (date: number) => {
+    try {
+      setProgress(true);
+      await updateCalendar(calendar._id || "", {
+        availables_dates: calendar.availables_dates.filter(
+          (date) => date !== procedures[index].date
+        ),
+        updatedAt: Date.now(),
+      } as Calendar).then(async () => {
+        await updateProcedure(procedures[index]._id || "", {
+          status: status,
+          date: date,
+          updatedAt: Date.now(),
+        } as Procedure);
+        getProceduresByMedicId(medic._id);
+        success("calendar and procedure", "updated");
+      });
+    } catch (error: any) {
+      unsuccess(error);
+    }
+  };
+
+  const handleSubmit = () => {
+    if (status === "Reassigned") {
+      updatingFunction(0);
+    }
+    if (status === "Accepted") {
+      updatingFunction(procedures[index].date);
+    }
+    setProgress(false);
+  };
+
   return (
-    <>
-      <Divider />
-      <Typography
-        sx={{
-          fontSize: 15,
-          fontWeight: "500",
-          borderRadius: 0,
-          color: "#001B87",
-          marginTop: 1.5,
-          marginLeft: 2,
-          marginBottom: 1.5,
-        }}
-      >
-        Procedures in process
-      </Typography>
+    <AccordionUi summary="Procedures In Process">
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table size="small">
@@ -130,7 +154,13 @@ export const ProceduresInProcess: FC<Props> = ({ medic }) => {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((procedure, index) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={index}
+                      onMouseEnter={() => setIndex(index)}
+                    >
                       {columns.map((column, index) => {
                         const value = procedure[column.id];
                         return (
@@ -144,30 +174,55 @@ export const ProceduresInProcess: FC<Props> = ({ medic }) => {
                       <TableCell>
                         <Grid container spacing={0} rowSpacing={2}>
                           <Grid item xs={6}>
-                            <IconButton
-                              size="small"
-                              sx={{
-                                borderRadius: 1,
-                                color: "white",
-                                backgroundColor: "darkblue",
-                                borderColor: "darkblue",
-                              }}
+                            <Tooltip
+                              title="SEND BACK TO REASSIGN OTHER DATE"
+                              sx={{ fontSize: 16 }}
                             >
-                              <ManageHistoryIcon/>
-                            </IconButton>
+                              <span>
+                                <IconButton
+                                  size="small"
+                                  disabled={
+                                    procedures[index].status === "Pending"
+                                      ? false
+                                      : true
+                                  }
+                                  sx={{
+                                    borderRadius: 1,
+                                    color: "white",
+                                    backgroundColor: "#2874A6",
+                                    borderColor: "#2874A6",
+                                  }}
+                                  onMouseEnter={() => setStatus("Reassigned")}
+                                  onClick={handleSubmit}
+                                >
+                                  <ManageHistoryIcon />
+                                </IconButton>
+                              </span>
+                            </Tooltip>
                           </Grid>
                           <Grid item xs={6}>
-                            <IconButton
-                              size="small"
-                              sx={{
-                                borderRadius: 1,
-                                color: "white",
-                                backgroundColor: "green",
-                                borderColor: "green",
-                              }}
-                            >
-                              <CheckCircleOutlineIcon/>
-                            </IconButton>
+                            <Tooltip title="ACCEPT AND SCHEDULE PROCEDURE">
+                              <span>
+                              <IconButton
+                                size="small"
+                                disabled={
+                                  procedures[index].status === "Pending"
+                                    ? false
+                                    : true
+                                }
+                                sx={{
+                                  borderRadius: 1,
+                                  color: "white",
+                                  backgroundColor: "#4FC541",
+                                  borderColor: "#4FC541",
+                                }}
+                                onMouseEnter={() => setStatus("Accepted")}
+                                onClick={handleSubmit}
+                              >
+                                <CheckCircleOutlineIcon />
+                              </IconButton>
+                              </span>
+                            </Tooltip>
                           </Grid>
                         </Grid>
                       </TableCell>
@@ -187,7 +242,7 @@ export const ProceduresInProcess: FC<Props> = ({ medic }) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-    </>
+    </AccordionUi>
   );
 };
 

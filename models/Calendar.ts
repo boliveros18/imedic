@@ -6,7 +6,7 @@ export interface ICalendar extends Calendar {}
 const entrySchema = new Schema({
   medic_id: { type: String, require: true },
   procedures_ids: { type: [String] },
-  availables_dates: { type: {}, require: true },
+  availables_dates: { type: [], require: true },
   createdAt: { type: Number },
   updatedAt: { type: Number },
 });

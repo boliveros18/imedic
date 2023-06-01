@@ -155,7 +155,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
   };
 
   return (
-    <AccordionUi summary="Manage clinics">
+    <AccordionUi summary="Manage Clinics">
       <form onSubmit={handleSubmit} noValidate>
         <Grid container spacing={0} rowSpacing={2}>
           <Grid item xs={12}>
