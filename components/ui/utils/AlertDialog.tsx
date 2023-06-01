@@ -8,8 +8,7 @@ interface Props {
 }
 
 export const AlertDialog: FC<Props> = ({ question, state }) => {
-  const [open, setOpen] = useState(false);
-
+  const [open, setOpen] = useState(false);   
   const handleClickOpen = () => {
     setOpen(true);
   };

@@ -62,7 +62,6 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar }) => {
     getClinicsByMedicId,
     getProductsByMedicId
   ]);
-
   return (
     <Layout>
       {progress && (

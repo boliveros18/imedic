@@ -13,8 +13,7 @@ export const SelectUbicationUi: FC<Props> = ({
   ubication,
   handleChange,
   type,
-}) => {
-
+}) => {    
   return (
     <Grid item xs={12}>
       <Select

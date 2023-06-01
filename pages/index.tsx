@@ -55,8 +55,7 @@ const HomePage: NextPage<Props> = ({
     setLoading,
     principal,
     setPrincipal,
-  ]);
-
+  ]);     
   return (
     <Layout>
       <Grid container spacing={0} rowSpacing={2}>

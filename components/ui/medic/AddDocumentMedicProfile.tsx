@@ -68,6 +68,7 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
       }
     }
   };
+  
 
   return (
     <Grid item xs={12} display="flex" justifyContent="end">

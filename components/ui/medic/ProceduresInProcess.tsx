@@ -123,7 +123,7 @@ export const ProceduresInProcess: FC<Props> = ({ medic }) => {
     }
     setProgress(false);
   };
-
+    
   return (
     <AccordionUi summary="Procedures In Process">
       <Paper sx={{ width: "100%", overflow: "hidden" }}>

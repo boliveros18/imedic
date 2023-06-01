@@ -15,7 +15,6 @@ export const SingInUi: FC<Props> = ({}) => {
   const navigateTo = (url: string) => {
     router.push(url);
   };
-
   return isLoggedIn ? (
     <div />
   ) : (

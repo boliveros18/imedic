@@ -43,7 +43,6 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
   const [index, setIndex] = useState(0);
   const [category, setCategory] = useState("Category");
   const [submit, setSubmit] = useState("CREATE");
-  const [open, setOpen] = useState(false);
   const [create, onCreate] = useState(true);
 
   const clinic = {
@@ -59,14 +58,6 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
   } as Clinic;
   const [values, setValues] = useState(clinic);
   const [inputs, setInputs] = useState({} as Clinic);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const success = (model: string, state: string) => {
     setProgress(false);
@@ -153,7 +144,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
     const value = target.type === "checkbox" ? target.checked : target.value;
     setInputs({ ...inputs, [target.name]: value });
   };
-
+  
   return (
     <AccordionUi summary="Manage Clinics">
       <form onSubmit={handleSubmit} noValidate>

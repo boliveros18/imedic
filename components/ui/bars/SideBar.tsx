@@ -29,7 +29,6 @@ interface Props {
 export const SideBar: FC<Props> = ({ keepOpen = false }) => {
   const size = WindowSize();
   const { sidemenuOpen, closeSideMenu } = useContext(UIContext);
-
   const getContent = () => {
     return (
       size.height > 0 && (

@@ -10,8 +10,7 @@ interface Props {
 }
 
 export const ManageButtons: FC<Props> = ({ suppress, create, submit, type }) => {
-  const [open, setOpen] = useState(false);
-
+  const [open, setOpen] = useState(false);    
   const handleClickOpen = () => {
     setOpen(true);
   };

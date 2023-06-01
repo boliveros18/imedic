@@ -43,7 +43,6 @@ export const EditUser: FC<Props> = ({ medic }) => {
   } = useForm<FormData>();
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
   const onUpdateForm = async ({
     name,
     old_email,
