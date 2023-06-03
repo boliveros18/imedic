@@ -4,72 +4,173 @@ import {
   useState,
   ChangeEvent,
   FormEvent,
-  useEffect,
+  useEffect
 } from "react";
+import { CommentDialogUi } from "../utils/CommentDialogUi";
+import { CommentContext } from "../../../context/comment";
 import Link from "next/link";
-import { LikeContext } from "../../../context/like";
+import { getFormatDistanceToNow } from "../../../utils";
+import { pluralize } from "../../../utils/strings";
 import { AuthContext } from "../../../context/auth";
+import { LikeContext } from "../../../context/like";
 import { UIContext } from "../../../context/ui";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { getFormatDistanceToNow } from "../../../utils";
-import { CommentDialogUi } from "../utils/CommentDialogUi";
-import { CommentContext } from "../../../context/comment";
+import { EditCommentUi } from "./EditCommentUi";
 import { Card, CardHeader, Avatar, IconButton, Grid } from "@mui/material";
-import { Comment } from "../../../interfaces";
-import { EditCommentUi } from "../comments/EditCommentUi";
-import { pluralize } from "../../../utils/strings";
-import { Reaction } from "../../../interfaces";
+import { Comment, Reaction } from "../../../interfaces";
 
 interface Props {
   item: Comment;
   parent_id?: string;
+  setEdit?: any;
+  setAnswer?: any;
 }
 
-export const CardCommentUi: FC<Props> = ({ item, parent_id }) => {
-  const { createComment, getCommentsByParentId } = useContext(CommentContext);
-  const { tag, value, setTag, setValue } = useContext(UIContext);
-  const { updateComment } = useContext(CommentContext);
-  const [inputs, setInputs] = useState({});
-  const [answer, setAnswer] = useState(false);
-  const [edit, setEdit] = useState(false);
+const TitleComponent: FC<Props> = ({ item, parent_id, setEdit }) => {
   const {
+    likes,
     createLike,
     deleteLike,
-    likes,
-    reactions,
-    likeByParentAndUserId,
     getLikesLengthByParentId,
-    getLikesByParentIdAndUserId,
-    reactionByParentId,
+    likeByParentAndUserId,
   } = useContext(LikeContext);
   const { isLoggedIn, user } = useContext(AuthContext);
-
-  useEffect(() => {
-    getLikesByParentIdAndUserId(item._id, user?._id || "");
-    getLikesLengthByParentId(item._id);
-  }, [user, item, getLikesByParentIdAndUserId, getLikesLengthByParentId]);
 
   const handleLike = (parent_id: string, user_id: string) => {
     if (likeByParentAndUserId(likes, parent_id, user_id).length === 1) {
       deleteLike(
         likeByParentAndUserId(likes, parent_id, user_id)[0]._id || ""
-      ).then(() => getLikesLengthByParentId(parent_id));
+      ).then(() => {
+        getLikesLengthByParentId(parent_id);
+      });
     } else {
       createLike({
         user_id: user?._id || "",
         user_name: user?.name || "",
         parent_id: parent_id || "",
         type: "Comment",
-      }).then(() => getLikesLengthByParentId(parent_id));
+      }).then(() => {
+        getLikesLengthByParentId(parent_id);
+      });
     }
   };
 
+  return (
+    <Grid container>
+      <Grid item xs={10} sm={10} md={10}>
+        <Link href={`./user/${item.user_id}`}>
+          <a
+            style={{
+              textDecoration: "none",
+              color: "black",
+              fontWeight: "500",
+            }}
+          >
+            {item.user_name + " "}
+          </a>
+        </Link>
+        <span>
+          <Link href={`./user/${item.user_tag_id}`}>
+            <a
+              style={{
+                textDecoration: "none",
+                color: "#001B87",
+              }}
+            >
+              {item.user_tag_name}
+            </a>
+          </Link>
+          {" " + item.description}
+        </span>
+      </Grid>
+      <Grid item xs={1} sm={1} md={1} sx={{ mt: -0.5 }}>
+        <IconButton
+          disabled={!isLoggedIn}
+          aria-label="like"
+          style={{
+            color: "black",
+          }}
+          onClick={() => handleLike(item._id, user?._id || "")}
+        >
+          {likeByParentAndUserId(likes, item._id || "", user?._id || "")
+            .length === 1 && isLoggedIn ? (
+            <CheckCircleIcon sx={{ color: "blue", fontSize: "15px" }} />
+          ) : (
+            <CheckCircleOutlineIcon sx={{ fontSize: "15px" }} />
+          )}
+        </IconButton>
+      </Grid>
+      <Grid item xs={1} sm={1} md={1}>
+        {(user?._id === item.user_id &&
+          item.parent_id === parent_id &&
+          isLoggedIn) ||
+        user?.role === "admin" ||
+        user?._id === item.user_id ? (
+          <EditCommentUi item={item} setEdit={setEdit} />
+        ) : null}
+      </Grid>
+    </Grid>
+  );
+};
+
+const SubheaderComponent: FC<Props> = ({ item, setAnswer }) => {
+
+  const { setTag, setValue } = useContext(UIContext);
+  const { isLoggedIn } = useContext(AuthContext);
+  const { reactions, reactionByParentId } = useContext(LikeContext);
   const reactionsO: any = (reactions: Reaction[], item: Comment) => {
     return reactionByParentId(item._id, reactions)[0]
       ? reactionByParentId(item._id, reactions)[0].likes
       : item.likes;
   };
+  return (
+    <Grid container spacing={0}>
+      <Grid item xs={4}>
+        <span>{getFormatDistanceToNow(item.createdAt)}</span>
+      </Grid>
+      <Grid item xs={4}>
+        <span>
+          {reactionsO(reactions, item) > 0
+            ? reactionsO(reactions, item) +
+              pluralize(" like", reactionsO(reactions, item))
+            : null}
+        </span>
+      </Grid>
+      <Grid item xs={2}>
+        {isLoggedIn && (
+          <a
+            style={{ fontWeight: "500", cursor: "pointer" }}
+            onClick={() => {
+              setValue(" @" + item.user_name + " ");
+              setAnswer(true);
+              setTag({
+                user_name: item.user_name,
+                user_id: item.user_id,
+              });
+            }}
+          >
+            Answer
+          </a>
+        )}
+      </Grid>
+    </Grid>
+  );
+};
+
+export const CardCommentUi: FC<Props> = ({ item, parent_id }) => {
+  const { createComment, getCommentsByParentId } = useContext(CommentContext);
+  const { tag, value, setValue } = useContext(UIContext);
+  const { updateComment } = useContext(CommentContext);
+  const [inputs, setInputs] = useState({});
+  const [answer, setAnswer] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const { getLikesByParentIdAndUserId } = useContext(LikeContext);
+  const { isLoggedIn, user } = useContext(AuthContext);
+
+  useEffect(() => {
+    getLikesByParentIdAndUserId(item._id, user?._id || "");
+  }, [user, item, getLikesByParentIdAndUserId]);
 
   const editComment = () => {
     item.description = value;
@@ -122,93 +223,9 @@ export const CardCommentUi: FC<Props> = ({ item, parent_id }) => {
       <CardHeader
         avatar={<Avatar alt={item.user_name} src={item.user_photo} />}
         title={
-          <Grid container>
-            <Grid item xs={10} sm={10} md={10}>
-              <Link href={`./user/${item.user_id}`}>
-                <a
-                  style={{
-                    textDecoration: "none",
-                    color: "black",
-                    fontWeight: "500",
-                  }}
-                >
-                  {item.user_name + " "}
-                </a>
-              </Link>
-              <span>
-                <Link href={`./user/${item.user_tag_id}`}>
-                  <a
-                    style={{
-                      textDecoration: "none",
-                      color: "#001B87",
-                    }}
-                  >
-                    {item.user_tag_name}
-                  </a>
-                </Link>
-                {" " + item.description}
-              </span>
-            </Grid>
-            <Grid item xs={1} sm={1} md={1} sx={{ mt: -0.5 }}>
-              <IconButton
-                disabled={!isLoggedIn}
-                aria-label="like"
-                style={{
-                  color: "black",
-                }}
-                onClick={() => handleLike(item._id, user?._id || "")}
-              >
-                {likeByParentAndUserId(likes, item._id || "", user?._id || "")
-                  .length === 1 && isLoggedIn ? (
-                  <CheckCircleIcon sx={{ color: "blue", fontSize: "15px" }} />
-                ) : (
-                  <CheckCircleOutlineIcon sx={{ fontSize: "15px" }} />
-                )}
-              </IconButton>
-            </Grid>
-            <Grid item xs={1} sm={1} md={1}>
-              {(user?._id === item.user_id &&
-                item.parent_id === parent_id &&
-                isLoggedIn) ||
-              user?.role === "admin" ||
-              user?._id === item.user_id ? (
-                <EditCommentUi item={item} setEdit={setEdit} />
-              ) : null}
-            </Grid>
-          </Grid>
+          <TitleComponent item={item} parent_id={parent_id} setEdit={setEdit} />
         }
-        subheader={
-          <Grid container spacing={0}>
-            <Grid item xs={4}>
-              <span>{getFormatDistanceToNow(item.createdAt)}</span>
-            </Grid>
-            <Grid item xs={4}>
-              <span>
-                {reactionsO(reactions, item) > 0
-                  ? reactionsO(reactions, item) +
-                    pluralize(" like", reactionsO(reactions, item))
-                  : null}
-              </span>
-            </Grid>
-            <Grid item xs={2}>
-              {isLoggedIn && (
-                <a
-                  style={{ fontWeight: "500", cursor: "pointer" }}
-                  onClick={() => {
-                    setValue(" @" + item.user_name + " ");
-                    setAnswer(true);
-                    setTag({
-                      user_name: item.user_name,
-                      user_id: item.user_id,
-                    });
-                  }}
-                >
-                  Answer
-                </a>
-              )}
-            </Grid>
-          </Grid>
-        }
+        subheader={<SubheaderComponent item={item} setAnswer={setAnswer} />}
       />
       {isLoggedIn && answer ? (
         <CommentDialogUi

@@ -26,48 +26,48 @@ interface Props extends AppProps {
 
 export default function App({ Component, pageProps }: Props) {
   return (
-    <SessionProvider>
-      <SWRConfig
-        value={{
-          fetcher: (resource, init) =>
-            fetch(resource, init).then((res) => res.json()),
-        }}
-      >
-        <AuthProvider>
-          <UIProvider>
-            <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={lightTheme}>
+      <CssBaseline />
+      <SessionProvider>
+        <SWRConfig
+          value={{
+            fetcher: (resource, init) =>
+              fetch(resource, init).then((res) => res.json()),
+          }}
+        >
+          <AuthProvider>
+            <UIProvider>
               <ClinicProvider>
-                <CertificationProvider>
+                <LikeProvider>
                   <CommentProvider>
-                    <LikeProvider>
-                      <MedicProvider>
-                        <QualificationProvider>
-                          <ProductProvider>
-                            <FileProvider>
-                              <DegreeProvider>
-                                <QuoteProvider>
-                                  <CalendarProvider>
-                                    <ProcedureProvider>
-                                      <CssBaseline />
+                    <MedicProvider>
+                      <ProductProvider>
+                        <FileProvider>
+                          <DegreeProvider>
+                            <QuoteProvider>
+                              <CalendarProvider>
+                                <ProcedureProvider>
+                                  <QualificationProvider>
+                                    <CertificationProvider>
                                       <SnackbarProvider maxSnack={1}>
                                         <Component {...pageProps} />
                                       </SnackbarProvider>
-                                    </ProcedureProvider>
-                                  </CalendarProvider>
-                                </QuoteProvider>
-                              </DegreeProvider>
-                            </FileProvider>
-                          </ProductProvider>
-                        </QualificationProvider>
-                      </MedicProvider>
-                    </LikeProvider>
+                                    </CertificationProvider>
+                                  </QualificationProvider>
+                                </ProcedureProvider>
+                              </CalendarProvider>
+                            </QuoteProvider>
+                          </DegreeProvider>
+                        </FileProvider>
+                      </ProductProvider>
+                    </MedicProvider>
                   </CommentProvider>
-                </CertificationProvider>
+                </LikeProvider>
               </ClinicProvider>
-            </ThemeProvider>
-          </UIProvider>
-        </AuthProvider>
-      </SWRConfig>
-    </SessionProvider>
+            </UIProvider>
+          </AuthProvider>
+        </SWRConfig>
+      </SessionProvider>
+    </ThemeProvider>
   );
 }

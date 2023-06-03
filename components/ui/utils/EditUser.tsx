@@ -17,6 +17,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { Client, Medic, IUser } from "../../../interfaces";
 import Router from "next/router";
+import { ExpanderUi } from "./ExpanderUi";
 
 interface Props {
   children?: ReactNode;
@@ -75,27 +76,8 @@ export const EditUser: FC<Props> = ({ medic }) => {
   };
 
   return (
-    <>
-      <IconButton
-        sx={{
-          borderRadius: 0,
-          color: "#001B87",
-        }}
-        onClick={() => setToggleEdit(!toggleEdit)}
-      >
-        <Typography
-          sx={{
-            fontSize: 15,
-            fontWeight: "500",
-            borderRadius: 0,
-          }}
-        >
-          Edit Profile
-        </Typography>
-        {toggleEdit ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-      </IconButton>
-      {toggleEdit && (
-        <form onSubmit={handleSubmit(onUpdateForm)} noValidate>
+    <ExpanderUi title="Edit Profile" icon={true}>
+    <form onSubmit={handleSubmit(onUpdateForm)} noValidate>
           <Box>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -233,8 +215,7 @@ export const EditUser: FC<Props> = ({ medic }) => {
             </Grid>
           </Box>
         </form>
-      )}
-    </>
+    </ExpanderUi>
   );
 };
 

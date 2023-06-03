@@ -1,4 +1,3 @@
-import { Reaction } from "../../interfaces";
 import { State } from "./";
 
 type Action = "DELETE_LIKE" | "ADD_LIKES" | "ADD_REACTIONS";

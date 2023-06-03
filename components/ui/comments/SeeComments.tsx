@@ -14,8 +14,7 @@ import {
   AccordionDetails,
   Avatar,
   IconButton,
-  Box,
-  Toolbar,
+  Box
 } from "@mui/material";
 import { AuthContext } from "../../../context/auth";
 import { CommentContext } from "../../../context/comment";

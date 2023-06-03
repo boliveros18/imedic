@@ -6,7 +6,7 @@ interface Props {
   children?: ReactNode;
   handleInput: ChangeEventHandler;
   handleSubmit: MouseEventHandler;
-  onCancel: boolean;
+  onCancel: any;
   cancel: boolean;
   value: string;
   handleClose?: any;

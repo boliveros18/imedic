@@ -1,4 +1,4 @@
-import { FC, ReactNode, useReducer } from "react";
+import { FC, ReactNode, useReducer, useCallback } from "react";
 import { CommentContext, commentReducer } from "./";
 import { Comment } from "../../interfaces";
 import { CommentService } from "../../services";
@@ -43,7 +43,7 @@ export const CommentProvider: FC<ProviderProps> = ({ children }) => {
     return payload.filter((i) => i.parent_id === parent_id);
   };
 
-  const getCommentsByParentId = async (
+  const getCommentsByParentId = useCallback( async (
     parent_id: string,
     pagination?: Pagination
   ) => {
@@ -51,7 +51,7 @@ export const CommentProvider: FC<ProviderProps> = ({ children }) => {
       parent_id
     );
     dispatch({ type: "ADD_COMMENTS", payload: data });
-  };
+  }, []);
 
   return (
     <CommentContext.Provider
