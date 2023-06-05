@@ -1,13 +1,13 @@
 import { FC, ReactNode, useState, useContext, useEffect, useMemo } from "react";
 import DatePicker from "react-multi-date-picker";
-import { Typography, Divider, Grid, Button, Box } from "@mui/material";
+import { Typography, Grid, Button, Box } from "@mui/material";
 import EventIcon from "@mui/icons-material/Event";
-import { UIContext } from "../../../context/ui";
-import { CalendarContext } from "../../../context/calendar";
-import { ProcedureContext } from "../../../context/procedure";
+import { UIContext } from "../../context/ui";
+import { CalendarContext } from "../../context/calendar";
+import { ProcedureContext } from "../../context/procedure";
 import { useSnackbar } from "notistack";
-import { Calendar, Medic } from "../../../interfaces";
-import AccordionUi from "../utils/AccordionUi";
+import { Calendar, Medic } from "../../interfaces";
+import AccordionUi from "../ui/utils/AccordionUi";
 
 interface Props {
   children?: ReactNode;
@@ -28,6 +28,7 @@ export const ProcedureAvailability: FC<Props> = ({ medic }) => {
   tomorrow.setDate(tomorrow.getDate() + 1);
   const [values, setValues] = useState<any>();
   useMemo(() => setValues(calendar.availables_dates), [calendar]);
+  
   const success = (model: string, state: string) => {
     setProgress(false);
     enqueueSnackbar(`Your ${model} has been ${state}!`, { variant: "success" });

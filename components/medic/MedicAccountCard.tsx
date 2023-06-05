@@ -1,13 +1,13 @@
-import { FC, ReactNode, useContext, useState, useEffect } from "react";
+import { FC, ReactNode, useContext } from "react";
 import { CardHeader, Typography, Box, IconButton, Avatar } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
-import { Clinic, Medic, File } from "../../../interfaces";
+import { Clinic, Medic, File } from "../../interfaces";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CardActionArea from "@mui/material/CardActionArea";
-import { ApiClient } from "../../../apis";
-import { AuthContext } from "../../../context/auth";
-import { UIContext } from "../../../context/ui";
-import { FileContext } from "../../../context/file";
+import { ApiClient } from "../../apis";
+import { AuthContext } from "../../context/auth";
+import { UIContext } from "../../context/ui";
+import { FileContext } from "../../context/file";
 import { useSnackbar } from "notistack";
 
 interface Props {

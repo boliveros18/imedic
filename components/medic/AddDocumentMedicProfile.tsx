@@ -1,12 +1,12 @@
 import { FC, ReactNode, useContext } from "react";
 import { Grid } from "@mui/material";
-import { ApiClient } from "../../../apis";
-import { MedicContext } from "../../../context/medic";
-import { FileContext } from "../../../context/file";
-import { Medic, File } from "../../../interfaces";
+import { ApiClient } from "../../apis";
+import { MedicContext } from "../../context/medic";
+import { FileContext } from "../../context/file";
+import { Medic, File } from "../../interfaces";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useSnackbar } from "notistack";
-import { UIContext } from "../../../context/ui";
+import { UIContext } from "../../context/ui";
 
 interface Props {
   children?: ReactNode;

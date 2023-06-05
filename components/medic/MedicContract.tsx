@@ -1,12 +1,12 @@
 import { FC, ReactNode, useContext, useMemo } from "react";
-import AccordionUi from "../utils/AccordionUi";
+import AccordionUi from "../ui/utils/AccordionUi";
 import { Box, Container, Grid } from "@mui/material";
-import { ApiClient } from "../../../apis";
-import { UIContext } from "../../../context/ui";
-import { Medic, File } from "../../../interfaces";
+import { ApiClient } from "../../apis";
+import { UIContext } from "../../context/ui";
+import { Medic, File } from "../../interfaces";
 import { useSnackbar } from "notistack";
-import { FileContext } from "../../../context/file";
-import { TermsOfUse } from "../utils/TermsOfUse";
+import { FileContext } from "../../context/file";
+import { TermsOfUse } from "../ui/utils/TermsOfUse";
 
 interface Props {
   children?: ReactNode;

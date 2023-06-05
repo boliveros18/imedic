@@ -14,12 +14,12 @@ import {
 } from "@mui/material";
 import ManageHistoryIcon from "@mui/icons-material/ManageHistory";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import { UIContext } from "../../../context/ui";
-import { ProcedureContext } from "../../../context/procedure";
-import { CalendarContext } from "../../../context/calendar";
+import { UIContext } from "../../context/ui";
+import { ProcedureContext } from "../../context/procedure";
+import { CalendarContext } from "../../context/calendar";
 import { useSnackbar } from "notistack";
-import { Medic, Calendar, Procedure } from "../../../interfaces";
-import AccordionUi from "../utils/AccordionUi";
+import { Medic, Calendar, Procedure } from "../../interfaces";
+import AccordionUi from "../ui/utils/AccordionUi";
 
 interface Column {
   id: "client_name" | "product_procedure" | "date" | "status";

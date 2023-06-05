@@ -13,7 +13,7 @@ import {
   EmailShareButton,
   EmailIcon,
 } from "next-share";
-import { LINK_PAGE, hashtag } from "../../../constans";
+import { LINK_PAGE, hashtag } from "../../../definitions";
 
 interface Props {
   children?: ReactNode;

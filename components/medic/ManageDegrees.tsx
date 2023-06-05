@@ -7,24 +7,20 @@ import {
   FormEvent,
   useEffect,
 } from "react";
-import AccordionUi from "../utils/AccordionUi";
-import {
-  Alert,
-  Grid,
-  TextField,
-  MenuItem,
-  Typography,
-} from "@mui/material";
-import { UIContext } from "../../../context/ui";
-import { DegreeContext } from "../../../context/degree";
-import { Degree, Medic } from "../../../interfaces";
-import { SelectUi } from "../utils/SelectUi";
+import AccordionUi from "../ui/utils/AccordionUi";
+import { Alert, Grid, MenuItem, Typography } from "@mui/material";
+import { UIContext } from "../../context/ui";
+import { DegreeContext } from "../../context/degree";
+import { Degree, Medic } from "../../interfaces";
+import { SelectUi } from "../ui/utils/SelectUi";
 import { useSnackbar } from "notistack";
-import { AcademicDegrees } from "../../../utils/category";
-import { capitalize } from "../../../utils/strings";
-import { FileContext } from "../../../context/file";
+import { AcademicDegrees } from "../../utils/category";
+import { capitalize } from "../../utils/strings";
+import { FileContext } from "../../context/file";
+import { degree } from "../../utils/constants";
 import AddDocumentMedicProfile from "./AddDocumentMedicProfile";
-import ManageButtons from "../utils/ManageButtons";
+import ManageButtons from "../ui/utils/ManageButtons";
+import TextFieldUi from "../ui/utils/TextFieldUi";
 
 interface Props {
   children?: ReactNode;
@@ -41,42 +37,31 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
     getDegreesByMedicId,
   } = useContext(DegreeContext);
   const { setProgress } = useContext(UIContext);
-  const [type, setType] = useState("pregrade");
-  const { file, deleteFile } = useContext(FileContext);
+  const [level, setLevel] = useState("Level degree");
+  const { file } = useContext(FileContext);
   const [index, setIndex] = useState(0);
   const [submit, setSubmit] = useState("CREATE");
-  const [open, setOpen] = useState(false);
   const [create, onCreate] = useState(true);
-
-  const degree = {
-    name: "",
-    university: "",
-  } as Degree;
   const [values, setValues] = useState(degree);
   const [inputs, setInputs] = useState({} as Degree);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const success = (model: string, state: string) => {
-    setProgress(false);
-    enqueueSnackbar(`Your ${model} has been ${state}!`, { variant: "success" });
-  };
-
-  const unsuccess = (error: any) => {
-    setProgress(false);
-    enqueueSnackbar("Error, try again!", { variant: "error" });
-    console.log({ error });
-  };
 
   useEffect(() => {
     getDegreesByMedicId(medic._id);
   }, [medic, getDegreesByMedicId]);
+
+  const successService = async (state: string) => {
+    await getDegreesByMedicId(medic._id);
+    setInputs({} as Degree);
+    setValues(degree);
+    setIndex(0);
+    setLevel("Level degree");
+    onCreate(true);
+    setSubmit("CREATE");
+    setProgress(false);
+    enqueueSnackbar(`Your degree has been ${state}!`, {
+      variant: "success",
+    });
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -86,14 +71,14 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
         await updateDegree(degrees[index]._id || "", {
           ...inputs,
           file_id: file._id,
+          level: level,
           to_approve: file._id ? true : false,
         } as Degree).then(() => {
-          setInputs({} as Degree);
-          getDegreesByMedicId(medic._id);
-          success("degree", "updated");
+          successService("updated")
         });
       } catch (error: any) {
-        unsuccess(error);
+        setProgress(false);
+        enqueueSnackbar("Error, try again!", { variant: "error" });
       }
     } else {
       try {
@@ -102,15 +87,15 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
           ...inputs,
           name: capitalize(inputs.name),
           medic_id: medic._id,
+          level: level,
           file_id: file._id,
           to_approve: file._id ? true : false,
         } as Degree).then(() => {
-          getDegreesByMedicId(medic._id);
-          setValues(degree);
-          success("degree", "created");
+          successService("created")
         });
       } catch (error: any) {
-        unsuccess(error);
+        setProgress(false);
+        enqueueSnackbar("Error, try again!", { variant: "error" });
       }
     }
     setProgress(false);
@@ -119,17 +104,13 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
   const SupressDegree = async () => {
     try {
       setProgress(true);
-      await deleteDegree(degrees[index]?._id || "").then(async () => {
-        await deleteFile(degrees[index]?.file_id);
-        await getDegreesByMedicId(medic._id);
-        setSubmit("CREATE");
-        setValues(degree);
-        setInputs({} as Degree);
-        setIndex(0);
-        success("degree", "deleted");
+      await deleteDegree(degrees[index]?._id || "").then( () => {
+        //TODO: Delete degree file in backend
+        successService("deleted")
       });
     } catch (error) {
-      unsuccess(error);
+      setProgress(false);
+      enqueueSnackbar("Error, try again!", { variant: "error" });
     }
     onCreate(true);
     setProgress(false);
@@ -157,10 +138,12 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
               <MenuItem
                 value={""}
                 onClick={() => {
-                  setSubmit("CREATE");
-                  onCreate(true);
-                  setValues(degree);
                   setInputs({} as Degree);
+                  setValues(degree);
+                  setIndex(0);
+                  setLevel("Level degree");
+                  onCreate(true);
+                  setSubmit("CREATE");
                 }}
               >
                 Degrees
@@ -172,10 +155,10 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
                   onClick={() => {
                     setValues(item);
                     setIndex(index);
+                    setLevel(item.level);
                     setInputs({} as Degree);
                     setSubmit("SAVE");
                     onCreate(false);
-                    index === 0 ? setType("pregrade") : setType("postgrade");
                   }}
                 >
                   <span style={{ fontWeight: "500" }}>{item.name}</span>
@@ -183,50 +166,34 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
               ))}
             </SelectUi>
           </Grid>
-          <Grid item xs={12}>
-            <TextField
-              InputLabelProps={{ shrink: true }}
-              required={submit === "SAVE" ? false : true}
-              type="text"
-              name="name"
-              label="Professional degree name"
-              variant="outlined"
-              fullWidth
-              autoComplete="off"
-              value={values.name}
-              onChange={handleInput}
-              size="small"
-              error={!values.name}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              InputLabelProps={{ shrink: true }}
-              required={submit === "SAVE" ? false : true}
-              type="text"
-              name="university"
-              label={
-                submit === "SAVE"
-                  ? "University"
-                  : "University example: University of Miami"
-              }
-              variant="outlined"
-              fullWidth
-              autoComplete="off"
-              value={values.university}
-              onChange={handleInput}
-              size="small"
-              error={!values.university}
-            />
-          </Grid>
+          <TextFieldUi
+            submit={submit}
+            type="text"
+            name="name"
+            label="Professional degree name"
+            value={values.name}
+            onChange={handleInput}
+          />
+          <TextFieldUi
+            type="text"
+            submit={submit}
+            name="university"
+            label={
+              submit === "SAVE"
+                ? "University"
+                : "University example: University of Miami"
+            }
+            value={values.university}
+            onChange={handleInput}
+          />
           <Grid item xs={12}>
             <SelectUi>
-              <MenuItem value={""}>{type}</MenuItem>
+              <MenuItem value={""}>{level}</MenuItem>
               {AcademicDegrees.map((item, index) => (
                 <MenuItem
                   key={index}
                   value={item}
-                  onClick={() => setType(item)}
+                  onClick={() => setLevel(item)}
                 >
                   {item}
                 </MenuItem>
@@ -234,21 +201,26 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
             </SelectUi>
           </Grid>
           <Grid item xs={12} sx={{ mt: -1 }}>
-            <AddDocumentMedicProfile
-              type={type}
-              text={`Add PDF apostille ${type} diploma`}
-            />
+           { level !== "Level degree" ? <AddDocumentMedicProfile
+              type={level}
+              text={`Add PDF apostille ${level} diploma`}
+            /> : null }
           </Grid>
           <Grid item xs={12}>
             <Typography
               sx={{ fontSize: 13, fontWeight: "400", mt: -2 }}
               align="right"
             >
-              *save updates after file upload
+              *Save updates after file has uploaded.
             </Typography>
           </Grid>
           <Grid item xs={12}>
-          <ManageButtons suppress={SupressDegree}  create = {create} submit = {submit} type = "degree" />
+            <ManageButtons
+              suppress={SupressDegree}
+              create={create}
+              submit={submit}
+              type="degree"
+            />
           </Grid>
         </Grid>
       </form>

@@ -6,13 +6,15 @@ import {
   ChangeEvent,
   FormEvent,
 } from "react";
-import AccordionUi from "../utils/AccordionUi";
-import { Grid, TextField, Button } from "@mui/material";
-import { MedicContext } from "../../../context/medic";
-import { UIContext } from "../../../context/ui";
-import { Medic } from "../../../interfaces";
-import SelectUbication from "../utils/SelectUbication";
+import AccordionUi from "../ui/utils/AccordionUi";
+import { Grid, Button } from "@mui/material";
+import { MedicContext } from "../../context/medic";
+import { UIContext } from "../../context/ui";
+import { Medic } from "../../interfaces";
+import { useSnackbar } from "notistack";
+import SelectUbication from "../ui/utils/SelectUbication";
 import AddDocumentMedicProfile from "./AddDocumentMedicProfile";
+import TextFieldUi from "../ui/utils/TextFieldUi";
 
 interface Props {
   children?: ReactNode;
@@ -20,21 +22,32 @@ interface Props {
 }
 
 export const CompleteMedicProfile: FC<Props> = ({ medic }) => {
+  const { enqueueSnackbar } = useSnackbar();
   const { updateMedic } = useContext(MedicContext);
-  const { country, state, city } = useContext(UIContext);
+  const { country, state, city, setProgress } = useContext(UIContext);
   const [value, setValue] = useState(medic);
   const [inputs, setInputs] = useState({});
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    await updateMedic(medic._id, {
-      ...inputs,
-      country: country,
-      state: state,
-      province: city,
-    } as Medic).then(() => {
-      setInputs({});
-    });
+    try {
+      setProgress(true);
+      await updateMedic(medic._id, {
+        ...inputs,
+        country: country,
+        state: state,
+        province: city,
+      } as Medic).then(() => {
+        setInputs({});
+        setProgress(false);
+        enqueueSnackbar(`Your medic profile has been updated!`, { variant: "success" });
+     
+      });
+    } catch (error: any) {
+      setProgress(false);
+      enqueueSnackbar("Error, try again!", { variant: "error" });
+    }
+ 
   };
 
   const handleInput = ({ target }: ChangeEvent<any>) => {
@@ -47,20 +60,14 @@ export const CompleteMedicProfile: FC<Props> = ({ medic }) => {
     <AccordionUi summary="Medic Profile">
       <form onSubmit={handleSubmit} noValidate>
         <Grid container spacing={0} rowSpacing={2}>
-          <Grid item xs={12}>
-            <TextField
+            <TextFieldUi
+              submit="SAVE"
               type="text"
-              InputLabelProps={{ shrink: true }}
-              label="Instagram link"
-              variant="outlined"
-              fullWidth
-              autoComplete="off"
-              defaultValue={value.instagram}
-              onChange={handleInput}
               name="instagram"
-              size="small"
+              label="Instagram link"
+              value={value.instagram}
+              onChange={handleInput}
             />
-          </Grid>
           <Grid item xs={12}>
             <SelectUbication content={medic} />
           </Grid>

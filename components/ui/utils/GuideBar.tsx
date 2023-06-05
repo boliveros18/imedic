@@ -7,7 +7,7 @@ import {
   AccordionDetails,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { GUIDE_TITLE, GUIDE_DETAIL } from "../../../constans/messages";
+import { GUIDE_TITLE, GUIDE_DETAIL } from "../../../definitions/messages";
 import { AuthContext } from "../../../context/auth";
 
 interface Props {

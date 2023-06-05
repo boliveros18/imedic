@@ -7,7 +7,7 @@ import Document, {
   DocumentContext,
   DocumentInitialProps,
 } from "next/document";
-import { HOME_TITLE } from "../constans/home";
+import { HOME_TITLE } from "../definitions/home";
 
 class MyDocument extends Document {
   static async getInitialProps(

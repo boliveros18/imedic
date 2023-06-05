@@ -11,18 +11,6 @@ export * from "./comments/CommentUi";
 export * from "./comments/EditCommentUi";
 export * from "./comments/SeeComments";
 
-export * from "./medic/AddDocumentMedicProfile"
-export * from "./medic/ManageClinics"
-export * from "./medic/ManageDegrees"
-export * from "./medic/ManageProducts"
-export * from "./medic/MedicAccountCard"
-export * from "./medic/MedicContract"
-export * from "./medic/MedicProfile"
-export * from "./medic/ProcedureAvailability"
-export * from "./medic/ProceduresInProcess"
-export * from "./medic/ProductQuotes"
-export * from "./medic/SelectCategoryAndProcedure"
-
 export * from "./styled/CommentForm";
 export * from "./styled/Search";
 
@@ -46,6 +34,8 @@ export * from "./utils/SelectUi";
 export * from "./utils/ShareMediaUi";
 export * from "./utils/SingInUi";
 export * from "./utils/TermsOfUse";
+export * from "./utils/TextFieldUi";
+
 
 
 

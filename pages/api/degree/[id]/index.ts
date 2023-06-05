@@ -57,9 +57,9 @@ const updateDegree = async (
 
   await db.connect();
 
-  const degreeToUpdate = await Degree.findById(id);
+  const modelToUpdate = await Degree.findById(id);
 
-  if (!degreeToUpdate) {
+  if (!modelToUpdate) {
     await db.disconnect();
     return res
       .status(400)
@@ -67,11 +67,12 @@ const updateDegree = async (
   }
 
   const {
-    name = degreeToUpdate.name,
-    university = degreeToUpdate.university,
-    file_id = degreeToUpdate.file_id,
-    certificated = degreeToUpdate.certificated,
-    to_approve = degreeToUpdate.to_approve,
+    name = modelToUpdate.name,
+    university = modelToUpdate.university,
+    file_id = modelToUpdate.file_id,
+    level = modelToUpdate.level,
+    certificated = modelToUpdate.certificated,
+    to_approve = modelToUpdate.to_approve,
     updatedAt = Date.now(),
   } = req.body;
 
@@ -82,6 +83,7 @@ const updateDegree = async (
         name,
         university,
         file_id,
+        level,
         certificated,
         to_approve,
         updatedAt,

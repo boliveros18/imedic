@@ -1,7 +1,7 @@
 import { FC, ReactNode, useState, useEffect, useContext } from "react";
 import { Select, MenuItem, SelectChangeEvent } from "@mui/material";
-import { Product } from "../../../interfaces";
-import { ProductContext } from "../../../context/product";
+import { Product } from "../../interfaces";
+import { ProductContext } from "../../context/product";
 
 interface Props {
   children?: ReactNode;

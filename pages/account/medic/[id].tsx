@@ -10,7 +10,6 @@ import { AuthContext } from "../../../context/auth";
 import {
   SelectCategoryAndProcedure,
   MedicAccountCard,
-  EditUser,
   ManageClinics,
   ManageDegrees,
   ManageProducts,
@@ -18,8 +17,9 @@ import {
   ProductQuotes,
   ProcedureAvailability,
   ProceduresInProcess,
-  MedicContract
-} from "../../../components/ui";
+  MedicContract,
+} from "../../../components/medic";
+import { EditUser } from "../../../components/ui/utils/EditUser";
 import { ProductContext } from "../../../context/product";
 import { ClinicContext } from "../../../context/clinic";
 import { FileContext } from "../../../context/file";
@@ -38,11 +38,7 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar }) => {
   const { setMedic } = useContext(MedicContext);
   const { clinics, getClinicsByMedicId } = useContext(ClinicContext);
   const { setAvatar } = useContext(FileContext);
-  const {
-    index,
-    products,
-    getProductsByMedicId,
-  } = useContext(ProductContext);
+  const { index, products, getProductsByMedicId } = useContext(ProductContext);
   const { setUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -50,7 +46,7 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar }) => {
     setMedic(medic);
     setAvatar(avatar);
     getClinicsByMedicId(medic._id || "");
-    getProductsByMedicId(medic._id)
+    getProductsByMedicId(medic._id);
   }, [
     id,
     user,
@@ -60,7 +56,7 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar }) => {
     avatar,
     setAvatar,
     getClinicsByMedicId,
-    getProductsByMedicId
+    getProductsByMedicId,
   ]);
   return (
     <Layout>
@@ -98,11 +94,10 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar }) => {
               <ManageClinics medic={medic} />
               <ManageDegrees medic={medic} />
               <ManageProducts medic={medic} />
-              <ProductQuotes/>
+              <ProductQuotes />
               <MedicContract medic={medic} />
               <ProcedureAvailability medic={medic} />
               <ProceduresInProcess medic={medic} />
-
             </CardContent>
           </Card>
         </Grid>
@@ -138,7 +133,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       id: _id,
       user: session ? user : {},
       avatar: avatar === undefined ? {} : avatar,
-      medic: medic
+      medic: medic,
     },
   };
 };
