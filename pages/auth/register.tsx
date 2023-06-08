@@ -243,9 +243,8 @@ export const getServerSideProps: GetServerSideProps = async ({
       const medic = await dbMedics.createMedic({
         type: "Medic",
         parent_id: user.id,
-        certified: false,
+        status: "pending",
         card_id: "",
-        to_approve: false,
         contract_signature: "",
         available_days: "",
         curriculum: "",

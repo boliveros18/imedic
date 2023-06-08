@@ -7,6 +7,7 @@ import { Medic, File } from "../../interfaces";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useSnackbar } from "notistack";
 import { UIContext } from "../../context/ui";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 interface Props {
   children?: ReactNode;
@@ -16,7 +17,7 @@ interface Props {
 
 export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
   const { medic, updateMedic } = useContext(MedicContext);
-  const { updateFile, createFile, getFilesByParentIdAndType } =
+  const { files, updateFile, createFile, getFilesByParentIdAndType } =
     useContext(FileContext);
   const { setProgress } = useContext(UIContext);
   const { enqueueSnackbar } = useSnackbar();
@@ -25,6 +26,7 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
     setProgress(true);
     if (target.files) {
       try {
+
         const file = await getFilesByParentIdAndType(medic._id, type);
         const files = target.files[0];
         const formData = new FormData();
@@ -35,7 +37,6 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
         if (medic._id) {
           await updateMedic(medic?._id, {
             ...(medic as Medic),
-            ["to_approve"]: true,
           });
           if (file._id && file.type === type) {
             await updateFile(file?._id, {
@@ -53,6 +54,7 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
               type: type,
               parent_id: medic?._id,
               url: data.message,
+              status: "pending"
             } as File)
               .then()
               .then(() => setProgress(false))
@@ -69,7 +71,7 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
     }
   };
   
-
+//TODO: poner color y tooltip a el status icon
   return (
     <Grid item xs={12} display="flex" justifyContent="end">
       <label>
@@ -89,8 +91,17 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
             cursor: "pointer",
           }}
         >
-          {text}
-          <KeyboardArrowRightIcon sx={{ mb: -0.5 }} fontSize="small" />
+            {files.filter((i: File)=>i.type === type).length === 1 ? <CheckCircleIcon
+              sx={{
+                color: files.filter((i: File)=>i.type === type)[0].status === "verified" ? "blue" : "lightgray",
+                fontSize: "15px",
+                marginBottom: -0.2,
+                marginRight: 1
+              }}
+            />: null}
+          {text //la descripicion debe decir en que estado se encuentra el documento
+          }
+          <KeyboardArrowRightIcon sx={{ mb: -0.6 }} fontSize="small" />
         </a>
       </label>
     </Grid>

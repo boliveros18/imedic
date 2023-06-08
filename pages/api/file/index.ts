@@ -27,12 +27,13 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       .json({ message: "You must be authenticated to do this" });
   }
 
-  const { type = "", parent_id = "", url = "" } = req.body;
+  const { type = "", parent_id = "", status = "", url = "" } = req.body;
   await db.connect();
 
   const newModel = new File({
     type,
     parent_id,
+    status,
     url,
   });
 

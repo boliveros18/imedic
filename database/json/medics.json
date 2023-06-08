@@ -3,9 +3,8 @@
     "$oid": "642c78282452ed13a087f5d4"
   },
   "parent_id": "64259483a587c96f2571262a",
-  "certified": false,
+  "status":"pending",
   "card_id": "https://res.cloudinary.com/dsjtygehr/image/upload/v1682379550/zizsjyt78azaf9ceey0w.pdf",
-  "to_approve": true,
   "contract_signature": "",
   "available_days": [
     ""
@@ -29,9 +28,8 @@
     "$oid": "643d5b57a089376e6e50a0a3"
   },
   "parent_id": "64228786353b199547121dfc",
-  "certified": false,
+  "status":"pending",
   "card_id": "",
-  "to_approve": true,
   "contract_signature": "",
   "available_days": [
     ""
@@ -56,9 +54,8 @@
   },
   "type": "Medic",
   "parent_id": "6444807fe8373f0a9823a61a",
-  "certified": false,
+  "status":"pending",
   "card_id": "",
-  "to_approve": false,
   "contract_signature": "",
   "available_days": [
     ""

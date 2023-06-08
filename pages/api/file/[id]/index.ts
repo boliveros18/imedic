@@ -41,13 +41,14 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       .json({ message: "There is no file with that ID: " + id });
   }
 
-  const { url = modelToUpdate.url } = req.body;
+  const { url = modelToUpdate.url, status = modelToUpdate.status } = req.body;
 
   try {
     const updatedModel = await File.findByIdAndUpdate(
       id,
       {
         url,
+        status
       },
       { runValidators: true, new: true }
     );

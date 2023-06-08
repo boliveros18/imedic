@@ -31,13 +31,14 @@ interface Props {
   user: IUser;
   medic: Medic;
   avatar: File;
+  files: File[];
 }
 
-const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar }) => {
+const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar, files }) => {
   const { progress } = useContext(UIContext);
   const { setMedic } = useContext(MedicContext);
   const { clinics, getClinicsByMedicId } = useContext(ClinicContext);
-  const { setAvatar } = useContext(FileContext);
+  const { setAvatar, setFiles } = useContext(FileContext);
   const { index, products, getProductsByMedicId } = useContext(ProductContext);
   const { setUser } = useContext(AuthContext);
 
@@ -45,8 +46,10 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar }) => {
     setUser(user);
     setMedic(medic);
     setAvatar(avatar);
+    setFiles(files);
     getClinicsByMedicId(medic._id || "");
     getProductsByMedicId(medic._id);
+
   }, [
     id,
     user,
@@ -55,6 +58,8 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar }) => {
     setUser,
     avatar,
     setAvatar,
+    files,
+    setFiles,
     getClinicsByMedicId,
     getProductsByMedicId,
   ]);
@@ -119,6 +124,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     user?._id || "",
     "image"
   );
+  const files  = await dbFiles.getFilesByParentIdAndType(medic?._id || "", "all")
   if (!medic || !session) {
     return {
       redirect: {
@@ -134,6 +140,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       user: session ? user : {},
       avatar: avatar === undefined ? {} : avatar,
       medic: medic,
+      files: files
     },
   };
 };

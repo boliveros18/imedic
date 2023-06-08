@@ -5,8 +5,6 @@ export interface Degree {
   university: string;
   file_id: string;
   level: string;
-  certificated: boolean;
-  to_approve: boolean;
   createdAt: string;
   updatedAt: string;
 }

@@ -62,9 +62,8 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 
   const {
-    certified = modelToUpdate.certified,
+    status = modelToUpdate.status,
     card_id = modelToUpdate.card_id,
-    to_approve = modelToUpdate.to_approve,
     contract_signature = modelToUpdate.contract_signature,
     available_days = modelToUpdate.available_days,
     curriculum = modelToUpdate.curriculum,
@@ -81,9 +80,8 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const updatedModel = await Medic.findByIdAndUpdate(
       id,
       {
-        certified,
+        status,
         card_id,
-        to_approve,
         contract_signature,
         available_days,
         curriculum,

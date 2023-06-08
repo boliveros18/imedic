@@ -107,7 +107,7 @@ export const MedicAccountCard: FC<Props> = ({ clinic, medic }) => {
             {" " + user?.name + " "}
             <CheckCircleIcon
               sx={{
-                color: medic?.certified ? "blue" : "lightgray",
+                color: medic?.status === "verified" ? "blue" : "lightgray",
                 fontSize: "15px",
               }}
             />

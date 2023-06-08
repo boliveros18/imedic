@@ -30,9 +30,8 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const {
     type = "",
     parent_id = "",
-    certified = false,
+    status = "",
     card_id = "",
-    to_approve = false,
     contract_signature = "",
     available_days = "",
     curriculum = "",
@@ -50,9 +49,8 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const newModel = new Medic({
     type,
     parent_id,
-    certified, 
+    status, 
     card_id,
-    to_approve,
     contract_signature,
     available_days,
     curriculum,

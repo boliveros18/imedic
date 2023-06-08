@@ -71,8 +71,6 @@ const updateDegree = async (
     university = modelToUpdate.university,
     file_id = modelToUpdate.file_id,
     level = modelToUpdate.level,
-    certificated = modelToUpdate.certificated,
-    to_approve = modelToUpdate.to_approve,
     updatedAt = Date.now(),
   } = req.body;
 
@@ -84,8 +82,6 @@ const updateDegree = async (
         university,
         file_id,
         level,
-        certificated,
-        to_approve,
         updatedAt,
       },
       { runValidators: true, new: true }

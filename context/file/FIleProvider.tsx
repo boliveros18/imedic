@@ -26,6 +26,10 @@ export const FileProvider: FC<ProviderProps> = ({ children }) => {
     dispatch({ type: "UPDATE_AVATAR", payload: payload });
   }, []);
 
+  const setFiles = useCallback(async (payload: File[]) => {
+    dispatch({ type: "UPDATE_FILES", payload: payload });
+  }, []);
+
   const createFile = async (payload: File) => {
     const data = await FileService.createOne(payload);
     dispatch({ type: "UPDATE_FILE", payload: data });
@@ -59,6 +63,7 @@ export const FileProvider: FC<ProviderProps> = ({ children }) => {
       value={{
         ...state,
         setAvatar,
+        setFiles,
         createFile,
         updateFile,
         deleteFile,

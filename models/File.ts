@@ -6,6 +6,7 @@ export interface IFile extends File {}
 const entrySchema = new Schema({
   type: { type: String, require: true },
   parent_id: { type: String, require: true },
+  status: { type: String },
   url: { type: String, require: true },
 });
 

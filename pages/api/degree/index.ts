@@ -33,8 +33,6 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     university = "",
     file_id = "",
     level = "",
-    certificated = false,
-    to_approve = false,
     createdAt = Date.now(),
     updatedAt = 0,
   } = req.body;
@@ -46,8 +44,6 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     university,
     file_id,
     level,
-    certificated,
-    to_approve,
     createdAt,
     updatedAt,
   });

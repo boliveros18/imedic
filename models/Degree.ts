@@ -9,8 +9,6 @@ const entrySchema = new Schema({
   university: { type: String, require: true },
   file_id: { type: String, require: true },
   level: { type: String, require: true },
-  certificated: { type: Boolean },
-  to_approve: { type: Boolean },
   createdAt: { type: Number },
   updatedAt: { type: Number },
 });
