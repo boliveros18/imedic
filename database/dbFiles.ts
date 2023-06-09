@@ -4,7 +4,7 @@ import { File, IFile } from "../models";
 export const getFilesByParentIdAndType = async (
   parent_id: string | string[],
   type: string | string[]
-): Promise<IFile | IFile[]> => {
+): Promise<IFile> => {
   if(type === "all"){
     const params = parent_id ? { parent_id: parent_id } : {};
     await db.connect();
