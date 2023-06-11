@@ -26,12 +26,14 @@ import Logout from "@mui/icons-material/Logout";
 import { AuthContext } from "../../../context/auth";
 import { MedicContext } from "../../../context/medic";
 import { FileContext } from "../../../context/file";
+import { UIContext } from "../../../context/ui";
 
 import { Search, SearchIconWrapper, StyledInputBase } from "../styled/Search";
 
 import { MenuUi } from "./MenuUi";
 import { BrandUi } from "./BrandUi";
 import { SimpleSelect } from "./SimpleSelect";
+import LoadingUi from "../utils/LoadingUi";
 
 interface Props {
   children?: ReactNode;
@@ -41,6 +43,7 @@ export const NavBar: FC<Props> = ({}) => {
   const { user, isLoggedIn, logout } = useContext(AuthContext);
   const { medic } = useContext(MedicContext);
   const { avatar } = useContext(FileContext);
+  const { setProgress } = useContext(UIContext);
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -86,7 +89,7 @@ export const NavBar: FC<Props> = ({}) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={() =>{handleMenuClose() ; navigateTo(`/account/${user?.role}/${user?.role ==="client" ? null : medic._id }`)}} sx={{ width: 300, maxWidth: "100%" }}>
+      <MenuItem onClick={() =>{handleMenuClose(); setProgress(true); navigateTo(`/account/${user?.role}/${user?.role ==="client" ? null : medic._id }`)}} sx={{ width: 300, maxWidth: "100%" }}>
         <ListItemIcon>
           <Avatar alt="name" src={avatar.url || ""} sx={{ mr: 1 }} />
         </ListItemIcon>{" "}
@@ -192,6 +195,7 @@ export const NavBar: FC<Props> = ({}) => {
       elevation={0}
       style={{ backgroundColor: "white" }}
     >
+      <LoadingUi/>
       <Toolbar>
         <MenuUi />
         <BrandUi />

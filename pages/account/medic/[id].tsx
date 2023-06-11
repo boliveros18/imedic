@@ -29,6 +29,7 @@ import { ProductContext } from "../../../context/product";
 import { ClinicContext } from "../../../context/clinic";
 import { FileContext } from "../../../context/file";
 import { MedicContext } from "../../../context/medic";
+import { UIContext } from "../../../context/ui";
 import LoadingUi from "../../../components/ui/utils/LoadingUi";
 
 interface Props {
@@ -52,6 +53,8 @@ const AccountMedicPage: NextPage<Props> = ({
   const { setAvatar, setFiles } = useContext(FileContext);
   const { index, products, getProductsByMedicId } = useContext(ProductContext);
   const { setUser } = useContext(AuthContext);
+  const { setProgress } = useContext(UIContext);
+
 
   useEffect(() => {
     setUser(user);
@@ -60,6 +63,7 @@ const AccountMedicPage: NextPage<Props> = ({
     setFiles(files);
     getClinicsByMedicId(medic._id || "");
     getProductsByMedicId(medic._id);
+    setProgress(false)
   }, [
     id,
     user,
@@ -72,6 +76,7 @@ const AccountMedicPage: NextPage<Props> = ({
     setFiles,
     getClinicsByMedicId,
     getProductsByMedicId,
+    setProgress
   ]);
   return (
     <Layout>
@@ -125,7 +130,6 @@ export const getServerSideProps: GetServerSideProps = async ({
   const session = await getSession({ req });
   const { id } = params as { id: string };
   const user: any = session?.user;
-  console.log(session?.user);
   user ? delete Object.assign(user, { _id: user.id })["id"] : null;
   const medic = await dbMedics.getMedicById(id);
   const _id = medic?.parent_id;

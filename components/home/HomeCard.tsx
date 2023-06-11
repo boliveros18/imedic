@@ -17,6 +17,7 @@ import { AuthContext } from "../../context/auth";
 import { UIContext } from "../../context/ui";
 import { SingInUi, ShareMediaUi, CardDetailUi, ReadMore } from "../ui";
 import { useRouter } from "next/router";
+import LoadingUi from "../ui/utils/LoadingUi";
 
 interface Props {}
 
@@ -26,7 +27,7 @@ export const HomeCard: FC<Props> = () => {
   const mobile = UseWindowSize();
   const height = WindowSize().height;
   const { principal } = useContext(ClinicContext);
-  const { loading } = useContext(UIContext);
+  const { loading, setProgress } = useContext(UIContext);
 
   return (
     <>
@@ -35,6 +36,7 @@ export const HomeCard: FC<Props> = () => {
         type={principal.type}
         initialAnswers={principal.comments}
       >
+        <LoadingUi/>
         <Card
           sx={{
             width: "100%",
@@ -94,7 +96,7 @@ export const HomeCard: FC<Props> = () => {
             }
           />
           <CardActionArea
-            onClick={() => router.push(`/clinic/${principal?._id}`)}
+            onClick={() => { setProgress(true);  router.push(`/clinic/${principal?._id}`);}}
           >
             {loading && (
               <CardMedia

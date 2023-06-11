@@ -17,8 +17,8 @@ const LoadingUi: FC<Props> = ({}) => {
  return (
   <Dialog open={progress}>
   <DialogContent>
-    <Box sx={{ display: "flex" }}>
-      <CircularProgress />
+    <Box sx={{ display: "flex"}}>
+      <CircularProgress/>
     </Box>
   </DialogContent>
 </Dialog>

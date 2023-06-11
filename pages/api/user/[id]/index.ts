@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import { db } from "../../../../database";
 import { User, AUser } from "../../../../models";
-import { jwt, validations } from "../../../../utils";
+import { validations } from "../../../../utils";
 
 type Data =
   | { message: string }
@@ -141,7 +141,7 @@ const deleteUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       .json({ message: "There is no user with that ID: " + id });
   }
   try {
-        //Delete: clinics, degress, quotations, products, procedures, files, medic, user
+        //TODO: Delete clinics, degress, quotations, products, procedures, files, medic, user
     const deleteUser = await User.findByIdAndDelete(id);
 
     await db.disconnect();

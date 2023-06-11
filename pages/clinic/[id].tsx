@@ -1,3 +1,4 @@
+import { useContext, useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
 import { dbCertifications, dbClinics, dbQualifications } from "../../database";
 import {
@@ -27,6 +28,7 @@ import {
 } from "../../components/ui";
 import { Layout } from "../../components/layouts";
 import { Clinic, Certification, Qualification } from "../../interfaces";
+import { UIContext } from "../../context/ui";
 
 interface Props {
   clinic: Clinic;
@@ -41,7 +43,12 @@ const ClinicPage: NextPage<Props> = ({
 }) => {
   const mobile = UseWindowSize();
   const size = WindowSize();
-
+  const { setProgress } = useContext(UIContext);
+  
+  useEffect(() => {
+    setProgress(false)
+  }, [setProgress])
+  
   return (
     <Layout>
       <Grid container spacing={0} rowSpacing={2}>

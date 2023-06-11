@@ -34,7 +34,7 @@ const HomePage: NextPage<Props> = ({
   const { setAvatar } = useContext(FileContext);
   const { addLikes } = useContext(LikeContext);
   const { setPrincipal } = useContext(ClinicContext);
-  const { setLoading } = useContext(UIContext);
+  const { setLoading, setProgress } = useContext(UIContext);
 
   useEffect(() => {
     setUser(user);
@@ -43,6 +43,7 @@ const HomePage: NextPage<Props> = ({
     addLikes(like);
     setPrincipal(principal);
     setLoading(true);
+    setProgress(false);
   }, [
     user,
     setUser,
@@ -55,6 +56,7 @@ const HomePage: NextPage<Props> = ({
     setLoading,
     principal,
     setPrincipal,
+    setProgress
   ]);     
   return (
     <Layout>

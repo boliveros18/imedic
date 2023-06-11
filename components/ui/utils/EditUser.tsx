@@ -3,7 +3,6 @@ import {
   Box,
   IconButton,
   Typography,
-  Button,
   Grid,
   TextField,
   Chip
@@ -90,10 +89,7 @@ export const EditUser: FC<Props> = ({}) => {
       setProgress(true);
       const { hasError, messageLogin } = await loginUser(old_email, old_password);
       if (!hasError) {
-        //await deleteUser(user?._id || "").then( () => {
-          //TODO: Delete all account, files, clinics, etc, file in backend
-        //});
-        console.log("delete credentials")
+        await deleteUser(user?._id || "")
         setProgress(false);
       } else {
         setProgress(false);

@@ -38,7 +38,7 @@ export const SideBar: FC<Props> = ({ keepOpen = false }) => {
             elevation={0}
           >
             <MenuList>
-              <MenuItem>
+              <MenuItem onClick={closeSideMenu}>
                 <ListItemIcon sx={{ ml: -0.25 }}>
                   <HomeOutlinedIcon fontSize="medium" />
                 </ListItemIcon>
@@ -46,7 +46,7 @@ export const SideBar: FC<Props> = ({ keepOpen = false }) => {
                 <ListItemText sx={{ ml: 2.25 }}>Home</ListItemText>
                 </Link>
               </MenuItem>
-              <MenuItem>
+              <MenuItem  onClick={closeSideMenu}>
                 <ListItemIcon>
                   <QueuePlayNextOutlinedIcon fontSize="small" />
                 </ListItemIcon>
@@ -54,7 +54,7 @@ export const SideBar: FC<Props> = ({ keepOpen = false }) => {
                   Treatment & Surgeries
                 </ListItemText>
               </MenuItem>
-              <MenuItem>
+              <MenuItem  onClick={closeSideMenu}>
                 <ListItemIcon>
                   <TrendingUpOutlinedIcon fontSize="medium" />
                 </ListItemIcon>
@@ -62,7 +62,7 @@ export const SideBar: FC<Props> = ({ keepOpen = false }) => {
                   Trends | <span style={{ color: "gray" }}>Surgeries</span>
                 </ListItemText>
               </MenuItem>
-              <MenuItem>
+              <MenuItem  onClick={closeSideMenu}>
                 <ListItemIcon>
                   <AccessibilityNewOutlinedIcon fontSize="medium" />
                 </ListItemIcon>
@@ -71,13 +71,13 @@ export const SideBar: FC<Props> = ({ keepOpen = false }) => {
                 </ListItemText>
               </MenuItem>
               <Divider />
-              <MenuItem>
+              <MenuItem  onClick={closeSideMenu}>
                 <ListItemIcon>
                   <AirplanemodeActiveOutlinedIcon fontSize="medium" />
                 </ListItemIcon>
                 <ListItemText sx={{ ml: 2 }}>Tickets</ListItemText>
               </MenuItem>
-              <MenuItem>
+              <MenuItem  onClick={closeSideMenu}>
                 <ListItemIcon>
                   <RoomServiceOutlinedIcon fontSize="medium" />
                 </ListItemIcon>
