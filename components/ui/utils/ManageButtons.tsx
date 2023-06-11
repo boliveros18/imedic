@@ -4,7 +4,7 @@ import { Grid, Button, Dialog, DialogTitle, DialogActions } from "@mui/material"
 interface Props {
   children?: ReactNode;
   suppress: any;
-  create: boolean;
+  create?: boolean;
   submit: string;
   type: string;
 }

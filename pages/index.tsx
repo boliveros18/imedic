@@ -58,7 +58,7 @@ const HomePage: NextPage<Props> = ({
   ]);     
   return (
     <Layout>
-      <Grid container spacing={0} rowSpacing={2}>
+      <Grid container spacing={0} rowSpacing={0}>
         <Grid
           item
           xs={8}
@@ -69,8 +69,8 @@ const HomePage: NextPage<Props> = ({
         >
           <SideBar keepOpen={true} />
         </Grid>
-        <Grid item xs={12} sm={6} md={5} justifyContent="center">
-          {<HomeCard />}
+        <Grid item xs={12} sm={6} md={5}>
+          <HomeCard />
         </Grid>
         <Grid
           item

@@ -30,7 +30,7 @@ export const CommentDialogUi: FC<Props> = ({
       <Grid item xs={1} sm={1} md={1}>
         {children}
       </Grid>
-      <Grid item xs={!cancel ? 9 :11} sm={!cancel ? 9 :11} md={!cancel ? 9 :11} sx={{ pl: 4}}>
+      <Grid item xs={!cancel ? 8 :11} sm={!cancel ? 9 :11} md={!cancel ? 10 :11} sx={{ pl: 4}}>
         <CommentForm style={{ color: "black", borderRadius: "3px" }}>
           <StyledInputComment
             style={{ width: "100%", fontSize: 15 }}
@@ -88,8 +88,8 @@ export const CommentDialogUi: FC<Props> = ({
             aria-label="settings"
             style={{
               color: "black",
-              marginLeft: 8,
-              marginRight: -6,
+              marginLeft: 0,
+              marginRight: 0,
             }}
             onClick={handleSubmit}
           >

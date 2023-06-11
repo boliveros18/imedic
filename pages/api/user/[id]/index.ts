@@ -141,7 +141,9 @@ const deleteUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       .json({ message: "There is no user with that ID: " + id });
   }
   try {
+        //Delete: clinics, degress, quotations, products, procedures, files, medic, user
     const deleteUser = await User.findByIdAndDelete(id);
+
     await db.disconnect();
     res.status(200).json(deleteUser!);
   } catch (error: any) {

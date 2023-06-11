@@ -145,6 +145,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
   const deleteUser = async (id: string) => {
     const data = await AuthService.deleteOne(id);
     dispatch({ type: "DELETE_USER", payload: data });
+    logout();
     return data;
   };
 

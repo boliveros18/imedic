@@ -21,12 +21,12 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
     useContext(FileContext);
   const { setProgress } = useContext(UIContext);
   const { enqueueSnackbar } = useSnackbar();
+  const dossier = files.filter((i: File) => i.type === type);
 
   const upload = async (type: string, target: any) => {
     setProgress(true);
     if (target.files) {
       try {
-
         const file = await getFilesByParentIdAndType(medic._id, type);
         const files = target.files[0];
         const formData = new FormData();
@@ -54,7 +54,7 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
               type: type,
               parent_id: medic?._id,
               url: data.message,
-              status: "pending"
+              status: "pending",
             } as File)
               .then()
               .then(() => setProgress(false))
@@ -70,8 +70,7 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
       }
     }
   };
-  
-//TODO: poner color y tooltip a el status icon
+
   return (
     <Grid item xs={12} display="flex" justifyContent="end">
       <label>
@@ -91,16 +90,29 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
             cursor: "pointer",
           }}
         >
-            {files.filter((i: File)=>i.type === type).length === 1 ? <CheckCircleIcon
+          {dossier.length === 1 ? (
+            <CheckCircleIcon
               sx={{
-                color: files.filter((i: File)=>i.type === type)[0].status === "verified" ? "blue" : "lightgray",
+                color:
+                  dossier[0].status === "verified"
+                    ? "blue"
+                    : dossier[0].status === "pending"
+                    ? "lightgray"
+                    : "red",
                 fontSize: "15px",
                 marginBottom: -0.2,
-                marginRight: 1
+                marginRight: 1,
               }}
-            />: null}
-          {text //la descripicion debe decir en que estado se encuentra el documento
-          }
+            />
+          ) : null}
+          {text +
+            (dossier[0]?.status === "verified"
+              ? "verified"
+              : dossier[0]?.status === "pending"
+              ? "is pending"
+              : dossier[0]?.status === "rejected"
+              ? "Please upload again"
+              : "please upload")}
           <KeyboardArrowRightIcon sx={{ mb: -0.6 }} fontSize="small" />
         </a>
       </label>

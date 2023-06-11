@@ -1,7 +1,12 @@
 import { useContext, useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
-import { Typography, Card, CardContent, Grid, Divider } from "@mui/material";
-import CircularProgress from "@mui/material/CircularProgress";
+import {
+  Typography,
+  Card,
+  CardContent,
+  Grid,
+  Divider
+} from "@mui/material";
 import { getSession } from "next-auth/react";
 import { dbMedics, dbFiles } from "../../../database";
 import { Layout } from "../../../components/layouts";
@@ -24,7 +29,7 @@ import { ProductContext } from "../../../context/product";
 import { ClinicContext } from "../../../context/clinic";
 import { FileContext } from "../../../context/file";
 import { MedicContext } from "../../../context/medic";
-import { UIContext } from "../../../context/ui";
+import LoadingUi from "../../../components/ui/utils/LoadingUi";
 
 interface Props {
   id: string;
@@ -34,8 +39,14 @@ interface Props {
   files: File[];
 }
 
-const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar, files }) => {
-  const { progress } = useContext(UIContext);
+const AccountMedicPage: NextPage<Props> = ({
+  id,
+  user,
+  medic,
+  avatar,
+  files,
+}) => {
+
   const { setMedic } = useContext(MedicContext);
   const { clinics, getClinicsByMedicId } = useContext(ClinicContext);
   const { setAvatar, setFiles } = useContext(FileContext);
@@ -49,7 +60,6 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar, files }) =
     setFiles(files);
     getClinicsByMedicId(medic._id || "");
     getProductsByMedicId(medic._id);
-
   }, [
     id,
     user,
@@ -65,9 +75,7 @@ const AccountMedicPage: NextPage<Props> = ({ id, user, medic, avatar, files }) =
   ]);
   return (
     <Layout>
-      {progress && (
-        <CircularProgress sx={{ position: "absolute", marginLeft: "50%" }} />
-      )}
+     <LoadingUi/>
       <Grid container spacing={0} rowSpacing={2}>
         <Grid
           item
@@ -117,6 +125,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const session = await getSession({ req });
   const { id } = params as { id: string };
   const user: any = session?.user;
+  console.log(session?.user);
   user ? delete Object.assign(user, { _id: user.id })["id"] : null;
   const medic = await dbMedics.getMedicById(id);
   const _id = medic?.parent_id;
@@ -124,7 +133,10 @@ export const getServerSideProps: GetServerSideProps = async ({
     user?._id || "",
     "image"
   );
-  const files  = await dbFiles.getFilesByParentIdAndType(medic?._id || "", "all")
+  const files = await dbFiles.getFilesByParentIdAndType(
+    medic?._id || "",
+    "all"
+  );
   if (!medic || !session) {
     return {
       redirect: {
@@ -140,7 +152,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       user: session ? user : {},
       avatar: avatar === undefined ? {} : avatar,
       medic: medic,
-      files: files
+      files: files,
     },
   };
 };

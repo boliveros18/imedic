@@ -203,7 +203,7 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
           <Grid item xs={12} sx={{ mt: -1 }}>
            { level !== "Level degree" ? <AddDocumentMedicProfile
               type={level}
-              text={`Add PDF apostille ${level} diploma`}
+              text={`Apostille ${level} diploma PDF: `}
             /> : null }
           </Grid>
           <Grid item xs={12}>

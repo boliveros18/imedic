@@ -16,8 +16,10 @@ import { capitalize } from "../../../utils/strings";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { Client, Medic, IUser } from "../../../interfaces";
-import Router from "next/router";
+import { signOut } from "next-auth/react";
 import { ExpanderUi } from "./ExpanderUi";
+import ManageButtons from "./ManageButtons";
+import { UIContext } from "../../../context/ui";
 
 interface Props {
   children?: ReactNode;
@@ -33,9 +35,8 @@ type FormData = {
   password: string;
 };
 
-export const EditUser: FC<Props> = ({ medic }) => {
-  const { user, updateUser, loginUser } = useContext(AuthContext);
-  const [toggleEdit, setToggleEdit] = useState(false);
+export const EditUser: FC<Props> = ({}) => {
+  const { user, updateUser, loginUser, deleteUser } = useContext(AuthContext);
   const [toggleChangePassword, setToggleChangePassword] = useState(false);
   const {
     register,
@@ -44,6 +45,8 @@ export const EditUser: FC<Props> = ({ medic }) => {
   } = useForm<FormData>();
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const { setProgress } = useContext(UIContext);
+
   const onUpdateForm = async ({
     name,
     old_email,
@@ -52,9 +55,10 @@ export const EditUser: FC<Props> = ({ medic }) => {
     old_password,
   }: FormData) => {
     setShowError(false);
+    setProgress(true);
     const { hasError, messageLogin } = await loginUser(old_email, old_password);
     if (!hasError) {
-      const { hasError, messageUpdate } = await updateUser(user?._id || "", {
+      let { hasError, messageUpdate } = await updateUser(user?._id || "", {
         ...(user as IUser),
         ["name"]: capitalize(name),
         ["email"]: email,
@@ -66,155 +70,175 @@ export const EditUser: FC<Props> = ({ medic }) => {
         setTimeout(() => setShowError(false), 3000);
         return;
       }
-      Router.reload();
+      signOut({ callbackUrl: '/auth/login'})
+      setProgress(false);
     } else {
+      setProgress(false);
       setShowError(true);
       setErrorMessage(messageLogin!);
       setTimeout(() => setShowError(false), 3000);
       return;
     }
+    setProgress(false);
+  };
+
+  const deleteAccount = async ({
+    old_email,
+    old_password,
+  }: FormData) => {
+    try {
+      setProgress(true);
+      const { hasError, messageLogin } = await loginUser(old_email, old_password);
+      if (!hasError) {
+        //await deleteUser(user?._id || "").then( () => {
+          //TODO: Delete all account, files, clinics, etc, file in backend
+        //});
+        console.log("delete credentials")
+        setProgress(false);
+      } else {
+        setProgress(false);
+        setShowError(true);
+        setErrorMessage(messageLogin!);
+        setTimeout(() => setShowError(false), 3000);
+        return;
+      }
+    } catch (error) {
+      setProgress(false);
+     console.log(error)
+
+    }
+    setProgress(false);
   };
 
   return (
     <ExpanderUi title="Edit Profile" icon={true}>
-    <form onSubmit={handleSubmit(onUpdateForm)} noValidate>
-          <Box>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <Chip
-                  label="Wrong email or password"
-                  color="error"
-                  icon={<ErrorOutline />}
-                  className="fadeIn"
-                  sx={{ display: showError ? "flex" : "none" }}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  label="First and last name"
-                  variant="outlined"
-                  fullWidth
-                  autoComplete="off"
-                  defaultValue={user?.name || ""}
-                  {...register("name", {
-                    required: "This field is required",
-                    minLength: { value: 2, message: "At least 2 characters" },
-                  })}
-                  error={!!errors.name}
-                  helperText={errors.name?.message}
-                  size="small"
-                />
-              </Grid>
-              <Grid item display={{ xs: "none" }}>
-                <TextField
-                  type="email"
-                  label="Old_Email"
-                  variant="outlined"
-                  fullWidth
-                  defaultValue={user?.email}
-                  inputProps={{
-                    form: {
-                      autocomplete: "off",
-                    },
+      <form onSubmit={handleSubmit(onUpdateForm)} noValidate>
+        <Box>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Chip
+                label="Wrong email or password"
+                color="error"
+                icon={<ErrorOutline />}
+                className="fadeIn"
+                sx={{ display: showError ? "flex" : "none" }}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="First and last name"
+                variant="outlined"
+                fullWidth
+                autoComplete="off"
+                defaultValue={user?.name || ""}
+                {...register("name", {
+                  required: "This field is required",
+                  minLength: { value: 2, message: "At least 2 characters" },
+                })}
+                error={!!errors.name}
+                helperText={errors.name?.message}
+                size="small"
+              />
+            </Grid>
+            <Grid item display={{ xs: "none" }}>
+              <TextField
+                type="email"
+                label="Old_Email"
+                variant="outlined"
+                fullWidth
+                defaultValue={user?.email}
+                inputProps={{
+                  form: {
+                    autocomplete: "off",
+                  },
+                }}
+                {...register("old_email", {
+                  required: "Enter your email",
+                })}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                type="email"
+                label="Email"
+                variant="outlined"
+                fullWidth
+                defaultValue={user?.email}
+                inputProps={{
+                  form: {
+                    autocomplete: "off",
+                  },
+                }}
+                {...register("email", {
+                  required: "Enter your email",
+                  validate: validations.isEmail,
+                })}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+                size="small"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label="Password"
+                type="password"
+                variant="outlined"
+                fullWidth
+                {...register("old_password", {
+                  required: "This field is required",
+                  minLength: { value: 6, message: "At least 6 characters" },
+                })}
+                error={!!errors.old_password}
+                helperText={errorMessage}
+                size="small"
+              />
+              <IconButton
+                sx={{
+                  borderRadius: 0,
+                  color: "#001B87",
+                  mb: -2,
+                }}
+                onClick={() => setToggleChangePassword(!toggleChangePassword)}
+              >
+                <Typography
+                  sx={{
+                    fontSize: 15,
+                    fontWeight: "500",
+                    borderRadius: 0,
                   }}
-                  {...register("old_email", {
-                    required: "Enter your email",
-                  })}
-                />
-              </Grid>
+                >
+                  Change password
+                </Typography>
+                {toggleChangePassword ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              </IconButton>
+            </Grid>
+            {toggleChangePassword && ( 
               <Grid item xs={12}>
                 <TextField
-                  type="email"
-                  label="Email"
-                  variant="outlined"
-                  fullWidth
-                  defaultValue={user?.email}
-                  inputProps={{
-                    form: {
-                      autocomplete: "off",
-                    },
-                  }}
-                  {...register("email", {
-                    required: "Enter your email",
-                    validate: validations.isEmail,
-                  })}
-                  error={!!errors.email}
-                  helperText={errors.email?.message}
-                  size="small"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  label="Password"
+                  label="New password"
                   type="password"
                   variant="outlined"
                   fullWidth
-                  {...register("old_password", {
+                  {...register("password", {
                     required: "This field is required",
                     minLength: { value: 6, message: "At least 6 characters" },
                   })}
-                  error={!!errors.old_password}
-                  helperText={errorMessage}
+                  error={!!errors.password}
+                  helperText={errors.password?.message}
                   size="small"
                 />
-                <IconButton
-                  sx={{
-                    borderRadius: 0,
-                    color: "#001B87",
-                    mb: -2,
-                  }}
-                  onClick={() => setToggleChangePassword(!toggleChangePassword)}
-                >
-                  <Typography
-                    sx={{
-                      fontSize: 15,
-                      fontWeight: "500",
-                      borderRadius: 0,
-                    }}
-                  >
-                    Change password
-                  </Typography>
-                  {toggleChangePassword ? (
-                    <ExpandLessIcon />
-                  ) : (
-                    <ExpandMoreIcon />
-                  )}
-                </IconButton>
               </Grid>
-              {toggleChangePassword && (
-                <Grid item xs={12}>
-                  <TextField
-                    label="New password"
-                    type="password"
-                    variant="outlined"
-                    fullWidth
-                    {...register("password", {
-                      required: "This field is required",
-                      minLength: { value: 6, message: "At least 6 characters" },
-                    })}
-                    error={!!errors.password}
-                    helperText={errors.password?.message}
-                    size="small"
-                  />
-                </Grid>
-              )}
-              <Grid item xs={12} display="flex" justifyContent="center" sx={{ mb:2 }}>
-                <Button
-                  type="submit"
-                  variant="outlined"
-                  size="medium"
-                  color="primary"
-                  sx={{
-                    width: "90%",
-                    color: "black",
-                  }}
-                >
-                  Update
-                </Button>
-              </Grid>
+            )}
+            <Grid item xs={12}  sx={{ mb: 2 }}>
+              <ManageButtons
+                suppress={handleSubmit(deleteAccount)}
+                submit="UPDATE"
+                type="account. Are you sure"
+              />
             </Grid>
-          </Box>
-        </form>
+          </Grid>
+        </Box>
+      </form>
     </ExpanderUi>
   );
 };
