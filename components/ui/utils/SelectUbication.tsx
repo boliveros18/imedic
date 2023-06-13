@@ -3,10 +3,11 @@ import { MenuItem, SelectChangeEvent, Grid } from "@mui/material";
 import { UIContext } from "../../../context/ui";
 import { Country, State, City } from "country-state-city";
 import SelectUbicationUi from "./SelectUbicationUi";
+import { Clinic } from "../../../interfaces";
 
 interface Props {
   children?: ReactNode;
-  content: any;
+  content: Clinic;
 }
 
 export const SelectUbication: FC<Props> = ({ content }) => {
@@ -15,13 +16,13 @@ export const SelectUbication: FC<Props> = ({ content }) => {
   const [state, addState] = useState("");
   const [city, addCity] = useState("");
 
-  useEffect(() => {
-    setCountry(content.country);
-    setState(content.state);
-    setCity(content.province);
-    addCountry("");
-    addState("");
-    addCity("");
+   useEffect(() => {
+      setCountry(content.country);
+      setState(content.state);
+      setCity(content.province);
+      addCountry("");
+      addState("");
+      addCity("");
   }, [setCountry, setState, setCity, content]);
 
   const handleChangeCountry = (event: SelectChangeEvent) => {

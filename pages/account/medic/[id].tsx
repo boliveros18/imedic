@@ -115,7 +115,8 @@ const AccountMedicPage: NextPage<Props> = ({
               <ProductQuotes />
               <MedicContract medic={medic} />
               <ProcedureAvailability medic={medic} />
-              <ProceduresInProcess medic={medic} />
+              <ProceduresInProcess medic={medic} /> {//TODO: add user profile access link
+              }
             </CardContent>
           </Card>
         </Grid>

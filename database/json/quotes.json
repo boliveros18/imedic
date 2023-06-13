@@ -1,0 +1,142 @@
+[{
+  "_id": {
+    "$oid": "647395be0f7d8254466bcc88"
+  },
+  "product_id": "647392400f7d8254466bcc5e",
+  "price": 1550,
+  "currency": "US",
+  "quantity": 150,
+  "unit": "cc",
+  "createdAt": {
+    "$numberLong": "1685296574506"
+  },
+  "updatedAt": {
+    "$numberLong": "1685976941576"
+  },
+  "__v": 0,
+  "medic_id": "642c78282452ed13a087f5d4"
+},{
+  "_id": {
+    "$oid": "64739e8c0f7d8254466bcd04"
+  },
+  "product_id": "647392400f7d8254466bcc5e",
+  "price": 2000,
+  "currency": "US",
+  "quantity": 200,
+  "unit": "cc",
+  "createdAt": {
+    "$numberLong": "1685298828606"
+  },
+  "updatedAt": 0,
+  "__v": 0,
+  "medic_id": "642c78282452ed13a087f5d4"
+},{
+  "_id": {
+    "$oid": "64739e960f7d8254466bcd07"
+  },
+  "product_id": "647392400f7d8254466bcc5e",
+  "price": 2500,
+  "currency": "US",
+  "quantity": 250,
+  "unit": "cc",
+  "createdAt": {
+    "$numberLong": "1685298838794"
+  },
+  "updatedAt": 0,
+  "__v": 0,
+  "medic_id": "642c78282452ed13a087f5d4"
+},{
+  "_id": {
+    "$oid": "64739ea50f7d8254466bcd0a"
+  },
+  "product_id": "647392400f7d8254466bcc5e",
+  "price": 3000,
+  "currency": "US",
+  "quantity": 300,
+  "unit": "cc",
+  "createdAt": {
+    "$numberLong": "1685298853091"
+  },
+  "updatedAt": {
+    "$numberLong": "1685298869661"
+  },
+  "__v": 0,
+  "medic_id": "642c78282452ed13a087f5d4"
+},{
+  "_id": {
+    "$oid": "64739eea0f7d8254466bcd11"
+  },
+  "product_id": "647392400f7d8254466bcc5e",
+  "price": 3500,
+  "currency": "US",
+  "quantity": 350,
+  "unit": "cc",
+  "createdAt": {
+    "$numberLong": "1685298922426"
+  },
+  "updatedAt": 0,
+  "__v": 0,
+  "medic_id": "642c78282452ed13a087f5d4"
+},{
+  "_id": {
+    "$oid": "64739eff0f7d8254466bcd14"
+  },
+  "product_id": "647392400f7d8254466bcc5e",
+  "price": 4000,
+  "currency": "US",
+  "quantity": 400,
+  "unit": "cc",
+  "createdAt": {
+    "$numberLong": "1685298943866"
+  },
+  "updatedAt": {
+    "$numberLong": "1685301110032"
+  },
+  "__v": 0,
+  "medic_id": "642c78282452ed13a087f5d4"
+},{
+  "_id": {
+    "$oid": "647cddcd528b59502f1538f9"
+  },
+  "product_id": "647392400f7d8254466bcc5e",
+  "price": 4500,
+  "currency": "US",
+  "quantity": 450,
+  "unit": "cc",
+  "createdAt": {
+    "$numberLong": "1685904845158"
+  },
+  "updatedAt": 0,
+  "__v": 0,
+  "medic_id": "642c78282452ed13a087f5d4"
+},{
+  "_id": {
+    "$oid": "647df4bbdd06a1d007e6ad3e"
+  },
+  "product_id": "647392400f7d8254466bcc5e",
+  "price": 5000,
+  "currency": "US",
+  "quantity": 500,
+  "unit": "cc",
+  "createdAt": {
+    "$numberLong": "1685976251801"
+  },
+  "updatedAt": 0,
+  "__v": 0,
+  "medic_id": "642c78282452ed13a087f5d4"
+},{
+  "_id": {
+    "$oid": "647e91d20eb3d3a5fa7a95b7"
+  },
+  "product_id": "647392400f7d8254466bcc5e",
+  "price": 6000,
+  "currency": "US",
+  "quantity": 600,
+  "unit": "cc",
+  "createdAt": {
+    "$numberLong": "1686016466524"
+  },
+  "updatedAt": 0,
+  "__v": 0,
+  "medic_id": "642c78282452ed13a087f5d4"
+}]

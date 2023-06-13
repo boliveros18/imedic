@@ -1,8 +1,9 @@
 import bcrypt from "bcryptjs";
-import modelUser from "../models/User"
+import modelUser from "../models/User";
 import { db } from "./";
 import { User } from "next-auth";
 import { IUser } from "../interfaces";
+import { Clinic, Degree, Medic } from "../models";
 
 export const checkUserEmailPassword = async (
   email: string,
@@ -30,10 +31,7 @@ export const checkUserEmailPassword = async (
   } as User;
 };
 
-export const oAUthToDbUser = async (
-  oAuthEmail: string,
-  oAuthName: string,
-) => {
+export const oAUthToDbUser = async (oAuthEmail: string, oAuthName: string) => {
   await db.connect();
   const user = await modelUser.findOne({ email: oAuthEmail });
 
@@ -56,26 +54,36 @@ export const oAUthToDbUser = async (
   return { id, name, email, role };
 };
 
-export const getUsersbyEmail = async (
-  email: string
-): Promise<IUser> => {
+export const getUsersbyEmail = async (email: string): Promise<IUser> => {
   await db.connect();
-    const user: IUser = await modelUser.find({ email: email },
-      { name: 1, role: 1 }).lean();
-    await db.disconnect();
-    return JSON.parse(JSON.stringify(user));
+  const user: IUser = await modelUser
+    .find({ email: email }, { name: 1, role: 1 })
+    .lean();
+  await db.disconnect();
+  return JSON.parse(JSON.stringify(user));
 };
-
 
 export const getUsersbyId = async (
   _id: string | string[] | undefined
 ): Promise<IUser[] | []> => {
-
   await db.connect();
-    const users = await modelUser.find(
-      { _id: _id },
-      { name: 1, role: 1, email: 1 }
-    ).lean();
-    await db.disconnect();
-    return JSON.parse(JSON.stringify(users));
+
+  const users = await modelUser
+    .find({ _id: _id }, { name: 1, role: 1, email: 1 })
+    .lean();
+  await db.disconnect();
+  return JSON.parse(JSON.stringify(users));
+};
+
+export const deleteChildren = async (id: string | string [] | undefined) => {
+  //TODO: Delete clinics, degress, quotations, products, procedures, files(medic_id, user_id), medic, user
+  await db.connect();
+  const params = id ? { parent_id : id } :{}
+  const medic = await Medic.find(params).lean();
+  const medicToDelete = await Medic.findByIdAndDelete(medic[0]._id);
+  if(medicToDelete){
+    await Clinic.deleteMany({ medic_id: medic[0]._id });
+    await Degree.deleteMany({ medic_id: medic[0]._id });
+  }
+  await db.disconnect();
 };

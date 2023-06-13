@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import { db } from "../../../../database";
+import { db, dbUsers } from "../../../../database";
 import { User, AUser } from "../../../../models";
 import { validations } from "../../../../utils";
 
@@ -141,9 +141,10 @@ const deleteUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       .json({ message: "There is no user with that ID: " + id });
   }
   try {
-        //TODO: Delete clinics, degress, quotations, products, procedures, files, medic, user
     const deleteUser = await User.findByIdAndDelete(id);
-
+    if (deleteUser) {
+      await dbUsers.deleteChildren(id);
+    }
     await db.disconnect();
     res.status(200).json(deleteUser!);
   } catch (error: any) {

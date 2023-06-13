@@ -4,6 +4,7 @@ import { Quote } from "../interfaces";
 export interface IQuote extends Quote {}
 
 const entrySchema = new Schema({
+  medic_id: { type: String, require: true },
   product_id: { type: String, require: true },
   price: { type: Number, require: true },
   currency: { type: String, require: true },

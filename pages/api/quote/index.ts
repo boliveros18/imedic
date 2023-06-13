@@ -28,6 +28,7 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 
   const {
+    medic_id = "",
     product_id = "",
     price = 0,
     currency = "",
@@ -39,6 +40,7 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   await db.connect();
 
   const newModel = new Quote({
+    medic_id,
     product_id,
     price,
     currency,

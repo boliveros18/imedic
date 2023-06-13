@@ -63,16 +63,12 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   const {
     status = modelToUpdate.status,
-    card_id = modelToUpdate.card_id,
-    contract_signature = modelToUpdate.contract_signature,
     available_days = modelToUpdate.available_days,
-    curriculum = modelToUpdate.curriculum,
     qualification = modelToUpdate.qualification,
     comments = modelToUpdate.comments,
     instagram = modelToUpdate.instagram,
-    country = modelToUpdate.country,
-    state = modelToUpdate.state,
-    province = modelToUpdate.province,
+    age = modelToUpdate.age,
+    years_experience = modelToUpdate.years_experience,
     updatedAt = Date.now(),
   } = req.body;
 
@@ -81,16 +77,12 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       id,
       {
         status,
-        card_id,
-        contract_signature,
         available_days,
-        curriculum,
         qualification,
         comments,
         instagram,
-        country,
-        state,
-        province,
+        age, 
+        years_experience,
         updatedAt,
       },
       { runValidators: true, new: true }

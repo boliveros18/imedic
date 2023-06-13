@@ -3,16 +3,12 @@ export interface Medic {
   type: string;
   parent_id: string;
   status: string;
-  card_id: string;
-  contract_signature: string;
-  available_days: string;
-  curriculum: string;
+  available_days: [];
   qualification: number;
   comments: number;
   instagram: string;
-  country: string;
-  state: string;
-  province: string;
+  age: number;
+  years_experience: number;
   createdAt: number;
   updatedAt: number;
 }

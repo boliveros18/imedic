@@ -63,6 +63,7 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 
   const {
+    medic_id = modelToUpdate.medic_id,
     product_id = modelToUpdate.product_id,
     price = modelToUpdate.price,
     currency = modelToUpdate.currency,
@@ -75,6 +76,7 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     const updatedModel = await Quote.findByIdAndUpdate(
       id,
       {
+        medic_id,
         product_id,
         price,
         currency,

@@ -12,7 +12,6 @@ import { MedicContext } from "../../context/medic";
 import { UIContext } from "../../context/ui";
 import { Medic } from "../../interfaces";
 import { useSnackbar } from "notistack";
-import SelectUbication from "../ui/utils/SelectUbication";
 import AddDocumentMedicProfile from "./AddDocumentMedicProfile";
 import TextFieldUi from "../ui/utils/TextFieldUi";
 
@@ -24,8 +23,8 @@ interface Props {
 export const CompleteMedicProfile: FC<Props> = ({ medic }) => {
   const { enqueueSnackbar } = useSnackbar();
   const { updateMedic } = useContext(MedicContext);
-  const { country, state, city, setProgress } = useContext(UIContext);
-  const [value, setValue] = useState(medic);
+  const { setProgress } = useContext(UIContext);
+  const [values, setValues] = useState(medic);
   const [inputs, setInputs] = useState({});
 
   const handleSubmit = async (e: FormEvent) => {
@@ -34,24 +33,21 @@ export const CompleteMedicProfile: FC<Props> = ({ medic }) => {
       setProgress(true);
       await updateMedic(medic._id, {
         ...inputs,
-        country: country,
-        state: state,
-        province: city,
       } as Medic).then(() => {
         setInputs({});
         setProgress(false);
-        enqueueSnackbar(`Your medic profile has been updated!`, { variant: "success" });
-     
+        enqueueSnackbar(`Your medic profile has been updated!`, {
+          variant: "success",
+        });
       });
     } catch (error: any) {
       setProgress(false);
       enqueueSnackbar("Error, try again!", { variant: "error" });
     }
- 
   };
 
   const handleInput = ({ target }: ChangeEvent<any>) => {
-    setValue(target.value);
+    setValues({ ...values, [target.name]: target.value });
     const value = target.type === "checkbox" ? target.checked : target.value;
     setInputs({ ...inputs, [target.name]: value });
   };
@@ -60,17 +56,30 @@ export const CompleteMedicProfile: FC<Props> = ({ medic }) => {
     <AccordionUi summary="Medic Profile">
       <form onSubmit={handleSubmit} noValidate>
         <Grid container spacing={0} rowSpacing={2}>
-            <TextFieldUi
-              submit="SAVE"
-              type="text"
-              name="instagram"
-              label="Instagram link"
-              value={value.instagram}
-              onChange={handleInput}
-            />
-          <Grid item xs={12}>
-            <SelectUbication content={medic} />
-          </Grid>
+          <TextFieldUi
+            submit="SAVE"
+            type="text"
+            name="instagram"
+            label="Instagram link"
+            value={values.instagram}
+            onChange={handleInput}
+          />
+          <TextFieldUi
+            submit="SAVE"
+            type="number"
+            name="age"
+            label="Your age"
+            value={values.age}
+            onChange={handleInput}
+          />{" "}
+          <TextFieldUi
+            submit="SAVE"
+            type="text"
+            name="years_experience"
+            label="Years of experience as a specialist"
+            value={values.years_experience}
+            onChange={handleInput}
+          />
           <Grid container spacing={0} rowSpacing={2}>
             <Grid item xs={12} sx={{ mt: "5px" }}>
               <AddDocumentMedicProfile
