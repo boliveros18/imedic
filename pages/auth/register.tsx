@@ -244,7 +244,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         type: "Medic",
         parent_id: user.id,
         status: "pending",
-        available_days: [],
+        availables_dates: [],
         qualification: 0,
         comments: 0,
         instagram: "",
