@@ -104,7 +104,7 @@ const AccountMedicPage: NextPage<Props> = ({
             <SelectCategoryAndProcedure products={products} />
             <MedicAccountCard clinic={clinics[index]} medic={medic} />
             <CardContent sx={{ mb: -2 }}>
-              <EditUser medic={medic} />
+              <EditUser />
             </CardContent>
             <Divider />
             <CardContent sx={{ mt: "-14px" }}>
@@ -112,10 +112,10 @@ const AccountMedicPage: NextPage<Props> = ({
               <ManageClinics medic={medic} />
               <ManageDegrees medic={medic} />
               <ManageProducts medic={medic} />
-              <ProductQuotes />
+              <ProductQuotes medic={medic} />
               <MedicContract medic={medic} />
-              <ProcedureAvailability medic={medic} />
-              <ProceduresInProcess medic={medic} /> {//TODO: add user profile access link
+              <ProcedureAvailability />
+              <ProceduresInProcess /> {//TODO: add user profile access link
               }
             </CardContent>
           </Card>

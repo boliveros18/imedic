@@ -3,7 +3,7 @@ import modelUser from "../models/User";
 import { db } from "./";
 import { User } from "next-auth";
 import { IUser } from "../interfaces";
-import { Clinic, Degree, Medic } from "../models";
+import { Clinic, Degree, File, Medic, Procedure, Product, Quote } from "../models";
 
 export const checkUserEmailPassword = async (
   email: string,
@@ -76,7 +76,6 @@ export const getUsersbyId = async (
 };
 
 export const deleteChildren = async (id: string | string [] | undefined) => {
-  //TODO: Delete clinics, degress, quotations, products, procedures, files(medic_id, user_id), medic, user
   await db.connect();
   const params = id ? { parent_id : id } :{}
   const medic = await Medic.find(params).lean();
@@ -84,6 +83,10 @@ export const deleteChildren = async (id: string | string [] | undefined) => {
   if(medicToDelete){
     await Clinic.deleteMany({ medic_id: medic[0]._id });
     await Degree.deleteMany({ medic_id: medic[0]._id });
+    await Quote.deleteMany({ medic_id: medic[0]._id });
+    await Product.deleteMany({ medic_id: medic[0]._id });
+    await Procedure.deleteMany({ medic_id: medic[0]._id });
+    await File.deleteMany({ medic_id: medic[0]._id, parent_id: medic[0].parent_id });
   }
   await db.disconnect();
 };

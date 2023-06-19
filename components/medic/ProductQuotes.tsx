@@ -18,18 +18,19 @@ import {
 import { UIContext } from "../../context/ui";
 import { ProductContext } from "../../context/product";
 import { QuoteContext } from "../../context/quote";
-import { Product, Quote } from "../../interfaces";
+import { Medic, Product, Quote } from "../../interfaces";
 import { SelectUi } from "../ui/utils/SelectUi";
-import { quote } from "../../utils/constants";
+import { quote, units } from "../../utils/constants";
 import { useSnackbar } from "notistack";
 import ManageButtons from "../ui/utils//ManageButtons";
 import TextFieldUi from "../ui/utils//TextFieldUi";
 
 interface Props {
   children?: ReactNode;
+  medic: Medic;
 }
 
-export const ProductQuotes: FC<Props> = ({}) => {
+export const ProductQuotes: FC<Props> = ({ medic }) => {
   const { products } = useContext(ProductContext);
   const {
     quotes,
@@ -45,7 +46,6 @@ export const ProductQuotes: FC<Props> = ({}) => {
   const [submit, setSubmit] = useState("CREATE");
   const [create, onCreate] = useState(true);
   const [unit, setUnit] = useState("Select unit");
-  const units = ["lb", "oz", "in", "sq.in", "ft", "cc", "unit"];
 
   useEffect(() => {
     getQuotesByProductId(product._id);
@@ -88,6 +88,7 @@ export const ProductQuotes: FC<Props> = ({}) => {
         setProgress(true);
         await createQuote({
           ...inputs,
+          medic_id:  medic._id,
           product_id: product._id,
           unit: unit,
           currency: "US",

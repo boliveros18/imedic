@@ -22,8 +22,6 @@ import { UIContext } from "../../../context/ui";
 
 interface Props {
   children?: ReactNode;
-  medic?: Medic;
-  client?: Client;
 }
 
 type FormData = {

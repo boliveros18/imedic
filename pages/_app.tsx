@@ -14,7 +14,6 @@ import { QualificationProvider } from "../context/qualification";
 import { ProductProvider } from "../context/product";
 import { FileProvider } from "../context/file";
 import { QuoteProvider } from "../context/quote";
-import { CalendarProvider } from "../context/calendar";
 import { ProcedureProvider } from "../context/procedure";
 import { SnackbarProvider } from "notistack";
 import { lightTheme } from "../themes";
@@ -45,7 +44,6 @@ export default function App({ Component, pageProps }: Props) {
                         <FileProvider>
                           <DegreeProvider>
                             <QuoteProvider>
-                              <CalendarProvider>
                                 <ProcedureProvider>
                                   <QualificationProvider>
                                     <CertificationProvider>
@@ -55,7 +53,6 @@ export default function App({ Component, pageProps }: Props) {
                                     </CertificationProvider>
                                   </QualificationProvider>
                                 </ProcedureProvider>
-                              </CalendarProvider>
                             </QuoteProvider>
                           </DegreeProvider>
                         </FileProvider>

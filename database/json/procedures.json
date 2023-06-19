@@ -57,4 +57,34 @@
   "updatedAt": {
     "$numberLong": "1677944214208"
   }
+},
+{
+  "_id": {
+    "$oid": "63ab77d06d6dc52c56dc6534"
+  },
+  "medic_id": "64448080e8373f0a9823a61e",
+  "product_id": "6490664bc0a73b7f5ed5dca1",
+  "product_procedure": "Breast augmentation",
+  "client_id": "63ac7a91454855cff2b9c293",
+  "client_name": "Maria Cano",
+  "surgical_facility": true,
+  "facility_care": true,
+  "medical_care": true,
+  "anesthesia_fees": true,
+  "medical_tests": false,
+  "post_surgery_garments": true,
+  "prescription_medication": true,
+  "surgeon_fee": true,
+  "surgeon_insurance": true,
+  "additional_cost": true,
+  "status": "Pending",
+  "date": {
+    "$numberLong": "1687381329008"
+  }, 
+  "createdAt": {
+    "$numberLong": "1672181711974"
+  },
+  "updatedAt": {
+    "$numberLong": "1677944214208"
+  }
 }]

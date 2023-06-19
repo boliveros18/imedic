@@ -16,52 +16,24 @@ import ManageHistoryIcon from "@mui/icons-material/ManageHistory";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { UIContext } from "../../context/ui";
 import { ProcedureContext } from "../../context/procedure";
-import { CalendarContext } from "../../context/calendar";
+import { MedicContext } from "../../context/medic";
+import { columns } from "../../utils/constants";
 import { useSnackbar } from "notistack";
-import { Medic, Calendar, Procedure } from "../../interfaces";
+import { Medic, Procedure } from "../../interfaces";
 import AccordionUi from "../ui/utils/AccordionUi";
-
-interface Column {
-  id: "client_name" | "product_procedure" | "date" | "status";
-  label: string;
-  minWidth?: number;
-  align?: "right" | "left" | "center";
-  format?: (value: number) => string;
-}
-
-const columns: readonly Column[] = [
-  { id: "client_name", label: "Patient", minWidth: 70, align: "left" },
-  { id: "product_procedure", label: "Procedure", minWidth: 60, align: "left" },
-  {
-    id: "date",
-    label: "Date",
-    minWidth: 70,
-    align: "center",
-    format: (value: number) => new Date(value).toLocaleDateString("en-GB"),
-  },
-  {
-    id: "status",
-    label: "Status",
-    minWidth: 70,
-    align: "center",
-  },
-];
 
 interface Props {
   children?: ReactNode;
-  medic: Medic;
 }
 
-export const ProceduresInProcess: FC<Props> = ({ medic }) => {
+export const ProceduresInProcess: FC<Props> = ({ }) => {
   const { procedures, getProceduresByMedicId, updateProcedure } =
     useContext(ProcedureContext);
-  const { calendar, getCalendarByMedicId, updateCalendar } =
-    useContext(CalendarContext);
+  const { medic, updateMedic } = useContext(MedicContext);
 
   useEffect(() => {
     getProceduresByMedicId(medic._id);
-    getCalendarByMedicId(medic._id);
-  }, [medic, getProceduresByMedicId, getCalendarByMedicId]);
+  }, [ medic, getProceduresByMedicId ]);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -95,12 +67,12 @@ export const ProceduresInProcess: FC<Props> = ({ medic }) => {
   const updatingFunction = async (date: number) => {
     try {
       setProgress(true);
-      await updateCalendar(calendar._id || "", {
-        availables_dates: calendar.availables_dates.filter(
+      await updateMedic(medic._id || "", {
+        availables_dates: medic.availables_dates.filter(
           (date) => date !== procedures[index].date
         ),
         updatedAt: Date.now(),
-      } as Calendar).then(async () => {
+      } as Medic).then(async () => {
         await updateProcedure(procedures[index]._id || "", {
           status: status,
           date: date,
@@ -191,11 +163,14 @@ export const ProceduresInProcess: FC<Props> = ({ medic }) => {
                                     color: "white",
                                     backgroundColor: "#2874A6",
                                     borderColor: "#2874A6",
+                                    width: 25, 
+                                    height: 25
                                   }}
                                   onMouseEnter={() => setStatus("Reassigned")}
                                   onClick={handleSubmit}
                                 >
-                                  <ManageHistoryIcon />
+                                  <ManageHistoryIcon sx={{width: 18, 
+                                    height: 18 }}/>
                                 </IconButton>
                               </span>
                             </Tooltip>
@@ -215,11 +190,14 @@ export const ProceduresInProcess: FC<Props> = ({ medic }) => {
                                   color: "white",
                                   backgroundColor: "#4FC541",
                                   borderColor: "#4FC541",
+                                  width: 25, 
+                                  height: 25
                                 }}
                                 onMouseEnter={() => setStatus("Accepted")}
                                 onClick={handleSubmit}
                               >
-                                <CheckCircleOutlineIcon />
+                                <CheckCircleOutlineIcon sx={{width: 18, 
+                                    height: 18 }}/>
                               </IconButton>
                               </span>
                             </Tooltip>

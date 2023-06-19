@@ -3,7 +3,7 @@ export interface Medic {
   type: string;
   parent_id: string;
   status: string;
-  available_days: [];
+  availables_dates: [];
   qualification: number;
   comments: number;
   instagram: string;

@@ -7,7 +7,7 @@ const entrySchema = new Schema({
   type: { type: String, require: true },
   parent_id: { type: String, require: true },
   status: { type: String },
-  available_days: { type: Array },
+  availables_dates: { type: [] },
   qualification: { type: Number },
   comments: { type: Number },
   instagram: { type: String },

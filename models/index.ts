@@ -1,4 +1,3 @@
-export { default as Calendar, type ICalendar } from './Calendar'
 export { default as Certification, type ICertification } from './Certification'
 export { default as Clinic, type IClinic } from './Clinic'
 export { default as Comment, type IComment } from './Comment'

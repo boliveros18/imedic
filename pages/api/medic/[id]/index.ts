@@ -63,7 +63,7 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   const {
     status = modelToUpdate.status,
-    available_days = modelToUpdate.available_days,
+    availables_dates = modelToUpdate.availables_dates,
     qualification = modelToUpdate.qualification,
     comments = modelToUpdate.comments,
     instagram = modelToUpdate.instagram,
@@ -77,7 +77,7 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       id,
       {
         status,
-        available_days,
+        availables_dates,
         qualification,
         comments,
         instagram,

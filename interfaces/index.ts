@@ -1,6 +1,7 @@
 export * from "./cart";
 export * from "./certification";
 export * from "./clinic";
+export * from "./column";
 export * from "./comment";
 export * from "./like";
 export * from "./qualification";
@@ -14,6 +15,5 @@ export * from "./file";
 export * from "./product";
 export * from "./quote";
 export * from "./procedure";
-export * from "./calendar";
 export * from "./payout";
 export * from "./client";

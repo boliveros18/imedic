@@ -1,34 +1,29 @@
-import { FC, ReactNode, useState, useContext, useEffect, useMemo } from "react";
-import DatePicker from "react-multi-date-picker";
+import { FC, ReactNode, useState, useContext, useMemo } from "react";
+import DatePicker, { DateObject } from "react-multi-date-picker";
 import { Typography, Grid, Button, Box } from "@mui/material";
 import EventIcon from "@mui/icons-material/Event";
 import { UIContext } from "../../context/ui";
-import { CalendarContext } from "../../context/calendar";
+import { MedicContext } from "../../context/medic";
 import { ProcedureContext } from "../../context/procedure";
 import { useSnackbar } from "notistack";
-import { Calendar, Medic } from "../../interfaces";
+import { Medic } from "../../interfaces";
 import AccordionUi from "../ui/utils/AccordionUi";
+import { getSixNumbers } from "../../utils";
 
 interface Props {
   children?: ReactNode;
-  medic: Medic;
 }
 
-export const ProcedureAvailability: FC<Props> = ({ medic }) => {
-  const { calendar, createCalendar, updateCalendar, getCalendarByMedicId } =
-    useContext(CalendarContext);
+export const ProcedureAvailability: FC<Props> = ({}) => {
+  const { medic, updateMedic } = useContext(MedicContext);
   const { procedures } = useContext(ProcedureContext);
-  useEffect(() => {
-    getCalendarByMedicId(medic._id);
-  }, [medic, getCalendarByMedicId]);
-
   const { setProgress } = useContext(UIContext);
   const { enqueueSnackbar } = useSnackbar();
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   const [values, setValues] = useState<any>();
-  useMemo(() => setValues(calendar.availables_dates), [calendar]);
-  
+  useMemo(() => setValues(medic.availables_dates), [medic]);
+
   const success = (model: string, state: string) => {
     setProgress(false);
     enqueueSnackbar(`Your ${model} has been ${state}!`, { variant: "success" });
@@ -41,36 +36,21 @@ export const ProcedureAvailability: FC<Props> = ({ medic }) => {
   };
 
   const handleSubmit = async () => {
-    if (calendar._id) {
-      try {
-        setProgress(true);
-        const allowed = values.filter((value: any) => {
-          for (let i = 0; i < procedures.length; i++) {
-            return (value.unix*1000+8) !== procedures[i].date 
-          }
-        })
-        await updateCalendar(calendar._id || "", {
-          availables_dates: allowed,
-          updatedAt: Date.now(),
-        } as Calendar).then(() => {
-          getCalendarByMedicId(medic._id);
-          success("calendar", "updated");
-        });
-      } catch (error: any) {
-        unsuccess(error);
-      }
-    } else {
-      try {
-        setProgress(true);
-        await createCalendar({
-          medic_id: medic._id,
-          availables_dates: values,
-        } as Calendar).then(() => {
-          success("calendar", "created");
-        });
-      } catch (error: any) {
-        unsuccess(error);
-      }
+    try {
+      setProgress(true);
+      const allowed = values?.filter((value: any) => {
+        for (let i = 0; i < procedures.length; i++) {
+          return getSixNumbers(value.unix) !== getSixNumbers(procedures[i].date)
+        }
+      });
+      await updateMedic(medic._id || "", {
+        availables_dates: allowed,
+        updatedAt: Date.now(),
+      } as Medic).then(() => {
+        success("calendar", "updated");
+      });
+    } catch (error: any) {
+      unsuccess(error);
     }
     setProgress(false);
   };
@@ -102,7 +82,7 @@ export const ProcedureAvailability: FC<Props> = ({ medic }) => {
             <DatePicker
               multiple
               value={values}
-              onChange={setValues} 
+              onChange={setValues}
               sort
               minDate={tomorrow}
               style={{ width: "100%" }}
