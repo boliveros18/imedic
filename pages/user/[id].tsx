@@ -1,3 +1,4 @@
+/*
 import { useContext, useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
 import { dbCertifications, dbClinics, dbQualifications } from "../../database";
@@ -239,3 +240,4 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 };
 
 export default ClinicPage;
+*/
