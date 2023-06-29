@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { db } from "../../../database";
+import { db, dbCertifications } from "../../../database";
 import { Certification, ICertification } from "../../../models";
 import { getSession } from "next-auth/react";
 
-type Data = { message: string } | ICertification;
+type Data = { message: string } | ICertification | ICertification [];
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,7 +13,7 @@ export default async function handler(
     case "POST":
       return createModel(req, res);
     case "GET":
-      return getCertifications(res);
+      return getCertifications(req, res);
     default:
       return res.status(400).json({ message: "The endpoint does not exist" });
   }
@@ -28,24 +28,18 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 
   const {
-    parent_id = "",
+    clinic_id = "",
     name = "",
-    approved = false,
-    certificate = "",
     description = "",
-    to_approve = false,
-    logo = "",
+    logo_link = "",
   } = req.body;
   await db.connect();
 
   const newModel = new Certification({
-    parent_id,
+    clinic_id,
     name,
-    approved,
-    certificate,
     description,
-    to_approve,
-    logo,
+    logo_link,
   });
 
   try {
@@ -61,11 +55,17 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 };
 
-const getCertifications = async (res: NextApiResponse<Data>) => {
-  await db.connect();
-  const certifications: any = await Certification.find().sort({
-    createdAt: "ascending",
+const getCertifications = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+  try {
+  const certifications = await dbCertifications.getCertificationsByClinicId(
+    req.query.clinic_id as string
+  );
+  return res.status(201).json(certifications);
+} catch (error: any) {
+  console.log(error);
+  res.status(400).json({
+    message: error.message || "Check server logs",
   });
-  await db.disconnect();
-  return res.status(200).json(certifications);
+}
+return;
 };

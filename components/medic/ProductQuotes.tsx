@@ -46,13 +46,12 @@ export const ProductQuotes: FC<Props> = ({ medic }) => {
   const [submit, setSubmit] = useState("CREATE");
   const [create, onCreate] = useState(true);
   const [unit, setUnit] = useState("Select unit");
+  const [values, setValues] = useState(quote);
+  const [inputs, setInputs] = useState({} as Quote);
 
   useEffect(() => {
     getQuotesByProductId(product._id);
   }, [product, getQuotesByProductId]);
-
-  const [values, setValues] = useState(quote);
-  const [inputs, setInputs] = useState({} as Quote);
 
   const successService = async (state: string) => {
     await getQuotesByProductId(product._id);

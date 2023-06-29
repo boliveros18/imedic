@@ -1,12 +1,6 @@
 import { useContext, useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
-import { getSession } from "next-auth/react";
-import {
-  dbCertifications,
-  dbClinics,
-  dbQualifications,
-  dbFiles,
-} from "../../database";
+import { dbCertifications, dbClinics, dbQualifications } from "../../database";
 import {
   Typography,
   Card,
@@ -33,38 +27,28 @@ import {
   SideBar,
 } from "../../components/ui";
 import { Layout } from "../../components/layouts";
-import { Clinic, Certification, Qualification, IUser, File } from "../../interfaces";
+import { Clinic, Certification, Qualification } from "../../interfaces";
 import { UIContext } from "../../context/ui";
-import { AuthContext } from "../../context/auth";
-import { FileContext } from "../../context/file";
 
 interface Props {
   clinic: Clinic;
   certification: Certification[];
   qualifications: Qualification[];
-  user: IUser;
-  avatar: File;
 }
 
 const ClinicPage: NextPage<Props> = ({
   clinic,
   certification,
   qualifications,
-  user,
-  avatar,
 }) => {
   const mobile = UseWindowSize();
   const size = WindowSize();
   const { setProgress } = useContext(UIContext);
-  const { setUser } = useContext(AuthContext);
-  const { setAvatar } = useContext(FileContext);
-
+  
   useEffect(() => {
-    setProgress(false);
-    setUser(user);
-    setAvatar(avatar);
-  }, [setProgress, user, setUser, avatar, setAvatar]);
-
+    setProgress(false)
+  }, [setProgress])
+  
   return (
     <Layout>
       <Grid container spacing={0} rowSpacing={2}>
@@ -199,11 +183,11 @@ const ClinicPage: NextPage<Props> = ({
                         <CardMedia
                           component="img"
                           sx={{
-                            width: item?.logo_link ? 50 : 0,
+                            width: item?.logo ? 50 : 0,
                             m: 1,
                             border: 0,
                           }}
-                          image={item?.logo_link}
+                          image={item?.logo}
                           alt=""
                         />
                       </Card>
@@ -230,20 +214,10 @@ const ClinicPage: NextPage<Props> = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params,
-  req,
-}) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { id } = params as { id: string };
-  const session = await getSession({ req });
-  const user: any = session?.user;
-  user ? delete Object.assign(user, { _id: user.id })["id"] : null;
-  const avatar = await dbFiles.getFilesByParentIdAndType(
-    user?._id || "",
-    "image"
-  );
   const clinic = await dbClinics.getClinicById(id);
-  const certification = await dbCertifications.getCertificationsByClinicId(id);
+  const certification = await dbCertifications.getCertificationByParentId(id);
   const qualifications = await dbQualifications.getQualificationByParentId(id);
 
   if (!clinic) {
@@ -255,15 +229,11 @@ export const getServerSideProps: GetServerSideProps = async ({
     };
   }
 
-//hacer que el modulo de user/avatar se llame comunmente de otro lado
-
   return {
     props: {
       clinic,
       certification,
       qualifications,
-      user: session ? user : {},
-      avatar: avatar === undefined ? {} : avatar,
     },
   };
 };

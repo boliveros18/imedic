@@ -7,6 +7,7 @@ import {
   FormEvent,
   useEffect,
 } from "react";
+import { useRouter } from 'next/router'
 import AccordionUi from "../ui/utils/AccordionUi";
 import { Alert, Grid, MenuItem } from "@mui/material";
 import { ClinicContext } from "../../context/clinic";
@@ -27,6 +28,7 @@ interface Props {
 }
 
 export const ManageClinics: FC<Props> = ({ medic }) => {
+  const router = useRouter()
   const { enqueueSnackbar } = useSnackbar();
   const {
     clinics,
@@ -111,6 +113,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
       setProgress(true);
       await deleteClinic(clinics[index]?._id || "").then(async () => {
        successService("deleted")
+       router.reload();
       });
     } catch (error) {
       setProgress(false);

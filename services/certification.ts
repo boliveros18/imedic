@@ -6,8 +6,8 @@ export const getCertification = async (id: string) => {
   return res.data;
 };
 
-export const getCertifications = async () => {
-  const res = await ApiClient.get(`/certification`);
+export const getCertificationsByClinicId = async (clinic_id: string) => {
+  const res = await ApiClient.get(`/certification?clinic_id=${clinic_id}`);
   return res.data;
 };
 

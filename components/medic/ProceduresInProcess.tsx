@@ -12,6 +12,7 @@ import {
   Paper,
   Tooltip,
 } from "@mui/material";
+import Link from "next/link";
 import ManageHistoryIcon from "@mui/icons-material/ManageHistory";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { UIContext } from "../../context/ui";
@@ -26,14 +27,14 @@ interface Props {
   children?: ReactNode;
 }
 
-export const ProceduresInProcess: FC<Props> = ({ }) => {
+export const ProceduresInProcess: FC<Props> = ({}) => {
   const { procedures, getProceduresByMedicId, updateProcedure } =
     useContext(ProcedureContext);
   const { medic, updateMedic } = useContext(MedicContext);
 
   useEffect(() => {
     getProceduresByMedicId(medic._id);
-  }, [ medic, getProceduresByMedicId ]);
+  }, [medic, getProceduresByMedicId]);
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -95,7 +96,7 @@ export const ProceduresInProcess: FC<Props> = ({ }) => {
     }
     setProgress(false);
   };
-    
+
   return (
     <AccordionUi summary="Procedures In Process">
       <Paper sx={{ width: "100%", overflow: "hidden" }}>
@@ -137,9 +138,22 @@ export const ProceduresInProcess: FC<Props> = ({ }) => {
                         const value = procedure[column.id];
                         return (
                           <TableCell key={index} align={column.align}>
-                            {column.format && typeof value === "number"
-                              ? column.format(value)
-                              : value}
+                            {column.format && typeof value === "number" ? (
+                              column.format(value)
+                            ) : index === 0 ? (
+                              <Link href={`/user/${procedure.client_id}`}>
+                                <a
+                                  style={{
+                                    textDecoration: "none",
+                                    fontWeight: "600",
+                                  }}
+                                >
+                                  {value}
+                                </a>
+                              </Link>
+                            ) : (
+                              value
+                            )}
                           </TableCell>
                         );
                       })}
@@ -163,14 +177,15 @@ export const ProceduresInProcess: FC<Props> = ({ }) => {
                                     color: "white",
                                     backgroundColor: "#2874A6",
                                     borderColor: "#2874A6",
-                                    width: 25, 
-                                    height: 25
+                                    width: 25,
+                                    height: 25,
                                   }}
                                   onMouseEnter={() => setStatus("Reassigned")}
                                   onClick={handleSubmit}
                                 >
-                                  <ManageHistoryIcon sx={{width: 18, 
-                                    height: 18 }}/>
+                                  <ManageHistoryIcon
+                                    sx={{ width: 18, height: 18 }}
+                                  />
                                 </IconButton>
                               </span>
                             </Tooltip>
@@ -178,27 +193,28 @@ export const ProceduresInProcess: FC<Props> = ({ }) => {
                           <Grid item xs={6}>
                             <Tooltip title="ACCEPT AND SCHEDULE PROCEDURE">
                               <span>
-                              <IconButton
-                                size="small"
-                                disabled={
-                                  procedures[index].status === "Pending"
-                                    ? false
-                                    : true
-                                }
-                                sx={{
-                                  borderRadius: 1,
-                                  color: "white",
-                                  backgroundColor: "#4FC541",
-                                  borderColor: "#4FC541",
-                                  width: 25, 
-                                  height: 25
-                                }}
-                                onMouseEnter={() => setStatus("Accepted")}
-                                onClick={handleSubmit}
-                              >
-                                <CheckCircleOutlineIcon sx={{width: 18, 
-                                    height: 18 }}/>
-                              </IconButton>
+                                <IconButton
+                                  size="small"
+                                  disabled={
+                                    procedures[index].status === "Pending"
+                                      ? false
+                                      : true
+                                  }
+                                  sx={{
+                                    borderRadius: 1,
+                                    color: "white",
+                                    backgroundColor: "#4FC541",
+                                    borderColor: "#4FC541",
+                                    width: 25,
+                                    height: 25,
+                                  }}
+                                  onMouseEnter={() => setStatus("Accepted")}
+                                  onClick={handleSubmit}
+                                >
+                                  <CheckCircleOutlineIcon
+                                    sx={{ width: 18, height: 18 }}
+                                  />
+                                </IconButton>
                               </span>
                             </Tooltip>
                           </Grid>

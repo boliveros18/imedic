@@ -23,10 +23,10 @@ const INITIAL_STATE: State = {
 export const ProductProvider: FC<ProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, INITIAL_STATE);
 
-  const setIndex = (index: number) => {
+  const setIndex = useCallback((index: number) => {
     dispatch({ type: "SET_INDEX", payload: index });
     return index;
-  };
+  }, []);
 
   const getProduct = useCallback(async (id: string) => {
     const data = await ProductService.getProduct(id);

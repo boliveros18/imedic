@@ -4,8 +4,10 @@ import { Certification } from "../../interfaces";
 interface ContextProps {
   certifications: Certification[];
   certification: Certification;
-  addCertifications: (payload: Certification[]) => void;
+  getCertificationsByClinicId: (clinic_id: string) => void;
+  createCertification: (payload: Certification) => Promise<void>;
   updateCertification: (id: string, payload: Certification) => Promise<void>;
+  deleteCertification: (id: string) => Promise<void>;
 }
 
 export const CertificationContext = createContext({} as ContextProps);

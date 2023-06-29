@@ -15,6 +15,7 @@ import { AuthContext } from "../../../context/auth";
 import {
   SelectCategoryAndProcedure,
   MedicAccountCard,
+  ManageClinicCertifications,
   ManageClinics,
   ManageDegrees,
   ManageProducts,
@@ -110,12 +111,13 @@ const AccountMedicPage: NextPage<Props> = ({
             <CardContent sx={{ mt: "-14px" }}>
               <CompleteMedicProfile medic={medic} />
               <ManageClinics medic={medic} />
+              <ManageClinicCertifications />
               <ManageDegrees medic={medic} />
               <ManageProducts medic={medic} />
               <ProductQuotes medic={medic} />
               <MedicContract medic={medic} />
               <ProcedureAvailability />
-              <ProceduresInProcess /> {//TODO: add user profile access link
+              <ProceduresInProcess /> {//TODO: check form validations
               }
             </CardContent>
           </Card>

@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import mongoose from "mongoose";
 
 import { db } from "../../../../database";
-import { Clinic, IClinic } from "../../../../models";
+import { Clinic, IClinic, Product, Quote, Qualification, Certification } from "../../../../models";
 
 type Data = { message: string } | IClinic;
 
@@ -134,6 +134,15 @@ const deleteClinic = async (
   }
   try {
     const deleteClinic = await Clinic.findByIdAndDelete(id);
+    if(deleteClinic){
+       const products = await Product.find({ clinic_id: id })
+       await Product.deleteMany({ clinic_id: id})
+       await Certification.deleteMany({ parent_id: id })
+       products.forEach(async (product) => {
+        await Quote.deleteMany({ product_id: product._id });
+        await Qualification.deleteMany({ parent_id: product._id })
+      });
+    }
     await db.disconnect();
     res.status(200).json(deleteClinic!);
   } catch (error: any) {

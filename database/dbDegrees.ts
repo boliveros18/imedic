@@ -1,6 +1,6 @@
 import { isValidObjectId } from "mongoose";
 import { db } from ".";
-import { Degree, IDegree } from "../models";
+import { Degree, IDegree, File } from "../models";
 
 export const getDegreeById = async (id: string): Promise<IDegree | null> => {
   if (!isValidObjectId(id)) {
@@ -24,3 +24,4 @@ export const getDegreesByMedicId = async (
   }
   return [];
 };
+

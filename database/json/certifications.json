@@ -1,8 +1,8 @@
 [    {
-  "parent_id": "63ab77d06d6dc52c56dc662e",
+  "clinic_id": "63ab77d06d6dc52c56dc662e",
   "name": "Plantree Gold Certification",
   "description": "Plantree Gold Certification for Excellent in Person Centered Care - 2018 ",
-  "logo": "/static/images/certifications/plantree_certification.jfif",
+  "logo_link": "https://planetree.org/wp-content/themes/planetree/images/gold.jpg",
   "_id": {
     "$oid": "63ab77d06d6dc52c56dc6629"
   }

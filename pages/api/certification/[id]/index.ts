@@ -66,11 +66,8 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   const {
     name = modelToUpdate.name,
-    approved = modelToUpdate.approved,
-    certificate = modelToUpdate.certificate,
     description = modelToUpdate.description,
-    to_approve = modelToUpdate.to_approve,
-    logo = modelToUpdate.logo,
+    logo_link = modelToUpdate.logo_link,
   } = req.body;
 
   try {
@@ -78,11 +75,8 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
       id,
       {
         name,
-        approved,
-        certificate,
         description,
-        to_approve,
-        logo,
+        logo_link,
       },
       { runValidators: true, new: true }
     );

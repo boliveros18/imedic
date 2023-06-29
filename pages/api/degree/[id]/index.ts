@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import mongoose from "mongoose";
 
 import { db } from "../../../../database";
-import { Degree, IDegree } from "../../../../models";
+import { Degree, IDegree, File } from "../../../../models";
 
 type Data = { message: string } | IDegree;
 
@@ -112,6 +112,9 @@ const deleteDegree = async (
   }
   try {
     const deleteDegree = await Degree.findByIdAndDelete(id);
+    if(deleteDegree){
+      await File.findByIdAndDelete(deleteDegree.file_id);
+    }
     await db.disconnect();
     res.status(200).json(deleteDegree!);
   } catch (error: any) {

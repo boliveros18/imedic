@@ -1,10 +1,7 @@
 export interface Certification {
-  _id?: string;
-  parent_id: string;
+  _id: string;
+  clinic_id: string;
   name: string;
-  approved: boolean;
-  certificate: string;
   description: string;
-  to_approve: boolean;
-  logo: string;
+  logo_link: string;
 }

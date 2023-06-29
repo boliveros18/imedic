@@ -20,19 +20,40 @@ const INITIAL_STATE: State = {
 export const CertificationProvider: FC<ProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(certificationReducer, INITIAL_STATE);
 
-  const addCertifications = useCallback((payload: Certification[]) => {
-    dispatch({ type: "ADD_CERTIFICATIONS", payload });
-  }, []);
-
-  const updateCertification = async (id: string, payload: Certification) => {
-    const { status, data } = await CertificationService.updateOne(id, payload);
-    if (status) dispatch({ type: "CERTIFICATION_UPDATED", payload: data });
+  const createCertification = async (payload: Certification) => {
+    const data = await CertificationService.createOne(payload);
+    dispatch({ type: "SET_CERTIFICATION", payload });
     return data;
   };
 
+  const updateCertification = async (id: string, payload: Certification) => {
+    const data = await CertificationService.updateOne(id, payload);
+    dispatch({ type: "SET_CERTIFICATION", payload: data });
+    return data;
+  };
+
+  const deleteCertification = async (id: string) => {
+    const data = await CertificationService.deleteOne(id);
+    dispatch({ type: "SET_CERTIFICATION", payload: id });
+    return data;
+  };
+
+  const getCertificationsByClinicId = useCallback(async (clinic_id: string) => {
+    const data = await CertificationService.getCertificationsByClinicId(
+      clinic_id
+    );
+    dispatch({ type: "SET_CERTIFICATIONS", payload: data });
+  }, []);
+
   return (
     <CertificationContext.Provider
-      value={{ ...state, addCertifications, updateCertification }}
+      value={{
+        ...state,
+        createCertification,
+        updateCertification,
+        deleteCertification,
+        getCertificationsByClinicId,
+      }}
     >
       {children}
     </CertificationContext.Provider>

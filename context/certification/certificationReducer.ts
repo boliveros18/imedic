@@ -1,6 +1,6 @@
 import { State } from ".";
 
-type Action = "ADD_CERTIFICATIONS" | "CERTIFICATION_UPDATED";
+type Action = "SET_CERTIFICATION" | "SET_CERTIFICATIONS";
 type ActionType = { type: Action; payload?: any };
 
 export const certificationReducer = (
@@ -8,10 +8,10 @@ export const certificationReducer = (
   action: ActionType
 ): State => {
   switch (action.type) {
-    case "ADD_CERTIFICATIONS":
-      return { ...state, certifications: action.payload };
-    case "CERTIFICATION_UPDATED":
+    case "SET_CERTIFICATION":
       return { ...state, certification: action.payload };
+    case "SET_CERTIFICATIONS":
+      return { ...state, certifications: action.payload };
     default:
       return state;
   }

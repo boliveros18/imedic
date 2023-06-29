@@ -105,7 +105,6 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
     try {
       setProgress(true);
       await deleteDegree(degrees[index]?._id || "").then( () => {
-        //TODO: Delete degree file in backend
         successService("deleted")
       });
     } catch (error) {

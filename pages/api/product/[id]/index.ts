@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import mongoose from "mongoose";
 import { db } from "../../../../database";
-import { Product, IProduct } from "../../../../models";
+import { Product, IProduct, Quote, Procedure, Qualification } from "../../../../models";
 
 type Data = { message: string } | IProduct;
 
@@ -128,6 +128,11 @@ const deleteModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   try {
     const deleteModel = await Product.findByIdAndDelete(id);
+    if(deleteModel){
+      await Quote.deleteMany({ product_id: id });
+      await Procedure.deleteMany({ product_id: id });
+      await Qualification.deleteMany({ parent_id: id })
+    }
     await db.disconnect();
     res.status(200).json(deleteModel!);
   } catch (error: any) {

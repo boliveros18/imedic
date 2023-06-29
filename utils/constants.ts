@@ -12,6 +12,12 @@ export const clinic = {
   province: "Select city",
 } as Clinic;
 
+export const certification = {
+  name: "",
+  description: "",
+  logo_link: "",
+}
+
 export const degree = {
   name: "",
   university: "",

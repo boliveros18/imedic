@@ -3,7 +3,7 @@ import modelUser from "../models/User";
 import { db } from "./";
 import { User } from "next-auth";
 import { IUser } from "../interfaces";
-import { Clinic, Degree, File, Medic, Procedure, Product, Quote } from "../models";
+import { Certification, Clinic, Degree, File, Medic, Procedure, Product, Qualification, Quote } from "../models";
 
 export const checkUserEmailPassword = async (
   email: string,
@@ -79,6 +79,8 @@ export const deleteChildren = async (id: string | string [] | undefined) => {
   await db.connect();
   const params = id ? { parent_id : id } :{}
   const medic = await Medic.find(params).lean();
+  const clinics = await Clinic.find({ medic_id: medic[0]._id }).lean();
+  const products = await Product.find({ medic_id: medic[0]._id }).lean();
   const medicToDelete = await Medic.findByIdAndDelete(medic[0]._id);
   if(medicToDelete){
     await Clinic.deleteMany({ medic_id: medic[0]._id });
@@ -87,6 +89,14 @@ export const deleteChildren = async (id: string | string [] | undefined) => {
     await Product.deleteMany({ medic_id: medic[0]._id });
     await Procedure.deleteMany({ medic_id: medic[0]._id });
     await File.deleteMany({ medic_id: medic[0]._id, parent_id: medic[0].parent_id });
+    await Qualification.deleteMany({ parent_id: medic[0]._id })
+    clinics.forEach(async(clinic) =>{
+      await Qualification.deleteMany({ parent_id: clinic._id })
+      await Certification.deleteMany({ parent_id: clinic._id })
+    })
+    products.forEach(async( product )=>{
+      await Qualification.deleteMany({ parent_id: product._id })
+    })
   }
   await db.disconnect();
 };

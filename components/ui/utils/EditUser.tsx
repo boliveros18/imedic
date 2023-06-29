@@ -14,7 +14,7 @@ import { validations } from "../../../utils";
 import { capitalize } from "../../../utils/strings";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { Client, Medic, IUser } from "../../../interfaces";
+import { IUser } from "../../../interfaces";
 import { signOut } from "next-auth/react";
 import { ExpanderUi } from "./ExpanderUi";
 import ManageButtons from "./ManageButtons";

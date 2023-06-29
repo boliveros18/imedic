@@ -15,6 +15,7 @@ import {
   Typography,
   InputAdornment,
 } from "@mui/material";
+import { useRouter } from 'next/router'
 import { UIContext } from "../../context/ui";
 import { ProductContext } from "../../context/product";
 import { ClinicContext } from "../../context/clinic";
@@ -22,6 +23,7 @@ import { Product, Medic, Clinic } from "../../interfaces";
 import { SelectUi } from "../ui/utils/SelectUi";
 import { useSnackbar } from "notistack";
 import { Category, Procedure } from "../../utils/medic-category/lib";
+import { QuoteContext } from "../../context/quote";
 import { product } from "../../utils/constants";
 import ManageButtons from "../ui/utils/ManageButtons";
 import TextFieldUi from "../ui/utils/TextFieldUi";
@@ -32,17 +34,20 @@ interface Props {
 }
 
 export const ManageProducts: FC<Props> = ({ medic }) => {
+  const router = useRouter()
   const { enqueueSnackbar } = useSnackbar();
   const {
+    index,
+    setIndex,
     products,
     createProduct,
     updateProduct,
     deleteProduct,
     getProductsByMedicId,
   } = useContext(ProductContext);
+  const { getQuotesByProductId } = useContext(QuoteContext);
   const { clinics } = useContext(ClinicContext);
   const { setProgress } = useContext(UIContext);
-  const [index, setIndex] = useState(0);
   const [submit, setSubmit] = useState("CREATE");
   const [create, onCreate] = useState(true);
   const [clinic, setClinic] = useState({ name: "Clinic" } as Clinic);
@@ -54,8 +59,6 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
   useEffect(() => {
     getProductsByMedicId(medic._id);
   }, [medic, getProductsByMedicId]);
-
-
 
   const successService = async (state: string) => {
     await getProductsByMedicId(medic._id);
@@ -83,12 +86,11 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
           category: category,
           procedure: procedure,
         } as Product).then(() => {
-          successService("updated")
+          successService("updated");
         });
       } catch (error: any) {
         setProgress(false);
         enqueueSnackbar("Error, try again!", { variant: "error" });
-   
       }
     } else {
       try {
@@ -100,12 +102,11 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
           category: category,
           procedure: procedure,
         } as Product).then(() => {
-        successService("created")
+          successService("created");
         });
       } catch (error: any) {
         setProgress(false);
         enqueueSnackbar("Error, try again!", { variant: "error" });
-   
       }
     }
     setProgress(false);
@@ -115,8 +116,9 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
     try {
       setProgress(true);
       await deleteProduct(products[index]?._id || "").then(async () => {
-        // TODO: delete quotes in backend
-        successService("deleted")
+        await getQuotesByProductId(products[index]?._id);
+        successService("deleted");
+        router.reload();
       });
     } catch (error) {
       setProgress(false);
@@ -130,7 +132,7 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
     const value = target.type === "checkbox" ? target.checked : target.value;
     setInputs({ ...inputs, [target.name]: value });
   };
-  
+
   return (
     <AccordionUi summary="Manage Products">
       <form onSubmit={handleSubmit} noValidate>

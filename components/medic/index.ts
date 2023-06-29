@@ -1,4 +1,5 @@
 export * from "./AddDocumentMedicProfile"
+export * from "./ManageClinicCertifications"
 export * from "./ManageClinics"
 export * from "./ManageDegrees"
 export * from "./ManageProducts"
