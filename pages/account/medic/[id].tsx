@@ -7,11 +7,9 @@ import {
   Grid,
   Divider
 } from "@mui/material";
-import { getSession } from "next-auth/react";
 import { dbMedics, dbFiles } from "../../../database";
 import { Layout } from "../../../components/layouts";
 import { Medic, IUser, File } from "../../../interfaces";
-import { AuthContext } from "../../../context/auth";
 import {
   SelectCategoryAndProcedure,
   MedicAccountCard,
@@ -32,6 +30,8 @@ import { FileContext } from "../../../context/file";
 import { MedicContext } from "../../../context/medic";
 import { UIContext } from "../../../context/ui";
 import LoadingUi from "../../../components/ui/utils/LoadingUi";
+import { userData } from "../../../utils/functions";
+import { UserDataComponent } from "../../../components/ui";
 
 interface Props {
   id: string;
@@ -51,28 +51,21 @@ const AccountMedicPage: NextPage<Props> = ({
 
   const { setMedic } = useContext(MedicContext);
   const { clinics, getClinicsByMedicId } = useContext(ClinicContext);
-  const { setAvatar, setFiles } = useContext(FileContext);
+  const { setFiles } = useContext(FileContext);
   const { index, products, getProductsByMedicId } = useContext(ProductContext);
-  const { setUser } = useContext(AuthContext);
   const { setProgress } = useContext(UIContext);
 
 
   useEffect(() => {
-    setUser(user);
     setMedic(medic);
-    setAvatar(avatar);
     setFiles(files);
     getClinicsByMedicId(medic._id || "");
     getProductsByMedicId(medic._id);
     setProgress(false)
   }, [
     id,
-    user,
     medic,
     setMedic,
-    setUser,
-    avatar,
-    setAvatar,
     files,
     setFiles,
     getClinicsByMedicId,
@@ -81,6 +74,7 @@ const AccountMedicPage: NextPage<Props> = ({
   ]);
   return (
     <Layout>
+     <UserDataComponent user={user} avatar={avatar} />
      <LoadingUi/>
       <Grid container spacing={0} rowSpacing={2}>
         <Grid
@@ -130,16 +124,11 @@ export const getServerSideProps: GetServerSideProps = async ({
   params,
   req,
 }) => {
-  const session = await getSession({ req });
   const { id } = params as { id: string };
-  const user: any = session?.user;
-  user ? delete Object.assign(user, { _id: user.id })["id"] : null;
+  const { user, avatar, session } = await userData(req);
   const medic = await dbMedics.getMedicById(id);
   const _id = medic?.parent_id;
-  const avatar = await dbFiles.getFilesByParentIdAndType(
-    user?._id || "",
-    "image"
-  );
+
   const files = await dbFiles.getFilesByParentIdAndType(
     medic?._id || "",
     "all"

@@ -1,56 +1,46 @@
-import { useContext, useEffect } from "react";
+import { FC, useContext, useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
-import { getSession } from "next-auth/react";
-import { dbClinics, dbFiles, dbLikes, dbMedics } from "../database";
+import { dbClinics, dbLikes, dbMedics } from "../database";
 import { Layout } from "../components/layouts";
 import { HomeCard } from "../components/home";
 import { Grid } from "@mui/material";
-import { BottomBar, SideBar, RightBar } from "../components/ui";
+import { BottomBar, SideBar, RightBar, UserDataComponent } from "../components/ui";
 import { Clinic, Like, IUser, Medic, File } from "../interfaces";
 import { LikeContext } from "../context/like";
 import { ClinicContext } from "../context/clinic";
 import { UIContext } from "../context/ui";
-import { AuthContext } from "../context/auth";
 import { MedicContext } from "../context/medic";
-import { FileContext } from "../context/file";
+import { userData } from '../utils/functions';
 
 interface Props {
   principal: Clinic;
   like: Like;
-  user: IUser;
   medic: Medic;
+  user: IUser;
   avatar: File;
 }
 
 const HomePage: NextPage<Props> = ({
   principal,
   like,
-  user,
   medic,
-  avatar,
+  user,
+  avatar
 }) => {
-  const { setUser } = useContext(AuthContext);
   const { setMedic } = useContext(MedicContext);
-  const { setAvatar } = useContext(FileContext);
   const { addLikes } = useContext(LikeContext);
   const { setPrincipal } = useContext(ClinicContext);
   const { setLoading, setProgress } = useContext(UIContext);
 
   useEffect(() => {
-    setUser(user);
-    setMedic(medic);
-    setAvatar(avatar);
-    addLikes(like);
-    setPrincipal(principal);
+    setMedic(medic || {} as Medic);
+    addLikes(like || {} as Like);
+    setPrincipal(principal || {} as Clinic);
     setLoading(true);
     setProgress(false);
   }, [
-    user,
-    setUser,
     medic,
     setMedic,
-    avatar,
-    setAvatar,
     like,
     addLikes,
     setLoading,
@@ -60,6 +50,7 @@ const HomePage: NextPage<Props> = ({
   ]);     
   return (
     <Layout>
+      <UserDataComponent user={user} avatar={avatar} />
       <Grid container spacing={0} rowSpacing={0}>
         <Grid
           item
@@ -92,14 +83,8 @@ const HomePage: NextPage<Props> = ({
   );
 };
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const session = await getSession({ req });
+  const { user, avatar, session } = await userData(req);
   const principal = await dbClinics.getPrincipalClinic();
-  const user: any = session?.user;
-  user ? delete Object.assign(user, { _id: user.id })["id"] : null;
-  const avatar = await dbFiles.getFilesByParentIdAndType(
-    user?._id || "",
-    "image"
-  );
   const medic = await dbMedics.getMedicByUserId(user?._id || "");
   const like: Like[] = await dbLikes.getLikeByParentIdAndUserId(
     principal._id || "",
@@ -117,12 +102,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
   return {
     props: {
-      user: session ? user : {},
-      avatar: avatar === undefined ? {} : avatar,
       medic: medic,
       principal: principal,
       like: like,
-    },
+      user: session ? user : {},
+      avatar: avatar === undefined ? {} : avatar
+    }
   };
 };
 

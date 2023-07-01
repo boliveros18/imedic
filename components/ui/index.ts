@@ -35,6 +35,7 @@ export * from "./utils/ShareMediaUi";
 export * from "./utils/SingInUi";
 export * from "./utils/TermsOfUse";
 export * from "./utils/TextFieldUi";
+export * from "./utils/UserDataComponent"
 
 
 

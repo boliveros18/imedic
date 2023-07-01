@@ -1,11 +1,9 @@
 import { useContext, useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
-import { getSession } from "next-auth/react";
 import {
   dbCertifications,
   dbClinics,
   dbQualifications,
-  dbFiles,
 } from "../../database";
 import {
   Typography,
@@ -31,12 +29,12 @@ import {
   ItemQualification,
   SeeComments,
   SideBar,
+  UserDataComponent,
 } from "../../components/ui";
 import { Layout } from "../../components/layouts";
 import { Clinic, Certification, Qualification, IUser, File } from "../../interfaces";
 import { UIContext } from "../../context/ui";
-import { AuthContext } from "../../context/auth";
-import { FileContext } from "../../context/file";
+import { userData } from "../../utils/functions";
 
 interface Props {
   clinic: Clinic;
@@ -56,17 +54,14 @@ const ClinicPage: NextPage<Props> = ({
   const mobile = UseWindowSize();
   const size = WindowSize();
   const { setProgress } = useContext(UIContext);
-  const { setUser } = useContext(AuthContext);
-  const { setAvatar } = useContext(FileContext);
 
   useEffect(() => {
     setProgress(false);
-    setUser(user);
-    setAvatar(avatar);
-  }, [setProgress, user, setUser, avatar, setAvatar]);
+  }, [setProgress]);
 
   return (
     <Layout>
+      <UserDataComponent user={user} avatar={avatar} />
       <Grid container spacing={0} rowSpacing={2}>
         <Grid
           item
@@ -235,13 +230,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
 }) => {
   const { id } = params as { id: string };
-  const session = await getSession({ req });
-  const user: any = session?.user;
-  user ? delete Object.assign(user, { _id: user.id })["id"] : null;
-  const avatar = await dbFiles.getFilesByParentIdAndType(
-    user?._id || "",
-    "image"
-  );
+  const { user, avatar, session } = await userData(req);
   const clinic = await dbClinics.getClinicById(id);
   const certification = await dbCertifications.getCertificationsByClinicId(id);
   const qualifications = await dbQualifications.getQualificationByParentId(id);
@@ -254,8 +243,6 @@ export const getServerSideProps: GetServerSideProps = async ({
       },
     };
   }
-
-//hacer que el modulo de user/avatar se llame comunmente de otro lado
 
   return {
     props: {
