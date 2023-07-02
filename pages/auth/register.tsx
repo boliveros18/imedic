@@ -135,6 +135,7 @@ const RegisterPage = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                type = "password"
                 label="Password"
                 variant="outlined"
                 autoComplete="off"
@@ -247,6 +248,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         availables_dates: [],
         qualification: 0,
         comments: 0,
+        likes: 0,
         instagram: "",
         age: 0,
         years_experience: 0,

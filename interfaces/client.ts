@@ -8,7 +8,7 @@ export interface Client {
   title: string;
   birth: number;
   gender: string;
-  province: string;
+  city: string;
   state: string;
   country: string;
   passport_number: string;

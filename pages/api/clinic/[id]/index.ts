@@ -67,16 +67,14 @@ const updateClinic = async (
   }
 
   const {
-    type = clinicToUpdate.type,
-    medic_id = clinicToUpdate.medic_id,
     certified = clinicToUpdate.certified,
     finantial = clinicToUpdate.finantial,
-    speciality = clinicToUpdate.speciality,
+    category = clinicToUpdate.category,
     technology = clinicToUpdate.technology,
     phone = clinicToUpdate.phone,
     photo = clinicToUpdate.photo,
     name = clinicToUpdate.name,
-    province = clinicToUpdate.province,
+    city = clinicToUpdate.city,
     state = clinicToUpdate.state,
     country = clinicToUpdate.country,
     address = clinicToUpdate.address,
@@ -89,16 +87,14 @@ const updateClinic = async (
     const updatedClinic = await Clinic.findByIdAndUpdate(
       id,
       {
-        type,
-        medic_id,
         certified,
         finantial,
-        speciality,
+        category,
         technology,
         phone,
         photo,
         name,
-        province,
+        city,
         state,
         country,
         address,

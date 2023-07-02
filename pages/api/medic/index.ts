@@ -30,15 +30,16 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const {
     type = "",
     parent_id = "",
-    status = "",
+    status = "pending",
     availables_dates = [],
     qualification = 0,
     comments = 0,
+    likes = 0,
     instagram = "",
     age = 0,
     years_experience = 0,
-    createdAt = Date.now(),
     updatedAt = 0,
+    createdAt = Date.now(),
   } = req.body;
   await db.connect();
 
@@ -49,11 +50,12 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     availables_dates,
     qualification,
     comments,
+    likes,
     instagram,
     age,
     years_experience,
-    createdAt,
     updatedAt,
+    createdAt,
   });
 
   try {

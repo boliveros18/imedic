@@ -110,7 +110,7 @@ const AccountMedicPage: NextPage<Props> = ({
               <ManageProducts medic={medic} />
               <ProductQuotes medic={medic} />
               <MedicContract medic={medic} />
-              <ProcedureAvailability />
+              <ProcedureAvailability medic={medic} />
               <ProceduresInProcess /> {//TODO: check form validations
               }
             </CardContent>

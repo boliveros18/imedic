@@ -6,6 +6,7 @@ export interface Medic {
   availables_dates: [];
   qualification: number;
   comments: number;
+  likes: number;
   instagram: string;
   age: number;
   years_experience: number;

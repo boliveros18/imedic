@@ -107,7 +107,7 @@ const ClinicPage: NextPage<Props> = ({
                     description={
                       clinic?.finantial +
                       ". " +
-                      clinic?.speciality +
+                      clinic?.category +
                       ". " +
                       clinic?.technology
                     }
@@ -124,7 +124,7 @@ const ClinicPage: NextPage<Props> = ({
                     />
                   </Typography>
                 }
-                subheader={clinic?.province + ", " + clinic?.country}
+                subheader={clinic?.city + ", " + clinic?.country}
               />
               <CardMedia
                 component="img"
@@ -147,14 +147,14 @@ const ClinicPage: NextPage<Props> = ({
                     <Typography
                       sx={{ fontSize: 15, fontWeight: "500", color: "#001B87" }}
                     >
-                      Finantial, Speciality & Technology
+                      Finantial, Specialty & Technology
                     </Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography sx={{ fontSize: 14 }}>
                       {clinic?.finantial +
                         ". " +
-                        clinic?.speciality +
+                        clinic?.category +
                         ". " +
                         clinic?.technology}
                     </Typography>

@@ -41,7 +41,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
   const { country, state, city, setProgress, setCountry, setState, setCity } =
     useContext(UIContext);
   const [index, setIndex] = useState(0);
-  const [category, setCategory] = useState("Speciality");
+  const [category, setCategory] = useState("Category");
   const [submit, setSubmit] = useState("CREATE");
   const [create, onCreate] = useState(true);
   const [values, setValues] = useState(clinic);
@@ -56,10 +56,10 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
     setInputs({} as Clinic);
     setValues(clinic);
     setIndex(0);
-    setCategory("Speciality");
+    setCategory("Category");
     setCountry(clinic.country);
     setState(clinic.state);
-    setCity(clinic.province);
+    setCity(clinic.city);
     onCreate(true);
     setSubmit("CREATE");
     setProgress(false);
@@ -74,7 +74,11 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
       try {
         setProgress(true);
         await updateClinic(clinics[index]._id || "", {
-          ...inputs,
+          ...values,
+          category: category,
+          country: country,
+          state: state,
+          city: city
         } as Clinic).then(async () => {
           successService("updated");
         });
@@ -93,10 +97,10 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
           instagram: values.instagram,
           finantial: values.finantial,
           technology: values.technology,
-          speciality: category,
+          category: category,
           country: country,
           state: state,
-          province: city
+          city: city
         }, clinic) as Clinic;
         await createClinic(filledInputsForm);
         successService("created");
@@ -124,8 +128,6 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
 
   const handleInput = ({ target }: ChangeEvent<any>) => {
     setValues({ ...values, [target.name]: target.value });
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    setInputs({ ...inputs, [target.name]: value });
   };
 
   return (
@@ -147,10 +149,10 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
                   setInputs({} as Clinic);
                   setValues(clinic);
                   setIndex(0);
-                  setCategory("Speciality");
+                  setCategory("Category");
                   setCountry(clinic.country);
                   setState(clinic.state);
-                  setCity(clinic.province);
+                  setCity(clinic.city);
                   onCreate(true);
                   setSubmit("CREATE");
                 }}
@@ -167,10 +169,10 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
                     setValues(item);
                     setInputs({} as Clinic);
                     setIndex(index);
-                    setCategory(item.speciality);
+                    setCategory(item.category);
                     setCountry(item.country);
                     setState(item.state);
-                    setCity(item.province);
+                    setCity(item.city);
                   }}
                 >
                   <span style={{ fontWeight: "500" }}>{item.name}</span>

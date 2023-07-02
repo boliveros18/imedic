@@ -10,8 +10,8 @@ export const clinic = {
   instagram: "",
   country: "Select country",
   state: "Select state",
-  province: "Select city",
-  speciality: "Speciality"
+  city: "Select city",
+  category: "Category"
 } as Clinic;
 
 export const certification = {

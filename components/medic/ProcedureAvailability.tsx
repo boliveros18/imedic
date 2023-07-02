@@ -1,5 +1,5 @@
-import { FC, ReactNode, useState, useContext, useMemo } from "react";
-import DatePicker, { DateObject } from "react-multi-date-picker";
+import { FC, ReactNode, useState, useContext, useEffect } from "react";
+import DatePicker from "react-multi-date-picker";
 import { Typography, Grid, Button, Box } from "@mui/material";
 import EventIcon from "@mui/icons-material/Event";
 import { UIContext } from "../../context/ui";
@@ -12,17 +12,17 @@ import { getSixNumbers } from "../../utils";
 
 interface Props {
   children?: ReactNode;
+  medic: Medic;
 }
 
-export const ProcedureAvailability: FC<Props> = ({}) => {
-  const { medic, updateMedic } = useContext(MedicContext);
+export const ProcedureAvailability: FC<Props> = ({ medic }) => {
+  const { updateMedic } = useContext(MedicContext);
   const { procedures } = useContext(ProcedureContext);
   const { setProgress } = useContext(UIContext);
   const { enqueueSnackbar } = useSnackbar();
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-  const [values, setValues] = useState<any>();
-  useMemo(() => setValues(medic.availables_dates), [medic]);
+  const [values, setValues] = useState<any>(medic?.availables_dates);
 
   const success = (model: string, state: string) => {
     setProgress(false);
@@ -38,11 +38,12 @@ export const ProcedureAvailability: FC<Props> = ({}) => {
   const handleSubmit = async () => {
     try {
       setProgress(true);
-      const allowed = values?.filter((value: any) => {
-        for (let i = 0; i < procedures.length; i++) {
-          return getSixNumbers(value.unix) !== getSixNumbers(procedures[i].date)
-        }
+      const allowed = values.filter((value: any) => {
+          for (let i = 0; i <= procedures.length; i++) {
+                return getSixNumbers(value.unix ? value.unix : value ) !== getSixNumbers(procedures[i]?.date)
+          }
       });
+      setValues(allowed)
       await updateMedic(medic._id || "", {
         availables_dates: allowed,
         updatedAt: Date.now(),

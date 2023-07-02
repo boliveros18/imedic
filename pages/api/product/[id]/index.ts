@@ -78,6 +78,9 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     additional_cost = modelToUpdate.additional_cost,
     additional_cost_description = modelToUpdate.additional_cost_description,
     currency = modelToUpdate.currency,
+    qualification = modelToUpdate.qualification,
+    comments = modelToUpdate.comments,
+    likes = modelToUpdate.likes,
     updatedAt = Date.now(),
   } = req.body;
 
@@ -100,6 +103,9 @@ const updateModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         additional_cost,
         additional_cost_description,
         currency,
+        qualification,
+        comments,
+        likes,
         updatedAt,
       },
       { runValidators: true, new: true }

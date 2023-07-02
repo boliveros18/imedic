@@ -71,7 +71,7 @@ export const HomeCard: FC<Props> = () => {
                   description={
                     principal?.finantial +
                     ". " +
-                    principal?.speciality +
+                    principal?.category +
                     ". " +
                     principal?.technology
                   }
@@ -92,7 +92,7 @@ export const HomeCard: FC<Props> = () => {
               )
             }
             subheader={
-              loading && principal?.province + ", " + principal?.country
+              loading && principal?.city + ", " + principal?.country
             }
           />
           <CardActionArea
@@ -126,7 +126,7 @@ export const HomeCard: FC<Props> = () => {
                   mb: 1,
                 }}
               >
-                Finantial, Speciality & Technology
+                Finantial, Specialty & Technology
               </Typography>
               <CardDetailUi
                 author=""
@@ -136,7 +136,7 @@ export const HomeCard: FC<Props> = () => {
                       text={
                         principal?.finantial +
                         ". " +
-                        principal?.speciality +
+                        principal?.category +
                         ". " +
                         principal?.technology
                       }
@@ -144,7 +144,7 @@ export const HomeCard: FC<Props> = () => {
                   ) : (
                     principal?.finantial +
                     ". " +
-                    principal?.speciality +
+                    principal?.category +
                     ". " +
                     principal?.technology
                   )

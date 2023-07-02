@@ -114,8 +114,8 @@ export const MedicAccountCard: FC<Props> = ({ clinic, medic }) => {
             <br />
             {clinic?.name ? clinic?.name : "Clinic name"}
             <br />
-            {clinic?.province
-              ? clinic?.province + ", " + clinic?.country
+            {clinic?.city
+              ? clinic?.city + ", " + clinic?.country
               : "City, Country"}
             <br />
           </Typography>

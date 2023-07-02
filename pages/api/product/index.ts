@@ -28,6 +28,7 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 
   const {
+    type = "Product",
     medic_id = "",
     clinic_id = "",
     category = "",
@@ -45,13 +46,17 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     surgeon_insurance = 0,
     additional_cost = 0,
     additional_cost_description = "",
-    currency = "",
+    currency = "US",
+    qualification = 0,
+    comments = 0,
+    likes = 0,
     updatedAt = 0,
     createdAt = Date.now(),
   } = req.body;
   await db.connect();
 
   const newModel = new Product({
+    type,
     medic_id,
     clinic_id,
     category,
@@ -70,6 +75,9 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     additional_cost,
     additional_cost_description,
     currency,
+    qualification,
+    comments,
+    likes,
     updatedAt,
     createdAt,
   });

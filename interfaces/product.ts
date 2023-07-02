@@ -1,5 +1,6 @@
 export interface Product {
   _id: string;
+  type: string;
   medic_id: string;
   clinic_id: string;
   category: string;
@@ -18,6 +19,9 @@ export interface Product {
   additional_cost: number;
   additional_cost_description: string;
   currency: string;
+  qualification: number;
+  comments: number;
+  likes: number;
   createdAt: number;
   updatedAr: number;
 }

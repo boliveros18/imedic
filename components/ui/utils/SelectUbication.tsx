@@ -19,7 +19,7 @@ export const SelectUbication: FC<Props> = ({ content }) => {
    useEffect(() => {
       setCountry(content.country);
       setState(content.state);
-      setCity(content.province);
+      setCity(content.city);
       addCountry("");
       addState("");
       addCity("");
@@ -70,7 +70,7 @@ export const SelectUbication: FC<Props> = ({ content }) => {
       <SelectUbicationUi
         ubication={city}
         handleChange={handleChangeCity}
-        type={content?.province === "" ? "City" : content?.province}
+        type={content?.city === "" ? "City" : content?.city}
       >
         {City.getCitiesOfState(country, state).map((item, index) => (
           <MenuItem

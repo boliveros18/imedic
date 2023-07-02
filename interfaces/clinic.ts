@@ -4,12 +4,12 @@ export interface Clinic {
   medic_id: string;
   certified: boolean;
   finantial: string;  
-  speciality: string;
+  category: string;
   technology: string;  
   phone: string;
   photo: string;  
   name: string;   
-  province: string;
+  city: string;
   state: string;
   country: string;
   address: string;    

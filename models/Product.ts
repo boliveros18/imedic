@@ -4,6 +4,7 @@ import { Product } from "../interfaces";
 export interface IProduct extends Product {}
 
 const entrySchema = new Schema({
+  type: { type: String, require: true },
   medic_id: { type: String, require: true },
   clinic_id: { type: String },
   category: { type: String, require: true },
@@ -22,6 +23,9 @@ const entrySchema = new Schema({
   additional_cost: { type: Number },
   additional_cost_description: { type: String },
   currency: { type: String },
+  qualification: { type: Number },
+  comments: { type: Number },
+  likes: { type: Number },
   createdAt: { type: Number },
   updatedAt: { type: Number },
 });
