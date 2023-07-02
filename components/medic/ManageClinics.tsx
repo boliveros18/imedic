@@ -7,7 +7,7 @@ import {
   FormEvent,
   useEffect,
 } from "react";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import AccordionUi from "../ui/utils/AccordionUi";
 import { Alert, Grid, MenuItem } from "@mui/material";
 import { ClinicContext } from "../../context/clinic";
@@ -21,6 +21,7 @@ import { capitalize, formatPhone } from "../../utils/strings";
 import { clinic } from "../../utils/constants";
 import ManageButtons from "../ui/utils/ManageButtons";
 import TextFieldUi from "../ui/utils/TextFieldUi";
+import { isFilledInputsForm } from "../../utils/validations";
 
 interface Props {
   children?: ReactNode;
@@ -28,7 +29,7 @@ interface Props {
 }
 
 export const ManageClinics: FC<Props> = ({ medic }) => {
-  const router = useRouter()
+  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const {
     clinics,
@@ -40,7 +41,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
   const { country, state, city, setProgress, setCountry, setState, setCity } =
     useContext(UIContext);
   const [index, setIndex] = useState(0);
-  const [category, setCategory] = useState("Category");
+  const [category, setCategory] = useState("Speciality");
   const [submit, setSubmit] = useState("CREATE");
   const [create, onCreate] = useState(true);
   const [values, setValues] = useState(clinic);
@@ -55,7 +56,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
     setInputs({} as Clinic);
     setValues(clinic);
     setIndex(0);
-    setCategory("Category");
+    setCategory("Speciality");
     setCountry(clinic.country);
     setState(clinic.state);
     setCity(clinic.province);
@@ -74,10 +75,6 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
         setProgress(true);
         await updateClinic(clinics[index]._id || "", {
           ...inputs,
-          speciality: category,
-          country: country,
-          state: state,
-          province: city,
         } as Clinic).then(async () => {
           successService("updated");
         });
@@ -88,21 +85,24 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
     } else {
       try {
         setProgress(true);
-        await createClinic({
-          ...inputs,
-          name: capitalize(inputs.name),
-          phone: formatPhone(inputs.phone),
+        const filledInputsForm = isFilledInputsForm({
           medic_id: medic._id,
+          name: values.name,
+          phone: formatPhone(inputs.phone),
+          address: values.address,
+          instagram: values.instagram,
+          finantial: values.finantial,
+          technology: values.technology,
           speciality: category,
           country: country,
           state: state,
-          province: city,
-        } as Clinic).then(async () => {
-         successService("created");
-        });
+          province: city
+        }, clinic) as Clinic;
+        await createClinic(filledInputsForm);
+        successService("created");
       } catch (error: any) {
         setProgress(false);
-        enqueueSnackbar("Error, try again!", { variant: "error" });
+        enqueueSnackbar(`${error}`, { variant: "error" });
       }
     }
     setProgress(false);
@@ -112,8 +112,8 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
     try {
       setProgress(true);
       await deleteClinic(clinics[index]?._id || "").then(async () => {
-       successService("deleted")
-       router.reload();
+        successService("deleted");
+        router.reload();
       });
     } catch (error) {
       setProgress(false);
@@ -127,7 +127,6 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
     const value = target.type === "checkbox" ? target.checked : target.value;
     setInputs({ ...inputs, [target.name]: value });
   };
-
 
   return (
     <AccordionUi summary="Manage Clinics">
@@ -148,7 +147,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
                   setInputs({} as Clinic);
                   setValues(clinic);
                   setIndex(0);
-                  setCategory("Category");
+                  setCategory("Speciality");
                   setCountry(clinic.country);
                   setState(clinic.state);
                   setCity(clinic.province);
@@ -184,7 +183,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
             type="text"
             name="name"
             label="Clinic name"
-            value={values.name}
+            value={capitalize(values.name)}
             onChange={handleInput}
           />
           <TextFieldUi
@@ -204,7 +203,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
                 ? "Address"
                 : "Address example: 1903 W Michigan Ave"
             }
-            value={values.address}
+            value={capitalize(values.address)}
             onChange={handleInput}
           />
           <TextFieldUi
@@ -246,7 +245,9 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
                 <MenuItem
                   key={index}
                   value={item.name || ""}
-                  onClick={() => setCategory(item.name)}
+                  onClick={() => {
+                    setCategory(item.name);
+                  }}
                 >
                   {item.name}
                 </MenuItem>

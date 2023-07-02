@@ -13,3 +13,13 @@ export const isEmail = (email: string): string | undefined => {
     ? undefined
     : "The email does not seem to be valid";
 };
+
+
+export const isFilledInputsForm = (array: any, constant: any) => {
+  for (let prop in array) {
+    if (array[prop] === constant[prop]) {
+      throw new Error(`the field ${prop} is empty!`);
+    }
+  }
+  return array;
+}

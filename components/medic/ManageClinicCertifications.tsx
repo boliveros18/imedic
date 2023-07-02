@@ -168,7 +168,7 @@ export const ManageClinicCertifications: FC<Props> = ({}) => {
             </SelectUi>
           </Grid>
           <TextFieldUi
-            submit="required"
+            submit={submit}
             type="text"
             name="name"
             label="Certification name"
@@ -176,7 +176,7 @@ export const ManageClinicCertifications: FC<Props> = ({}) => {
             onChange={handleInput}
           />
           <TextFieldUi
-            submit="required"
+            submit={submit}
             type="text"
             name="description"
             label="Certification detailed description"
@@ -184,7 +184,7 @@ export const ManageClinicCertifications: FC<Props> = ({}) => {
             onChange={handleInput}
           />
           <TextFieldUi
-            submit="required"
+            submit={submit}
             type="text"
             name="logo_link"
             label="Add image link"

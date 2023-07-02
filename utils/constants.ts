@@ -1,6 +1,7 @@
 import { Clinic, Degree, Product, Quote, Column } from "../interfaces";
 
 export const clinic = {
+  medic_id: "",
   finantial: "",
   technology: "",
   phone: "",
@@ -10,6 +11,7 @@ export const clinic = {
   country: "Select country",
   state: "Select state",
   province: "Select city",
+  speciality: "Speciality"
 } as Clinic;
 
 export const certification = {
