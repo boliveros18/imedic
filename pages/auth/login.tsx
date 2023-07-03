@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import NextLink from "next/link";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form";
 import { signIn, getSession, getProviders } from "next-auth/react";
 import { AuthLayout } from "../../components/layouts";
 import { validations } from "../../utils";
+import { AuthContext } from "../../context/auth";
 import { PrivacyPolicy } from "../../components/ui";
 
 type FormData = {
@@ -25,6 +26,7 @@ type FormData = {
 };
 
 const LoginPage = () => {
+  const { loginUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -32,6 +34,7 @@ const LoginPage = () => {
   } = useForm<FormData>();
   const [showError, setShowError] = useState(false);
   const [providers, setProviders] = useState<any>({});
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     getProviders().then((prov) => {
@@ -39,9 +42,17 @@ const LoginPage = () => {
     });
   }, []);
 
-  const onLoginUser = async ({ email, password }: FormData) => {
+  const  onLoginUser = async ({ email, password }: FormData) => {
     setShowError(false);
-    await signIn("credentials", { email, password });
+    const { hasError, messageLogin } = await loginUser(email, password );
+    if (hasError) {
+      setShowError(true);
+      setErrorMessage(messageLogin!);
+      setTimeout(() => setShowError(false), 3000);
+      return;
+    } else{
+      await signIn("credentials", { email, password });
+    }
   };
 
   return (
@@ -77,11 +88,11 @@ const LoginPage = () => {
             <Grid item xs={12}>
               <Typography variant="h5">Sign In</Typography>
               <Chip
-                label="We cannot find an account with that email address"
+                label="Wrong email address or password"
                 color="error"
                 icon={<ErrorOutline />}
                 className="fadeIn"
-                sx={{ display: showError ? "flex" : "none" }}
+                sx={{ display: showError ? "flex" : "none", mt: 1, mb: 1 }}
               />
             </Grid>
             <Grid item xs={12}>

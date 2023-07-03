@@ -20,7 +20,7 @@ import { AuthContext } from "../../context/auth";
 import { AuthLayout } from "../../components/layouts";
 import { validations } from "../../utils";
 import { PrivacyPolicy } from "../../components/ui";
-import { Medic, IUser } from "../../interfaces";
+import { Medic } from "../../interfaces";
 import { dbMedics } from "../../database";
 
 type FormData = {
@@ -58,9 +58,10 @@ const RegisterPage = () => {
       setErrorMessage(message!);
       setTimeout(() => setShowError(false), 3000);
       return;
+    } else{
+      await signIn("credentials", { email, password });
     }
 
-    await signIn("credentials", { email, password });
   };
 
   return (
@@ -96,11 +97,11 @@ const RegisterPage = () => {
             <Grid item xs={12}>
               <Typography variant="h5">{`Create a ${userRole} account`}</Typography>
               <Chip
-                label="We cannot reconize this email address or is in use."
+                label="This email address is in use"
                 color="error"
                 icon={<ErrorOutline />}
                 className="fadeIn"
-                sx={{ display: showError ? "flex" : "none" }}
+                sx={{ display: showError ? "flex" : "none", mt: 1, mb: 1 }}
               />
             </Grid>
             <Grid item xs={12}>

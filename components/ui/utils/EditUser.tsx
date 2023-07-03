@@ -140,6 +140,7 @@ export const EditUser: FC<Props> = ({}) => {
                 label="Old_Email"
                 variant="outlined"
                 fullWidth
+                autoComplete="off"
                 defaultValue={user?.email}
                 inputProps={{
                   form: {
@@ -177,13 +178,14 @@ export const EditUser: FC<Props> = ({}) => {
                 label="Password"
                 type="password"
                 variant="outlined"
+                autoComplete="off"
                 fullWidth
                 {...register("old_password", {
-                  required: "This field is required",
+                  required: "Enter your password",
                   minLength: { value: 6, message: "At least 6 characters" },
                 })}
                 error={!!errors.old_password}
-                helperText={errorMessage}
+                helperText={errors.old_password?.message}
                 size="small"
               />
               <IconButton
@@ -214,7 +216,7 @@ export const EditUser: FC<Props> = ({}) => {
                   variant="outlined"
                   fullWidth
                   {...register("password", {
-                    required: "This field is required",
+                    required: "Enter a new password",
                     minLength: { value: 6, message: "At least 6 characters" },
                   })}
                   error={!!errors.password}
