@@ -24,9 +24,10 @@ import { SelectUi } from "../ui/utils/SelectUi";
 import { useSnackbar } from "notistack";
 import { Category, Procedure } from "../../utils/medic-category/lib";
 import { QuoteContext } from "../../context/quote";
-import { product } from "../../utils/constants";
+import { product, product_validation } from "../../utils/constants";
 import ManageButtons from "../ui/utils/ManageButtons";
 import TextFieldUi from "../ui/utils/TextFieldUi";
+import { isFilledInputsForm } from "../../utils/validations";
 
 interface Props {
   children?: ReactNode;
@@ -50,11 +51,10 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
   const { setProgress } = useContext(UIContext);
   const [submit, setSubmit] = useState("CREATE");
   const [create, onCreate] = useState(true);
-  const [clinic, setClinic] = useState({ name: "Clinic" } as Clinic);
+  const [clinic, setClinic] = useState({ name: "Clinic", _id: "" } as Clinic);
   const [category, setCategory] = useState("Category");
   const [procedure, setProcedure] = useState("Procedure");
   const [values, setValues] = useState(product);
-  const [inputs, setInputs] = useState({} as Product);
 
   useEffect(() => {
     getProductsByMedicId(medic._id);
@@ -62,12 +62,11 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
 
   const successService = async (state: string) => {
     await getProductsByMedicId(medic._id);
-    setInputs({} as Product);
     setValues(product);
     setIndex(0);
     setCategory("Category");
     setProcedure("Procedure");
-    setClinic({ name: "Clinics" } as Clinic);
+    setClinic({ name: "Clinic", _id: "" } as Clinic);
     onCreate(true);
     setSubmit("CREATE");
     setProgress(false);
@@ -82,7 +81,7 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
       try {
         setProgress(true);
         await updateProduct(products[index]._id || "", {
-          ...inputs,
+          ...values,
           category: category,
           procedure: procedure,
         } as Product).then(() => {
@@ -90,23 +89,26 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
         });
       } catch (error: any) {
         setProgress(false);
-        enqueueSnackbar("Error, try again!", { variant: "error" });
+        enqueueSnackbar(`${error}`, { variant: "error" });
       }
     } else {
       try {
         setProgress(true);
-        await createProduct({
-          ...inputs,
+        const filledInputsForm = isFilledInputsForm({
+          ...values,
           medic_id: medic._id,
           clinic_id: clinic._id,
           category: category,
           procedure: procedure,
-        } as Product).then(() => {
+          recovery_days: values.recovery_days,
+          procedure_hours: values.procedure_hours
+        } as Product , product_validation);
+        await createProduct(filledInputsForm).then(() => {
           successService("created");
         });
       } catch (error: any) {
         setProgress(false);
-        enqueueSnackbar("Error, try again!", { variant: "error" });
+        enqueueSnackbar(`${error}`, { variant: "error" });
       }
     }
     setProgress(false);
@@ -122,15 +124,13 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
       });
     } catch (error) {
       setProgress(false);
-      enqueueSnackbar("Error, try again!", { variant: "error" });
+      enqueueSnackbar(`${error}`, { variant: "error" });
     }
     setProgress(false);
   };
 
   const handleInput = ({ target }: ChangeEvent<any>) => {
     setValues({ ...values, [target.name]: target.value });
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    setInputs({ ...inputs, [target.name]: value });
   };
 
   return (
@@ -149,12 +149,11 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
               <MenuItem
                 value={""}
                 onClick={() => {
-                  setInputs({} as Product);
                   setValues(product);
                   setIndex(0);
                   setCategory("Category");
                   setProcedure("Procedure");
-                  setClinic({ name: "Clinics" } as Clinic);
+                  setClinic({ name: "Clinic", _id: "" } as Clinic);
                   onCreate(true);
                   setSubmit("CREATE");
                 }}
@@ -168,7 +167,6 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
                   onClick={() => {
                     setValues(item);
                     setIndex(index);
-                    setInputs({} as Product);
                     setSubmit("SAVE");
                     onCreate(false);
                     setCategory(item.category);
@@ -181,6 +179,20 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
                   }}
                 >
                   <span style={{ fontWeight: "500" }}>{item.procedure}</span>
+                </MenuItem>
+              ))}
+            </SelectUi>
+          </Grid>
+          <Grid item xs={12}>
+            <SelectUi>
+              <MenuItem value={""}>{clinic.name}</MenuItem>
+              {clinics.map((item, index) => (
+                <MenuItem
+                  key={index}
+                  value={item.name || ""}
+                  onClick={() => setClinic(item)}
+                >
+                  {item.name}
                 </MenuItem>
               ))}
             </SelectUi>
@@ -213,20 +225,6 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
                   </MenuItem>
                 )
               )}
-            </SelectUi>
-          </Grid>
-          <Grid item xs={12}>
-            <SelectUi>
-              <MenuItem value={""}>{clinic.name}</MenuItem>
-              {clinics.map((item, index) => (
-                <MenuItem
-                  key={index}
-                  value={item.name || ""}
-                  onClick={() => setClinic(item)}
-                >
-                  {item.name}
-                </MenuItem>
-              ))}
             </SelectUi>
           </Grid>
           <TextFieldUi

@@ -50,7 +50,7 @@ export const ManageClinicCertifications: FC<Props> = ({}) => {
     await getCertificationsByClinicId(clinic?._id || "");
     setValues(certification);
     setIndex(0);
-    setClinic({ name: "Clinics" } as Clinic);
+    setClinic({ name: "Clinic", _id: ""  } as Clinic);
     onCreate(true);
     setSubmit("CREATE");
     setProgress(false);
@@ -81,7 +81,7 @@ export const ManageClinicCertifications: FC<Props> = ({}) => {
          name: values.name,
          description: values.description,
          logo_link: values.logo_link
-        }, certification) as Certification;
+        } as Certification, certification);
         await createCertification(filledInputsForm).then(() => {
           successService("created");
         });

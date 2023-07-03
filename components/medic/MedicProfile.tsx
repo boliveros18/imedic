@@ -83,10 +83,14 @@ export const CompleteMedicProfile: FC<Props> = ({ medic }) => {
           <Grid container spacing={0} rowSpacing={2}>
             <Grid item xs={12} sx={{ mt: "5px" }}>
               <AddDocumentMedicProfile
+                handleSubmit={handleSubmit}
+                medic={medic}
                 type="card_id"
                 text="Apostille card id PDF: "
               />
               <AddDocumentMedicProfile
+                handleSubmit={handleSubmit}
+                medic={medic}
                 type="curriculum"
                 text="Curriculum vitae PDF: "
               />

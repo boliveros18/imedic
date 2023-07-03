@@ -99,7 +99,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
           country: country,
           state: state,
           city: city
-        }, clinic) as Clinic;
+        }  as Clinic, clinic);
         await createClinic(filledInputsForm);
         successService("created");
       } catch (error: any) {

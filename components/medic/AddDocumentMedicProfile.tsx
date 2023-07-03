@@ -1,4 +1,4 @@
-import { FC, ReactNode, useContext, useEffect, useState } from "react";
+import { FC, ReactNode, useContext, useEffect } from "react";
 import { Grid } from "@mui/material";
 import { ApiClient } from "../../apis";
 import { MedicContext } from "../../context/medic";
@@ -11,28 +11,28 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 interface Props {
   children?: ReactNode;
+  medic: Medic;
   type: string;
   text: string;
+  handleSubmit: any;
 }
 
-export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
-  const { medic, updateMedic } = useContext(MedicContext);
+export const AddDocumentMedicProfile: FC<Props> = ({ medic, type, text, handleSubmit }) => {
+  const { updateMedic } = useContext(MedicContext);
   const { file, updateFile, createFile, getFilesByParentIdAndType } =
     useContext(FileContext);
   const { setProgress } = useContext(UIContext);
   const { enqueueSnackbar } = useSnackbar();
-  const [dossier, setDossier] = useState(file)
 
-    useEffect( () => {
-       getFilesByParentIdAndType(medic._id, type) 
-    }, [medic, type, getFilesByParentIdAndType])
+  useEffect(() => {
+    getFilesByParentIdAndType(medic._id, type);
+  }, [medic, type, getFilesByParentIdAndType]);
 
   const upload = async (type: string, target: any) => {
     setProgress(true);
     if (target.files) {
       try {
         const file = await getFilesByParentIdAndType(medic._id, type);
-        setDossier(file)
         const files = target.files[0];
         const formData = new FormData();
         formData.append("file", files);
@@ -49,10 +49,10 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
               ["url"]: data.message,
             })
               .then(() => setProgress(false))
-              .then(() =>
+              .then(() =>{
                 enqueueSnackbar(`Your ${type} data profile has been updated`, {
                   variant: "success",
-                })
+                });}
               );
           } else {
             await createFile({
@@ -63,10 +63,10 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
             } as File)
               .then()
               .then(() => setProgress(false))
-              .then(() =>
+              .then(() =>{
                 enqueueSnackbar(`Your ${type} data profile has been created`, {
                   variant: "success",
-                })
+                }) }
               );
           }
         }
@@ -95,29 +95,28 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
             cursor: "pointer",
           }}
         >
-          {file.type === type || dossier.type === type  ? (
             <CheckCircleIcon
               sx={{
                 color:
-                (file.status || dossier.status) === "verified"
+                file.type === type ? ( file.status === "verified"
                     ? "blue"
-                    : (file.status || dossier.status) === "pending"
+                    : file.status === "pending"
                     ? "lightgray"
-                    : "red",
+                    : "red") : "red",
                 fontSize: "15px",
                 marginBottom: -0.2,
                 marginRight: 1,
               }}
             />
-          ) : null}
-          {text +
-            ((file.status || dossier.status) === "verified"
+          {text + (file.type === type
+            ? file.status === "verified"
               ? "verified"
-              : (file.status || dossier.status) === "pending"
-              ? "is pending"
-              : (file.status || dossier.status) === "rejected"
+              : file.status === "pending"
+              ? "in progress"
+              : file.status === "rejected"
               ? "Please upload again"
-              : "please upload")}
+              : "please upload"
+            : "please upload")}
           <KeyboardArrowRightIcon sx={{ mb: -0.6 }} fontSize="small" />
         </a>
       </label>

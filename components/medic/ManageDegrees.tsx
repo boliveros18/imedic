@@ -71,9 +71,9 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
         await updateDegree(degrees[index]._id || "", {
           ...values,
           file_id: file?._id,
-          level: level
+          level: level,
         } as Degree).then(() => {
-          successService("updated")
+          successService("updated");
         });
       } catch (error: any) {
         setProgress(false);
@@ -82,15 +82,18 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
     } else {
       try {
         setProgress(true);
-        const filledInputsForm = isFilledInputsForm({
-          medic_id: medic._id,
-          name: capitalize(values.name),
-          university: values.university,
-          level: level,
-          file_id: file._id
-        }, degree) as Degree;
+        const filledInputsForm = isFilledInputsForm(
+          {
+            medic_id: medic._id,
+            name: values.name,
+            university: values.university,
+            level: level,
+            file_id: file._id,
+          } as Degree,
+          degree
+        );
         await createDegree(filledInputsForm).then(() => {
-          successService("created")
+          successService("created");
         });
       } catch (error: any) {
         setProgress(false);
@@ -103,8 +106,8 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
   const SupressDegree = async () => {
     try {
       setProgress(true);
-      await deleteDegree(degrees[index]?._id || "").then( () => {
-        successService("deleted")
+      await deleteDegree(degrees[index]?._id || "").then(() => {
+        successService("deleted");
       });
     } catch (error) {
       setProgress(false);
@@ -165,7 +168,7 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
             type="text"
             name="name"
             label="Professional degree name"
-            value={values.name}
+            value={capitalize(values.name)}
             onChange={handleInput}
           />
           <TextFieldUi
@@ -177,7 +180,7 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
                 ? "University"
                 : "University example: University of Miami"
             }
-            value={values.university}
+            value={capitalize(values.university)}
             onChange={handleInput}
           />
           <Grid item xs={12}>
@@ -195,19 +198,25 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
             </SelectUi>
           </Grid>
           <Grid item xs={12} sx={{ mt: -1 }}>
-           { level !== "Level degree" ? <AddDocumentMedicProfile
-              type={level}
-              text={`Apostille ${level} diploma PDF: `}
-            /> : null }
-          </Grid>
-          <Grid item xs={12}>
-            <Typography
-              sx={{ fontSize: 13, fontWeight: "400", mt: -2 }}
-              align="right"
-            >
-              *Save updates after file has uploaded.
-            </Typography>
-          </Grid>
+            {level !== "Level degree" ? (
+              <>
+                <AddDocumentMedicProfile
+                  handleSubmit={handleSubmit}
+                  medic={medic}
+                  type={level}
+                  text={`Apostille ${level} diploma PDF: `}
+                />{" "}
+
+                  <Typography
+                    sx={{ fontSize: 13, fontWeight: "400" }}
+                    align="right"
+                  >
+                    *You must save or create after file has uploaded.
+                  </Typography>
+             
+              </>
+            ) : null}
+          </Grid>               
           <Grid item xs={12}>
             <ManageButtons
               suppress={SupressDegree}

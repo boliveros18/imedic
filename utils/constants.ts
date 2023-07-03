@@ -47,11 +47,20 @@ export const product = {
   currency: "US",
 } as Product;
 
+export const product_validation = {
+  clinic_id: "",
+  category: "Category",
+  procedure: "Procedure",
+  recovery_days: 0,
+  procedure_hours: 0,
+} as Product;
+
 export const quote = {
+  product_id: "",
   price: 0,
   quantity: 0,
-  unit: "cc",
-  currency: "US",
+  unit: "Select unit",
+  currency: "",
 } as Quote;
 
 export const units = ["lb", "oz", "in", "sq.in", "ft", "cc", "unit"];

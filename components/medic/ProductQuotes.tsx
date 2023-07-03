@@ -24,6 +24,7 @@ import { quote, units } from "../../utils/constants";
 import { useSnackbar } from "notistack";
 import ManageButtons from "../ui/utils//ManageButtons";
 import TextFieldUi from "../ui/utils//TextFieldUi";
+import { isFilledInputsForm } from "../../utils/validations";
 
 interface Props {
   children?: ReactNode;
@@ -41,13 +42,12 @@ export const ProductQuotes: FC<Props> = ({ medic }) => {
   } = useContext(QuoteContext);
   const { setProgress } = useContext(UIContext);
   const { enqueueSnackbar } = useSnackbar();
-  const [product, setProduct] = useState({ procedure: "Procedure" } as Product);
+  const [product, setProduct] = useState({ procedure: "Product", _id: "" } as Product);
   const [index, setIndex] = useState(0);
   const [submit, setSubmit] = useState("CREATE");
   const [create, onCreate] = useState(true);
   const [unit, setUnit] = useState("Select unit");
   const [values, setValues] = useState(quote);
-  const [inputs, setInputs] = useState({} as Quote);
 
   useEffect(() => {
     getQuotesByProductId(product._id);
@@ -55,7 +55,6 @@ export const ProductQuotes: FC<Props> = ({ medic }) => {
 
   const successService = async (state: string) => {
     await getQuotesByProductId(product._id);
-    setInputs({} as Quote);
     setValues(quote);
     setIndex(0);
     setUnit("Select unit");
@@ -73,30 +72,32 @@ export const ProductQuotes: FC<Props> = ({ medic }) => {
       try {
         setProgress(true);
         await updateQuote(quotes[index]._id || "", {
-          ...inputs,
+          ...values,
           unit: unit,
         } as Quote).then(() => {
           successService("updated");
         });
       } catch (error: any) {
         setProgress(false);
-        enqueueSnackbar("Error, try again!", { variant: "error" });
+        enqueueSnackbar(`${error}`, { variant: "error" });
       }
     } else {
       try {
         setProgress(true);
-        await createQuote({
-          ...inputs,
+        const filledInputsForm = isFilledInputsForm({
           medic_id:  medic._id,
           product_id: product._id,
+          quantity: values.quantity,
+          price: values.price,
           unit: unit,
           currency: "US",
-        } as Quote).then(() => {
+        } as Quote, quote);
+        await createQuote(filledInputsForm).then(() => {
           successService("created");
         });
       } catch (error: any) {
         setProgress(false);
-        enqueueSnackbar("Error, try again!", { variant: "error" });
+        enqueueSnackbar(`${error}`, { variant: "error" });
       }
     }
     setProgress(false);
@@ -110,15 +111,13 @@ export const ProductQuotes: FC<Props> = ({ medic }) => {
       });
     } catch (error: any) {
       setProgress(false);
-      enqueueSnackbar("Error, try again!", { variant: "error" });
+      enqueueSnackbar(`${error}`, { variant: "error" });
     }
     setProgress(false);
   };
 
   const handleInput = ({ target }: ChangeEvent<any>) => {
     setValues({ ...values, [target.name]: target.value });
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    setInputs({ ...inputs, [target.name]: value });
   };
 
   return (
@@ -128,7 +127,7 @@ export const ProductQuotes: FC<Props> = ({ medic }) => {
           <Grid item xs={12}>
             {
               <Alert severity={create ? "success" : "info"}>
-                {`${create ? "Create" : "Update"} a product`}
+                {`${create ? "Create" : "Update"} a product quote`}
               </Alert>
             }
           </Grid>
@@ -185,7 +184,7 @@ export const ProductQuotes: FC<Props> = ({ medic }) => {
               submit="required"
               type="number"
               name="quantity"
-              label="Quantities"
+              label="Quantities example: 100 cc"
               value={values.quantity}
               onChange={handleInput}
             />
