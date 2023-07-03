@@ -45,7 +45,6 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
   const [submit, setSubmit] = useState("CREATE");
   const [create, onCreate] = useState(true);
   const [values, setValues] = useState(clinic);
-  const [inputs, setInputs] = useState({} as Clinic);
 
   useEffect(() => {
     getClinicsByMedicId(medic._id);
@@ -53,7 +52,6 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
 
   const successService = async (state: string) => {
     await getClinicsByMedicId(medic._id);
-    setInputs({} as Clinic);
     setValues(clinic);
     setIndex(0);
     setCategory("Category");
@@ -84,7 +82,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
         });
       } catch (error: any) {
         setProgress(false);
-        enqueueSnackbar("Error, try again!", { variant: "error" });
+        enqueueSnackbar(`${error}`, { variant: "error" });
       }
     } else {
       try {
@@ -92,7 +90,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
         const filledInputsForm = isFilledInputsForm({
           medic_id: medic._id,
           name: values.name,
-          phone: formatPhone(inputs.phone),
+          phone: formatPhone(values.phone),
           address: values.address,
           instagram: values.instagram,
           finantial: values.finantial,
@@ -121,7 +119,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
       });
     } catch (error) {
       setProgress(false);
-      enqueueSnackbar("Error, try again!", { variant: "error" });
+      enqueueSnackbar(`${error}`, { variant: "error" });
     }
     setProgress(false);
   };
@@ -146,7 +144,6 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
               <MenuItem
                 value={""}
                 onClick={() => {
-                  setInputs({} as Clinic);
                   setValues(clinic);
                   setIndex(0);
                   setCategory("Category");
@@ -167,7 +164,6 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
                     setSubmit("SAVE");
                     onCreate(false);
                     setValues(item);
-                    setInputs({} as Clinic);
                     setIndex(index);
                     setCategory(item.category);
                     setCountry(item.country);

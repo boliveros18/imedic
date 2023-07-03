@@ -17,8 +17,10 @@ export const isEmail = (email: string): string | undefined => {
 
 export const isFilledInputsForm = (array: any, constant: any) => {
   for (let prop in array) {
+    const id = prop.slice(-3);
+    const parent= prop.slice(0,-3);
     if (array[prop] === constant[prop]) {
-      throw new Error(`the field ${prop} is empty!`);
+      throw new Error( id === "_id" ? `you must create or select a ${parent} first.`: `the field ${prop} is empty!` );
     }
   }
   return array;

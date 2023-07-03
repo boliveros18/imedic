@@ -8,7 +8,7 @@ import { ProcedureContext } from "../../context/procedure";
 import { useSnackbar } from "notistack";
 import { Medic } from "../../interfaces";
 import AccordionUi from "../ui/utils/AccordionUi";
-import { getSixNumbers } from "../../utils";
+import { getFiveNumbers } from "../../utils";
 
 interface Props {
   children?: ReactNode;
@@ -31,7 +31,7 @@ export const ProcedureAvailability: FC<Props> = ({ medic }) => {
 
   const unsuccess = (error: any) => {
     setProgress(false);
-    enqueueSnackbar("Error, try again!", { variant: "error" });
+    enqueueSnackbar(`${error}`, { variant: "error" });
     console.log({ error });
   };
 
@@ -39,9 +39,12 @@ export const ProcedureAvailability: FC<Props> = ({ medic }) => {
     try {
       setProgress(true);
       const allowed = values.filter((value: any) => {
+        if(procedures.length > 0){
           for (let i = 0; i <= procedures.length; i++) {
-                return getSixNumbers(value.unix ? value.unix : value ) !== getSixNumbers(procedures[i]?.date)
+              return getFiveNumbers(value.unix ? value.unix : value ) !== getFiveNumbers(procedures[i].date)
           }
+        }
+          return value
       });
       setValues(allowed)
       await updateMedic(medic._id || "", {

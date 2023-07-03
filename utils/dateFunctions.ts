@@ -5,7 +5,7 @@ export const getFormatDistanceToNow = (date: number) => {
   return fromNow;
 };
 
-export const getSixNumbers = ( date: number) => {
-  const short = date.toString().slice(0,6);
+export const getFiveNumbers = ( date: number) => {
+  const short = date.toString().slice(0,5);
   return parseInt(short);
 }

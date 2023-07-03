@@ -1,4 +1,4 @@
-import { FC, ReactNode, useContext } from "react";
+import { FC, ReactNode, useContext, useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import { ApiClient } from "../../apis";
 import { MedicContext } from "../../context/medic";
@@ -17,17 +17,22 @@ interface Props {
 
 export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
   const { medic, updateMedic } = useContext(MedicContext);
-  const { files, updateFile, createFile, getFilesByParentIdAndType } =
+  const { file, updateFile, createFile, getFilesByParentIdAndType } =
     useContext(FileContext);
   const { setProgress } = useContext(UIContext);
   const { enqueueSnackbar } = useSnackbar();
-  const dossier = files.filter((i: File) => i.type === type);
+  const [dossier, setDossier] = useState(file)
+
+    useEffect( () => {
+       getFilesByParentIdAndType(medic._id, type) 
+    }, [medic, type, getFilesByParentIdAndType])
 
   const upload = async (type: string, target: any) => {
     setProgress(true);
     if (target.files) {
       try {
         const file = await getFilesByParentIdAndType(medic._id, type);
+        setDossier(file)
         const files = target.files[0];
         const formData = new FormData();
         formData.append("file", files);
@@ -90,13 +95,13 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
             cursor: "pointer",
           }}
         >
-          {dossier.length === 1 ? (
+          {file.type === type || dossier.type === type  ? (
             <CheckCircleIcon
               sx={{
                 color:
-                  dossier[0].status === "verified"
+                (file.status || dossier.status) === "verified"
                     ? "blue"
-                    : dossier[0].status === "pending"
+                    : (file.status || dossier.status) === "pending"
                     ? "lightgray"
                     : "red",
                 fontSize: "15px",
@@ -106,11 +111,11 @@ export const AddDocumentMedicProfile: FC<Props> = ({ type, text }) => {
             />
           ) : null}
           {text +
-            (dossier[0]?.status === "verified"
+            ((file.status || dossier.status) === "verified"
               ? "verified"
-              : dossier[0]?.status === "pending"
+              : (file.status || dossier.status) === "pending"
               ? "is pending"
-              : dossier[0]?.status === "rejected"
+              : (file.status || dossier.status) === "rejected"
               ? "Please upload again"
               : "please upload")}
           <KeyboardArrowRightIcon sx={{ mb: -0.6 }} fontSize="small" />

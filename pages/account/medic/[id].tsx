@@ -111,7 +111,7 @@ const AccountMedicPage: NextPage<Props> = ({
               <ProductQuotes medic={medic} />
               <MedicContract medic={medic} />
               <ProcedureAvailability medic={medic} />
-              <ProceduresInProcess /> {//TODO: check form validations
+              <ProceduresInProcess medic={medic} /> {//TODO: check form validations
               }
             </CardContent>
           </Card>

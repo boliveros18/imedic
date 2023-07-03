@@ -1,4 +1,4 @@
-export const AcademicDegrees = ["pregrade", "postgrade"];
+export const AcademicDegrees = ["pregrade", "postgrade-1", "postgrade-2", "postgrade-3"];
 
 export const Categories = [
   "Audiology",

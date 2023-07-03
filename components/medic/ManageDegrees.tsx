@@ -21,6 +21,7 @@ import { degree } from "../../utils/constants";
 import AddDocumentMedicProfile from "./AddDocumentMedicProfile";
 import ManageButtons from "../ui/utils/ManageButtons";
 import TextFieldUi from "../ui/utils/TextFieldUi";
+import { isFilledInputsForm } from "../../utils/validations";
 
 interface Props {
   children?: ReactNode;
@@ -43,7 +44,6 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
   const [submit, setSubmit] = useState("CREATE");
   const [create, onCreate] = useState(true);
   const [values, setValues] = useState(degree);
-  const [inputs, setInputs] = useState({} as Degree);
 
   useEffect(() => {
     getDegreesByMedicId(medic._id);
@@ -51,7 +51,7 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
 
   const successService = async (state: string) => {
     await getDegreesByMedicId(medic._id);
-    setInputs({} as Degree);
+
     setValues(degree);
     setIndex(0);
     setLevel("Level degree");
@@ -69,33 +69,32 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
       try {
         setProgress(true);
         await updateDegree(degrees[index]._id || "", {
-          ...inputs,
-          file_id: file._id,
-          level: level,
-          to_approve: file._id ? true : false,
+          ...values,
+          file_id: file?._id,
+          level: level
         } as Degree).then(() => {
           successService("updated")
         });
       } catch (error: any) {
         setProgress(false);
-        enqueueSnackbar("Error, try again!", { variant: "error" });
+        enqueueSnackbar(`${error}`, { variant: "error" });
       }
     } else {
       try {
         setProgress(true);
-        await createDegree({
-          ...inputs,
-          name: capitalize(inputs.name),
+        const filledInputsForm = isFilledInputsForm({
           medic_id: medic._id,
+          name: capitalize(values.name),
+          university: values.university,
           level: level,
-          file_id: file._id,
-          to_approve: file._id ? true : false,
-        } as Degree).then(() => {
+          file_id: file._id
+        }, degree) as Degree;
+        await createDegree(filledInputsForm).then(() => {
           successService("created")
         });
       } catch (error: any) {
         setProgress(false);
-        enqueueSnackbar("Error, try again!", { variant: "error" });
+        enqueueSnackbar(`${error}`, { variant: "error" });
       }
     }
     setProgress(false);
@@ -109,7 +108,7 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
       });
     } catch (error) {
       setProgress(false);
-      enqueueSnackbar("Error, try again!", { variant: "error" });
+      enqueueSnackbar(`${error}`, { variant: "error" });
     }
     onCreate(true);
     setProgress(false);
@@ -117,8 +116,6 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
 
   const handleInput = ({ target }: ChangeEvent<any>) => {
     setValues({ ...values, [target.name]: target.value });
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    setInputs({ ...inputs, [target.name]: value });
   };
 
   return (
@@ -137,7 +134,6 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
               <MenuItem
                 value={""}
                 onClick={() => {
-                  setInputs({} as Degree);
                   setValues(degree);
                   setIndex(0);
                   setLevel("Level degree");
@@ -155,7 +151,6 @@ export const ManageDegrees: FC<Props> = ({ medic }) => {
                     setValues(item);
                     setIndex(index);
                     setLevel(item.level);
-                    setInputs({} as Degree);
                     setSubmit("SAVE");
                     onCreate(false);
                   }}

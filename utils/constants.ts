@@ -15,6 +15,7 @@ export const clinic = {
 } as Clinic;
 
 export const certification = {
+  clinic_id: "",
   name: "",
   description: "",
   logo_link: "",
@@ -23,6 +24,8 @@ export const certification = {
 export const degree = {
   name: "",
   university: "",
+  level: "Level degree",
+  file_id: ""
 } as Degree;
 
 export const product = {

@@ -15,9 +15,11 @@ import { Clinic, Certification } from "../../interfaces";
 import { SelectUi } from "../ui/utils/SelectUi";
 import { useSnackbar } from "notistack";
 import { CertificationContext } from "../../context/certification";
-import { certification } from "../../utils/constants";
+import { certification, clinic } from '../../utils/constants';
 import ManageButtons from "../ui/utils/ManageButtons";
 import TextFieldUi from "../ui/utils/TextFieldUi";
+import { isFilledInputsForm } from "../../utils/validations";
+import { capitalize } from '../../utils/strings';
 
 interface Props {
   children?: ReactNode;
@@ -37,9 +39,8 @@ export const ManageClinicCertifications: FC<Props> = ({}) => {
   const [index, setIndex] = useState(0);
   const [submit, setSubmit] = useState("CREATE");
   const [create, onCreate] = useState(true);
-  const [clinic, setClinic] = useState({ name: "Clinic" } as Clinic);
+  const [clinic, setClinic] = useState({ name: "Clinic", _id: "" } as Clinic);
   const [values, setValues] = useState(certification);
-  const [inputs, setInputs] = useState({} as Certification);
 
   useEffect(() => {
     getCertificationsByClinicId(clinic?._id || "");
@@ -47,7 +48,6 @@ export const ManageClinicCertifications: FC<Props> = ({}) => {
 
   const successService = async (state: string) => {
     await getCertificationsByClinicId(clinic?._id || "");
-    setInputs({} as Certification);
     setValues(certification);
     setIndex(0);
     setClinic({ name: "Clinics" } as Clinic);
@@ -65,26 +65,29 @@ export const ManageClinicCertifications: FC<Props> = ({}) => {
       try {
         setProgress(true);
         await updateCertification(certifications[index]._id || "", {
-          ...inputs,
+          ...values,
         } as Certification).then(() => {
           successService("updated");
         });
       } catch (error: any) {
         setProgress(false);
-        enqueueSnackbar("Error, try again!", { variant: "error" });
+        enqueueSnackbar(`${error}`, { variant: "error" });
       }
     } else {
       try {
         setProgress(true);
-        await createCertification({
-          ...inputs,
-          clinic_id: clinic._id,
-        } as Certification).then(() => {
+        const filledInputsForm = isFilledInputsForm({
+         clinic_id: clinic._id,
+         name: values.name,
+         description: values.description,
+         logo_link: values.logo_link
+        }, certification) as Certification;
+        await createCertification(filledInputsForm).then(() => {
           successService("created");
         });
       } catch (error: any) {
         setProgress(false);
-        enqueueSnackbar("Error, try again!", { variant: "error" });
+        enqueueSnackbar(`${error}`, { variant: "error" });
       }
     }
     setProgress(false);
@@ -101,15 +104,13 @@ export const ManageClinicCertifications: FC<Props> = ({}) => {
       );
     } catch (error) {
       setProgress(false);
-      enqueueSnackbar("Error, try again!", { variant: "error" });
+      enqueueSnackbar(`${error}`, { variant: "error" });
     }
     setProgress(false);
   };
 
   const handleInput = ({ target }: ChangeEvent<any>) => {
     setValues({ ...values, [target.name]: target.value });
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    setInputs({ ...inputs, [target.name]: value });
   };
 
   return (
@@ -172,7 +173,7 @@ export const ManageClinicCertifications: FC<Props> = ({}) => {
             type="text"
             name="name"
             label="Certification name"
-            value={values.name}
+            value={capitalize(values.name)}
             onChange={handleInput}
           />
           <TextFieldUi

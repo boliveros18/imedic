@@ -25,12 +25,13 @@ import AccordionUi from "../ui/utils/AccordionUi";
 
 interface Props {
   children?: ReactNode;
+  medic: Medic;
 }
 
-export const ProceduresInProcess: FC<Props> = ({}) => {
+export const ProceduresInProcess: FC<Props> = ({ medic }) => {
   const { procedures, getProceduresByMedicId, updateProcedure } =
     useContext(ProcedureContext);
-  const { medic, updateMedic } = useContext(MedicContext);
+  const { updateMedic } = useContext(MedicContext);
 
   useEffect(() => {
     getProceduresByMedicId(medic._id);
