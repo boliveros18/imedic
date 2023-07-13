@@ -1,12 +1,6 @@
 import { useContext, useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
-import {
-  Typography,
-  Card,
-  CardContent,
-  Grid,
-  Divider
-} from "@mui/material";
+import { Typography, Card, CardContent, Grid, Divider } from "@mui/material";
 import { dbMedics, dbFiles } from "../../../database";
 import { Layout } from "../../../components/layouts";
 import { Medic, IUser, File } from "../../../interfaces";
@@ -23,7 +17,7 @@ import {
   ProceduresInProcess,
   MedicContract,
 } from "../../../components/medic";
-import { EditUser } from "../../../components/ui/utils/EditUser";
+import { EditUser } from "../../../components/user/EditUser";
 import { ProductContext } from "../../../context/product";
 import { ClinicContext } from "../../../context/clinic";
 import { FileContext } from "../../../context/file";
@@ -48,20 +42,18 @@ const AccountMedicPage: NextPage<Props> = ({
   avatar,
   files,
 }) => {
-
   const { setMedic } = useContext(MedicContext);
   const { clinics, getClinicsByMedicId } = useContext(ClinicContext);
   const { setFiles } = useContext(FileContext);
   const { index, products, getProductsByMedicId } = useContext(ProductContext);
   const { setProgress } = useContext(UIContext);
 
-
   useEffect(() => {
     setMedic(medic);
     setFiles(files);
     getClinicsByMedicId(medic._id || "");
     getProductsByMedicId(medic._id);
-    setProgress(false)
+    setProgress(false);
   }, [
     id,
     medic,
@@ -70,12 +62,12 @@ const AccountMedicPage: NextPage<Props> = ({
     setFiles,
     getClinicsByMedicId,
     getProductsByMedicId,
-    setProgress
+    setProgress,
   ]);
   return (
     <Layout>
-     <UserDataComponent user={user} avatar={avatar} />
-     <LoadingUi/>
+      <UserDataComponent user={user} avatar={avatar} />
+      <LoadingUi />
       <Grid container spacing={0} rowSpacing={2}>
         <Grid
           item
@@ -92,14 +84,13 @@ const AccountMedicPage: NextPage<Props> = ({
             }}
             elevation={0}
           >
+            <CardContent sx={{ mb: 1 }}>
             <Typography sx={{ fontSize: 16, fontWeight: 400, mb: 1, ml: 2 }}>
               Medic Profile
             </Typography>
             <Divider />
             <SelectCategoryAndProcedure products={products} />
-            <MedicAccountCard clinic={clinics[index]} medic={medic} />
-            <CardContent sx={{ mb: -2 }}>
-              <EditUser />
+              <MedicAccountCard clinic={clinics[index]} medic={medic} />
             </CardContent>
             <Divider />
             <CardContent sx={{ mt: "-14px" }}>
@@ -111,8 +102,7 @@ const AccountMedicPage: NextPage<Props> = ({
               <ProductQuotes medic={medic} />
               <MedicContract medic={medic} />
               <ProcedureAvailability medic={medic} />
-              <ProceduresInProcess medic={medic} /> {//TODO: check form validations
-              }
+              <ProceduresInProcess medic={medic} />
             </CardContent>
           </Card>
         </Grid>

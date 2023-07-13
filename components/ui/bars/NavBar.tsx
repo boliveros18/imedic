@@ -96,7 +96,7 @@ export const NavBar: FC<Props> = ({}) => {
         { user?.role === "medic" ? ("Md. " + user?.name) : user?.name }
       </MenuItem>
       <Divider />
-      <MenuItem onClick={handleMenuClose}>
+      <MenuItem onClick={() => {handleMenuClose() ; setProgress(true); navigateTo(`/account/user/${user?._id}`)}}>
         <ListItemIcon>
           <ManageAccountIcon fontSize="small" />
         </ListItemIcon>

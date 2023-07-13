@@ -62,6 +62,7 @@ const Comments: FC<Props> = ({
         onClick={() => {
           getCommentsByParentId(parent_id);
         }}
+        sx={{mb: -2}}
       >
         <Typography
           sx={{

@@ -1,59 +1,82 @@
 [
 {
-    "name":  "Audiology"
+    "name": "Consultation",
+    "photo" : "https://img.freepik.com/free-photo/worplace-modern-hospital_1098-18204.jpg?w=740&t=st=1688507309~exp=1688507909~hmac=a9022abb2f34eadee5a74ace94cd19548bc63991b16a6e07a334e50b3e248985"
 },
 {
-    "name":  "Bariatric"
+    "name":  "Audiology",
+    "photo" : "https://joearchitect.com/wp-content/uploads/2018/02/2018.2BNB-Dr.Schlicher-PleasantonWEB41.jpg"
 },
 {
-    "name":  "Colon & Rectal"
+    "name":  "Bariatric",
+    "photo" : "https://infraestructuramedica.mx/wp-content/uploads/2020/07/1212.png"
 },
 {
-    "name":  "Cardiovascular"
+    "name":  "Colon & Rectal",
+    "photo" : "https://infraestructuramedica.mx/wp-content/uploads/2021/06/quirofano-construccion-de-quirofanos-infraestructura-especializada-en-mexico-1536x1152.jpg.webp"
 },
 {
-    "name":  "Dermatology"
+    "name":  "Cardiovascular",
+    "photo" : "https://images.pexels.com/photos/4047073/pexels-photo-4047073.jpeg"
 },
 {
-    "name":  "Endocrine"
+    "name":  "Dermatology",
+    "photo" : "https://i.pinimg.com/originals/7f/b3/6b/7fb36bef986c8b2c0b6f3ded1fef06b3.jpg"
 },
 {
-    "name":  "Gastroenterology & Hepatology"
+    "name":  "Endocrine",
+    "photo" : "https://images.pexels.com/photos/247786/pexels-photo-247786.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 },
 {
-    "name":  "Hematology"
+    "name":  "Gastroenterology & Hepatology",
+    "photo" : "https://images.pexels.com/photos/4031416/pexels-photo-4031416.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 },
 {
-    "name":  "Oncology"
+    "name":  "Hematology",
+    "photo" : "https://infraestructuramedica.mx/wp-content/uploads/2021/01/cam03_Laboratorios-scaled.jpg.webp"
 },
 {
-    "name":  "Ophthalmology"
+    "name":  "Oncology",
+    "photo" : "https://oss.gooood.cn/uploads/2022/06/004-shanghai-guang-ci-memorial-hospital-by-shuishi-960x1287.jpg"
 },
 {
-    "name":  "Oral & Maxillofacial"
+    "name":  "Ophthalmology",
+    "photo" : "https://images.pexels.com/photos/5752264/pexels-photo-5752264.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
 },
 {
-    "name":  "Orthopedic"
+    "name":  "Oral & Maxillofacial",
+    "photo" : "https://i.pinimg.com/originals/b7/b6/4b/b7b64b33dae7ee95a1d76f00f92ba466.jpg"
 },
 {
-    "name":  "Plastic"
+    "name":  "Orthopedic",
+    "photo" : "https://www.apexdesignbuild.net/wp-content/uploads/2022/06/imageedit_14_2885281878.jpg"
 },
 {
-    "name":  "Radiology"
+    "name":  "Plastic",
+    "photo" : "https://cdn.homedsgn.com/wp-content/uploads/2011/04/Surgery-Clinic-02.jpg"
 },
 {
-    "name":  "Rheumatology"
+    "name":  "Radiology",
+    "photo" : "https://infraestructuramedica.mx/wp-content/uploads/2020/07/4-1.png"
 },
 {
-    "name":  "Urology"
+    "name":  "Rheumatology",
+    "photo" : "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/1c419112789545.5626d25197c5d.jpg"
 },
 {
-    "name":  "Fertility"
+    "name":  "Urology",
+    "photo" : "https://images.pexels.com/photos/6627667/pexels-photo-6627667.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 },
 {
-    "name":  "Neurology"
+    "name":  "Fertility",
+    "photo" : "https://ourbodiesourselves.org/wp-content/uploads/nataliya-vaitkevich-5982466-4.jpg"
 },
 {
-    "name":  "Obstetrics & Gynecology"
+    "name":  "Neurology",
+    "photo" : "https://hasenstabinc.com/wp-content/uploads/2018/03/CC-Medina-OR-1-Full.jpg"
+},
+{
+    "name":  "Obstetrics & Gynecology",
+    "photo" : "https://images.pexels.com/photos/7108389/pexels-photo-7108389.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 }
 ]

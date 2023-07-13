@@ -2,7 +2,7 @@ export interface Clinic {
   _id?: string;
   type: string;
   medic_id: string;
-  certified: boolean;
+  status: string;
   finantial: string;  
   category: string;
   technology: string;  

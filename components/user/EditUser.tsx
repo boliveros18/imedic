@@ -1,27 +1,19 @@
-import { FC, ReactNode, useState, useContext } from "react";
-import {
-  Box,
-  IconButton,
-  Typography,
-  Grid,
-  TextField,
-  Chip
-} from "@mui/material";
-import { AuthContext } from "../../../context/auth";
+import { FC, ReactNode, useState, useContext, ChangeEvent } from "react";
+import { Box, Grid, TextField, Chip } from "@mui/material";
+import { AuthContext } from "../../context/auth";
 import { ErrorOutline } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
-import { validations } from "../../../utils";
-import { capitalize } from "../../../utils/strings";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { IUser } from "../../../interfaces";
-import { signOut } from "next-auth/react";
-import { ExpanderUi } from "./ExpanderUi";
-import ManageButtons from "./ManageButtons";
-import { UIContext } from "../../../context/ui";
+import { validations } from "../../utils";
+import { capitalize } from "../../utils/strings";
+import { IUser, File } from "../../interfaces";
+import { signIn } from "next-auth/react";
+import { ExpanderUi } from "../ui/utils/ExpanderUi";
+import ManageButtons from "../ui/utils/ManageButtons";
+import { UIContext } from "../../context/ui";
 
 interface Props {
   children?: ReactNode;
+  user: IUser;
 }
 
 type FormData = {
@@ -32,8 +24,8 @@ type FormData = {
   password: string;
 };
 
-export const EditUser: FC<Props> = ({}) => {
-  const { user, updateUser, loginUser, deleteUser } = useContext(AuthContext);
+export const EditUser: FC<Props> = ({ user }) => {
+  const { updateUser, deleteUser } = useContext(AuthContext);
   const [toggleChangePassword, setToggleChangePassword] = useState(false);
   const {
     register,
@@ -53,59 +45,60 @@ export const EditUser: FC<Props> = ({}) => {
   }: FormData) => {
     setShowError(false);
     setProgress(true);
-    const { hasError, messageLogin } = await loginUser(old_email, old_password);
-    if (!hasError) {
+
+    const validate =  await signIn("credentials", { redirect:false, email: old_email, password: old_password })
+    const Email = email === old_email ? old_email : email;
+    const Password = toggleChangePassword ? password : old_password;
+
+    if (validate?.status) {
       let { hasError, messageUpdate } = await updateUser(user?._id || "", {
         ...(user as IUser),
         ["name"]: capitalize(name),
-        ["email"]: email,
-        ["password"]: toggleChangePassword ? password : old_password,
+        ["email"]: Email,
+        ["password"]: Password,
       });
       if (hasError) {
         setShowError(true);
         setErrorMessage(messageUpdate!);
         setTimeout(() => setShowError(false), 3000);
         return;
+      }else{
+         await signIn("credentials", { email: Email, password: Password })
       }
-      signOut({ callbackUrl: '/auth/login'})
       setProgress(false);
     } else {
       setProgress(false);
       setShowError(true);
-      setErrorMessage(messageLogin!);
+      setErrorMessage(validate?.error || "");
       setTimeout(() => setShowError(false), 3000);
       return;
     }
     setProgress(false);
-  };
+  };        
 
-  const deleteAccount = async ({
-    old_email,
-    old_password,
-  }: FormData) => {
+  const deleteAccount = async ({ old_email, old_password }: FormData) => {
     try {
       setProgress(true);
-      const { hasError, messageLogin } = await loginUser(old_email, old_password);
-      if (!hasError) {
-        await deleteUser(user?._id || "")
+      const validate =  await signIn("credentials", { redirect:false, email: old_email, password: old_password })
+      if (validate?.status) {
+        await deleteUser(user?._id || "");
         setProgress(false);
       } else {
         setProgress(false);
         setShowError(true);
-        setErrorMessage(messageLogin!);
+        setErrorMessage(validate?.error|| "");
         setTimeout(() => setShowError(false), 3000);
         return;
       }
     } catch (error) {
       setProgress(false);
-     console.log(error)
-
+      console.log(error);
     }
     setProgress(false);
   };
 
   return (
-    <ExpanderUi title="Edit Profile" icon={true}>
+    <div>
       <form onSubmit={handleSubmit(onUpdateForm)} noValidate>
         <Box>
           <Grid container spacing={2}>
@@ -124,7 +117,7 @@ export const EditUser: FC<Props> = ({}) => {
                 variant="outlined"
                 fullWidth
                 autoComplete="off"
-                defaultValue={user?.name || ""}
+                defaultValue={user.name}
                 {...register("name", {
                   required: "This field is required",
                   minLength: { value: 2, message: "At least 2 characters" },
@@ -141,7 +134,7 @@ export const EditUser: FC<Props> = ({}) => {
                 variant="outlined"
                 fullWidth
                 autoComplete="off"
-                defaultValue={user?.email}
+                defaultValue={user.email}
                 inputProps={{
                   form: {
                     autocomplete: "off",
@@ -158,7 +151,7 @@ export const EditUser: FC<Props> = ({}) => {
                 label="Email"
                 variant="outlined"
                 fullWidth
-                defaultValue={user?.email}
+                defaultValue={user.email}
                 inputProps={{
                   form: {
                     autocomplete: "off",
@@ -188,54 +181,46 @@ export const EditUser: FC<Props> = ({}) => {
                 helperText={errors.old_password?.message}
                 size="small"
               />
-              <IconButton
-                sx={{
-                  borderRadius: 0,
-                  color: "#001B87",
-                  mb: -2,
-                }}
-                onClick={() => setToggleChangePassword(!toggleChangePassword)}
-              >
-                <Typography
-                  sx={{
-                    fontSize: 15,
-                    fontWeight: "500",
-                    borderRadius: 0,
-                  }}
-                >
-                  Change password
-                </Typography>
-                {toggleChangePassword ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-              </IconButton>
             </Grid>
-            {toggleChangePassword && ( 
-              <Grid item xs={12}>
-                <TextField
-                  label="New password"
-                  type="password"
-                  variant="outlined"
-                  fullWidth
-                  {...register("password", {
-                    required: "Enter a new password",
-                    minLength: { value: 6, message: "At least 6 characters" },
-                  })}
-                  error={!!errors.password}
-                  helperText={errors.password?.message}
-                  size="small"
-                />
-              </Grid>
-            )}
-            <Grid item xs={12}  sx={{ mb: 2 }}>
+            <Grid item xs={12}>
+              <ExpanderUi
+                icon={true}
+                title={"Change password"}
+                setToggleChangePassword={setToggleChangePassword}
+              >
+                {toggleChangePassword && (
+                  <Grid item xs={12}>
+                    <TextField
+                      label="New password"
+                      type="password"
+                      variant="outlined"
+                      fullWidth
+                      {...register("password", {
+                        required: "Enter a new password",
+                        minLength: {
+                          value: 6,
+                          message: "At least 6 characters",
+                        },
+                      })}
+                      error={!!errors.password}
+                      helperText={errors.password?.message}
+                      size="small"
+                    />
+                  </Grid>
+                )}
+              </ExpanderUi>
+            </Grid>
+            <Grid item xs={12} sx={{ mb: 2 }}>
               <ManageButtons
                 suppress={handleSubmit(deleteAccount)}
                 submit="UPDATE"
-                type="account. Are you sure"
+                type="account"
               />
             </Grid>
           </Grid>
         </Box>
       </form>
-    </ExpanderUi>
+    </div>
   );
 };
 

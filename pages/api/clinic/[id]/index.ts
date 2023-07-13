@@ -67,7 +67,7 @@ const updateClinic = async (
   }
 
   const {
-    certified = clinicToUpdate.certified,
+    status = clinicToUpdate.status,
     finantial = clinicToUpdate.finantial,
     category = clinicToUpdate.category,
     technology = clinicToUpdate.technology,
@@ -87,7 +87,7 @@ const updateClinic = async (
     const updatedClinic = await Clinic.findByIdAndUpdate(
       id,
       {
-        certified,
+        status,
         finantial,
         category,
         technology,

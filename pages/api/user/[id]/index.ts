@@ -48,7 +48,7 @@ export default function handler(
 const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
   await db.connect();
-  const user = await User.findById(id);
+  const user = await dbUsers.getUsersbyId(id);
   await db.disconnect();
 
   if (!user) {

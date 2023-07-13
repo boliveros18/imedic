@@ -21,6 +21,7 @@ export const AccordionUi: FC<Props> = ({ children, summary }) => {
       elevation={0}
       disableGutters={true}
       onClick={() => setToogle(!toogle)}
+      sx={{mb:-1, mt:-0.5}}
     >
       <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
         <Typography sx={{ fontSize: 15, fontWeight: "500", color: "#001B87" }}>

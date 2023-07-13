@@ -30,7 +30,7 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const {
     type = "Clinic",
     medic_id = "",
-    certified = false,
+    status = "pending",
     finantial = "",
     category = "",
     technology = "",
@@ -53,7 +53,7 @@ const createModel = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const newModel = new Clinic({
     type,
     medic_id,
-    certified,
+    status,
     finantial,
     category,
     technology,

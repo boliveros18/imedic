@@ -95,7 +95,7 @@ export const CardActionsUi: FC<Props> = ({ parent_id, initialLikes, type }) => {
         </Grid>
       </CardActions>
       <Typography
-        sx={{ fontSize: 14, fontWeight: 500, mt: 1.5, ml: 2, mb: -1 }}
+        sx={{ fontSize: 14, fontWeight: 500, mt: 1.5, ml: 2, mb: 0}}
       >
         {reactionsO(parent_id, reactions) > 0
           ? reactionsO(parent_id, reactions) +

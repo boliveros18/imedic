@@ -6,7 +6,7 @@ export interface IClinic extends Clinic {}
 const entrySchema = new Schema({
   type: { type: String, require: true },
   medic_id: { type: String, require: true },
-  certified: { type: Boolean },
+  status: { type: String },
   finantial: { type: String, require: true },
   category: { type: String, require: true },
   technology: { type: String, require: true },

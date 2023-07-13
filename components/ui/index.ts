@@ -19,7 +19,6 @@ export * from "./utils/CardActionsUi";
 export * from "./utils/CardDetailUi";
 export * from "./utils/CommentDialogUi";
 export * from "./utils/ExpanderUi";
-export * from "./utils/EditUser";
 export * from "./utils/GuideBar";
 export * from "./utils/InstagramLink";
 export * from "./utils/ItemCounter";

@@ -12,8 +12,7 @@ import {
   CardContent,
   Box,
   Grid,
-  CardHeader,
-  Avatar,
+  Container,
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -24,17 +23,18 @@ import AddModeratorIcon from "@mui/icons-material/AddModerator";
 import {
   ReadMore,
   ShareMediaUi,
-  CardActionsUi,
   InstagramLink,
   ItemQualification,
   SeeComments,
   SideBar,
   UserDataComponent,
+  AccordionUi,
 } from "../../components/ui";
 import { Layout } from "../../components/layouts";
 import { Clinic, Certification, Qualification, IUser, File } from "../../interfaces";
 import { UIContext } from "../../context/ui";
 import { userData } from "../../utils/functions";
+import { LargeItemCard } from "../../components/ui/utils/LargeItemCard";
 
 interface Props {
   clinic: Clinic;
@@ -79,100 +79,19 @@ const ClinicPage: NextPage<Props> = ({
             type={clinic.type}
             initialAnswers={clinic.comments}
           >
-            <Card
-              sx={{
-                width: "100%",
-                minHeight: size.height - 219,
-              }}
-              elevation={0}
-            >
-              <CardHeader
-                sx={{ mt: -1, mb: -1 }}
-                avatar={
-                  <Avatar
-                    alt={clinic?.name}
-                    sx={{
-                      fontWeight: "bold",
-                      color: "white",
-                      backgroundColor: "#c9daff",
-                      fontSize: 12,
-                    }}
-                  >
-                    <AddModeratorIcon />
-                  </Avatar>
-                }
-                action={
-                  <ShareMediaUi
-                    name={clinic?.name}
-                    description={
-                      clinic?.finantial +
-                      ". " +
-                      clinic?.category +
-                      ". " +
-                      clinic?.technology
-                    }
-                  />
-                }
-                title={
-                  <Typography sx={{ fontSize: 15, fontWeight: 500 }}>
-                    {clinic?.name + " "}
-                    <CheckCircleIcon
-                      sx={{
-                        color: clinic?.certified ? "blue" : "lightgray",
-                        fontSize: "15px",
-                      }}
-                    />
-                  </Typography>
-                }
-                subheader={clinic?.city + ", " + clinic?.country}
-              />
-              <CardMedia
-                component="img"
-                height={size.height - 500}
-                image={clinic.photo}
-                alt="Clinic"
-                sx={{ marginTop: 1, maxHeight: "330px", mb: -2.5 }}
-              />
-              <CardContent>
-                <CardActionsUi
-                  parent_id={clinic?._id || ""}
-                  initialLikes={clinic.likes}
-                  type={clinic.type}
-                />
-                <Accordion elevation={0} disableGutters={true} sx={{ mt: 2 }}>
-                  <AccordionSummary
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography
-                      sx={{ fontSize: 15, fontWeight: "500", color: "#001B87" }}
-                    >
-                      Finantial, Specialty & Technology
-                    </Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography sx={{ fontSize: 14 }}>
+               <LargeItemCard item={clinic} route={false}>
+                <Container>
+                <AccordionUi summary={"Finantial, Specialty & Technology"} >
+                     <Typography sx={{ fontSize: 14 }}>
                       {clinic?.finantial +
                         ". " +
                         clinic?.category +
                         ". " +
                         clinic?.technology}
                     </Typography>
-                  </AccordionDetails>
-                </Accordion>
-                <Accordion elevation={0} disableGutters={true}>
-                  <AccordionSummary
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography
-                      sx={{ fontSize: 15, fontWeight: "500", color: "#001B87" }}
-                    >
-                      See certifications
-                    </Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    {certification.map((item, index) => (
+                   </AccordionUi>
+                    <AccordionUi summary={"See certifications"} >
+                          {certification.map((item, index) => (
                       <Card key={index} sx={{ display: "flex" }} elevation={0}>
                         <Box sx={{ display: "flex", flexDirection: "column" }}>
                           <CardContent sx={{ flex: "1 0 auto" }}>
@@ -202,9 +121,8 @@ const ClinicPage: NextPage<Props> = ({
                           alt=""
                         />
                       </Card>
-                    ))}
-                  </AccordionDetails>
-                </Accordion>
+                    ))}  
+                    </AccordionUi>
                 {
                   <ItemQualification
                     type={clinic.type}
@@ -216,8 +134,8 @@ const ClinicPage: NextPage<Props> = ({
                   instagram={clinic.instagram}
                   phone={clinic.phone}
                 />
-              </CardContent>
-            </Card>
+                </Container>
+               </LargeItemCard>
           </SeeComments>
         </Grid>
       </Grid>

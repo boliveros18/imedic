@@ -23,7 +23,7 @@ export const authReducer = (state: State, action: ActionType): State => {
         user: undefined,
       };
     case "GET_USER":
-      return { ...state, user: action.payload };
+      return { ...state, member: action.payload };
     case "GET_USERS":
       return { ...state, users: action.payload };
     case "UPDATE_USER":

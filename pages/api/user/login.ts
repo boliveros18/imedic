@@ -32,7 +32,7 @@ export default function handler(
 }
 
 const loginUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  const { email = "", password = "" } = req.body;
+  const { email, password } = req.body;
 
   await db.connect();
   const user = await User.findOne({ email });

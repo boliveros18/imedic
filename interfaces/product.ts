@@ -19,6 +19,10 @@ export interface Product {
   additional_cost: number;
   additional_cost_description: string;
   currency: string;
+  photo: string;
+  city: string;
+  state: string;
+  country: string;
   qualification: number;
   comments: number;
   likes: number;

@@ -54,6 +54,7 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
   const [clinic, setClinic] = useState({ name: "Clinic", _id: "" } as Clinic);
   const [category, setCategory] = useState("Category");
   const [procedure, setProcedure] = useState("Procedure");
+  const [photo, setPhoto] = useState("");
   const [values, setValues] = useState(product);
 
   useEffect(() => {
@@ -101,7 +102,11 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
           category: category,
           procedure: procedure,
           recovery_days: values.recovery_days,
-          procedure_hours: values.procedure_hours
+          procedure_hours: values.procedure_hours,
+          photo: photo,
+          city: clinic.city,
+          state: clinic.state,
+          country: clinic.country
         } as Product , product_validation);
         await createProduct(filledInputsForm).then(() => {
           successService("created");
@@ -204,7 +209,7 @@ export const ManageProducts: FC<Props> = ({ medic }) => {
                 <MenuItem
                   key={index}
                   value={item.name || ""}
-                  onClick={() => setCategory(item.name)}
+                  onClick={() => {setCategory(item.name); setPhoto(item.photo)}}
                 >
                   {item.name}
                 </MenuItem>

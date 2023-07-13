@@ -5,6 +5,7 @@ interface ContextProps {
   isLoggedIn: boolean;
   users: IUser[];
   user?: IUser;
+  member?: IUser;
   setUser: (payload: IUser) => Promise<void>;
   loginUser: (
     email: string,

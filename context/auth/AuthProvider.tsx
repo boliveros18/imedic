@@ -12,6 +12,7 @@ export interface State {
   isLoggedIn: boolean;
   users: IUser[];
   user?: IUser;
+  member?: IUser;
 }
 
 interface Props {
@@ -22,6 +23,7 @@ const INITIAL_STATE: State = {
   isLoggedIn: false,
   users: [],
   user: undefined,
+  member: undefined
 };
 
 export const AuthProvider: FC<Props> = ({ children }) => {
@@ -46,7 +48,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
       const { status, data } = await AuthService.login(email, password);
       const { token, user } = data;
       Cookies.set("token", token);
-      if (status) dispatch({ type: "AUTH_LOGIN" });
+      if (status) {};
       return {
         hasError: false,
       };

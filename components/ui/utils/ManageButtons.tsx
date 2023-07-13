@@ -46,7 +46,7 @@ export const ManageButtons: FC<Props> = ({ suppress, create, submit, type }) => 
           id="alert-dialog-title"
           sx={{ fontSize: 16, fontWeight: "500" }}
         >
-          {`Do you want to delete this ${type}?`}
+          {`Do you want to delete this ${type}, are you sure?`}
         </DialogTitle>
         <DialogActions>
           <Button onClick={handleClose} sx={{ fontSize: 14 }}>

@@ -7,9 +7,10 @@ interface Props {
   children?: ReactNode;
   icon: boolean;
   title: string;
+  setToggleChangePassword?: any;
 }
 
-export const ExpanderUi: FC<Props> = ({ children, icon, title }) => {
+export const ExpanderUi: FC<Props> = ({ children, icon, title, setToggleChangePassword }) => {
   const [toggle, setToggle] = useState(false);
   return (
     <>
@@ -22,7 +23,7 @@ export const ExpanderUi: FC<Props> = ({ children, icon, title }) => {
           },
           textTransform: "capitalize"
         }}
-        onClick={() => setToggle(!toggle)}
+        onClick={() => {setToggle(!toggle); setToggleChangePassword(!toggle) }}
       >
         <Typography
           sx={{

@@ -3328,5 +3328,17 @@
     {
         "name": "Vulvectomy",
         "categoryName": "Obstetrics & Gynecology"
+    },
+    {
+        "name": "Medical consultation",
+        "categoryName": "Consultation"
+    },
+    {
+        "name": "Physical examination",
+        "categoryName": "Consultation"
+    },
+    {
+        "name": "Clinical history study",
+        "categoryName": "Consultation"
     }
 ]

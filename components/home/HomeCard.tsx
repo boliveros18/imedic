@@ -1,33 +1,23 @@
 import { FC, useContext } from "react";
 import * as React from "react";
 import {
-  Card,
-  CardHeader,
-  CardMedia,
-  Avatar,
-  Typography,
-  CardActionArea,
+  Typography
 } from "@mui/material";
-import AddModeratorIcon from "@mui/icons-material/AddModerator";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { CardActionsUi, GuideBar, SeeComments } from "../ui";
-import { WindowSize, UseWindowSize } from "../../utils";
+import { SingInUi, CardDetailUi, ReadMore, SeeComments } from "../ui";
+import { UseWindowSize } from "../../utils";
 import { ClinicContext } from "../../context/clinic";
 import { AuthContext } from "../../context/auth";
 import { UIContext } from "../../context/ui";
-import { SingInUi, ShareMediaUi, CardDetailUi, ReadMore } from "../ui";
-import { useRouter } from "next/router";
 import LoadingUi from "../ui/utils/LoadingUi";
+import { LargeItemCard } from "../ui/utils/LargeItemCard";
 
 interface Props {}
 
 export const HomeCard: FC<Props> = () => {
-  const router = useRouter();
   const { isLoggedIn } = useContext(AuthContext);
   const mobile = UseWindowSize();
-  const height = WindowSize().height;
   const { principal } = useContext(ClinicContext);
-  const { loading, setProgress } = useContext(UIContext);
+  const { loading } = useContext(UIContext);
 
   return (
     <>
@@ -37,85 +27,8 @@ export const HomeCard: FC<Props> = () => {
         initialAnswers={principal.comments}
       >
         <LoadingUi/>
-        <Card
-          sx={{
-            width: "100%",
-            minHeight: height - (!isLoggedIn ? 230 : 245),
-            mb: -2,
-            pb: -2,
-          }}
-          elevation={0}
-        >
-          <GuideBar />
-          <CardHeader
-            sx={{ mt: -1, mb: -1 }}
-            avatar={
-              loading && (
-                <Avatar
-                  alt={principal?.name}
-                  sx={{
-                    fontWeight: "bold",
-                    color: "white",
-                    backgroundColor: "#c9daff",
-                    fontSize: 12,
-                  }}
-                >
-                  <AddModeratorIcon />
-                </Avatar>
-              )
-            }
-            action={
-              loading && (
-                <ShareMediaUi
-                  name={principal?.name}
-                  description={
-                    principal?.finantial +
-                    ". " +
-                    principal?.category +
-                    ". " +
-                    principal?.technology
-                  }
-                />
-              )
-            }
-            title={
-              loading && (
-                <Typography sx={{ fontSize: 15, fontWeight: 500 }}>
-                  {principal?.name + " "}
-                  <CheckCircleIcon
-                    sx={{
-                      color: principal?.certified ? "blue" : "lightgray",
-                      fontSize: "15px",
-                    }}
-                  />
-                </Typography>
-              )
-            }
-            subheader={
-              loading && principal?.city + ", " + principal?.country
-            }
-          />
-          <CardActionArea
-            onClick={() => { setProgress(true);  router.push(`/clinic/${principal?._id}`);}}
-          >
-            {loading && (
-              <CardMedia
-                component="img"
-                height={height - 500}
-                image={principal?.photo}
-                alt="Clinic"
-                sx={{ maxHeight: "330px" }}
-              />
-            )}
-          </CardActionArea>
-          {loading && (
-            <CardActionsUi
-              parent_id={principal?._id || ""}
-              initialLikes={principal.likes}
-              type={principal.type}
-            />
-          )}
-          {loading && (
+        <LargeItemCard item={principal} route={true}> 
+        {loading && (
             <div style={{ marginLeft: "17px" }}>
               <Typography
                 sx={{
@@ -153,7 +66,7 @@ export const HomeCard: FC<Props> = () => {
               ></CardDetailUi>
             </div>
           )}
-        </Card>
+        </LargeItemCard>
       </SeeComments>
       <SingInUi />
     </>

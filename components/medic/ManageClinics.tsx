@@ -18,7 +18,7 @@ import SelectUbication from "../ui/utils/SelectUbication";
 import { Category } from "../../utils/medic-category/lib";
 import { useSnackbar } from "notistack";
 import { capitalize, formatPhone } from "../../utils/strings";
-import { clinic } from "../../utils/constants";
+import { clinic, clinic_img } from "../../utils/constants";
 import ManageButtons from "../ui/utils/ManageButtons";
 import TextFieldUi from "../ui/utils/TextFieldUi";
 import { isFilledInputsForm } from "../../utils/validations";
@@ -98,7 +98,8 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
           category: category,
           country: country,
           state: state,
-          city: city
+          city: city,
+          photo: clinic_img[Math.floor(Math.random() * clinic_img.length)]
         }  as Clinic, clinic);
         await createClinic(filledInputsForm);
         successService("created");
@@ -258,7 +259,7 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
           <Grid item xs={12}>
             <ManageButtons
               suppress={SupressClinic}
-              create={create}
+              create={create} 
               submit={submit}
               type="clinic"
             />
@@ -267,6 +268,6 @@ export const ManageClinics: FC<Props> = ({ medic }) => {
       </form>
     </AccordionUi>
   );
-};
+}; 
 
 export default ManageClinics;
