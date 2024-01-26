@@ -142,13 +142,14 @@ const deleteUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
   try {
     const deleteUser = await User.findByIdAndDelete(id);
-    if (deleteUser) {
+    if (deleteUser?.role === "medic") {
       await dbUsers.deleteChildren(id);
     }
     await db.disconnect();
     res.status(200).json(deleteUser!);
   } catch (error: any) {
     await db.disconnect();
+    console.log(error)
     res.status(400).json({ message: error.errors.status.message });
   }
 };

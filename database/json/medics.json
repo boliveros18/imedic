@@ -4,10 +4,7 @@
   },
   "type": "Medic",
   "parent_id": "64259483a587c96f2571262a",
-  "status":"pending",
-  "availables_dates": [
-    ""
-  ],
+  "status": "pending",
   "qualification": 0,
   "comments": 0,
   "instagram": "rwerwerwerwerwererwe123123",
@@ -19,17 +16,16 @@
   "updatedAt": {
     "$numberLong": "1681839611675"
   },
-  "__v": 0
+  "__v": 0,
+  "availables_dates": [],
+  "likes": 0
 },{
   "_id": {
     "$oid": "643d5b57a089376e6e50a0a3"
   },
   "type": "Medic",
   "parent_id": "64228786353b199547121dfc",
-  "status":"pending",
-  "availables_dates": [
-    ""
-  ],
+  "status": "pending",
   "qualification": 0,
   "comments": 0,
   "instagram": "https://www.instagram.com/camiloMedina/?hl=es",
@@ -41,25 +37,7 @@
   "updatedAt": {
     "$numberLong": "1681403769056"
   },
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "64448080e8373f0a9823a61e"
-  },
-  "type": "Medic",
-  "parent_id": "6444807fe8373f0a9823a61a",
-  "status":"pending",
-  "availables_dates": [
-    ""
-  ],
-  "qualification": 0,
-  "comments": 0,
-  "instagram": "",
-  "age": 0,
-  "years_experience": 0,
-  "createdAt": {
-    "$numberLong": "1682210944935"
-  },
-  "updatedAt": 0,
-  "__v": 0
+  "__v": 0,
+  "availables_dates": [],
+  "likes": 0
 }]

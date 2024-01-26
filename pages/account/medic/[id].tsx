@@ -17,7 +17,6 @@ import {
   ProceduresInProcess,
   MedicContract,
 } from "../../../components/medic";
-import { EditUser } from "../../../components/user/EditUser";
 import { ProductContext } from "../../../context/product";
 import { ClinicContext } from "../../../context/clinic";
 import { FileContext } from "../../../context/file";

@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "647e08282c16a918e407d6b5"
+  },
+  "medic_id": "642c78282452ed13a087f5d4",
+  "name": "Especializacion En Cirugias Plasticas",
+  "university": "Universidad de Madrid",
+  "file_id": "",
+  "level": "postgrade",
+  "createdAt": {
+    "$numberLong": "1685981224146"
+  },
+  "updatedAt": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "647e085e2c16a918e407d6bb"
+  },
+  "medic_id": "642c78282452ed13a087f5d4",
+  "name": "Medic",
+  "university": "Universidad del Meta",
+  "file_id": "",
+  "level": "pregrade",
+  "createdAt": {
+    "$numberLong": "1685981278692"
+  },
+  "updatedAt": {
+    "$numberLong": "1685981578364"
+  },
+  "__v": 0
+}]

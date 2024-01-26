@@ -20,8 +20,8 @@ import { AuthContext } from "../../context/auth";
 import { AuthLayout } from "../../components/layouts";
 import { validations } from "../../utils";
 import { PrivacyPolicy } from "../../components/ui";
-import { Medic } from "../../interfaces";
-import { dbMedics } from "../../database";
+import { Client, Medic } from "../../interfaces";
+import { dbClients, dbMedics } from "../../database";
 
 type FormData = {
   name: string;
@@ -254,7 +254,7 @@ export const getServerSideProps: GetServerSideProps = async ({
         age: 0,
         years_experience: 0,
         createdAt: Date.now(),
-        updatedAt: 0,
+        updatedAt: Date.now(),
       } as Medic);
 
       const { m = `/account/medic/${medic._id}` } = query;
@@ -265,6 +265,19 @@ export const getServerSideProps: GetServerSideProps = async ({
         },
       };
     } else {
+       await dbClients.createClient({
+        type: "Client",
+        parent_id: user.id,
+        instagram: "",
+        phone: "",
+        title: "",
+        birth: 0,
+        gender: "",
+        passport_number: "",
+        passport_expiry_date: 0,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      } as Client);
       const { c = "/" } = query;
       return {
         redirect: {

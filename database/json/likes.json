@@ -52,4 +52,67 @@
   "user_id": "64228786353b199547121dfc",
   "user_name": "Camilo Medina",
   "__v": 0
+},{
+  "_id": {
+    "$oid": "64710abe730f589f92e63784"
+  },
+  "type": "Comment",
+  "parent_id": "6429cc14bb97595abe63182e",
+  "user_id": "64259483a587c96f2571262a",
+  "user_name": "Andres Gutierrez",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64790c94e700c3aacd1a4950"
+  },
+  "type": "Clinic",
+  "parent_id": "63ab77d06d6dc52c56dc662e",
+  "user_id": "64436ada5a548e98cb90ef06",
+  "user_name": "Bresneth Oliveros",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64791275e700c3aacd1a4b37"
+  },
+  "type": "Comment",
+  "parent_id": "6429cd4bbb97595abe631896",
+  "user_id": "64436ada5a548e98cb90ef06",
+  "user_name": "Bresneth Oliveros",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6479f4b327a5063f2b254f0c"
+  },
+  "type": "Comment",
+  "parent_id": "6429cc23bb97595abe631837",
+  "user_id": "64436ada5a548e98cb90ef06",
+  "user_name": "Bresneth Oliveros",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6479f7cd27a5063f2b254f3f"
+  },
+  "type": "Comment",
+  "parent_id": "6429cc14bb97595abe63182e",
+  "user_id": "64436ada5a548e98cb90ef06",
+  "user_name": "Bresneth Oliveros",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "647a7fb3afe16a53d0cd8525"
+  },
+  "type": "Comment",
+  "parent_id": "6429cd4bbb97595abe631896",
+  "user_id": "64259483a587c96f2571262a",
+  "user_name": "Andres Gutierrez",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "647ca5cac347681f1aa407f9"
+  },
+  "type": "Clinic",
+  "parent_id": "63ab77d06d6dc52c56dc662e",
+  "user_id": "64259483a587c96f2571262a",
+  "user_name": "Andres Gutierrez",
+  "__v": 0
 }]

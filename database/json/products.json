@@ -52,4 +52,35 @@
   "updatedAt": {
     "$numberLong": "1677944214208"
   }
+},{
+  "_id": {
+    "$oid": "64a1bfa68988549d6de0d1fe"
+  },
+  "type": "Product",
+  "medic_id": "642c78282452ed13a087f5d4",
+  "clinic_id": "63ab77d06d6dc52c56dc662b",
+  "category": "Audiology",
+  "procedure": "Cochlear implants",
+  "recovery_days": 5,
+  "procedure_hours": 2,
+  "surgical_facility": 0,
+  "facility_care": 0,
+  "medical_care": 0,
+  "anesthesia_fees": 0,
+  "medical_tests": 0,
+  "post_surgery_garments": 0,
+  "prescription_medication": 0,
+  "surgeon_fee": 0,
+  "surgeon_insurance": 0,
+  "additional_cost": 0,
+  "additional_cost_description": "",
+  "currency": "US",
+  "qualification": 0,
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1688321958240"
+  },
+  "updatedAt": 0,
+  "__v": 0
 }]

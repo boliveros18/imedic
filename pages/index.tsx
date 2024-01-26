@@ -1,21 +1,23 @@
-import { FC, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { GetServerSideProps, NextPage } from "next";
-import { dbClinics, dbLikes, dbMedics } from "../database";
+import { dbClients, dbClinics, dbLikes, dbMedics } from "../database";
 import { Layout } from "../components/layouts";
 import { HomeCard } from "../components/home";
 import { Grid } from "@mui/material";
-import { BottomBar, SideBar, RightBar, UserDataComponent } from "../components/ui";
-import { Clinic, Like, IUser, Medic, File } from "../interfaces";
+import { SideBar, RightBar, UserDataComponent } from "../components/ui";
+import { Clinic, Like, IUser, Medic, File, Client } from "../interfaces";
 import { LikeContext } from "../context/like";
 import { ClinicContext } from "../context/clinic";
 import { UIContext } from "../context/ui";
 import { MedicContext } from "../context/medic";
+import { ClientContext } from "../context/client";
 import { userData } from '../utils/functions';
 
 interface Props {
   principal: Clinic;
   like: Like;
   medic: Medic;
+  client: Client;
   user: IUser;
   avatar: File;
 }
@@ -24,21 +26,25 @@ const HomePage: NextPage<Props> = ({
   principal,
   like,
   medic,
+  client,
   user,
   avatar
 }) => {
+  const { setClient } = useContext(ClientContext);
   const { setMedic } = useContext(MedicContext);
   const { addLikes } = useContext(LikeContext);
   const { setPrincipal } = useContext(ClinicContext);
   const { setLoading, setProgress } = useContext(UIContext);
-
   useEffect(() => {
+    setClient(client || {} as Client);
     setMedic(medic || {} as Medic);
     addLikes(like || {} as Like);
     setPrincipal(principal || {} as Clinic);
     setLoading(true);
     setProgress(false);
   }, [
+    client,
+    setClient,
     medic,
     setMedic,
     like,
@@ -85,6 +91,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const { user, avatar, session } = await userData(req);
   const principal = await dbClinics.getPrincipalClinic();
   const medic = await dbMedics.getMedicByUserId(user?._id || "");
+  const client = await dbClients.getClientByUserId(user?._id || "");
   const like: Like[] = await dbLikes.getLikeByParentIdAndUserId(
     principal._id || "",
     user?._id || ""
@@ -101,6 +108,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
   return {
     props: {
+      client: client,
       medic: medic,
       principal: principal,
       like: like,

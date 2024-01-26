@@ -4,10 +4,9 @@
   },
   "type": "Clinic",
   "medic_id": "642c78282452ed13a087f5d4",
-  "certified": false,
   "finantial": "8 million US in 2022",
   "category": "Plastic",
-  "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
+  "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures, Features in Suggesting Preventive Surgical Procedures",
   "phone": "(302) 555-4658",
   "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-22-scaled.jpg",
   "name": "Clinica Porto Azula",
@@ -25,14 +24,14 @@
   "updatedAt": {
     "$numberLong": "1683222200365"
   },
-  "__v": 0
+  "__v": 0,
+  "status": "pending"
 },{
   "_id": {
     "$oid": "63ab77d06d6dc52c56dc662d"
   },
   "type": "Clinic",
   "medic_id": "642c78272452ed13a087f5d1",
-  "certified": false,
   "finantial": "8 million US in 2021",
   "category": "Oncology",
   "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
@@ -53,19 +52,19 @@
   "updatedAt": {
     "$numberLong": "1672181711974"
   },
-  "__v": 0
+  "__v": 0,
+  "status": "pending"
 },{
   "_id": {
     "$oid": "63ab77d06d6dc52c56dc662e"
   },
   "type": "Clinic",
   "medic_id": "642c78272452ed13a087f5d1",
-  "certified": false,
   "finantial": "8 million US in 2021",
   "category": "Endocrine",
-  "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
+  "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures, in Suggesting Preventive Surgical Procedures",
   "phone": "+057 3025654987",
-  "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-07-scaled.jpg",
+  "photo": "https://clinicajaca.com/wp-content/uploads/2020/08/clinicajaca-22-scaled.jpg",
   "name": "Clinica de rehabilitacion medular",
   "city": "Barranquilla",
   "state": "Atlantico",
@@ -81,14 +80,14 @@
   "updatedAt": {
     "$numberLong": "1672181711974"
   },
-  "__v": 0
+  "__v": 0,
+  "status": "pending"
 },{
   "_id": {
     "$oid": "63ab77d06d6dc52c56dc662f"
   },
   "type": "Clinic",
   "medic_id": "642c78272452ed13a087f5d1",
-  "certified": false,
   "finantial": "8 million US in 2021",
   "category": "Orthopedic",
   "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
@@ -109,14 +108,14 @@
   "updatedAt": {
     "$numberLong": "1672181711974"
   },
-  "__v": 0
+  "__v": 0,
+  "status": "pending"
 },{
   "_id": {
     "$oid": "63ab77d06d6dc52c56dc6621"
   },
   "type": "Clinic",
   "medic_id": "642c78272452ed13a087f5d1",
-  "certified": false,
   "finantial": "8 million US in 2021",
   "category": "Cardiovascular",
   "technology": "Animation Deformity: Evaluating the Role of Morphotopologic Features in Suggesting Preventive Surgical Procedures",
@@ -137,21 +136,21 @@
   "updatedAt": {
     "$numberLong": "1672181711974"
   },
-  "__v": 0
+  "__v": 0,
+  "status": "pending"
 },{
   "_id": {
     "$oid": "6453e534d999a3ec7c9c268b"
   },
   "type": "clinic",
   "medic_id": "642c78282452ed13a087f5d4",
-  "certified": false,
   "finantial": "21 Millions in 2022",
   "category": "Dermatology",
   "technology": "Laser",
   "phone": "(302) 3543-354",
   "photo": "",
-  "name": "Clinica cajica",
-  "city": "San Rafael",
+  "name": "Clinica Cajicaa",
+  "city": "San Antonio",
   "state": "Heredia Province",
   "country": "Costa Rica",
   "address": "Av. Clinton St. Green",
@@ -165,14 +164,14 @@
   "updatedAt": {
     "$numberLong": "1683233034360"
   },
-  "__v": 0
+  "__v": 0,
+  "status": "pending"
 },{
   "_id": {
     "$oid": "645541b108d0843842e95618"
   },
   "type": "clinic",
   "medic_id": "642c78282452ed13a087f5d4",
-  "certified": false,
   "finantial": "wertwertewrt",
   "category": "Endocrine",
   "technology": "wertwertwert",
@@ -191,5 +190,6 @@
     "$numberLong": "1683308977321"
   },
   "updatedAt": 0,
-  "__v": 0
+  "__v": 0,
+  "status": "pending"
 }]

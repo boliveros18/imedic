@@ -13,6 +13,7 @@ import { MedicProvider } from "../context/medic";
 import { QualificationProvider } from "../context/qualification";
 import { ProductProvider } from "../context/product";
 import { FileProvider } from "../context/file";
+import { ClientProvider } from "../context/client";
 import { QuoteProvider } from "../context/quote";
 import { ProcedureProvider } from "../context/procedure";
 import { SnackbarProvider } from "notistack";
@@ -47,9 +48,11 @@ export default function App({ Component, pageProps }: Props) {
                                 <ProcedureProvider>
                                   <QualificationProvider>
                                     <CertificationProvider>
+                                    <ClientProvider>
                                       <SnackbarProvider maxSnack={1}>
                                         <Component {...pageProps} />
                                       </SnackbarProvider>
+                                    </ClientProvider>
                                     </CertificationProvider>
                                   </QualificationProvider>
                                 </ProcedureProvider>

@@ -1,4 +1,5 @@
 export { default as Certification, type ICertification } from './Certification'
+export { default as Client, type IClient } from './Client'
 export { default as Clinic, type IClinic } from './Clinic'
 export { default as Comment, type IComment } from './Comment'
 export { default as Degree, type IDegree } from './Degree'

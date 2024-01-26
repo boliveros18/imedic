@@ -24,7 +24,9 @@ export const connect = async () => {
     await mongoose.disconnect();
   }
 
-  await mongoose.connect(process.env.MONGO_URL || "");
+  await mongoose.connect(process.env.MONGO_URL || "", {
+    dbName: 'imedic'
+  });
   mongoConnection.isConnected = 1;
 };
 

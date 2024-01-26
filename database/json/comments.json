@@ -8,8 +8,8 @@
   "description": "I loved it. Very good attention.",
   "user_tag_id": "",
   "user_tag_name": "",
-  "comments": 4,
-  "likes": 1,
+  "comments": 6,
+  "likes": 3,
   "createdAt": {
     "$numberLong": "1680460820444"
   },
@@ -26,7 +26,7 @@
   "user_tag_id": "",
   "user_tag_name": "",
   "comments": 1,
-  "likes": 1,
+  "likes": 2,
   "createdAt": {
     "$numberLong": "1680460835508"
   },
@@ -43,7 +43,7 @@
   "user_tag_id": "63ac7a91454855cff2b9c841",
   "user_tag_name": "@maria cano",
   "comments": 0,
-  "likes": 0,
+  "likes": 2,
   "createdAt": {
     "$numberLong": "1680461131924"
   },
@@ -148,6 +148,40 @@
   "likes": 1,
   "createdAt": {
     "$numberLong": "1681752997648"
+  },
+  "updatedAt": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "647918d9e700c3aacd1a4c14"
+  },
+  "type": "Comment",
+  "parent_id": "6429cc14bb97595abe63182e",
+  "user_id": "64436ada5a548e98cb90ef06",
+  "description": "12",
+  "user_tag_id": "63ac7a91454855cff2b9c841",
+  "user_tag_name": "@Maria Cano",
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1685657817341"
+  },
+  "updatedAt": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "647e91550eb3d3a5fa7a9571"
+  },
+  "type": "Comment",
+  "parent_id": "6429cc14bb97595abe63182e",
+  "user_id": "64259483a587c96f2571262a",
+  "description": "retre",
+  "user_tag_id": "63ac76f9454855cff2b9c81c",
+  "user_tag_name": "@Carlos Dominguez",
+  "comments": 0,
+  "likes": 0,
+  "createdAt": {
+    "$numberLong": "1686016341788"
   },
   "updatedAt": 0,
   "__v": 0

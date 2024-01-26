@@ -25,6 +25,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Logout from "@mui/icons-material/Logout";
 import { AuthContext } from "../../../context/auth";
 import { MedicContext } from "../../../context/medic";
+import { ClientContext } from "../../../context/client";
 import { FileContext } from "../../../context/file";
 import { UIContext } from "../../../context/ui";
 
@@ -42,6 +43,7 @@ interface Props {
 export const NavBar: FC<Props> = ({}) => {
   const { user, isLoggedIn, logout } = useContext(AuthContext);
   const { medic } = useContext(MedicContext);
+  const { client } = useContext(ClientContext);
   const { avatar } = useContext(FileContext);
   const { setProgress } = useContext(UIContext);
   const router = useRouter();
@@ -89,7 +91,7 @@ export const NavBar: FC<Props> = ({}) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={() =>{handleMenuClose(); setProgress(true); navigateTo(`/account/${user?.role}/${user?.role ==="client" ? null : medic._id }`)}} sx={{ width: 300, maxWidth: "100%" }}>
+      <MenuItem onClick={() =>{handleMenuClose(); setProgress(true); navigateTo(`/account/${user?.role}/${user?.role ==="client" ? client._id : medic._id }`)}} sx={{ width: 300, maxWidth: "100%" }}>
         <ListItemIcon>
           <Avatar alt="name" src={avatar.url || ""} sx={{ mr: 1 }} />
         </ListItemIcon>{" "}
